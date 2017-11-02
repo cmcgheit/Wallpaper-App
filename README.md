@@ -16,7 +16,7 @@ Wallpaper art from [Elias Stein](https://dribbble.com/elias "Elias Stein on Drib
 
 ![simulator screen shot jun 27 2017 10 41 20 pm](https://user-images.githubusercontent.com/24944725/27619714-2146a722-5b8a-11e7-9d6d-d63ed77aef4d.png)
 
-![Hacker News Gif](https://github.com/cmcgheit/Wallpaper-App/blob/master/wallpaper.gif)
+![Wallpaper Gif](/Resources/wallpaper.gif)
 
 
 

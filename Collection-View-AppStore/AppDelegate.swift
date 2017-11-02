@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import GlidingCollection
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        FirebaseApp.configure()
+        setupGlidingCollection()
         return true
+    }
+    
+    private func setupGlidingCollection() {
+        var config = GlidingConfig.shared
+        config.buttonsFont = UIFont.boldSystemFont(ofSize: 22) // Setting font for heading category titles?
+        config.inactiveButtonsColor = config.activeButtonColor
+        GlidingConfig.shared = config
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
