@@ -16,7 +16,9 @@ internal class WallpaperRoundedCardCell: UICollectionViewCell {
     var wallpaper: Wallpaper! {
         didSet {
             imageView.layer.cornerRadius = 14.0
-            
+        
+            // MARK: - Download Images FROM Firebase Function
+            func downloadImageFromFirebase() {
                 if let wallpaperURL = wallpaper.wallpaperURL {
                     let wallpaperStorageRef = Storage.storage().reference(forURL: wallpaperURL)
                     wallpaperStorageRef.getData(maxSize: 2 * 1024 * 1024, completion: { [weak self] (data, error) in
@@ -35,3 +37,4 @@ internal class WallpaperRoundedCardCell: UICollectionViewCell {
             }
         }
     }
+}

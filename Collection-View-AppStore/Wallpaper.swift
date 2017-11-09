@@ -14,45 +14,49 @@ let databaseReference = Database.database().reference()
 let storageReference = Storage.storage().reference()
 
 class Wallpaper {
-
+    
+    let wallpaperCatTitles = ["Sports", "Music", "Art"]
+    
     var wallpaperURL: String?
     var wallpaperDesc: String!
+    var wallpaperCategory: String!
     private var wallpaperImage: UIImage!
     
-    public init(wallpaperImage: UIImage, wallpaperDesc: String) {
+    public init(wallpaperImage: UIImage, wallpaperDesc: String, wallpaperCategory: String) {
+        self.wallpaperCategory = wallpaperCategory
         self.wallpaperImage = wallpaperImage
         self.wallpaperDesc = wallpaperDesc
-
+        
     }
     
-    // MARK: Intializer for Wallpapers to go into Wallpapers Feed (in JSON format)
+    // MARK: Intializer for Wallpapers to go into Wallpapers Feed (turn into JSON format)
     public init(snapshot: DataSnapshot) {
         let json = JSON(snapshot.value!)
         self.wallpaperURL = json["wallpaperURL"].stringValue
         self.wallpaperDesc = json["wallpaperDesc"].stringValue
+        self.wallpaperCategory = json["wallpaperCategory"].stringValue
+        
     }
     
-    // MARK: - Function For Saving Wallpapers to Firebase
+    // MARK: - Function for uploading Wallpapers to Firebase
     func uploadWallpaper() {
-        let newWallpaper =
-            databaseReference.child("userUploaded").childByAutoId() //creates new folder in firebase database for useruploaded images
-        let newWallpaperKey = newWallpaper.key
+        let newWallRef = databaseReference.child("wallpapers").childByAutoId() // Puts uploaded wallpaper images in database under "wallpapers"
+        let newWallKey = newWallRef.key
         
         if let wallpaperData = UIImagePNGRepresentation(self.wallpaperImage) {
-            let wallpaperStorageRef = storageReference.child("images") // storage reference goes to images folder
-            let newWallpaperRef = wallpaperStorageRef.child(newWallpaperKey)
+            let wallpaperStorageRef = Storage.storage().reference().child("images") // saves image to storage under "images", later assign category
+            let newWallpaperImageRef = wallpaperStorageRef.child(newWallKey)
             
-            newWallpaperRef.putData(wallpaperData).observe(.success, handler: { (snapshot) in
-                // Saving images to Firebase as Dictionary
+            newWallpaperImageRef.putData(wallpaperData).observe(.success, handler: { (snapshot) in
                 self.wallpaperURL = snapshot.metadata?.downloadURL()?.absoluteString
-                let newWallpaperDictionary = [
+                let newWallpaperDictionary = [ // creates dictionary of wallpaper info: url, category, desc
                     "wallpaperURL": self.wallpaperURL,
+                    "wallpaperCategory": self.wallpaperCategory,
                     "wallpaperDesc": self.wallpaperDesc
-                    ]
-                newWallpaper.setValue(newWallpaperDictionary)
+                ]
+                newWallRef.setValue(newWallpaperDictionary)
             })
         }
-        
     }
     
 }

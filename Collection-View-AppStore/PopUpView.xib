@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopUpView" customModule="Collection_View_AppStore" customModuleProvider="target">
             <connections>
+                <outlet property="popUpView" destination="i5M-Pr-FkT" id="fCF-tv-7W6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="wallpaperDescLbl" destination="i9x-xV-iRI" id="Tgm-VR-GGG"/>
                 <outlet property="wallpaperPopImage" destination="HCs-gx-GHZ" id="zLr-uV-YDR"/>

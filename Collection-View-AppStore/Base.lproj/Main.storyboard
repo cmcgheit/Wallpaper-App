@@ -21,65 +21,83 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P5n-SR-yuM" customClass="GlidingCollection">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P5n-SR-yuM" customClass="GlidingCollection" customModule="GlidingCollection">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-ye-yUT">
-                                        <rect key="frame" x="312" y="27" width="55" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
-                                        <state key="normal" title="Upload">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="uploadBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TKd-pu-X6e"/>
-                                        </connections>
-                                    </button>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cV2-S0-e7C">
+                                        <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Oas-aF-NCX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                        <blurEffect style="extraLight"/>
+                                    </visualEffectView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="cV2-S0-e7C" firstAttribute="leading" secondItem="P5n-SR-yuM" secondAttribute="leading" id="GMf-8q-Huh"/>
+                                    <constraint firstItem="cV2-S0-e7C" firstAttribute="top" secondItem="P5n-SR-yuM" secondAttribute="top" constant="70" id="ZNR-pP-mZU"/>
+                                    <constraint firstAttribute="trailing" secondItem="cV2-S0-e7C" secondAttribute="trailing" id="Zwi-eC-ZmO"/>
+                                    <constraint firstAttribute="bottom" secondItem="cV2-S0-e7C" secondAttribute="bottom" id="ipd-iz-Blh"/>
+                                </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ev3-6c-w0C">
-                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
-                                <color key="backgroundColor" red="0.95640569925308228" green="0.96851438283920288" blue="0.98089104890823364" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fAa-LB-M7z">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WallpaperCell" id="nlh-wx-STR" customClass="WallpaperRoundedCardCell" customModule="Collection_View_AppStore" customModuleProvider="target">
-                                        <rect key="frame" x="48" y="0.0" width="280" height="500"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="280" height="500"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </view>
-                                        <size key="customSize" width="280" height="500"/>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
+                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-ye-yUT">
+                                <rect key="frame" x="331" y="30" width="34" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="J2R-kr-aNJ"/>
+                                    <constraint firstAttribute="width" constant="34" id="OqN-NT-9Q3"/>
+                                </constraints>
+                                <state key="normal" image="imageupload">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="3qs-Bd-fOm" kind="show" identifier="toUploadWallpaperPopUp" id="6kx-3b-rYY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ev3-6c-w0C" secondAttribute="trailing" id="IJi-Ih-Vre"/>
-                            <constraint firstItem="ev3-6c-w0C" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="NSt-sF-vh6"/>
+                            <constraint firstAttribute="trailing" secondItem="KWp-ye-yUT" secondAttribute="trailing" constant="10" id="469-p6-rsM"/>
+                            <constraint firstItem="KWp-ye-yUT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="Laf-ek-Bmu"/>
                             <constraint firstItem="P5n-SR-yuM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="RW3-7A-pvv"/>
-                            <constraint firstItem="P5n-SR-yuM" firstAttribute="trailing" secondItem="ev3-6c-w0C" secondAttribute="trailing" id="cvf-kW-ska"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ev3-6c-w0C" secondAttribute="bottom" id="fMM-HK-HKQ"/>
-                            <constraint firstItem="P5n-SR-yuM" firstAttribute="leading" secondItem="ev3-6c-w0C" secondAttribute="leading" id="knX-9P-UXM"/>
+                            <constraint firstAttribute="trailing" secondItem="P5n-SR-yuM" secondAttribute="trailing" id="Tz6-bg-ykA"/>
                             <constraint firstItem="P5n-SR-yuM" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="nDW-Fp-B8C"/>
-                            <constraint firstItem="ev3-6c-w0C" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tCh-0X-jfA"/>
+                            <constraint firstItem="P5n-SR-yuM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tW9-Ze-9wu"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="glidingView" destination="P5n-SR-yuM" id="SAD-xm-qQc"/>
+                        <outlet property="popUpView" destination="Y7D-LQ-FhZ" id="JXV-fP-d1Q"/>
                         <outlet property="uploadBtn" destination="KWp-ye-yUT" id="nfh-lS-wSd"/>
+                        <outlet property="vibeBlurView" destination="cV2-S0-e7C" id="bEf-dg-65r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="Y7D-LQ-FhZ" customClass="PopUpView" customModule="Collection_View_AppStore" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="244" y="125.4872563718141"/>
+            <point key="canvasLocation" x="248.80000000000001" y="125.4872563718141"/>
+        </scene>
+        <!--Upload Wallpaper Pop Up-->
+        <scene sceneID="BIc-7i-bui">
+            <objects>
+                <viewController id="3qs-Bd-fOm" customClass="UploadWallpaperPopUp" customModule="Collection_View_AppStore" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A1R-Nl-dvj"/>
+                        <viewControllerLayoutGuide type="bottom" id="S4u-im-SDB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Coe-fh-6xh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jgg-Jr-4U2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1029.5999999999999" y="125.4872563718141"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="gMl-Nl-ycl">
@@ -116,7 +134,7 @@
                                 <rect key="frame" x="37" y="83" width="300" height="500"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Cbo-2V-dDz">
-                                        <rect key="frame" x="20" y="40" width="260" height="159"/>
+                                        <rect key="frame" x="20" y="40" width="260" height="219"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign-In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRt-vc-IzH">
                                                 <rect key="frame" x="35" y="0.0" width="190" height="39"/>
@@ -148,13 +166,8 @@
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="dlY-Kb-FrY">
-                                        <rect key="frame" x="50" y="259" width="200" height="120"/>
-                                        <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLo-yH-V89">
-                                                <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
+                                                <rect key="frame" x="30" y="189" width="200" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="c9p-i3-gAX"/>
                                                     <constraint firstAttribute="width" constant="200" id="w2W-fC-vDF"/>
@@ -168,8 +181,13 @@
                                                     <action selector="signInBtnPressed:" destination="e5t-Dg-8Hj" eventType="touchUpInside" id="5uo-lX-ra8"/>
                                                 </connections>
                                             </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="dlY-Kb-FrY">
+                                        <rect key="frame" x="50" y="319" width="200" height="75"/>
+                                        <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiB-AT-fsZ">
-                                                <rect key="frame" x="0.0" y="45" width="200" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="VR9-MC-d2M"/>
                                                     <constraint firstAttribute="height" constant="30" id="Y4f-2y-DfB"/>
@@ -184,7 +202,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71F-yI-cGI">
-                                                <rect key="frame" x="0.0" y="90" width="200" height="30"/>
+                                                <rect key="frame" x="0.0" y="45" width="200" height="30"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="200" id="aRq-JT-SZG"/>
@@ -243,6 +261,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="imageupload" width="100" height="100"/>
         <image name="iphone-outline" width="132" height="271"/>
         <image name="iphonewithwallpapers" width="400" height="300"/>
     </resources>

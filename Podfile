@@ -11,6 +11,7 @@ target 'Collection-View-AppStore' do
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
   pod 'SwiftyJSON'
+  pod 'Kingfisher'
   pod 'GlidingCollection'
 
 end
