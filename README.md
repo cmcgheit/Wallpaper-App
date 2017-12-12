@@ -1,6 +1,8 @@
 # Wallpaper App
 
-Wallpaper app to showcase diverse artists/art. Available on the app store!
+Wallpaper app to showcase diverse artists/art. Just Revamped it and the app will be available on the app store soon!
+
+[Revamped App Photo](/Resources/Simulator Screen Shot Nov 2, 2017, 3.15.34 PM.png)
 
 [App Store Link]()
 
@@ -18,7 +20,7 @@ Featured Wallpaper art from:
 ### Things to Update
 
 - [ ] Finish Popup/description
-- [ ] [GlidingCollectionDelegate]((https://github.com/Ramotion/gliding-collection "Gliding Collection")
+- [x] [GlidingCollectionDelegate]((https://github.com/Ramotion/gliding-collection "Gliding Collection")
 - [x] Sections
 - [x] [Gliding Collection](https://github.com/Ramotion/gliding-collection "Gliding Collection")
 

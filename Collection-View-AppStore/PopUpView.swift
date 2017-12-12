@@ -24,13 +24,13 @@ class PopUpView: UIView {
         
     }
     
-
+  // MARK: Downloading Wallpaper for PopUpView
         var wallpaper: Wallpaper! {
             didSet {
                 wallpaperPopImage.layer.cornerRadius = 14.0
                 self.wallpaperDescLbl.text = wallpaper.wallpaperDesc
                 
-                // MARK: - Download Images FROM Firebase Function, want to call wallpaper selected
+                // MARK: - Download Images FROM Firebase Function
                 func downloadImageFromFirebase() {
                     if let wallpaperURL = wallpaper.wallpaperURL {
                         let wallpaperStorageRef = Storage.storage().reference(forURL: wallpaperURL)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UploadWallpaperPopUp: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -17,7 +18,7 @@ class UploadWallpaperPopUp: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var wallpaperCatLbl: UILabel!
     @IBOutlet weak var wallpaperCatTxtFld: UITextField! // eventually a picker?
     
-
+    
     var wallpaperDescPlaceholderText = "Describe this wallpaper"
     var wallpaperCatPlaceholderText = "Give the wallpaper a category"
     
@@ -48,9 +49,9 @@ class UploadWallpaperPopUp: UIViewController, UIPickerViewDelegate, UIPickerView
         
         self.view.addSubview(catPickerView)
         
-        wallpaperCatTxtFld.inputView = catPickerView // Assigns pickerView to catTextFld
+        wallpaperCatTxtFld?.inputView = catPickerView // Assigns pickerView to catTextFld
         
-        
+        // Right now calling from Navigation controller needs to be called from UIView/UIViewController
         if let rootController = UIApplication.shared.keyWindow?.rootViewController {
             
             if rootController is UINavigationController {
@@ -97,9 +98,9 @@ class UploadWallpaperPopUp: UIViewController, UIPickerViewDelegate, UIPickerView
         if wallpaperDescTextView.text != "" && wallpaperPopUpView.image != nil && wallpaperCatTxtFld.text != "" {
             self.closeBtn?.isHidden = false
             self.dismiss(animated: true, completion: nil)
-//            viewController.willMove(toParentViewController: nil)
-//            viewController.view.removeFromSuperview()
-//            viewController.removeFromParentViewController()
+            //            viewController.willMove(toParentViewController: nil)
+            //            viewController.view.removeFromSuperview()
+            //            viewController.removeFromParentViewController()
         }
     }
     
@@ -114,11 +115,11 @@ class UploadWallpaperPopUp: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 100
+        return 30
     }
     
     func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return 100
+        return 150
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -132,7 +133,7 @@ class UploadWallpaperPopUp: UIViewController, UIPickerViewDelegate, UIPickerView
         label.text = catPickerViewCategories[row]
         view.addSubview(label)
         view.transform = CGAffineTransform(rotationAngle: 90 * (.pi/180))
-    
+        
         return view
     }
     // Sets PickerView as TextFld after selection
@@ -140,7 +141,9 @@ class UploadWallpaperPopUp: UIViewController, UIPickerViewDelegate, UIPickerView
         wallpaperCatTxtFld.text = catPickerViewCategories[row]
         wallpaperCatTxtFld.resignFirstResponder()
     }
+    
 }
+
 
 // MARK: TextView Delegate Functions
 extension UploadWallpaperPopUp: UITextViewDelegate {
@@ -170,6 +173,32 @@ extension UploadWallpaperPopUp: UIImagePickerControllerDelegate, UINavigationCon
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.takenImage = image
         self.wallpaperPopUpView.image = self.takenImage
+        //        // MARK: - Function to save images user uploads to Firbase storage
+        // OR TWEAK UPLOADWALLPAPER FUNCTION??
+        //        let uniqueString = NSUUID().uuidString
+        //        if let userUploadedImage = takenImage { // have to do case by category, currently just goes to wallpaper general folder in firebase storage
+        //            let storageRef = storageReference.child("wallpapers").child("\(uniqueString).png")
+        //            if let uploadData = UIImagePNGRepresentation(userUploadedImage) {
+        //                storageRef.put(uploadData, metadata: nil, completion: { (data, error) in
+        //                    if error != nil {
+        //                        print("Error: \(error!.localizedDescription)")
+        //                        return
+        //                    }
+        //                    if let uploadImageUrl = data?.wallpaperURL()?.absoluteString {
+        //                        print("Photo Url: \(uploadImageUrl)")
+        //        let databaseRef = FIRDatabase.database().reference().child("wallpapers").child("wallpaperCategory")child(uniqueString) // put in appropiate category
+        //        databaseRef.setValue(uploadImageUrl, withCompletionBlock: { (error, dataRef) in
+        //            if error != nil {
+        //                print("Database Error: \(error!.localizedDescription)")
+        //            }
+        //            else {
+        //                print("Image successfully saved to Firebase Database")
+        //            }
+        //        })
+        //    }
+        //})
+        //}
+        //}
         self.dismiss(animated: true, completion: nil)
     }
     

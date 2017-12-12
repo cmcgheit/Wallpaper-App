@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_Collection_View_AppStoreVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_Collection_View_AppStoreVersionString[];
+FOUNDATION_EXPORT double Pods_Wallpaper_AppVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_Wallpaper_AppVersionString[];
 

@@ -12,6 +12,11 @@ import GlidingCollection
 import Kingfisher
 import SwiftyJSON
 
+enum WallpaperCategories: String {
+    case Sports, Music, Art
+}
+
+var wallpaperCatList: [WallpaperCategories] = [.Sports, .Music, .Art]
 
 class FeedViewController: UIViewController {
     
@@ -24,7 +29,12 @@ class FeedViewController: UIViewController {
     var effect: UIVisualEffect!
     
     var wallpapers = [Wallpaper]()
-    var wallpaperCategoryTitle:[String] = ["Sports", "Music", "Arts"]
+    
+    var wallpaperCategory = [Wallpaper]()
+    
+    var sportsCategory = [String]()
+    var musicCategory = [String]()
+    var artCategory = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,14 +78,14 @@ class FeedViewController: UIViewController {
         DispatchQueue.main.async {
             Database.database().reference().child("wallpapers").observe(.childAdded, with: { (snapshot) in // reference to wallpapers in database, add specific categories?
                 
-                DispatchQueue.main.async { // Adding New Wallpapers to beginning of Wallpaper feed
+                DispatchQueue.main.async { // Adding New Wallpapers to beginning of Wallpaper feed, add specific categories?
                     let newWallpaper = Wallpaper(snapshot: snapshot)
                     self.wallpapers.insert(newWallpaper, at: 0)
                     let indexPath = IndexPath(row: 0, section: 0)
                     self.collectionView.insertItems(at: [indexPath])
                 }
             }
-        )}
+            )}
         self.collectionView.reloadData()
         self.glidingView.reloadData()
     }
@@ -83,7 +93,6 @@ class FeedViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         func uploadBtnPressed(_ sender: Any) {
-            self.dismiss(animated: true) //may not need
             if let popup = self.storyboard?.instantiateViewController(withIdentifier: "toUploadWallpaperPopUp") as? UploadWallpaperPopUp {
                 self.present(popup, animated: true, completion: nil)
             }
@@ -124,25 +133,47 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let section = glidingView.expandedItemIndex
-        return wallpapers.count
+                if self.wallpapers.count > 0 {
+                    return wallpapers.count
+                } else {
+                    return 1
+                }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WallpaperCell", for: indexPath) as? WallpaperRoundedCardCell else { return UICollectionViewCell() }
         let section = glidingView.expandedItemIndex
-        let wallpaper = wallpapers[indexPath.row]
+        // let wallpaper = wallpapers[indexPath.row]
+        // (section: glidingCollection.expandedItemIndex, atIndex: indexPath.row)
+        // cell.imageView.kf.setImage(with: URL(string: wallpaper.wallpaperURL!))
         
-        cell.imageView.kf.setImage(with: URL(string: wallpaper.wallpaperURL!), placeholder: UIImage(named:"placeholder-image"))
         
-        // MARK: - Downloading Images from Firebase storage, currently can only download one individual image
-        //        let imageName = NSUUID().uuidString
-        //        let imageRef = storageReference.child("images").child("sports").child("chicago-full.png") //\(imageName)
-        //        imageRef.getData(maxSize: 10 * 1024 * 1024, completion: { (data, error) in
-        //            if error != nil {
-        //                let image = UIImage(named: "placeholder-image")
-        //                cell.imageView?.kf.setImage(with: data as? Resource, placeholder: image)
-        //            }
-        //        })
+        let sportsCategory = wallpapers[indexPath.row]
+        let musicCategory = wallpapers[indexPath.row]
+        let artCategory = wallpapers[indexPath.row]
+        let wallpaperCategories = wallpaperCatList[indexPath.row]
+        switch wallpaperCategories {
+        case .Sports:
+            cell.imageView.kf.setImage(with: URL(string: sportsCategory.wallpaperURL!))
+        case .Music:
+            cell.imageView.kf.setImage(with: URL(string: musicCategory.wallpaperURL!))
+        case .Art:
+            cell.imageView.kf.setImage(with: URL(string: artCategory.wallpaperURL!))
+        default:
+            cell.imageView.image = UIImage(named: "placeholder-image")
+        }
+        
+        
+        //         MARK: - Downloading Images from Firebase storage, currently can only download one individual image
+        //                let imageName = NSUUID().uuidString
+        //                let imageRef = storageReference.child("images").child("sports").child("chicago-full.png") //\(imageName)
+        //                imageRef.getData(maxSize: 10 * 1024 * 1024, completion: { (data, error) in
+        //                    if error != nil {
+        //                        let image = UIImage(named: "placeholder-image")
+        //                        cell.imageView?.kf.setImage(with: data as? Resource, placeholder: image)
+        //                    }
+        //                })
         
         cell.contentView.clipsToBounds = true
         let layer = cell.layer
@@ -159,17 +190,10 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! WallpaperRoundedCardCell
-        let wallpaper = wallpapers[indexPath.row]
-        
+        let toPopUpView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopUpView") as UIViewController
+        toPopUpView.modalPresentationStyle = .overCurrentContext
+        self.present(toPopUpView, animated: true, completion: nil)
         animateInPopUp() // call function or put function here for didselect
-        
-        //        goToPopUpView.selectedIndex = indexPath
-        //        goToPopUpView.selectedImage = cell.imageView.image
-        //        goToPopUpView.placeholder = wallpapers(section: glidingCollection.expandedItemIndex)
-        //        goToPopUpView.photos = wallpapers(section: glidingCollection.expandedItemIndex)
-        //
-        
     }
 }
 
@@ -178,16 +202,13 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
 extension FeedViewController: GlidingCollectionDatasource {
     
     func numberOfItems(in collection: GlidingCollection) -> Int {
-        return wallpaperCategoryTitle.count
+        return wallpapers.count
     }
     
     
     func glidingCollection(_ collection: GlidingCollection, itemAtIndex index: Int) -> String {
-        return wallpaperCategoryTitle[index]
+        return wallpaperCatList[index].rawValue
     }
 }
-
-
-
 
 

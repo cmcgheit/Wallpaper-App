@@ -41,6 +41,9 @@
                                     <constraint firstAttribute="bottom" secondItem="cV2-S0-e7C" secondAttribute="bottom" id="ipd-iz-Blh"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colorfuliphonepattern" translatesAutoresizingMaskIntoConstraints="NO" id="AwP-uk-x4R">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-ye-yUT">
                                 <rect key="frame" x="331" y="30" width="34" height="34"/>
                                 <constraints>
@@ -58,10 +61,14 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="KWp-ye-yUT" secondAttribute="trailing" constant="10" id="469-p6-rsM"/>
+                            <constraint firstItem="AwP-uk-x4R" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="KzD-ov-Nut"/>
                             <constraint firstItem="KWp-ye-yUT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="Laf-ek-Bmu"/>
                             <constraint firstItem="P5n-SR-yuM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="RW3-7A-pvv"/>
                             <constraint firstAttribute="trailing" secondItem="P5n-SR-yuM" secondAttribute="trailing" id="Tz6-bg-ykA"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="AwP-uk-x4R" secondAttribute="bottom" id="XAn-q9-b6o"/>
+                            <constraint firstItem="AwP-uk-x4R" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="kdh-ws-kHa"/>
                             <constraint firstItem="P5n-SR-yuM" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="nDW-Fp-B8C"/>
+                            <constraint firstAttribute="trailing" secondItem="AwP-uk-x4R" secondAttribute="trailing" id="qPN-Fb-X82"/>
                             <constraint firstItem="P5n-SR-yuM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tW9-Ze-9wu"/>
                         </constraints>
                     </view>
@@ -76,7 +83,8 @@
                 <view contentMode="scaleToFill" id="Y7D-LQ-FhZ" customClass="PopUpView" customModule="Collection_View_AppStore" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.70212250947952271" green="0.85495454072952271" blue="0.62230777740478516" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </view>
             </objects>
             <point key="canvasLocation" x="248.80000000000001" y="125.4872563718141"/>
@@ -114,7 +122,7 @@
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2D4-oM-TUc">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iphonewithwallpapers" translatesAutoresizingMaskIntoConstraints="NO" id="mK5-UG-TDJ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="colorfuliphonepattern" translatesAutoresizingMaskIntoConstraints="NO" id="mK5-UG-TDJ">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     </imageView>
                                 </subviews>
@@ -261,8 +269,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="colorfuliphonepattern" width="960" height="540"/>
         <image name="imageupload" width="100" height="100"/>
         <image name="iphone-outline" width="132" height="271"/>
-        <image name="iphonewithwallpapers" width="400" height="300"/>
     </resources>
 </document>

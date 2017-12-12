@@ -1,6 +1,0 @@
-framework module Pods_Collection_View_AppStore {
-  umbrella header "Pods-Collection-View-AppStore-umbrella.h"
-
-  export *
-  module * { export * }
-}

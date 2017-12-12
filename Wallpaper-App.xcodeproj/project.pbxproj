@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		11749A831858E7855472495C /* Pods_Collection_View_AppStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDC880C381E53C40DA6698B4 /* Pods_Collection_View_AppStore.framework */; };
+		49576B963725442268CF8D9F /* Pods_Wallpaper_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */; };
 		6A1367991F8D657F00FC16F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A1367981F8D657F00FC16F8 /* GoogleService-Info.plist */; };
 		6A13679B1F8D691B00FC16F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A13679A1F8D691B00FC16F8 /* Constants.swift */; };
 		6A13679D1F8D7DB500FC16F8 /* Wallpaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A13679C1F8D7DB500FC16F8 /* Wallpaper.swift */; };
@@ -30,7 +30,7 @@
 		6A13679A1F8D691B00FC16F8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6A13679C1F8D7DB500FC16F8 /* Wallpaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallpaper.swift; sourceTree = "<group>"; };
 		6A13679E1F8D847000FC16F8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		6A17C4001EFD5AD30047CBA5 /* Collection-View-AppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Collection-View-AppStore.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A17C4001EFD5AD30047CBA5 /* Wallpaper-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wallpaper-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A17C4031EFD5AD30047CBA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A17C4081EFD5AD30047CBA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6A17C40D1EFD5AD30047CBA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -43,9 +43,9 @@
 		6AB3DA571FB2598400E06B97 /* UploadWallpaperPopUp.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadWallpaperPopUp.xib; sourceTree = "<group>"; };
 		6AC4A3A41FAA2E3600845B59 /* PopUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		6AC4A3A51FAA2E3600845B59 /* PopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpView.xib; sourceTree = "<group>"; };
-		880230C4F0DA230DD48057D5 /* Pods-Collection-View-AppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Collection-View-AppStore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Collection-View-AppStore/Pods-Collection-View-AppStore.debug.xcconfig"; sourceTree = "<group>"; };
-		CB50FEE1A754D5DAF22E0A8D /* Pods-Collection-View-AppStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Collection-View-AppStore.release.xcconfig"; path = "Pods/Target Support Files/Pods-Collection-View-AppStore/Pods-Collection-View-AppStore.release.xcconfig"; sourceTree = "<group>"; };
-		FDC880C381E53C40DA6698B4 /* Pods_Collection_View_AppStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Collection_View_AppStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallpaper_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA366805E8777B768E8728F2 /* Pods-Wallpaper-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.debug.xcconfig"; sourceTree = "<group>"; };
+		F3976466CEB472FD86CD9EB5 /* Pods-Wallpaper-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11749A831858E7855472495C /* Pods_Collection_View_AppStore.framework in Frameworks */,
+				49576B963725442268CF8D9F /* Pods_Wallpaper_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,8 +63,8 @@
 		20E76B7AEBEB0C86A0BC6401 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				880230C4F0DA230DD48057D5 /* Pods-Collection-View-AppStore.debug.xcconfig */,
-				CB50FEE1A754D5DAF22E0A8D /* Pods-Collection-View-AppStore.release.xcconfig */,
+				DA366805E8777B768E8728F2 /* Pods-Wallpaper-App.debug.xcconfig */,
+				F3976466CEB472FD86CD9EB5 /* Pods-Wallpaper-App.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -72,7 +72,7 @@
 		35AF904987D59C59CC329A2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FDC880C381E53C40DA6698B4 /* Pods_Collection_View_AppStore.framework */,
+				736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -88,7 +88,7 @@
 		6A17C3F71EFD5AD30047CBA5 = {
 			isa = PBXGroup;
 			children = (
-				6A17C4021EFD5AD30047CBA5 /* Collection-View-AppStore */,
+				6A17C4021EFD5AD30047CBA5 /* Wallpaper-App */,
 				6A17C4011EFD5AD30047CBA5 /* Products */,
 				20E76B7AEBEB0C86A0BC6401 /* Pods */,
 				35AF904987D59C59CC329A2B /* Frameworks */,
@@ -98,12 +98,12 @@
 		6A17C4011EFD5AD30047CBA5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6A17C4001EFD5AD30047CBA5 /* Collection-View-AppStore.app */,
+				6A17C4001EFD5AD30047CBA5 /* Wallpaper-App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6A17C4021EFD5AD30047CBA5 /* Collection-View-AppStore */ = {
+		6A17C4021EFD5AD30047CBA5 /* Wallpaper-App */ = {
 			isa = PBXGroup;
 			children = (
 				6A1367971F8D657500FC16F8 /* Resources */,
@@ -114,6 +114,7 @@
 				6A17C40C1EFD5AD30047CBA5 /* LaunchScreen.storyboard */,
 				6A17C40F1EFD5AD30047CBA5 /* Info.plist */,
 			);
+			name = "Wallpaper-App";
 			path = "Collection-View-AppStore";
 			sourceTree = "<group>";
 		};
@@ -153,9 +154,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6A17C3FF1EFD5AD30047CBA5 /* Collection-View-AppStore */ = {
+		6A17C3FF1EFD5AD30047CBA5 /* Wallpaper-App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6A17C4121EFD5AD30047CBA5 /* Build configuration list for PBXNativeTarget "Collection-View-AppStore" */;
+			buildConfigurationList = 6A17C4121EFD5AD30047CBA5 /* Build configuration list for PBXNativeTarget "Wallpaper-App" */;
 			buildPhases = (
 				316C27380CBDABD097A2BEB0 /* [CP] Check Pods Manifest.lock */,
 				6A17C3FC1EFD5AD30047CBA5 /* Sources */,
@@ -168,9 +169,9 @@
 			);
 			dependencies = (
 			);
-			name = "Collection-View-AppStore";
+			name = "Wallpaper-App";
 			productName = "Collection-View-AppStore";
-			productReference = 6A17C4001EFD5AD30047CBA5 /* Collection-View-AppStore.app */;
+			productReference = 6A17C4001EFD5AD30047CBA5 /* Wallpaper-App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -190,7 +191,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6A17C3FB1EFD5AD30047CBA5 /* Build configuration list for PBXProject "Collection-View-AppStore" */;
+			buildConfigurationList = 6A17C3FB1EFD5AD30047CBA5 /* Build configuration list for PBXProject "Wallpaper-App" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -203,7 +204,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6A17C3FF1EFD5AD30047CBA5 /* Collection-View-AppStore */,
+				6A17C3FF1EFD5AD30047CBA5 /* Wallpaper-App */,
 			);
 		};
 /* End PBXProject section */
@@ -238,7 +239,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Collection-View-AppStore/Pods-Collection-View-AppStore-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		316C27380CBDABD097A2BEB0 /* [CP] Check Pods Manifest.lock */ = {
@@ -252,7 +253,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Collection-View-AppStore-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Wallpaper-App-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -265,7 +266,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Collection-View-AppStore/Pods-Collection-View-AppStore-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GlidingCollection/GlidingCollection.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -286,7 +287,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Collection-View-AppStore/Pods-Collection-View-AppStore-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -426,13 +427,13 @@
 		};
 		6A17C4131EFD5AD30047CBA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 880230C4F0DA230DD48057D5 /* Pods-Collection-View-AppStore.debug.xcconfig */;
+			baseConfigurationReference = DA366805E8777B768E8728F2 /* Pods-Wallpaper-App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 48HD6AZC2E;
 				INFOPLIST_FILE = "Collection-View-AppStore/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cmcgheit.Collection-View-AppStore";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cmcgheit.Wallpaper-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -440,13 +441,13 @@
 		};
 		6A17C4141EFD5AD30047CBA5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB50FEE1A754D5DAF22E0A8D /* Pods-Collection-View-AppStore.release.xcconfig */;
+			baseConfigurationReference = F3976466CEB472FD86CD9EB5 /* Pods-Wallpaper-App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 48HD6AZC2E;
 				INFOPLIST_FILE = "Collection-View-AppStore/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.cmcgheit.Collection-View-AppStore";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.cmcgheit.Wallpaper-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -455,7 +456,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6A17C3FB1EFD5AD30047CBA5 /* Build configuration list for PBXProject "Collection-View-AppStore" */ = {
+		6A17C3FB1EFD5AD30047CBA5 /* Build configuration list for PBXProject "Wallpaper-App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6A17C4101EFD5AD30047CBA5 /* Debug */,
@@ -464,7 +465,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6A17C4121EFD5AD30047CBA5 /* Build configuration list for PBXNativeTarget "Collection-View-AppStore" */ = {
+		6A17C4121EFD5AD30047CBA5 /* Build configuration list for PBXNativeTarget "Wallpaper-App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6A17C4131EFD5AD30047CBA5 /* Debug */,
