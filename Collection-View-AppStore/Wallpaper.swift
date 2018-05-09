@@ -50,7 +50,8 @@ class Wallpaper {
             let newWallpaperImageRef = wallpaperStorageRef.child(newWallKey)
             
             newWallpaperImageRef.putData(wallpaperData).observe(.success, handler: { (snapshot) in
-                self.wallpaperURL = snapshot.metadata?.downloadURL()?.absoluteString
+                self.wallpaperURL = snapshot.metadata?.path
+                    // snapshot.metadata?.downloadURL()?.absoluteString
                 let newWallpaperDictionary = [ // creates dictionary of wallpaper info, once uploaded to storage: url, category, desc
                     "wallpaperURL": self.wallpaperURL,
                     "wallpaperCategory": self.wallpaperCategory,
