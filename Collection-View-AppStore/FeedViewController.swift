@@ -53,7 +53,7 @@ class FeedViewController: UIViewController {
         
     }
     
-    func backgroundTapped(recognizer: UITapGestureRecognizer) {
+    @objc func backgroundTapped(recognizer: UITapGestureRecognizer) {
         self.dismiss(animated: true, completion: nil)
     }
     
