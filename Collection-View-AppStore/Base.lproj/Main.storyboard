@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="e5t-Dg-8Hj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="e5t-Dg-8Hj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="GillSans.ttc">
+            <string>GillSans</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--Feed View Controller-->
+        <!--feedViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="FeedViewController" customModule="Collection_View_AppStore" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="feedViewController" id="BYZ-38-t0r" customClass="FeedViewController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -74,25 +79,36 @@
                     </view>
                     <connections>
                         <outlet property="glidingView" destination="P5n-SR-yuM" id="SAD-xm-qQc"/>
-                        <outlet property="popUpView" destination="Y7D-LQ-FhZ" id="JXV-fP-d1Q"/>
                         <outlet property="uploadBtn" destination="KWp-ye-yUT" id="nfh-lS-wSd"/>
                         <outlet property="vibeBlurView" destination="cV2-S0-e7C" id="bEf-dg-65r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="Y7D-LQ-FhZ" customClass="PopUpView" customModule="Collection_View_AppStore" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.70212250947952271" green="0.85495454072952271" blue="0.62230777740478516" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </view>
             </objects>
             <point key="canvasLocation" x="248.80000000000001" y="125.4872563718141"/>
         </scene>
-        <!--Upload Wallpaper Pop Up-->
+        <!--popUpViewController-->
+        <scene sceneID="dKV-o9-Xyp">
+            <objects>
+                <viewController storyboardIdentifier="popUpViewController" title="popUpViewController" id="h9P-6q-lEL" customClass="PopUpViewController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YdF-yI-v7g"/>
+                        <viewControllerLayoutGuide type="bottom" id="3hX-ml-k30"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rg5-D7-U9j">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pqA-Nf-kiP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="249" y="814"/>
+        </scene>
+        <!--uploadViewController-->
         <scene sceneID="BIc-7i-bui">
             <objects>
-                <viewController id="3qs-Bd-fOm" customClass="UploadWallpaperPopUp" customModule="Collection_View_AppStore" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="uploadViewController" id="3qs-Bd-fOm" customClass="UploadWallpaperPopUp" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="A1R-Nl-dvj"/>
                         <viewControllerLayoutGuide type="bottom" id="S4u-im-SDB"/>
@@ -107,10 +123,10 @@
             </objects>
             <point key="canvasLocation" x="1029.5999999999999" y="125.4872563718141"/>
         </scene>
-        <!--Login View Controller-->
+        <!--loginViewController-->
         <scene sceneID="gMl-Nl-ycl">
             <objects>
-                <viewController id="e5t-Dg-8Hj" customClass="LoginViewController" customModule="Collection_View_AppStore" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="loginViewController" id="e5t-Dg-8Hj" customClass="LoginViewController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t64-pA-mYG"/>
                         <viewControllerLayoutGuide type="bottom" id="acB-hx-1BM"/>
@@ -145,9 +161,8 @@
                                         <rect key="frame" x="20" y="40" width="260" height="219"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign-In" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRt-vc-IzH">
-                                                <rect key="frame" x="35" y="0.0" width="190" height="39"/>
+                                                <rect key="frame" x="90" y="0.0" width="80.5" height="39"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="190" id="DDk-Py-y1m"/>
                                                     <constraint firstAttribute="height" constant="39" id="fM2-Ao-XVg"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
@@ -175,10 +190,9 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLo-yH-V89">
-                                                <rect key="frame" x="30" y="189" width="200" height="30"/>
+                                                <rect key="frame" x="107" y="189" width="46" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="c9p-i3-gAX"/>
-                                                    <constraint firstAttribute="width" constant="200" id="w2W-fC-vDF"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
                                                 <state key="normal" title="Sign-In">
@@ -192,12 +206,11 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="dlY-Kb-FrY">
-                                        <rect key="frame" x="50" y="319" width="200" height="75"/>
+                                        <rect key="frame" x="83" y="319" width="134" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiB-AT-fsZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="200" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="134" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="VR9-MC-d2M"/>
                                                     <constraint firstAttribute="height" constant="30" id="Y4f-2y-DfB"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
@@ -207,22 +220,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="loginAnonymousBtnClicked:" destination="e5t-Dg-8Hj" eventType="touchUpInside" id="HRE-M6-Llb"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71F-yI-cGI">
-                                                <rect key="frame" x="0.0" y="45" width="200" height="30"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="200" id="aRq-JT-SZG"/>
-                                                    <constraint firstAttribute="height" constant="30" id="rKi-ML-yJB"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                                <state key="normal" title="Facebook Login">
-                                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="facebookLoginBtnPressedWith_sender:" destination="e5t-Dg-8Hj" eventType="touchUpInside" id="Wpq-ji-amw"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -256,7 +253,6 @@
                     </view>
                     <connections>
                         <outlet property="emailTextFld" destination="CgG-2R-r9C" id="Kyy-y5-1BG"/>
-                        <outlet property="facebookLoginBtn" destination="71F-yI-cGI" id="iV7-mS-VgQ"/>
                         <outlet property="loginCardView" destination="JQd-Ow-a5c" id="WHj-Kx-q0q"/>
                         <outlet property="passTextFld" destination="7B7-UD-EK1" id="OJ8-ie-jWE"/>
                         <outlet property="signInBtn" destination="cLo-yH-V89" id="pdW-YX-l2P"/>

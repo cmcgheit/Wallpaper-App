@@ -13,8 +13,9 @@ target 'Wallpaper-App' do
   pod 'SwiftyJSON'
   pod 'Kingfisher'
   pod 'GlidingCollection'
-#  pod 'Armchair'
-#pod "McPicker"
+  pod 'EasyTransitions'
+  pod 'Armchair'
+  pod "McPicker"
 
   # post_install do |installer|
   #     installer.pods_project.targets.each do |target|

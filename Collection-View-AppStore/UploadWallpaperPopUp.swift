@@ -4,10 +4,10 @@
 //
 //  
 //  Copyright © 2017 C McGhee. All rights reserved.
-//
 
 import UIKit
 import Firebase
+// import McPicker
 
 class UploadWallpaperPopUp: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -205,12 +205,4 @@ extension UploadWallpaperPopUp: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
-
-
-
-
-
-
-

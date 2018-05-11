@@ -1,4 +1,6 @@
 PODS:
+  - Armchair (0.3.5)
+  - EasyTransitions (0.5.0)
   - Firebase/Auth (5.0.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.0)
@@ -38,6 +40,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.15)
   - Kingfisher (4.7.0)
   - leveldb-library (1.20)
+  - McPicker (1.0.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -46,16 +49,21 @@ PODS:
   - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
+  - Armchair
+  - EasyTransitions
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
   - GlidingCollection
   - Kingfisher
+  - McPicker
   - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Armchair
+    - EasyTransitions
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -68,10 +76,13 @@ SPEC REPOS:
     - GTMSessionFetcher
     - Kingfisher
     - leveldb-library
+    - McPicker
     - nanopb
     - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Armchair: 0ab9237bc373e26245c7651acf193d85fb9c033a
+  EasyTransitions: a2ff9346489a96d0c998d8091e5c020a50cd5f95
   Firebase: 4bd804448ab2596794698773d41520a0af101e65
   FirebaseAnalytics: 19812b49fa5f283dd6b23edf8a14b5d477029ab8
   FirebaseAuth: acbeef02fe7c3a26624e309849f3fe30c84115af
@@ -84,9 +95,10 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
   Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  McPicker: 130183cd3d22fc6933ea9e63c5a0d0d1becc0122
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 4f2e63ffb1b62e66ecf76c20475e8da1348f405e
+PODFILE CHECKSUM: 6deb0865f81f6d60f8d16233c0f1c06c2947d057
 
 COCOAPODS: 1.5.2

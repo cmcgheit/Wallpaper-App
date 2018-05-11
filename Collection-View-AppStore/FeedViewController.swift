@@ -1,6 +1,5 @@
 //
 //  FeedViewController
-//  Collection-View-AppStore
 //
 //  Created by C McGhee on 6/23/17.
 //  Copyright © 2017 C McGhee. All rights reserved.
@@ -11,6 +10,7 @@ import Firebase
 import GlidingCollection
 import Kingfisher
 import SwiftyJSON
+import EasyTransitions
 
 enum WallpaperCategories: String {
     case Sports, Music, Art
@@ -22,9 +22,9 @@ class FeedViewController: UIViewController {
     
     @IBOutlet var glidingView: GlidingCollection!
     @IBOutlet weak var uploadBtn: UIButton!
-    @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var vibeBlurView: UIVisualEffectView!
     
+    var transitionDelegate = ModalTransitionDelegate()
     fileprivate var collectionView: UICollectionView!
     var effect: UIVisualEffect!
     
@@ -98,32 +98,20 @@ class FeedViewController: UIViewController {
             }
         }
     }
+}
+
+// MARK: - PopUp View Function
+func showPopUpViewController() {
+    let popUpController = PopUpViewController()
+    let animator = MyAnimator() // ModalTransitionAnimator
+    modalTransitionDelegate.set(animator: animator)
+    modalTransitionDelegate.wire(viewController: popUpController,
+                                 with: .regular(.fromTop))
     
-    // MARK: Pop Up View Animation
-    func animateInPopUp() {
-        self.view.addSubview(popUpView)
-        popUpView.center = self.view.center
-        
-        popUpView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-        popUpView.alpha = 0
-        
-        UIView.animate(withDuration: 0.4) {
-            self.vibeBlurView.effect = self.effect
-            self.popUpView.alpha = 1
-            self.popUpView.transform = CGAffineTransform.identity
-        }
-    }
+    popUpController.transitioningDelegate = modalTransitionDelegate
+    popUpController.modalPresentationStyle = .custom
     
-    func animateOutPopUp() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.popUpView.transform = CGAffineTransform.init(scaleX: 1.3, y: 1.3)
-            self.popUpView.alpha = 0
-            
-            self.vibeBlurView.effect = nil
-        }) { (success: Bool) in
-            self.popUpView.removeFromSuperview()
-        }
-    }
+    present(popUpController, animated: true, completion: nil)
 }
 
 
@@ -133,11 +121,11 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let section = glidingView.expandedItemIndex
-                if self.wallpapers.count > 0 {
-                    return wallpapers.count
-                } else {
-                    return 1
-                }
+        if self.wallpapers.count > 0 {
+            return wallpapers.count
+        } else {
+            return 1
+        }
         
     }
     
@@ -190,13 +178,9 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let toPopUpView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopUpView") as UIViewController
-        toPopUpView.modalPresentationStyle = .overCurrentContext
-        self.present(toPopUpView, animated: true, completion: nil)
-        animateInPopUp() // call function or put function here for didselect
+        showPopUpViewController()
     }
 }
-
 
 // MARK: - Gliding Collection Extension Functions
 extension FeedViewController: GlidingCollectionDatasource {
