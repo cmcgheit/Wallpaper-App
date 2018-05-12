@@ -1,10 +1,8 @@
-//
 //  WallpaperRoundedCardCell
 //  Collection-View-AppStore
 //
 //  Created by C McGhee on 6/23/17.
 //  Copyright © 2017 C McGhee. All rights reserved.
-//
 
 import UIKit
 import Firebase

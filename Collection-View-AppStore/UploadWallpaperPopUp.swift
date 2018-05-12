@@ -1,55 +1,57 @@
-//
 //  UploadWallpaperPopUp.swift
-//  Collection-View-AppStore
-//
-//  
 //  Copyright © 2017 C McGhee. All rights reserved.
 
 import UIKit
 import Firebase
-// import McPicker
+import McPicker
 
-class UploadWallpaperPopUp: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class UploadWallpaperPopUp: UIViewController {
     
     @IBOutlet weak var wallpaperPopUpView: UIImageView!
     @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var wallpaperDescTextView: UITextView!
     @IBOutlet weak var wallpaperCatLbl: UILabel!
-    @IBOutlet weak var wallpaperCatTxtFld: UITextField! // eventually a picker?
-    
+    @IBOutlet weak var wallpaperCatTxtFld: McTextField!
     
     var wallpaperDescPlaceholderText = "Describe this wallpaper"
     var wallpaperCatPlaceholderText = "Give the wallpaper a category"
-    
-    let catPickerViewCategories = ["Sports", "Music", "Art"]
-    
+
     //Upload Camera properties
     var imagePicker: UIImagePickerController!
     var takenImage: UIImage!
     
-    // PickerView properties
-    let catPickerView = UIPickerView()
-    var rotationAngle: CGFloat!
-    let width: CGFloat = 100
-    let height: CGFloat = 100
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // MARK: Setup category PickerView
-        catPickerView.delegate = self
-        catPickerView.dataSource = self
-        catPickerView.layer.borderColor = UIColor.darkGray.cgColor
-        catPickerView.layer.borderWidth = 0.8
-        rotationAngle = -90 * (.pi/180) // rotates picker horizontally
-        catPickerView.transform = CGAffineTransform(rotationAngle: rotationAngle)
-        catPickerView.frame = CGRect(x: 0 - 150, y: 0, width: view.frame.width + 300, height: 100)
-        catPickerView.center = self.view.center
+        // MARK: - Category McPicker
+        let pickerData: [[String]] = [["Sports", "Music", "Art"]]
+        let mcInputView = McPicker(data: pickerData)
+        mcInputView.backgroundColor = .gray
+        mcInputView.backgroundColorAlpha = 0.25
+        wallpaperCatTxtFld.inputViewMcPicker = mcInputView
         
-        self.view.addSubview(catPickerView)
+        wallpaperCatTxtFld.doneHandler = { [weak wallpaperCatTxtFld] (selections) in
+            wallpaperCatTxtFld?.text = selections[0]!
+        }
+        wallpaperCatTxtFld.selectionChangedHandler = { [weak wallpaperCatTxtFld] (selections, componentThatChanged) in
+            wallpaperCatTxtFld?.text = selections[componentThatChanged]!
+        }
+        wallpaperCatTxtFld.cancelHandler = { [weak wallpaperCatTxtFld] in
+            self.wallpaperCatTxtFld?.text = "Cancelled."
+        }
+        wallpaperCatTxtFld.textFieldWillBeginEditingHandler = { [weak wallpaperCatTxtFld] (selections) in
+            if wallpaperCatTxtFld?.text == "" {
+                // Selections always default to the first value per component
+                wallpaperCatTxtFld?.text = selections[0]
+            }
+        }
         
-        wallpaperCatTxtFld?.inputView = catPickerView // Assigns pickerView to catTextFld
+        McPicker.showAsPopover(data: pickerData, fromViewController: self, barButtonItem: UIBarButtonItem) { [weak self] (selections: [Int : String]) -> Void in
+            if let name = selections[0] {
+                self?.label.text = name
+            }
+        }
         
         // Right now calling from Navigation controller needs to be called from UIView/UIViewController
         if let rootController = UIApplication.shared.keyWindow?.rootViewController {
@@ -71,7 +73,6 @@ class UploadWallpaperPopUp: UIViewController, UIPickerViewDelegate, UIPickerView
         wallpaperDescTextView?.textColor = .darkGray
         
         // MARK: Camera Setup
-        
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         
@@ -91,7 +92,6 @@ class UploadWallpaperPopUp: UIViewController, UIPickerViewDelegate, UIPickerView
             newUploadWallpaper.uploadWallpaper()
             self.dismiss(animated: true, completion: nil)
         }
-        
     }
     
     @IBAction  func closeBtnPressed(_ sender: UIButton) {
@@ -103,47 +103,7 @@ class UploadWallpaperPopUp: UIViewController, UIPickerViewDelegate, UIPickerView
             //            viewController.removeFromParentViewController()
         }
     }
-    
-    // MARK: Cat PickerView Functions
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return catPickerViewCategories.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 30
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return 150
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        let view = UIView()
-        view.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        
-        let label = UILabel()
-        label.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.text = catPickerViewCategories[row]
-        view.addSubview(label)
-        view.transform = CGAffineTransform(rotationAngle: 90 * (.pi/180))
-        
-        return view
-    }
-    // Sets PickerView as TextFld after selection
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        wallpaperCatTxtFld.text = catPickerViewCategories[row]
-        wallpaperCatTxtFld.resignFirstResponder()
-    }
-    
 }
-
 
 // MARK: TextView Delegate Functions
 extension UploadWallpaperPopUp: UITextViewDelegate {
@@ -173,7 +133,10 @@ extension UploadWallpaperPopUp: UIImagePickerControllerDelegate, UINavigationCon
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.takenImage = image
         self.wallpaperPopUpView.image = self.takenImage
-        //        // MARK: - Function to save images user uploads to Firbase storage
+        takenImage = takenImage.resizeWithWidth(width: 700)! // Resize taken image
+         let compressData = UIImageJPEGRepresentation(takenImage, 0.5) // Compress taken image
+         let compressedImage = UIImage(data: compressData!)
+        //        // MARK: - Function to save images user uploads to Firebase storage
         // OR TWEAK UPLOADWALLPAPER FUNCTION??
         //        let uniqueString = NSUUID().uuidString
         //        if let userUploadedImage = takenImage { // have to do case by category, currently just goes to wallpaper general folder in firebase storage

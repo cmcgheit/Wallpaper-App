@@ -1,24 +1,18 @@
-//PopUpViewController.swift, created with love by C McGhee
+//PopUpViewController.swift, coded with love by C McGhee
 
 import Foundation
 import UIKit
 import Firebase
 import EasyTransitions
 
-class PopUpViewController: UIVIewController {
+class PopUpViewController: UIViewController {
     
     @IBOutlet weak var cardView: CardView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var backView: UIView!
     
-    init() {
-        super.init(nibName: String(describing: AppDetailViewController.self),
-                   bundle: Bundle(for: AppDetailViewController.self))
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    @IBOutlet weak var wallpaperPopImage: UIImageView!
+    @IBOutlet weak var wallpaperDescLbl: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +35,9 @@ class PopUpViewController: UIVIewController {
 // MARK: Downloading Wallpaper for PopUp
 var wallpaper: Wallpaper! {
     didSet {
-        wallpaperPopImage.layer.cornerRadius = 14.0
-        self.wallpaperDescLbl.text = wallpaper.wallpaperDesc
+        // Wallpaper Info sent from CollectionViewCell
+        // wallpaperPopImage.layer.cornerRadius = 14.0
+        // wallpaperDescLbl.text = wallpaper.wallpaperDesc
         
         // MARK: - Download Images FROM Firebase Function
         func downloadImageFromFirebase() {

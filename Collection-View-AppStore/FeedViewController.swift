@@ -1,9 +1,7 @@
-//
 //  FeedViewController
 //
 //  Created by C McGhee on 6/23/17.
 //  Copyright © 2017 C McGhee. All rights reserved.
-//
 
 import UIKit
 import Firebase
@@ -24,7 +22,9 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var vibeBlurView: UIVisualEffectView!
     
-    var transitionDelegate = ModalTransitionDelegate()
+    private var modalTransitionDelegate = ModalTransitionDelegate()
+    private var animatorInfo: AppStoreAnimatorInfo?
+    
     fileprivate var collectionView: UICollectionView!
     var effect: UIVisualEffect!
     
@@ -50,7 +50,6 @@ class FeedViewController: UIViewController {
         
         vibeBlurView.isUserInteractionEnabled = true
         vibeBlurView.addGestureRecognizer(closeTapGesture) // tap vibeBlurView (background) to dismiss PopUpView
-        
     }
     
     @objc func backgroundTapped(recognizer: UITapGestureRecognizer) {
@@ -62,7 +61,7 @@ class FeedViewController: UIViewController {
         loadImages()
     }
     
-    
+    // MARK: - Gliding Collection
     private func setupGlidingCollectionView() {
         glidingView.dataSource = self
         
@@ -93,28 +92,16 @@ class FeedViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         
         func uploadBtnPressed(_ sender: Any) {
-            if let popup = self.storyboard?.instantiateViewController(withIdentifier: "toUploadWallpaperPopUp") as? UploadWallpaperPopUp {
-                self.present(popup, animated: true, completion: nil)
-            }
+            presentUploadPopUp()
         }
     }
-}
-
-// MARK: - PopUp View Function
-func showPopUpViewController() {
-    let popUpController = PopUpViewController()
-    let animator = MyAnimator() // ModalTransitionAnimator
-    modalTransitionDelegate.set(animator: animator)
-    modalTransitionDelegate.wire(viewController: popUpController,
-                                 with: .regular(.fromTop))
     
-    popUpController.transitioningDelegate = modalTransitionDelegate
-    popUpController.modalPresentationStyle = .custom
-    
-    present(popUpController, animated: true, completion: nil)
+    // MARK: - Upload Pop Up Function/Transition
+    @objc func presentUploadPopUp() {
+        let controller = FeedViewController()
+        
+    }
 }
-
-
 
 // MARK: - CollectionView
 extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -126,7 +113,6 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         } else {
             return 1
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -151,8 +137,7 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         default:
             cell.imageView.image = UIImage(named: "placeholder-image")
         }
-        
-        
+                
         //         MARK: - Downloading Images from Firebase storage, currently can only download one individual image
         //                let imageName = NSUUID().uuidString
         //                let imageRef = storageReference.child("images").child("sports").child("chicago-full.png") //\(imageName)
@@ -178,7 +163,30 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        showPopUpViewController()
+    // MARK: - PopUp Transition Function
+        let popUpViewController = PopUpViewController()
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) else {
+            present(popUpViewController, animated: true, completion: nil)
+            return
+        }
+        
+        let cellFrame = view.convert(cell.frame, from: glidingView)
+        let appStoreAnimator = AppStoreAnimator(initialFrame: cellFrame)
+        appStoreAnimator.onReady = { cell.isHidden = true}
+        appStoreAnimator.onDismissed = { cell.isHidden = false }
+        appStoreAnimator.auxAnimation = {popUpViewController.layout(presenting: $0)}
+        
+        modalTransitionDelegate.set(animator: appStoreAnimator, for: .present)
+        modalTransitionDelegate.set(animator: appStoreAnimator, for: .dismiss)
+        modalTransitionDelegate.wire(viewController: popUpViewController, with: .regular(.fromTop))
+        
+        popUpViewController.transitioningDelegate = modalTransitionDelegate
+        popUpViewController.modalPresentationStyle = .custom
+        
+        present(popUpViewController, animated: true, completion: nil)
+        animatorInfo = AppStoreAnimatorInfo(animator: appStoreAnimator, index: indexPath)
+        
     }
 }
 
@@ -188,7 +196,6 @@ extension FeedViewController: GlidingCollectionDatasource {
     func numberOfItems(in collection: GlidingCollection) -> Int {
         return wallpapers.count
     }
-    
     
     func glidingCollection(_ collection: GlidingCollection, itemAtIndex index: Int) -> String {
         return wallpaperCatList[index].rawValue
