@@ -9,6 +9,7 @@ import GlidingCollection
 import Kingfisher
 import SwiftyJSON
 import EasyTransitions
+// import GoogleMobileAds
 
 enum WallpaperCategories: String {
     case Sports, Music, Art
@@ -36,9 +37,14 @@ class FeedViewController: UIViewController {
     var musicCategory = [String]()
     var artCategory = [String]()
     
+    // var bannerView: GADBannerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        
+        // MARK: - Check Auth User?
+        
         
         // MARK: - Setup Visual Effect, no blur when app starts
         effect = vibeBlurView.effect
@@ -50,6 +56,59 @@ class FeedViewController: UIViewController {
         
         vibeBlurView.isUserInteractionEnabled = true
         vibeBlurView.addGestureRecognizer(closeTapGesture) // tap vibeBlurView (background) to dismiss PopUpView
+        
+        // MARK: - Admob Banner Properties
+        // bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        // bannerView.rootViewController = self
+        // bannerView.load(GADRequest())
+//        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+//
+//        addBannerViewToView(bannerView)
+//    }
+//
+//    func addBannerViewToView(_ bannerView: GADBannerView) {
+//        bannerView.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(bannerView)
+//        if #available(iOS 11.0, *) {
+//            // In iOS 11, we need to constrain the view to the safe area.
+//            positionBannerViewFullWidthAtBottomOfSafeArea(bannerView)
+//        }
+//        else {
+//            // In lower iOS versions, safe area is not available so we use
+//            // bottom layout guide and view edges.
+//            positionBannerViewFullWidthAtBottomOfView(bannerView)
+//        }
+//    }
+//
+//    // MARK: - view positioning
+//    @available (iOS 11, *)
+//    func positionBannerViewFullWidthAtBottomOfSafeArea(_ bannerView: UIView) {
+//        // Position the banner. Stick it to the bottom of the Safe Area.
+//        // Make it constrained to the edges of the safe area.
+//        let guide = view.safeAreaLayoutGuide
+//        NSLayoutConstraint.activate([
+//            guide.leftAnchor.constraint(equalTo: bannerView.leftAnchor),
+//            guide.rightAnchor.constraint(equalTo: bannerView.rightAnchor),
+//            guide.bottomAnchor.constraint(equalTo: bannerView.bottomAnchor)
+//            ])
+//    }
+//        view.addConstraints(
+//            [NSLayoutConstraint(item: bannerView,
+//                                attribute: .bottom,
+//                                relatedBy: .equal,
+//                                toItem: bottomLayoutGuide,
+//                                attribute: .top,
+//                                multiplier: 1,
+//                                constant: 0),
+//             NSLayoutConstraint(item: bannerView,
+//                                attribute: .centerX,
+//                                relatedBy: .equal,
+//                                toItem: view,
+//                                attribute: .centerX,
+//                                multiplier: 1,
+//                                constant: 0)
+//            ])
+//    }
     }
     
     @objc func backgroundTapped(recognizer: UITapGestureRecognizer) {

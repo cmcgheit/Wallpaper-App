@@ -18,17 +18,46 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    @IBAction func signInBtnPressed(_ sender: UIButton) {
-        guard let email = emailTextFld.text else{return}
-        guard let pass = passTextFld.text else{return}
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        Auth.auth().signIn(withEmail: email, password: pass) { (user, error) in
-            if error == nil && user != nil{
-                // success
-                self.performSegue(withIdentifier: "toFeedViewController", sender: nil)
-            } else {
-                print("Error Log In:\(error!.localizedDescription)")
+        // Take user to Feed if already logged-in
+        if (Auth.auth().currentUser?.uid != nil)  {
+            UserDefaults.standard.setIsLoggedIn(value: true)
+            self.performSegue(withIdentifier:  "toFeedViewController", sender: self)
+        } else {
+            // If User not logged in
+            do {
+                try Auth.auth().signOut()
+                return
+            } catch  {
+                print(error)
             }
+            UserDefaults.standard.setIsLoggedIn(value: false)
+        }
+    }
+    
+    @IBAction func signInBtnPressed(_ sender: UIButton) {
+        guard let email = emailTextFld.text else { return }
+        guard let pass = passTextFld.text else { return }
+        if email != "" || pass != ""  {
+            // MARK: - No Email/Password entered Alert (not registered)
+            
+        } else {
+            // MARK: - Login User Successfully
+            AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, loginError) in
+                if success {
+                    // self.completeSignIn(id: (Auth.auth().currentUser?.uid)!) // collects uid/keychain when user signs in
+                    UserDefaults.standard.setIsLoggedIn(value: true)
+                    self.performSegue(withIdentifier:
+                        "toFeedViewController", sender: nil)
+                } else {
+                    // MARK: - Incorrect Email/Password Alert
+                    // Auth.auth().sendPasswordReset(withEmail: email)
+                    print(String(describing: loginError?.localizedDescription))
+                    // Take User to SignUp if not a registered user
+                }
+            })
         }
     }
     
@@ -45,4 +74,19 @@ class LoginViewController: UIViewController {
             }
         }
     )}
+    
+    // MARK: - Dismiss Keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    //// MARK: KeyChain Wrapper Function - storing user data
+    //func completeSignIn(id: String) {
+    //    let saveSuccessful: Bool = KeychainWrapper.standard.set(id, forKey: KEY_UID)
+    //    print("Keychain Status: \(saveSuccessful)")
+    //    // Take student to StudentVC once stored keychain wrapper
+    //    performSegue(withIdentifier: SegueIdentifier.toStudentVC.rawValue, sender: self)
+    //}
 }
+
+

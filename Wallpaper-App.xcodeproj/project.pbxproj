@@ -26,6 +26,7 @@
 		6AB3DA591FB2598400E06B97 /* UploadWallpaperPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AB3DA571FB2598400E06B97 /* UploadWallpaperPopUp.xib */; };
 		6AD96FED20A5FF44008DB26B /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD96FEC20A5FF44008DB26B /* PopUpViewController.swift */; };
 		D898FAD620A6823C00C3BE2B /* AppStoreAnimatorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D898FAD520A6823C00C3BE2B /* AppStoreAnimatorInfo.swift */; };
+		D8B96AD520A7BFEA00A1245A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B96AD420A7BFEA00A1245A /* AuthService.swift */; };
 		D8D2A48C20A686500014ADAE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A48B20A686500014ADAE /* CardView.swift */; };
 		D8D2A48F20A686B50014ADAE /* CardViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A48E20A686B50014ADAE /* CardViewDelegate.swift */; };
 		D8D2A49220A686FC0014ADAE /* NibLoadbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A49120A686FC0014ADAE /* NibLoadbleView.swift */; };
@@ -38,6 +39,7 @@
 		D8D2A4A520A68BC10014ADAE /* NSLayoutConstraint+Multiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A4A420A68BC10014ADAE /* NSLayoutConstraint+Multiplier.swift */; };
 		D8D2A4A720A68BF50014ADAE /* UICollectionView+OrderedCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A4A620A68BF50014ADAE /* UICollectionView+OrderedCells.swift */; };
 		D8D2A4A920A68C1D0014ADAE /* UIWindow+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A4A820A68C1D0014ADAE /* UIWindow+SafeArea.swift */; };
+		D8D2A4AB20A7AB2C0014ADAE /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A4AA20A7AB2C0014ADAE /* UserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,7 @@
 		6AD96FEC20A5FF44008DB26B /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallpaper_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D898FAD520A6823C00C3BE2B /* AppStoreAnimatorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreAnimatorInfo.swift; sourceTree = "<group>"; };
+		D8B96AD420A7BFEA00A1245A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		D8D2A48B20A686500014ADAE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		D8D2A48E20A686B50014ADAE /* CardViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewDelegate.swift; sourceTree = "<group>"; };
 		D8D2A49120A686FC0014ADAE /* NibLoadbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadbleView.swift; sourceTree = "<group>"; };
@@ -74,6 +77,7 @@
 		D8D2A4A420A68BC10014ADAE /* NSLayoutConstraint+Multiplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Multiplier.swift"; sourceTree = "<group>"; };
 		D8D2A4A620A68BF50014ADAE /* UICollectionView+OrderedCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+OrderedCells.swift"; sourceTree = "<group>"; };
 		D8D2A4A820A68C1D0014ADAE /* UIWindow+SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+SafeArea.swift"; sourceTree = "<group>"; };
+		D8D2A4AA20A7AB2C0014ADAE /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		DA366805E8777B768E8728F2 /* Pods-Wallpaper-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.debug.xcconfig"; sourceTree = "<group>"; };
 		F3976466CEB472FD86CD9EB5 /* Pods-Wallpaper-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +140,7 @@
 		6A17C4021EFD5AD30047CBA5 /* Wallpaper-App */ = {
 			isa = PBXGroup;
 			children = (
+				D8D2A4AC20A7AC160014ADAE /* Services */,
 				D898FAD720A6854500C3BE2B /* Animation */,
 				6A17C4171EFD5B1A0047CBA5 /* Model */,
 				6A17C4161EFD5B120047CBA5 /* View */,
@@ -181,6 +186,7 @@
 				6A13679C1F8D7DB500FC16F8 /* Wallpaper.swift */,
 				6A9D19A720A646C7009C6936 /* ImageResizeExt.swift */,
 				D898FAD520A6823C00C3BE2B /* AppStoreAnimatorInfo.swift */,
+				D8D2A4AA20A7AB2C0014ADAE /* UserDefaults.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -242,6 +248,14 @@
 				D8D2A4A820A68C1D0014ADAE /* UIWindow+SafeArea.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		D8D2A4AC20A7AC160014ADAE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D8B96AD420A7BFEA00A1245A /* AuthService.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,6 +400,7 @@
 				D898FAD620A6823C00C3BE2B /* AppStoreAnimatorInfo.swift in Sources */,
 				6A13679F1F8D847000FC16F8 /* LoginViewController.swift in Sources */,
 				D8D2A49420A687240014ADAE /* ReusableCells.swift in Sources */,
+				D8D2A4AB20A7AB2C0014ADAE /* UserDefaults.swift in Sources */,
 				6A17C4041EFD5AD30047CBA5 /* AppDelegate.swift in Sources */,
 				6A13679D1F8D7DB500FC16F8 /* Wallpaper.swift in Sources */,
 				6A9D19A620A63B88009C6936 /* AnimatedTextField.swift in Sources */,
@@ -398,6 +413,7 @@
 				6AD96FED20A5FF44008DB26B /* PopUpViewController.swift in Sources */,
 				D8D2A49C20A687DE0014ADAE /* RoundCornersButton.swift in Sources */,
 				6A13679B1F8D691B00FC16F8 /* Constants.swift in Sources */,
+				D8B96AD520A7BFEA00A1245A /* AuthService.swift in Sources */,
 				D8D2A4A720A68BF50014ADAE /* UICollectionView+OrderedCells.swift in Sources */,
 				D8D2A4A920A68C1D0014ADAE /* UIWindow+SafeArea.swift in Sources */,
 				6A9D19A820A646C7009C6936 /* ImageResizeExt.swift in Sources */,

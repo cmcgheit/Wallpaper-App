@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EasyTransitions
 
 class PopUpViewCell: UICollectionViewCell, NibLoadableView {
     

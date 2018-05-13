@@ -47,9 +47,9 @@ class UploadWallpaperPopUp: UIViewController {
             }
         }
         
-        McPicker.showAsPopover(data: pickerData, fromViewController: self, barButtonItem: UIBarButtonItem) { [weak self] (selections: [Int : String]) -> Void in
+        McPicker.showAsPopover(data: pickerData, fromViewController: self) { [weak self] (selections: [Int : String]) -> Void in
             if let name = selections[0] {
-                self?.label.text = name
+                self?.wallpaperCatLbl.text = name
             }
         }
         

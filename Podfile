@@ -10,6 +10,7 @@ target 'Wallpaper-App' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
+#  pod 'Google-Mobile-Ads-SDK'
   pod 'SwiftyJSON'
   pod 'Kingfisher'
   pod 'GlidingCollection'
