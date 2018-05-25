@@ -36,6 +36,7 @@ FIRLoggerService kFIRLoggerDynamicLinks = @"[Firebase/DynamicLinks]";
 FIRLoggerService kFIRLoggerFirestore = @"[Firebase/Firestore]";
 FIRLoggerService kFIRLoggerInstanceID = @"[Firebase/InstanceID]";
 FIRLoggerService kFIRLoggerInvites = @"[Firebase/Invites]";
+FIRLoggerService kFIRLoggerMLKit = @"[Firebase/MLKit]";
 FIRLoggerService kFIRLoggerMessaging = @"[Firebase/Messaging]";
 FIRLoggerService kFIRLoggerPerf = @"[Firebase/Performance]";
 FIRLoggerService kFIRLoggerRemoteConfig = @"[Firebase/RemoteConfig]";
@@ -227,8 +228,8 @@ void FIRLogBasic(FIRLoggerLevel level,
   NSCAssert(numberOfMatches == 1, @"Incorrect message code format.");
 #endif
   NSString *logMsg = [[NSString alloc] initWithFormat:message arguments:args_ptr];
-  logMsg = [NSString
-      stringWithFormat:@"%s - %@[%@] %@", FirebaseVersionString, service, messageCode, logMsg];
+  logMsg =
+      [NSString stringWithFormat:@"%s - %@[%@] %@", FIRVersionString, service, messageCode, logMsg];
   dispatch_async(sFIRClientQueue, ^{
     asl_log(sFIRLoggerClient, NULL, level, "%s", logMsg.UTF8String);
   });

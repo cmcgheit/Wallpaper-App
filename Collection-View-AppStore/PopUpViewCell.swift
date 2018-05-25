@@ -15,6 +15,6 @@ class PopUpViewCell: UICollectionViewCell, NibLoadableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        set(shadowStyle: .todayCard)
+        // set(shadowStyle: .todayCard)
     }
 }

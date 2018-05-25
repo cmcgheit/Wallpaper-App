@@ -1,18 +1,18 @@
 PODS:
   - Armchair (0.3.5)
-  - EasyTransitions (0.5.0)
-  - Firebase/Auth (5.0.0):
+  - EasyTransitions (0.5.1)
+  - Firebase/Auth (5.0.1):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.0)
-  - Firebase/Core (5.0.0):
+  - Firebase/Core (5.0.1):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.0.0)
-  - Firebase/CoreOnly (5.0.0):
-    - FirebaseCore (= 5.0.0)
-  - Firebase/Database (5.0.0):
+  - Firebase/CoreOnly (5.0.1):
+    - FirebaseCore (= 5.0.1)
+  - Firebase/Database (5.0.1):
     - Firebase/CoreOnly
     - FirebaseDatabase (= 5.0.0)
-  - Firebase/Storage (5.0.0):
+  - Firebase/Storage (5.0.1):
     - Firebase/CoreOnly
     - FirebaseStorage (= 3.0.0)
   - FirebaseAnalytics (5.0.0):
@@ -23,7 +23,7 @@ PODS:
   - FirebaseAuth (5.0.0):
     - FirebaseCore (~> 5.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (5.0.0):
+  - FirebaseCore (5.0.1):
     - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseDatabase (5.0.0):
     - FirebaseCore (~> 5.0)
@@ -34,11 +34,12 @@ PODS:
     - FirebaseCore (~> 5.0)
     - GTMSessionFetcher/Core (~> 1.1)
   - GlidingCollection (1.1.0)
+  - Google-Mobile-Ads-SDK (7.31.0)
   - GoogleToolboxForMac/Defines (2.1.4)
   - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - GTMSessionFetcher/Core (1.1.15)
-  - Kingfisher (4.7.0)
+  - Kingfisher (4.8.0)
   - leveldb-library (1.20)
   - McPicker (1.0.0)
   - nanopb (0.3.8):
@@ -56,12 +57,13 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - GlidingCollection
+  - Google-Mobile-Ads-SDK
   - Kingfisher
   - McPicker
   - SwiftyJSON
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Armchair
     - EasyTransitions
     - Firebase
@@ -72,6 +74,7 @@ SPEC REPOS:
     - FirebaseInstanceID
     - FirebaseStorage
     - GlidingCollection
+    - Google-Mobile-Ads-SDK
     - GoogleToolboxForMac
     - GTMSessionFetcher
     - Kingfisher
@@ -82,23 +85,24 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Armchair: 0ab9237bc373e26245c7651acf193d85fb9c033a
-  EasyTransitions: a2ff9346489a96d0c998d8091e5c020a50cd5f95
-  Firebase: 4bd804448ab2596794698773d41520a0af101e65
+  EasyTransitions: ce997b223437040ef74d300b2cba79e466db2cdf
+  Firebase: d6861c2059d8c32d1e6dd8932e22ada346d90a3a
   FirebaseAnalytics: 19812b49fa5f283dd6b23edf8a14b5d477029ab8
   FirebaseAuth: acbeef02fe7c3a26624e309849f3fe30c84115af
-  FirebaseCore: e46e4babb9de298fb2f736958edcc6da1dc60d73
+  FirebaseCore: cafc814b2d84fc8733f09e653041cc2165332ad7
   FirebaseDatabase: 697eb53e5b4fe7cd4fa8756c1f82a9fca011345f
   FirebaseInstanceID: 83e0040351565df711a5db3d8ebe5ea21aca998a
   FirebaseStorage: 7ca4bb7b58a25fa647b04f524033fc7cb7eb272b
   GlidingCollection: 2194165075fa7230027049238c9ed724453557e6
+  Google-Mobile-Ads-SDK: 6e529e748b45507a2ca904e0b5a52669ba3920c4
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
-  Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   McPicker: 130183cd3d22fc6933ea9e63c5a0d0d1becc0122
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 6deb0865f81f6d60f8d16233c0f1c06c2947d057
+PODFILE CHECKSUM: 97f125b77470fc791710463687f21d6410b49d8d
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.0

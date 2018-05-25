@@ -19,7 +19,7 @@ Featured Wallpaper art from:
 
 ### Things to Update
 
-- [ ] Finish Popup/description
+- [x] Finish Popup/description
 - [x] [GlidingCollectionDelegate]((https://github.com/Ramotion/gliding-collection "Gliding Collection")
 - [x] Sections
 - [x] [Gliding Collection](https://github.com/Ramotion/gliding-collection "Gliding Collection")
@@ -31,6 +31,3 @@ Featured Wallpaper art from:
 ![simulator screen shot jun 27 2017 10 41 20 pm](https://user-images.githubusercontent.com/24944725/27619714-2146a722-5b8a-11e7-9d6d-d63ed77aef4d.png)
 
 ![Wallpaper Gif](/Resources/wallpaper.gif)
-
-
-

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>148971426400-hrmlr6f2pvtfiv5dv9s01vm04sdka8jh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.148971426400-hrmlr6f2pvtfiv5dv9s01vm04sdka8jh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBXl_4QyJVjp2MszSQJKOA4dqNbrHiPNW0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>148971426400</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.cmcgheit.Wallpaper-App</string>
+	<key>PROJECT_ID</key>
+	<string>wallpaper-app-243fd</string>
+	<key>STORAGE_BUCKET</key>
+	<string>wallpaper-app-243fd.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:148971426400:ios:8361bef51f6def16</string>
+	<key>DATABASE_URL</key>
+	<string>https://wallpaper-app-243fd.firebaseio.com</string>
+</dict>
+</plist>

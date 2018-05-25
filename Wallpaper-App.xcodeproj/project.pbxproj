@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		49576B963725442268CF8D9F /* Pods_Wallpaper_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */; };
-		6A1367991F8D657F00FC16F8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A1367981F8D657F00FC16F8 /* GoogleService-Info.plist */; };
 		6A13679B1F8D691B00FC16F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A13679A1F8D691B00FC16F8 /* Constants.swift */; };
 		6A13679D1F8D7DB500FC16F8 /* Wallpaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A13679C1F8D7DB500FC16F8 /* Wallpaper.swift */; };
 		6A13679F1F8D847000FC16F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A13679E1F8D847000FC16F8 /* LoginViewController.swift */; };
@@ -27,23 +26,24 @@
 		6AD96FED20A5FF44008DB26B /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD96FEC20A5FF44008DB26B /* PopUpViewController.swift */; };
 		D898FAD620A6823C00C3BE2B /* AppStoreAnimatorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D898FAD520A6823C00C3BE2B /* AppStoreAnimatorInfo.swift */; };
 		D8B96AD520A7BFEA00A1245A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B96AD420A7BFEA00A1245A /* AuthService.swift */; };
-		D8D2A48C20A686500014ADAE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A48B20A686500014ADAE /* CardView.swift */; };
-		D8D2A48F20A686B50014ADAE /* CardViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A48E20A686B50014ADAE /* CardViewDelegate.swift */; };
-		D8D2A49220A686FC0014ADAE /* NibLoadbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A49120A686FC0014ADAE /* NibLoadbleView.swift */; };
-		D8D2A49420A687240014ADAE /* ReusableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A49320A687240014ADAE /* ReusableCells.swift */; };
-		D8D2A49820A6878C0014ADAE /* PopUpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A49720A6878C0014ADAE /* PopUpViewCell.swift */; };
-		D8D2A49A20A687BB0014ADAE /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A49920A687BB0014ADAE /* CircularImageView.swift */; };
-		D8D2A49C20A687DE0014ADAE /* RoundCornersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A49B20A687DE0014ADAE /* RoundCornersButton.swift */; };
-		D8D2A4A120A68B260014ADAE /* CGAffineTransform+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A4A020A68B260014ADAE /* CGAffineTransform+Custom.swift */; };
-		D8D2A4A320A68B820014ADAE /* FunctionalEnumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A4A220A68B820014ADAE /* FunctionalEnumerated.swift */; };
-		D8D2A4A520A68BC10014ADAE /* NSLayoutConstraint+Multiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A4A420A68BC10014ADAE /* NSLayoutConstraint+Multiplier.swift */; };
-		D8D2A4A720A68BF50014ADAE /* UICollectionView+OrderedCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A4A620A68BF50014ADAE /* UICollectionView+OrderedCells.swift */; };
-		D8D2A4A920A68C1D0014ADAE /* UIWindow+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A4A820A68C1D0014ADAE /* UIWindow+SafeArea.swift */; };
 		D8D2A4AB20A7AB2C0014ADAE /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A4AA20A7AB2C0014ADAE /* UserDefaults.swift */; };
+		D8E93B6320B8752000CE0AD8 /* FIRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B6220B8752000CE0AD8 /* FIRService.swift */; };
+		D8E93B6720B8A63A00CE0AD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8E93B6620B8A63A00CE0AD8 /* GoogleService-Info.plist */; };
+		D8E93B6D20B8AC5000CE0AD8 /* CGAffineTransform+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B6920B8AC4E00CE0AD8 /* CGAffineTransform+Custom.swift */; };
+		D8E93B6E20B8AC5000CE0AD8 /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B6A20B8AC4F00CE0AD8 /* CircularImageView.swift */; };
+		D8E93B6F20B8AC5000CE0AD8 /* CardViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B6B20B8AC4F00CE0AD8 /* CardViewDelegate.swift */; };
+		D8E93B7020B8AC5000CE0AD8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B6C20B8AC4F00CE0AD8 /* CardView.swift */; };
+		D8E93B7520B8AC5C00CE0AD8 /* NSLayoutConstraint+Multiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7120B8AC5A00CE0AD8 /* NSLayoutConstraint+Multiplier.swift */; };
+		D8E93B7620B8AC5C00CE0AD8 /* FunctionalEnumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7220B8AC5B00CE0AD8 /* FunctionalEnumerated.swift */; };
+		D8E93B7720B8AC5C00CE0AD8 /* NibLoadbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7320B8AC5B00CE0AD8 /* NibLoadbleView.swift */; };
+		D8E93B7820B8AC5C00CE0AD8 /* PopUpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7420B8AC5C00CE0AD8 /* PopUpViewCell.swift */; };
+		D8E93B7D20B8AC6D00CE0AD8 /* ReusableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7920B8AC6C00CE0AD8 /* ReusableCells.swift */; };
+		D8E93B7E20B8AC6D00CE0AD8 /* RoundCornersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7A20B8AC6C00CE0AD8 /* RoundCornersButton.swift */; };
+		D8E93B7F20B8AC6D00CE0AD8 /* UICollectionView+OrderedCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7B20B8AC6D00CE0AD8 /* UICollectionView+OrderedCells.swift */; };
+		D8E93B8020B8AC6D00CE0AD8 /* UIWindow+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7C20B8AC6D00CE0AD8 /* UIWindow+SafeArea.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6A1367981F8D657F00FC16F8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6A13679A1F8D691B00FC16F8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6A13679C1F8D7DB500FC16F8 /* Wallpaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallpaper.swift; sourceTree = "<group>"; };
 		6A13679E1F8D847000FC16F8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -65,19 +65,21 @@
 		736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallpaper_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D898FAD520A6823C00C3BE2B /* AppStoreAnimatorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreAnimatorInfo.swift; sourceTree = "<group>"; };
 		D8B96AD420A7BFEA00A1245A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		D8D2A48B20A686500014ADAE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		D8D2A48E20A686B50014ADAE /* CardViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewDelegate.swift; sourceTree = "<group>"; };
-		D8D2A49120A686FC0014ADAE /* NibLoadbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadbleView.swift; sourceTree = "<group>"; };
-		D8D2A49320A687240014ADAE /* ReusableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCells.swift; sourceTree = "<group>"; };
-		D8D2A49720A6878C0014ADAE /* PopUpViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewCell.swift; sourceTree = "<group>"; };
-		D8D2A49920A687BB0014ADAE /* CircularImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
-		D8D2A49B20A687DE0014ADAE /* RoundCornersButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornersButton.swift; sourceTree = "<group>"; };
-		D8D2A4A020A68B260014ADAE /* CGAffineTransform+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Custom.swift"; sourceTree = "<group>"; };
-		D8D2A4A220A68B820014ADAE /* FunctionalEnumerated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionalEnumerated.swift; sourceTree = "<group>"; };
-		D8D2A4A420A68BC10014ADAE /* NSLayoutConstraint+Multiplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Multiplier.swift"; sourceTree = "<group>"; };
-		D8D2A4A620A68BF50014ADAE /* UICollectionView+OrderedCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+OrderedCells.swift"; sourceTree = "<group>"; };
-		D8D2A4A820A68C1D0014ADAE /* UIWindow+SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+SafeArea.swift"; sourceTree = "<group>"; };
 		D8D2A4AA20A7AB2C0014ADAE /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		D8E93B6220B8752000CE0AD8 /* FIRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRService.swift; sourceTree = "<group>"; };
+		D8E93B6620B8A63A00CE0AD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		D8E93B6920B8AC4E00CE0AD8 /* CGAffineTransform+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Custom.swift"; sourceTree = "<group>"; };
+		D8E93B6A20B8AC4F00CE0AD8 /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
+		D8E93B6B20B8AC4F00CE0AD8 /* CardViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewDelegate.swift; sourceTree = "<group>"; };
+		D8E93B6C20B8AC4F00CE0AD8 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		D8E93B7120B8AC5A00CE0AD8 /* NSLayoutConstraint+Multiplier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Multiplier.swift"; sourceTree = "<group>"; };
+		D8E93B7220B8AC5B00CE0AD8 /* FunctionalEnumerated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionalEnumerated.swift; sourceTree = "<group>"; };
+		D8E93B7320B8AC5B00CE0AD8 /* NibLoadbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadbleView.swift; sourceTree = "<group>"; };
+		D8E93B7420B8AC5C00CE0AD8 /* PopUpViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewCell.swift; sourceTree = "<group>"; };
+		D8E93B7920B8AC6C00CE0AD8 /* ReusableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableCells.swift; sourceTree = "<group>"; };
+		D8E93B7A20B8AC6C00CE0AD8 /* RoundCornersButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundCornersButton.swift; sourceTree = "<group>"; };
+		D8E93B7B20B8AC6D00CE0AD8 /* UICollectionView+OrderedCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+OrderedCells.swift"; sourceTree = "<group>"; };
+		D8E93B7C20B8AC6D00CE0AD8 /* UIWindow+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+SafeArea.swift"; sourceTree = "<group>"; };
 		DA366805E8777B768E8728F2 /* Pods-Wallpaper-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.debug.xcconfig"; sourceTree = "<group>"; };
 		F3976466CEB472FD86CD9EB5 /* Pods-Wallpaper-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,7 +116,7 @@
 		6A1367971F8D657500FC16F8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6A1367981F8D657F00FC16F8 /* GoogleService-Info.plist */,
+				D8E93B6620B8A63A00CE0AD8 /* GoogleService-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -140,8 +142,8 @@
 		6A17C4021EFD5AD30047CBA5 /* Wallpaper-App */ = {
 			isa = PBXGroup;
 			children = (
+				D8E93B6820B8AC3F00CE0AD8 /* Animations */,
 				D8D2A4AC20A7AC160014ADAE /* Services */,
-				D898FAD720A6854500C3BE2B /* Animation */,
 				6A17C4171EFD5B1A0047CBA5 /* Model */,
 				6A17C4161EFD5B120047CBA5 /* View */,
 				6A17C4151EFD5AFD0047CBA5 /* Controller */,
@@ -185,77 +187,38 @@
 				6A13679A1F8D691B00FC16F8 /* Constants.swift */,
 				6A13679C1F8D7DB500FC16F8 /* Wallpaper.swift */,
 				6A9D19A720A646C7009C6936 /* ImageResizeExt.swift */,
-				D898FAD520A6823C00C3BE2B /* AppStoreAnimatorInfo.swift */,
 				D8D2A4AA20A7AB2C0014ADAE /* UserDefaults.swift */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		D898FAD720A6854500C3BE2B /* Animation */ = {
-			isa = PBXGroup;
-			children = (
-				D8D2A49D20A68AC40014ADAE /* Extensions */,
-				D8D2A49020A686E20014ADAE /* Utlities */,
-				D8D2A48D20A686560014ADAE /* Views */,
-				D8D2A49920A687BB0014ADAE /* CircularImageView.swift */,
-				D8D2A49B20A687DE0014ADAE /* RoundCornersButton.swift */,
-			);
-			name = Animation;
-			sourceTree = "<group>";
-		};
-		D8D2A48D20A686560014ADAE /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				D8D2A49620A687710014ADAE /* Cells */,
-				D8D2A49520A6875E0014ADAE /* CardView */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		D8D2A49020A686E20014ADAE /* Utlities */ = {
-			isa = PBXGroup;
-			children = (
-				D8D2A49120A686FC0014ADAE /* NibLoadbleView.swift */,
-				D8D2A49320A687240014ADAE /* ReusableCells.swift */,
-			);
-			name = Utlities;
-			sourceTree = "<group>";
-		};
-		D8D2A49520A6875E0014ADAE /* CardView */ = {
-			isa = PBXGroup;
-			children = (
-				D8D2A48B20A686500014ADAE /* CardView.swift */,
-				D8D2A48E20A686B50014ADAE /* CardViewDelegate.swift */,
-			);
-			name = CardView;
-			sourceTree = "<group>";
-		};
-		D8D2A49620A687710014ADAE /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				D8D2A49720A6878C0014ADAE /* PopUpViewCell.swift */,
-			);
-			name = Cells;
-			sourceTree = "<group>";
-		};
-		D8D2A49D20A68AC40014ADAE /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				D8D2A4A020A68B260014ADAE /* CGAffineTransform+Custom.swift */,
-				D8D2A4A220A68B820014ADAE /* FunctionalEnumerated.swift */,
-				D8D2A4A420A68BC10014ADAE /* NSLayoutConstraint+Multiplier.swift */,
-				D8D2A4A620A68BF50014ADAE /* UICollectionView+OrderedCells.swift */,
-				D8D2A4A820A68C1D0014ADAE /* UIWindow+SafeArea.swift */,
-			);
-			name = Extensions;
 			sourceTree = "<group>";
 		};
 		D8D2A4AC20A7AC160014ADAE /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				D8B96AD420A7BFEA00A1245A /* AuthService.swift */,
+				D8E93B6220B8752000CE0AD8 /* FIRService.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		D8E93B6820B8AC3F00CE0AD8 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				D8E93B6C20B8AC4F00CE0AD8 /* CardView.swift */,
+				D8E93B6B20B8AC4F00CE0AD8 /* CardViewDelegate.swift */,
+				D8E93B6920B8AC4E00CE0AD8 /* CGAffineTransform+Custom.swift */,
+				D8E93B7220B8AC5B00CE0AD8 /* FunctionalEnumerated.swift */,
+				D8E93B7320B8AC5B00CE0AD8 /* NibLoadbleView.swift */,
+				D8E93B7120B8AC5A00CE0AD8 /* NSLayoutConstraint+Multiplier.swift */,
+				D8E93B7420B8AC5C00CE0AD8 /* PopUpViewCell.swift */,
+				D8E93B7920B8AC6C00CE0AD8 /* ReusableCells.swift */,
+				D8E93B7A20B8AC6C00CE0AD8 /* RoundCornersButton.swift */,
+				D8E93B7B20B8AC6D00CE0AD8 /* UICollectionView+OrderedCells.swift */,
+				D8E93B7C20B8AC6D00CE0AD8 /* UIWindow+SafeArea.swift */,
+				D898FAD520A6823C00C3BE2B /* AppStoreAnimatorInfo.swift */,
+				D8E93B6A20B8AC4F00CE0AD8 /* CircularImageView.swift */,
+			);
+			name = Animations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,9 +287,9 @@
 				6A17C4411EFDBEA20047CBA5 /* WallpaperRoundedCardCell.xib in Resources */,
 				6A17C40E1EFD5AD30047CBA5 /* LaunchScreen.storyboard in Resources */,
 				6A17C4091EFD5AD30047CBA5 /* Main.storyboard in Resources */,
-				6A1367991F8D657F00FC16F8 /* GoogleService-Info.plist in Resources */,
 				6A85FB4F1F004921001D3ECE /* Assets.xcassets in Resources */,
 				6AB3DA591FB2598400E06B97 /* UploadWallpaperPopUp.xib in Resources */,
+				D8E93B6720B8A63A00CE0AD8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,32 +357,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8E93B7F20B8AC6D00CE0AD8 /* UICollectionView+OrderedCells.swift in Sources */,
 				6A9D19AA20A66AD2009C6936 /* SignUpViewController.swift in Sources */,
-				D8D2A49A20A687BB0014ADAE /* CircularImageView.swift in Sources */,
 				6A17C4401EFDBEA20047CBA5 /* WallpaperRoundedCardCell.swift in Sources */,
 				D898FAD620A6823C00C3BE2B /* AppStoreAnimatorInfo.swift in Sources */,
+				D8E93B7820B8AC5C00CE0AD8 /* PopUpViewCell.swift in Sources */,
+				D8E93B7D20B8AC6D00CE0AD8 /* ReusableCells.swift in Sources */,
 				6A13679F1F8D847000FC16F8 /* LoginViewController.swift in Sources */,
-				D8D2A49420A687240014ADAE /* ReusableCells.swift in Sources */,
+				D8E93B6320B8752000CE0AD8 /* FIRService.swift in Sources */,
 				D8D2A4AB20A7AB2C0014ADAE /* UserDefaults.swift in Sources */,
+				D8E93B7720B8AC5C00CE0AD8 /* NibLoadbleView.swift in Sources */,
 				6A17C4041EFD5AD30047CBA5 /* AppDelegate.swift in Sources */,
+				D8E93B7020B8AC5000CE0AD8 /* CardView.swift in Sources */,
 				6A13679D1F8D7DB500FC16F8 /* Wallpaper.swift in Sources */,
 				6A9D19A620A63B88009C6936 /* AnimatedTextField.swift in Sources */,
-				D8D2A48C20A686500014ADAE /* CardView.swift in Sources */,
-				D8D2A4A520A68BC10014ADAE /* NSLayoutConstraint+Multiplier.swift in Sources */,
-				D8D2A4A320A68B820014ADAE /* FunctionalEnumerated.swift in Sources */,
-				D8D2A4A120A68B260014ADAE /* CGAffineTransform+Custom.swift in Sources */,
+				D8E93B7620B8AC5C00CE0AD8 /* FunctionalEnumerated.swift in Sources */,
 				6A17C4191EFD5B580047CBA5 /* FeedViewController.swift in Sources */,
+				D8E93B8020B8AC6D00CE0AD8 /* UIWindow+SafeArea.swift in Sources */,
 				6AB3DA581FB2598400E06B97 /* UploadWallpaperPopUp.swift in Sources */,
+				D8E93B6F20B8AC5000CE0AD8 /* CardViewDelegate.swift in Sources */,
+				D8E93B7E20B8AC6D00CE0AD8 /* RoundCornersButton.swift in Sources */,
+				D8E93B6E20B8AC5000CE0AD8 /* CircularImageView.swift in Sources */,
 				6AD96FED20A5FF44008DB26B /* PopUpViewController.swift in Sources */,
-				D8D2A49C20A687DE0014ADAE /* RoundCornersButton.swift in Sources */,
 				6A13679B1F8D691B00FC16F8 /* Constants.swift in Sources */,
+				D8E93B7520B8AC5C00CE0AD8 /* NSLayoutConstraint+Multiplier.swift in Sources */,
 				D8B96AD520A7BFEA00A1245A /* AuthService.swift in Sources */,
-				D8D2A4A720A68BF50014ADAE /* UICollectionView+OrderedCells.swift in Sources */,
-				D8D2A4A920A68C1D0014ADAE /* UIWindow+SafeArea.swift in Sources */,
+				D8E93B6D20B8AC5000CE0AD8 /* CGAffineTransform+Custom.swift in Sources */,
 				6A9D19A820A646C7009C6936 /* ImageResizeExt.swift in Sources */,
-				D8D2A48F20A686B50014ADAE /* CardViewDelegate.swift in Sources */,
-				D8D2A49220A686FC0014ADAE /* NibLoadbleView.swift in Sources */,
-				D8D2A49820A6878C0014ADAE /* PopUpViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

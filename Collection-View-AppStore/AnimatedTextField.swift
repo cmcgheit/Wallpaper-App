@@ -8,7 +8,7 @@ class AnimatedTextField: UITextField {
         guard let text = textField.text else {
             return
         }
-        if text.characters.count < 5 {
+        if !text.isEmpty {
             // Animation jumps back to field if at least 5 characters not entered
             let jump = CASpringAnimation(keyPath: "position.y")
             jump.fromValue = textField.layer.position.y + 1.0

@@ -10,7 +10,7 @@ target 'Wallpaper-App' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
-#  pod 'Google-Mobile-Ads-SDK'
+  pod 'Google-Mobile-Ads-SDK'
   pod 'SwiftyJSON'
   pod 'Kingfisher'
   pod 'GlidingCollection'
@@ -25,7 +25,7 @@ target 'Wallpaper-App' do
   #         end
   #     end
   # end
-  
+
 #  post_install do |installer|
 #      installer.pods_project.targets.each do |target|
 #          if ['Kingfisher', 'RxSwift', 'RxCocoa'].include? target.name

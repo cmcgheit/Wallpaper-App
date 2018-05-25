@@ -9,7 +9,7 @@ import GlidingCollection
 import Kingfisher
 import SwiftyJSON
 import EasyTransitions
-// import GoogleMobileAds
+import GoogleMobileAds
 
 enum WallpaperCategories: String {
     case Sports, Music, Art
@@ -134,7 +134,8 @@ class FeedViewController: UIViewController {
     
     fileprivate func loadImages() {
         DispatchQueue.main.async {
-            Database.database().reference().child("wallpapers").observe(.childAdded, with: { (snapshot) in // reference to wallpapers in database, add specific categories?
+            // Loading from database?
+            Database.database().reference().child("wallpapers").observe(.childAdded, with: { (snapshot) in // reference to wallpapers in database, load all/individual?
                 
                 DispatchQueue.main.async { // Adding New Wallpapers to beginning of Wallpaper feed, add specific categories?
                     let newWallpaper = Wallpaper(snapshot: snapshot)
@@ -157,8 +158,8 @@ class FeedViewController: UIViewController {
     
     // MARK: - Upload Pop Up Function/Transition
     @objc func presentUploadPopUp() {
-        let controller = FeedViewController()
-        
+        let uploadPopUpVC = UploadWallpaperPopUp()
+        present(uploadPopUpVC, animated: true, completion: nil)
     }
 }
 

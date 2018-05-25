@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="e5t-Dg-8Hj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="e5t-Dg-8Hj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="GillSans.ttc">
-            <string>GillSans</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--FeedViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="FeedViewController" id="BYZ-38-t0r" customClass="FeedViewController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedViewController" title="FeedViewController" id="BYZ-38-t0r" customClass="FeedViewController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -91,7 +86,7 @@
         <!--SignUpViewController-->
         <scene sceneID="Phh-VC-Rxd">
             <objects>
-                <viewController title="SignUpViewController" id="GZF-Tt-wBC" customClass="SignUpViewController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" title="SignUpViewController" id="GZF-Tt-wBC" customClass="SignUpViewController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ech-2p-nD3"/>
                         <viewControllerLayoutGuide type="bottom" id="1yE-zO-mqS"/>
@@ -186,7 +181,7 @@
         <!--PopUpViewController-->
         <scene sceneID="dKV-o9-Xyp">
             <objects>
-                <viewController storyboardIdentifier="popUpViewController" title="PopUpViewController" id="h9P-6q-lEL" customClass="PopUpViewController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PopUpViewController" title="PopUpViewController" id="h9P-6q-lEL" customClass="PopUpViewController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YdF-yI-v7g"/>
                         <viewControllerLayoutGuide type="bottom" id="3hX-ml-k30"/>
@@ -204,7 +199,7 @@
         <!--UploadViewController-->
         <scene sceneID="BIc-7i-bui">
             <objects>
-                <viewController title="UploadViewController" id="3qs-Bd-fOm" customClass="UploadWallpaperPopUp" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UploadViewController" title="UploadViewController" id="3qs-Bd-fOm" customClass="UploadWallpaperPopUp" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="A1R-Nl-dvj"/>
                         <viewControllerLayoutGuide type="bottom" id="S4u-im-SDB"/>
@@ -222,7 +217,7 @@
         <!--LoginViewController-->
         <scene sceneID="gMl-Nl-ycl">
             <objects>
-                <viewController title="LoginViewController" id="e5t-Dg-8Hj" customClass="LoginViewController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="LoginViewController" id="e5t-Dg-8Hj" customClass="LoginViewController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t64-pA-mYG"/>
                         <viewControllerLayoutGuide type="bottom" id="acB-hx-1BM"/>
