@@ -8,78 +8,73 @@
 
 /* Begin PBXBuildFile section */
 		49576B963725442268CF8D9F /* Pods_Wallpaper_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */; };
-		6A13679B1F8D691B00FC16F8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A13679A1F8D691B00FC16F8 /* Constants.swift */; };
-		6A13679D1F8D7DB500FC16F8 /* Wallpaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A13679C1F8D7DB500FC16F8 /* Wallpaper.swift */; };
-		6A13679F1F8D847000FC16F8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A13679E1F8D847000FC16F8 /* LoginViewController.swift */; };
-		6A17C4041EFD5AD30047CBA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A17C4031EFD5AD30047CBA5 /* AppDelegate.swift */; };
-		6A17C4091EFD5AD30047CBA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A17C4071EFD5AD30047CBA5 /* Main.storyboard */; };
-		6A17C40E1EFD5AD30047CBA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A17C40C1EFD5AD30047CBA5 /* LaunchScreen.storyboard */; };
-		6A17C4191EFD5B580047CBA5 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A17C4181EFD5B580047CBA5 /* FeedViewController.swift */; };
-		6A17C4401EFDBEA20047CBA5 /* WallpaperRoundedCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A17C43E1EFDBEA20047CBA5 /* WallpaperRoundedCardCell.swift */; };
-		6A17C4411EFDBEA20047CBA5 /* WallpaperRoundedCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A17C43F1EFDBEA20047CBA5 /* WallpaperRoundedCardCell.xib */; };
-		6A85FB4F1F004921001D3ECE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A85FB4E1F004921001D3ECE /* Assets.xcassets */; };
-		6A9D19A620A63B88009C6936 /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D19A520A63B88009C6936 /* AnimatedTextField.swift */; };
-		6A9D19A820A646C7009C6936 /* ImageResizeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D19A720A646C7009C6936 /* ImageResizeExt.swift */; };
-		6A9D19AA20A66AD2009C6936 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9D19A920A66AD2009C6936 /* SignUpViewController.swift */; };
-		6AB3DA581FB2598400E06B97 /* UploadWallpaperPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB3DA561FB2598400E06B97 /* UploadWallpaperPopUp.swift */; };
-		6AB3DA591FB2598400E06B97 /* UploadWallpaperPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AB3DA571FB2598400E06B97 /* UploadWallpaperPopUp.xib */; };
-		6AD96FED20A5FF44008DB26B /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD96FEC20A5FF44008DB26B /* PopUpViewController.swift */; };
-		D898FAD620A6823C00C3BE2B /* AppStoreAnimatorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D898FAD520A6823C00C3BE2B /* AppStoreAnimatorInfo.swift */; };
-		D8B96AD520A7BFEA00A1245A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B96AD420A7BFEA00A1245A /* AuthService.swift */; };
-		D8D2A4AB20A7AB2C0014ADAE /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D2A4AA20A7AB2C0014ADAE /* UserDefaults.swift */; };
-		D8E93B6320B8752000CE0AD8 /* FIRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B6220B8752000CE0AD8 /* FIRService.swift */; };
 		D8E93B6720B8A63A00CE0AD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8E93B6620B8A63A00CE0AD8 /* GoogleService-Info.plist */; };
-		D8E93B6D20B8AC5000CE0AD8 /* CGAffineTransform+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B6920B8AC4E00CE0AD8 /* CGAffineTransform+Custom.swift */; };
-		D8E93B6E20B8AC5000CE0AD8 /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B6A20B8AC4F00CE0AD8 /* CircularImageView.swift */; };
-		D8E93B6F20B8AC5000CE0AD8 /* CardViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B6B20B8AC4F00CE0AD8 /* CardViewDelegate.swift */; };
-		D8E93B7020B8AC5000CE0AD8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B6C20B8AC4F00CE0AD8 /* CardView.swift */; };
-		D8E93B7520B8AC5C00CE0AD8 /* NSLayoutConstraint+Multiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7120B8AC5A00CE0AD8 /* NSLayoutConstraint+Multiplier.swift */; };
-		D8E93B7620B8AC5C00CE0AD8 /* FunctionalEnumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7220B8AC5B00CE0AD8 /* FunctionalEnumerated.swift */; };
-		D8E93B7720B8AC5C00CE0AD8 /* NibLoadbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7320B8AC5B00CE0AD8 /* NibLoadbleView.swift */; };
-		D8E93B7820B8AC5C00CE0AD8 /* PopUpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7420B8AC5C00CE0AD8 /* PopUpViewCell.swift */; };
-		D8E93B7D20B8AC6D00CE0AD8 /* ReusableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7920B8AC6C00CE0AD8 /* ReusableCells.swift */; };
-		D8E93B7E20B8AC6D00CE0AD8 /* RoundCornersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7A20B8AC6C00CE0AD8 /* RoundCornersButton.swift */; };
-		D8E93B7F20B8AC6D00CE0AD8 /* UICollectionView+OrderedCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7B20B8AC6D00CE0AD8 /* UICollectionView+OrderedCells.swift */; };
-		D8E93B8020B8AC6D00CE0AD8 /* UIWindow+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B7C20B8AC6D00CE0AD8 /* UIWindow+SafeArea.swift */; };
+		D8E93B8220B8B02100CE0AD8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8120B8B02000CE0AD8 /* AuthService.swift */; };
+		D8E93B8420B8B02D00CE0AD8 /* FIRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */; };
+		D8E93B8A20B8B05100CE0AD8 /* ImageResizeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */; };
+		D8E93B8B20B8B05100CE0AD8 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8620B8B05100CE0AD8 /* UserDefaults.swift */; };
+		D8E93B8C20B8B05100CE0AD8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8720B8B05100CE0AD8 /* AppDelegate.swift */; };
+		D8E93B8D20B8B05100CE0AD8 /* Wallpaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8820B8B05100CE0AD8 /* Wallpaper.swift */; };
+		D8E93B8E20B8B05100CE0AD8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8920B8B05100CE0AD8 /* Constants.swift */; };
+		D8E93B9420B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8F20B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift */; };
+		D8E93B9520B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8E93B9020B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib */; };
+		D8E93B9620B8B08D00CE0AD8 /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B9120B8B08D00CE0AD8 /* AnimatedTextField.swift */; };
+		D8E93B9720B8B08D00CE0AD8 /* UploadWallpaperPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B9220B8B08D00CE0AD8 /* UploadWallpaperPopUp.swift */; };
+		D8E93B9820B8B08D00CE0AD8 /* UploadWallpaperPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8E93B9320B8B08D00CE0AD8 /* UploadWallpaperPopUp.xib */; };
+		D8E93B9D20B8B0B100CE0AD8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B9920B8B0B000CE0AD8 /* SignUpViewController.swift */; };
+		D8E93B9E20B8B0B100CE0AD8 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B9A20B8B0B000CE0AD8 /* FeedViewController.swift */; };
+		D8E93B9F20B8B0B100CE0AD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B9B20B8B0B100CE0AD8 /* LoginViewController.swift */; };
+		D8E93BA020B8B0B100CE0AD8 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B9C20B8B0B100CE0AD8 /* PopUpViewController.swift */; };
+		D8E93BA220B8B0C100CE0AD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8E93BA120B8B0C100CE0AD8 /* Assets.xcassets */; };
+		D8E93BBD20B8B63200CE0AD8 /* RoundCornersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB020B8B63000CE0AD8 /* RoundCornersButton.swift */; };
+		D8E93BBE20B8B63200CE0AD8 /* FunctionalEnumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB120B8B63000CE0AD8 /* FunctionalEnumerated.swift */; };
+		D8E93BBF20B8B63200CE0AD8 /* CGAffineTransform+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB220B8B63000CE0AD8 /* CGAffineTransform+Custom.swift */; };
+		D8E93BC020B8B63200CE0AD8 /* ReusableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB320B8B63000CE0AD8 /* ReusableCells.swift */; };
+		D8E93BC120B8B63200CE0AD8 /* CardViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB420B8B63000CE0AD8 /* CardViewDelegate.swift */; };
+		D8E93BC220B8B63200CE0AD8 /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB520B8B63000CE0AD8 /* CircularImageView.swift */; };
+		D8E93BC320B8B63200CE0AD8 /* UICollectionView+OrderedCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB620B8B63100CE0AD8 /* UICollectionView+OrderedCells.swift */; };
+		D8E93BC420B8B63200CE0AD8 /* UIWindow+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB720B8B63100CE0AD8 /* UIWindow+SafeArea.swift */; };
+		D8E93BC520B8B63200CE0AD8 /* PopUpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB820B8B63100CE0AD8 /* PopUpViewCell.swift */; };
+		D8E93BC620B8B63200CE0AD8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB920B8B63100CE0AD8 /* CardView.swift */; };
+		D8E93BC720B8B63200CE0AD8 /* AppStoreAnimatorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BBA20B8B63100CE0AD8 /* AppStoreAnimatorInfo.swift */; };
+		D8E93BC820B8B63200CE0AD8 /* NSLayoutConstraint+Multiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BBB20B8B63100CE0AD8 /* NSLayoutConstraint+Multiplier.swift */; };
+		D8E93BC920B8B63200CE0AD8 /* NibLoadbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BBC20B8B63200CE0AD8 /* NibLoadbleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6A13679A1F8D691B00FC16F8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		6A13679C1F8D7DB500FC16F8 /* Wallpaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wallpaper.swift; sourceTree = "<group>"; };
-		6A13679E1F8D847000FC16F8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6A17C4001EFD5AD30047CBA5 /* Wallpaper-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wallpaper-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6A17C4031EFD5AD30047CBA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6A17C4081EFD5AD30047CBA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		6A17C40D1EFD5AD30047CBA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		6A17C40F1EFD5AD30047CBA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6A17C4181EFD5B580047CBA5 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		6A17C43E1EFDBEA20047CBA5 /* WallpaperRoundedCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallpaperRoundedCardCell.swift; sourceTree = "<group>"; };
-		6A17C43F1EFDBEA20047CBA5 /* WallpaperRoundedCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WallpaperRoundedCardCell.xib; sourceTree = "<group>"; };
-		6A85FB4E1F004921001D3ECE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6A9D19A520A63B88009C6936 /* AnimatedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTextField.swift; sourceTree = "<group>"; };
-		6A9D19A720A646C7009C6936 /* ImageResizeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResizeExt.swift; sourceTree = "<group>"; };
-		6A9D19A920A66AD2009C6936 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		6AB3DA561FB2598400E06B97 /* UploadWallpaperPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadWallpaperPopUp.swift; sourceTree = "<group>"; };
-		6AB3DA571FB2598400E06B97 /* UploadWallpaperPopUp.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadWallpaperPopUp.xib; sourceTree = "<group>"; };
-		6AD96FEC20A5FF44008DB26B /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallpaper_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D898FAD520A6823C00C3BE2B /* AppStoreAnimatorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreAnimatorInfo.swift; sourceTree = "<group>"; };
-		D8B96AD420A7BFEA00A1245A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		D8D2A4AA20A7AB2C0014ADAE /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		D8E93B6220B8752000CE0AD8 /* FIRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRService.swift; sourceTree = "<group>"; };
 		D8E93B6620B8A63A00CE0AD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		D8E93B6920B8AC4E00CE0AD8 /* CGAffineTransform+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Custom.swift"; sourceTree = "<group>"; };
-		D8E93B6A20B8AC4F00CE0AD8 /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
-		D8E93B6B20B8AC4F00CE0AD8 /* CardViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewDelegate.swift; sourceTree = "<group>"; };
-		D8E93B6C20B8AC4F00CE0AD8 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		D8E93B7120B8AC5A00CE0AD8 /* NSLayoutConstraint+Multiplier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Multiplier.swift"; sourceTree = "<group>"; };
-		D8E93B7220B8AC5B00CE0AD8 /* FunctionalEnumerated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionalEnumerated.swift; sourceTree = "<group>"; };
-		D8E93B7320B8AC5B00CE0AD8 /* NibLoadbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadbleView.swift; sourceTree = "<group>"; };
-		D8E93B7420B8AC5C00CE0AD8 /* PopUpViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewCell.swift; sourceTree = "<group>"; };
-		D8E93B7920B8AC6C00CE0AD8 /* ReusableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableCells.swift; sourceTree = "<group>"; };
-		D8E93B7A20B8AC6C00CE0AD8 /* RoundCornersButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundCornersButton.swift; sourceTree = "<group>"; };
-		D8E93B7B20B8AC6D00CE0AD8 /* UICollectionView+OrderedCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+OrderedCells.swift"; sourceTree = "<group>"; };
-		D8E93B7C20B8AC6D00CE0AD8 /* UIWindow+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+SafeArea.swift"; sourceTree = "<group>"; };
+		D8E93B8120B8B02000CE0AD8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = "Wallpaper-App/AuthService.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIRService.swift; path = "Wallpaper-App/FIRService.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageResizeExt.swift; path = "Wallpaper-App/ImageResizeExt.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8620B8B05100CE0AD8 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaults.swift; path = "Wallpaper-App/UserDefaults.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8720B8B05100CE0AD8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Wallpaper-App/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8820B8B05100CE0AD8 /* Wallpaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wallpaper.swift; path = "Wallpaper-App/Wallpaper.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8920B8B05100CE0AD8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "Wallpaper-App/Constants.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8F20B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WallpaperRoundedCardCell.swift; path = "Wallpaper-App/WallpaperRoundedCardCell.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B9020B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WallpaperRoundedCardCell.xib; path = "Wallpaper-App/WallpaperRoundedCardCell.xib"; sourceTree = SOURCE_ROOT; };
+		D8E93B9120B8B08D00CE0AD8 /* AnimatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedTextField.swift; path = "Wallpaper-App/AnimatedTextField.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B9220B8B08D00CE0AD8 /* UploadWallpaperPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadWallpaperPopUp.swift; path = "Wallpaper-App/UploadWallpaperPopUp.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B9320B8B08D00CE0AD8 /* UploadWallpaperPopUp.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UploadWallpaperPopUp.xib; path = "Wallpaper-App/UploadWallpaperPopUp.xib"; sourceTree = SOURCE_ROOT; };
+		D8E93B9920B8B0B000CE0AD8 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = "Wallpaper-App/SignUpViewController.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B9A20B8B0B000CE0AD8 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewController.swift; path = "Wallpaper-App/FeedViewController.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B9B20B8B0B100CE0AD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "Wallpaper-App/LoginViewController.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B9C20B8B0B100CE0AD8 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpViewController.swift; path = "Wallpaper-App/PopUpViewController.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93BA120B8B0C100CE0AD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Wallpaper-App/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
+		D8E93BB020B8B63000CE0AD8 /* RoundCornersButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundCornersButton.swift; path = "Wallpaper-App/RoundCornersButton.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93BB120B8B63000CE0AD8 /* FunctionalEnumerated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FunctionalEnumerated.swift; path = "Wallpaper-App/FunctionalEnumerated.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93BB220B8B63000CE0AD8 /* CGAffineTransform+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGAffineTransform+Custom.swift"; path = "Wallpaper-App/CGAffineTransform+Custom.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93BB320B8B63000CE0AD8 /* ReusableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReusableCells.swift; path = "Wallpaper-App/ReusableCells.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93BB420B8B63000CE0AD8 /* CardViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardViewDelegate.swift; path = "Wallpaper-App/CardViewDelegate.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93BB520B8B63000CE0AD8 /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularImageView.swift; path = "Wallpaper-App/CircularImageView.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93BB620B8B63100CE0AD8 /* UICollectionView+OrderedCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UICollectionView+OrderedCells.swift"; path = "Wallpaper-App/UICollectionView+OrderedCells.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93BB720B8B63100CE0AD8 /* UIWindow+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIWindow+SafeArea.swift"; path = "Wallpaper-App/UIWindow+SafeArea.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93BB820B8B63100CE0AD8 /* PopUpViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpViewCell.swift; path = "Wallpaper-App/PopUpViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93BB920B8B63100CE0AD8 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = "Wallpaper-App/CardView.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93BBA20B8B63100CE0AD8 /* AppStoreAnimatorInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppStoreAnimatorInfo.swift; path = "Wallpaper-App/AppStoreAnimatorInfo.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93BBB20B8B63100CE0AD8 /* NSLayoutConstraint+Multiplier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSLayoutConstraint+Multiplier.swift"; path = "Wallpaper-App/NSLayoutConstraint+Multiplier.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93BBC20B8B63200CE0AD8 /* NibLoadbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NibLoadbleView.swift; path = "Wallpaper-App/NibLoadbleView.swift"; sourceTree = SOURCE_ROOT; };
 		DA366805E8777B768E8728F2 /* Pods-Wallpaper-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.debug.xcconfig"; sourceTree = "<group>"; };
 		F3976466CEB472FD86CD9EB5 /* Pods-Wallpaper-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,9 +143,7 @@
 				6A17C4161EFD5B120047CBA5 /* View */,
 				6A17C4151EFD5AFD0047CBA5 /* Controller */,
 				6A1367971F8D657500FC16F8 /* Resources */,
-				6A85FB4E1F004921001D3ECE /* Assets.xcassets */,
-				6A17C40C1EFD5AD30047CBA5 /* LaunchScreen.storyboard */,
-				6A17C40F1EFD5AD30047CBA5 /* Info.plist */,
+				D8E93BA120B8B0C100CE0AD8 /* Assets.xcassets */,
 			);
 			name = "Wallpaper-App";
 			path = "Collection-View-AppStore";
@@ -159,10 +152,10 @@
 		6A17C4151EFD5AFD0047CBA5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6A13679E1F8D847000FC16F8 /* LoginViewController.swift */,
-				6A17C4181EFD5B580047CBA5 /* FeedViewController.swift */,
-				6AD96FEC20A5FF44008DB26B /* PopUpViewController.swift */,
-				6A9D19A920A66AD2009C6936 /* SignUpViewController.swift */,
+				D8E93B9A20B8B0B000CE0AD8 /* FeedViewController.swift */,
+				D8E93B9B20B8B0B100CE0AD8 /* LoginViewController.swift */,
+				D8E93B9C20B8B0B100CE0AD8 /* PopUpViewController.swift */,
+				D8E93B9920B8B0B000CE0AD8 /* SignUpViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -170,11 +163,11 @@
 		6A17C4161EFD5B120047CBA5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6A17C43E1EFDBEA20047CBA5 /* WallpaperRoundedCardCell.swift */,
-				6A17C43F1EFDBEA20047CBA5 /* WallpaperRoundedCardCell.xib */,
-				6AB3DA561FB2598400E06B97 /* UploadWallpaperPopUp.swift */,
-				6AB3DA571FB2598400E06B97 /* UploadWallpaperPopUp.xib */,
-				6A9D19A520A63B88009C6936 /* AnimatedTextField.swift */,
+				D8E93B9120B8B08D00CE0AD8 /* AnimatedTextField.swift */,
+				D8E93B9220B8B08D00CE0AD8 /* UploadWallpaperPopUp.swift */,
+				D8E93B9320B8B08D00CE0AD8 /* UploadWallpaperPopUp.xib */,
+				D8E93B8F20B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift */,
+				D8E93B9020B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -182,12 +175,11 @@
 		6A17C4171EFD5B1A0047CBA5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6A17C4031EFD5AD30047CBA5 /* AppDelegate.swift */,
-				6A17C4071EFD5AD30047CBA5 /* Main.storyboard */,
-				6A13679A1F8D691B00FC16F8 /* Constants.swift */,
-				6A13679C1F8D7DB500FC16F8 /* Wallpaper.swift */,
-				6A9D19A720A646C7009C6936 /* ImageResizeExt.swift */,
-				D8D2A4AA20A7AB2C0014ADAE /* UserDefaults.swift */,
+				D8E93B8720B8B05100CE0AD8 /* AppDelegate.swift */,
+				D8E93B8920B8B05100CE0AD8 /* Constants.swift */,
+				D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */,
+				D8E93B8620B8B05100CE0AD8 /* UserDefaults.swift */,
+				D8E93B8820B8B05100CE0AD8 /* Wallpaper.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -195,8 +187,8 @@
 		D8D2A4AC20A7AC160014ADAE /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D8B96AD420A7BFEA00A1245A /* AuthService.swift */,
-				D8E93B6220B8752000CE0AD8 /* FIRService.swift */,
+				D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */,
+				D8E93B8120B8B02000CE0AD8 /* AuthService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -204,19 +196,19 @@
 		D8E93B6820B8AC3F00CE0AD8 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				D8E93B6C20B8AC4F00CE0AD8 /* CardView.swift */,
-				D8E93B6B20B8AC4F00CE0AD8 /* CardViewDelegate.swift */,
-				D8E93B6920B8AC4E00CE0AD8 /* CGAffineTransform+Custom.swift */,
-				D8E93B7220B8AC5B00CE0AD8 /* FunctionalEnumerated.swift */,
-				D8E93B7320B8AC5B00CE0AD8 /* NibLoadbleView.swift */,
-				D8E93B7120B8AC5A00CE0AD8 /* NSLayoutConstraint+Multiplier.swift */,
-				D8E93B7420B8AC5C00CE0AD8 /* PopUpViewCell.swift */,
-				D8E93B7920B8AC6C00CE0AD8 /* ReusableCells.swift */,
-				D8E93B7A20B8AC6C00CE0AD8 /* RoundCornersButton.swift */,
-				D8E93B7B20B8AC6D00CE0AD8 /* UICollectionView+OrderedCells.swift */,
-				D8E93B7C20B8AC6D00CE0AD8 /* UIWindow+SafeArea.swift */,
-				D898FAD520A6823C00C3BE2B /* AppStoreAnimatorInfo.swift */,
-				D8E93B6A20B8AC4F00CE0AD8 /* CircularImageView.swift */,
+				D8E93BBA20B8B63100CE0AD8 /* AppStoreAnimatorInfo.swift */,
+				D8E93BB920B8B63100CE0AD8 /* CardView.swift */,
+				D8E93BB420B8B63000CE0AD8 /* CardViewDelegate.swift */,
+				D8E93BB220B8B63000CE0AD8 /* CGAffineTransform+Custom.swift */,
+				D8E93BB520B8B63000CE0AD8 /* CircularImageView.swift */,
+				D8E93BB120B8B63000CE0AD8 /* FunctionalEnumerated.swift */,
+				D8E93BBC20B8B63200CE0AD8 /* NibLoadbleView.swift */,
+				D8E93BBB20B8B63100CE0AD8 /* NSLayoutConstraint+Multiplier.swift */,
+				D8E93BB820B8B63100CE0AD8 /* PopUpViewCell.swift */,
+				D8E93BB320B8B63000CE0AD8 /* ReusableCells.swift */,
+				D8E93BB020B8B63000CE0AD8 /* RoundCornersButton.swift */,
+				D8E93BB620B8B63100CE0AD8 /* UICollectionView+OrderedCells.swift */,
+				D8E93BB720B8B63100CE0AD8 /* UIWindow+SafeArea.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -284,12 +276,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A17C4411EFDBEA20047CBA5 /* WallpaperRoundedCardCell.xib in Resources */,
-				6A17C40E1EFD5AD30047CBA5 /* LaunchScreen.storyboard in Resources */,
-				6A17C4091EFD5AD30047CBA5 /* Main.storyboard in Resources */,
-				6A85FB4F1F004921001D3ECE /* Assets.xcassets in Resources */,
-				6AB3DA591FB2598400E06B97 /* UploadWallpaperPopUp.xib in Resources */,
+				D8E93B9520B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib in Resources */,
 				D8E93B6720B8A63A00CE0AD8 /* GoogleService-Info.plist in Resources */,
+				D8E93BA220B8B0C100CE0AD8 /* Assets.xcassets in Resources */,
+				D8E93B9820B8B08D00CE0AD8 /* UploadWallpaperPopUp.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,56 +347,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8E93B7F20B8AC6D00CE0AD8 /* UICollectionView+OrderedCells.swift in Sources */,
-				6A9D19AA20A66AD2009C6936 /* SignUpViewController.swift in Sources */,
-				6A17C4401EFDBEA20047CBA5 /* WallpaperRoundedCardCell.swift in Sources */,
-				D898FAD620A6823C00C3BE2B /* AppStoreAnimatorInfo.swift in Sources */,
-				D8E93B7820B8AC5C00CE0AD8 /* PopUpViewCell.swift in Sources */,
-				D8E93B7D20B8AC6D00CE0AD8 /* ReusableCells.swift in Sources */,
-				6A13679F1F8D847000FC16F8 /* LoginViewController.swift in Sources */,
-				D8E93B6320B8752000CE0AD8 /* FIRService.swift in Sources */,
-				D8D2A4AB20A7AB2C0014ADAE /* UserDefaults.swift in Sources */,
-				D8E93B7720B8AC5C00CE0AD8 /* NibLoadbleView.swift in Sources */,
-				6A17C4041EFD5AD30047CBA5 /* AppDelegate.swift in Sources */,
-				D8E93B7020B8AC5000CE0AD8 /* CardView.swift in Sources */,
-				6A13679D1F8D7DB500FC16F8 /* Wallpaper.swift in Sources */,
-				6A9D19A620A63B88009C6936 /* AnimatedTextField.swift in Sources */,
-				D8E93B7620B8AC5C00CE0AD8 /* FunctionalEnumerated.swift in Sources */,
-				6A17C4191EFD5B580047CBA5 /* FeedViewController.swift in Sources */,
-				D8E93B8020B8AC6D00CE0AD8 /* UIWindow+SafeArea.swift in Sources */,
-				6AB3DA581FB2598400E06B97 /* UploadWallpaperPopUp.swift in Sources */,
-				D8E93B6F20B8AC5000CE0AD8 /* CardViewDelegate.swift in Sources */,
-				D8E93B7E20B8AC6D00CE0AD8 /* RoundCornersButton.swift in Sources */,
-				D8E93B6E20B8AC5000CE0AD8 /* CircularImageView.swift in Sources */,
-				6AD96FED20A5FF44008DB26B /* PopUpViewController.swift in Sources */,
-				6A13679B1F8D691B00FC16F8 /* Constants.swift in Sources */,
-				D8E93B7520B8AC5C00CE0AD8 /* NSLayoutConstraint+Multiplier.swift in Sources */,
-				D8B96AD520A7BFEA00A1245A /* AuthService.swift in Sources */,
-				D8E93B6D20B8AC5000CE0AD8 /* CGAffineTransform+Custom.swift in Sources */,
-				6A9D19A820A646C7009C6936 /* ImageResizeExt.swift in Sources */,
+				D8E93BC120B8B63200CE0AD8 /* CardViewDelegate.swift in Sources */,
+				D8E93B8B20B8B05100CE0AD8 /* UserDefaults.swift in Sources */,
+				D8E93B9720B8B08D00CE0AD8 /* UploadWallpaperPopUp.swift in Sources */,
+				D8E93BC720B8B63200CE0AD8 /* AppStoreAnimatorInfo.swift in Sources */,
+				D8E93BC520B8B63200CE0AD8 /* PopUpViewCell.swift in Sources */,
+				D8E93BBE20B8B63200CE0AD8 /* FunctionalEnumerated.swift in Sources */,
+				D8E93BBD20B8B63200CE0AD8 /* RoundCornersButton.swift in Sources */,
+				D8E93BC220B8B63200CE0AD8 /* CircularImageView.swift in Sources */,
+				D8E93B8E20B8B05100CE0AD8 /* Constants.swift in Sources */,
+				D8E93B8A20B8B05100CE0AD8 /* ImageResizeExt.swift in Sources */,
+				D8E93BC320B8B63200CE0AD8 /* UICollectionView+OrderedCells.swift in Sources */,
+				D8E93BC420B8B63200CE0AD8 /* UIWindow+SafeArea.swift in Sources */,
+				D8E93B8420B8B02D00CE0AD8 /* FIRService.swift in Sources */,
+				D8E93B8D20B8B05100CE0AD8 /* Wallpaper.swift in Sources */,
+				D8E93BC820B8B63200CE0AD8 /* NSLayoutConstraint+Multiplier.swift in Sources */,
+				D8E93B8C20B8B05100CE0AD8 /* AppDelegate.swift in Sources */,
+				D8E93B9F20B8B0B100CE0AD8 /* LoginViewController.swift in Sources */,
+				D8E93BA020B8B0B100CE0AD8 /* PopUpViewController.swift in Sources */,
+				D8E93B9E20B8B0B100CE0AD8 /* FeedViewController.swift in Sources */,
+				D8E93B9D20B8B0B100CE0AD8 /* SignUpViewController.swift in Sources */,
+				D8E93BC920B8B63200CE0AD8 /* NibLoadbleView.swift in Sources */,
+				D8E93B9620B8B08D00CE0AD8 /* AnimatedTextField.swift in Sources */,
+				D8E93B9420B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift in Sources */,
+				D8E93BBF20B8B63200CE0AD8 /* CGAffineTransform+Custom.swift in Sources */,
+				D8E93BC020B8B63200CE0AD8 /* ReusableCells.swift in Sources */,
+				D8E93BC620B8B63200CE0AD8 /* CardView.swift in Sources */,
+				D8E93B8220B8B02100CE0AD8 /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		6A17C4071EFD5AD30047CBA5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A17C4081EFD5AD30047CBA5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		6A17C40C1EFD5AD30047CBA5 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A17C40D1EFD5AD30047CBA5 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		6A17C4101EFD5AD30047CBA5 /* Debug */ = {
@@ -526,7 +497,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 48HD6AZC2E;
-				INFOPLIST_FILE = "Collection-View-AppStore/Info.plist";
+				INFOPLIST_FILE = "Wallpaper-App/Base.lproj/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cmcgheit.Wallpaper-App";
@@ -542,7 +513,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 48HD6AZC2E;
-				INFOPLIST_FILE = "Collection-View-AppStore/Info.plist";
+				INFOPLIST_FILE = "Wallpaper-App/Base.lproj/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.cmcgheit.Wallpaper-App";
