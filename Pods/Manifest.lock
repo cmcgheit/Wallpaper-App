@@ -47,6 +47,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - Siren (3.4.0)
   - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK
   - Kingfisher
   - McPicker
+  - Siren
   - SwiftyJSON
 
 SPEC REPOS:
@@ -81,6 +83,7 @@ SPEC REPOS:
     - leveldb-library
     - McPicker
     - nanopb
+    - Siren
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -101,8 +104,9 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   McPicker: 130183cd3d22fc6933ea9e63c5a0d0d1becc0122
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Siren: 5b8be41b5cd05aa3528303325966e919bd53e412
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 97f125b77470fc791710463687f21d6410b49d8d
+PODFILE CHECKSUM: f203deb126c76c3ad64e25eeb7cfb3db3d2235c9
 
 COCOAPODS: 1.5.0
