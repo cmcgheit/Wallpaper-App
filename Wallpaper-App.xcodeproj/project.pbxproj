@@ -145,8 +145,7 @@
 				6A1367971F8D657500FC16F8 /* Resources */,
 				D8E93BA120B8B0C100CE0AD8 /* Assets.xcassets */,
 			);
-			name = "Wallpaper-App";
-			path = "Collection-View-AppStore";
+			path = "Wallpaper-App";
 			sourceTree = "<group>";
 		};
 		6A17C4151EFD5AFD0047CBA5 /* Controller */ = {

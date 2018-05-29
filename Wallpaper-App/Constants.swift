@@ -5,6 +5,9 @@
 //  Copyright © 2017 C McGhee. All rights reserved.
 
 import Foundation
-import Firebase
+
+var appID = "" // from itunesconnect
+var adMobAppID = "" // Google AdMob
+
 
 
