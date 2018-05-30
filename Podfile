@@ -18,6 +18,7 @@ target 'Wallpaper-App' do
   pod 'Armchair'
   pod "McPicker"
   pod 'Siren'
+  pod 'Instructions'
 
   # post_install do |installer|
   #     installer.pods_project.targets.each do |target|

@@ -40,23 +40,7 @@ var wallpaper: Wallpaper! {
         // wallpaperDescLbl.text = wallpaper.wallpaperDesc
         
         // MARK: - Download Images FROM Firebase Function
-        func downloadImageFromFirebase(){
-//            if let wallpaperURL = wallpaper.wallpaperURL {
-//            let wallpaperStorageRef = Storage.storage().reference(forURL: wallpaperURL)
-//            wallpaperStorageRef.getData(maxSize: 2 * 1024 * 1024, completion: { [weak self] (data, error) in
-//                if let error = error {
-//                    print("Error downloading Wallpapers: \(error)")
-//                } else {
-//                    if let wallpaperData = data {
-//                        DispatchQueue.main.async {
-//                            let image = UIImage(data: wallpaperData)
-//                            self?.imageView.image = image
-//                        }
-//                    }
-//                }
-//            })
-//        }
-    }
+        FIRService.instance.uploadWallpaperToFirebase()
   }
 }
 

@@ -11,12 +11,6 @@ import SwiftyJSON
 import EasyTransitions
 import GoogleMobileAds
 
-enum WallpaperCategories: String {
-    case Sports, Music, Art
-}
-
-var wallpaperCatList: [WallpaperCategories] = [.Sports, .Music, .Art]
-
 class FeedViewController: UIViewController {
     
     @IBOutlet var glidingView: GlidingCollection!
@@ -135,10 +129,12 @@ class FeedViewController: UIViewController {
     fileprivate func loadImages() {
         DispatchQueue.main.async {
             // Loading from database?
+            FIRService.instance.downloadImagesFromFirebaseData()
             Database.database().reference().child("wallpapers").observe(.childAdded, with: { (snapshot) in // reference to wallpapers in database, load all/individual?
                 
                 DispatchQueue.main.async { // Adding New Wallpapers to beginning of Wallpaper feed, add specific categories?
-                    let newWallpaper = Wallpaper(snapshot: snapshot)
+                    guard let dictionary = snapshot.value else { return }
+                    let newWallpaper = Wallpaper(user: Auth.auth().currentUser!, dictionary: dictionary as! [String : Any])
                     self.wallpapers.insert(newWallpaper, at: 0)
                     let indexPath = IndexPath(row: 0, section: 0)
                     self.collectionView.insertItems(at: [indexPath])
@@ -198,16 +194,6 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
             cell.imageView.image = UIImage(named: "placeholder-image")
         }
                 
-        //         MARK: - Downloading Images from Firebase storage, currently can only download one individual image
-        //                let imageName = NSUUID().uuidString
-        //                let imageRef = storageReference.child("images").child("sports").child("chicago-full.png") //\(imageName)
-        //                imageRef.getData(maxSize: 10 * 1024 * 1024, completion: { (data, error) in
-        //                    if error != nil {
-        //                        let image = UIImage(named: "placeholder-image")
-        //                        cell.imageView?.kf.setImage(with: data as? Resource, placeholder: image)
-        //                    }
-        //                })
-        
         cell.contentView.clipsToBounds = true
         let layer = cell.layer
         let config = GlidingConfig.shared

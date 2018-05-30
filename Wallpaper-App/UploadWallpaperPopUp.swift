@@ -88,8 +88,9 @@ class UploadWallpaperPopUp: UIViewController {
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
         if wallpaperDescTextView.text != "" && takenImage != nil  && wallpaperCatTxtFld.text != ""  {
             closeBtn.isHidden = false // upload only if all fields are filled out
-            let newUploadWallpaper = Wallpaper(wallpaperImage: takenImage, wallpaperDesc: wallpaperDescTextView.text, wallpaperCategory: wallpaperCatTxtFld.text!)
-            newUploadWallpaper.uploadWallpaper()
+//            let newUploadWallpaper = Wallpaper(wallpaperImage: takenImage, wallpaperDesc: wallpaperDescTextView.text, wallpaperCategory: wallpaperCatTxtFld.text!)
+////            newUploadWallpaper.uploadWallpaper()
+            FIRService.instance.uploadWallpaperToFirebase()
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -136,32 +137,7 @@ extension UploadWallpaperPopUp: UIImagePickerControllerDelegate, UINavigationCon
         takenImage = takenImage.resizeWithWidth(width: 700)! // Resize taken image
          let compressData = UIImageJPEGRepresentation(takenImage, 0.5) // Compress taken image
          let compressedImage = UIImage(data: compressData!)
-        //        // MARK: - Function to save images user uploads to Firebase storage
-        // OR TWEAK UPLOADWALLPAPER FUNCTION??
-        //        let uniqueString = NSUUID().uuidString
-        //        if let userUploadedImage = takenImage { // have to do case by category, currently just goes to wallpaper general folder in firebase storage
-        //            let storageRef = storageReference.child("wallpapers").child("\(uniqueString).png")
-        //            if let uploadData = UIImagePNGRepresentation(userUploadedImage) {
-        //                storageRef.put(uploadData, metadata: nil, completion: { (data, error) in
-        //                    if error != nil {
-        //                        print("Error: \(error!.localizedDescription)")
-        //                        return
-        //                    }
-        //                    if let uploadImageUrl = data?.wallpaperURL()?.absoluteString {
-        //                        print("Photo Url: \(uploadImageUrl)")
-        //        let databaseRef = FIRDatabase.database().reference().child("wallpapers").child("wallpaperCategory")child(uniqueString) // put in appropiate category
-        //        databaseRef.setValue(uploadImageUrl, withCompletionBlock: { (error, dataRef) in
-        //            if error != nil {
-        //                print("Database Error: \(error!.localizedDescription)")
-        //            }
-        //            else {
-        //                print("Image successfully saved to Firebase Database")
-        //            }
-        //        })
-        //    }
-        //})
-        //}
-        //}
+        FIRService.instance.uploadWallpaperToFirebase()
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -20,12 +20,26 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tealarrowback" translatesAutoresizingMaskIntoConstraints="NO" id="fRu-IJ-8xp">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fRu-IJ-8xp" secondAttribute="trailing" id="Qb2-mq-CdB"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="fRu-IJ-8xp" secondAttribute="bottom" id="Vpn-0E-hlw"/>
+                            <constraint firstItem="fRu-IJ-8xp" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="bQZ-sA-cIh"/>
+                            <constraint firstItem="fRu-IJ-8xp" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="x6r-z3-rb8"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tealarrowback" width="540" height="960"/>
+    </resources>
 </document>
