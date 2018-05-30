@@ -31,7 +31,7 @@ struct Wallpaper {
         self.user = user
         self.wallpaperURL = dictionary["wallpaperURL"] as? String ?? ""
         self.wallpaperDesc = dictionary["wallpaperDesc"] as? String ?? ""
-        self.wallpaperCategory = dictionary["wallpaperCat"] as? String ?? ""
+        self.wallpaperCategory = dictionary["wallpaperCategory"] as? String ?? ""
     }
 }
 

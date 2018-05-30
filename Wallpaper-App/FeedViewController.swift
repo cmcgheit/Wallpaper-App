@@ -16,6 +16,7 @@ class FeedViewController: UIViewController {
     @IBOutlet var glidingView: GlidingCollection!
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var vibeBlurView: UIVisualEffectView!
+    var bannerView: GADBannerView!
     
     private var modalTransitionDelegate = ModalTransitionDelegate()
     private var animatorInfo: AppStoreAnimatorInfo?
@@ -23,23 +24,28 @@ class FeedViewController: UIViewController {
     fileprivate var collectionView: UICollectionView!
     var effect: UIVisualEffect!
     
-    var wallpapers = [Wallpaper]()
+    var wallpapers = [Wallpaper]() // feed wallpapers from db
     
-    var wallpaperCategory = [Wallpaper]()
+    var wallpaperCategory = [Wallpaper]() // feed category names from db
     
-    var sportsCategory = [String]()
+    var sportsCategory = [String]() // individual feed info?
     var musicCategory = [String]()
     var artCategory = [String]()
-    
-    // var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         
-        // MARK: - Check Auth User?
+        // MARK: - Check Auth User Signed-In
+        if Auth.auth().currentUser != nil {
+            // User signed-In
+        } else {
+            // User NOT signed-In
+        }
         
-        
+        // MARK: - Update feed notification
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
+    
         // MARK: - Setup Visual Effect, no blur when app starts
         effect = vibeBlurView.effect
         vibeBlurView.effect = nil
@@ -51,67 +57,78 @@ class FeedViewController: UIViewController {
         vibeBlurView.isUserInteractionEnabled = true
         vibeBlurView.addGestureRecognizer(closeTapGesture) // tap vibeBlurView (background) to dismiss PopUpView
         
-        // MARK: - Admob Banner Properties
-        // bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        // bannerView.rootViewController = self
-        // bannerView.load(GADRequest())
-//        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-//
-//        addBannerViewToView(bannerView)
-//    }
-//
-//    func addBannerViewToView(_ bannerView: GADBannerView) {
-//        bannerView.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(bannerView)
-//        if #available(iOS 11.0, *) {
-//            // In iOS 11, we need to constrain the view to the safe area.
-//            positionBannerViewFullWidthAtBottomOfSafeArea(bannerView)
-//        }
-//        else {
-//            // In lower iOS versions, safe area is not available so we use
-//            // bottom layout guide and view edges.
-//            positionBannerViewFullWidthAtBottomOfView(bannerView)
-//        }
-//    }
-//
-//    // MARK: - view positioning
-//    @available (iOS 11, *)
-//    func positionBannerViewFullWidthAtBottomOfSafeArea(_ bannerView: UIView) {
-//        // Position the banner. Stick it to the bottom of the Safe Area.
-//        // Make it constrained to the edges of the safe area.
-//        let guide = view.safeAreaLayoutGuide
-//        NSLayoutConstraint.activate([
-//            guide.leftAnchor.constraint(equalTo: bannerView.leftAnchor),
-//            guide.rightAnchor.constraint(equalTo: bannerView.rightAnchor),
-//            guide.bottomAnchor.constraint(equalTo: bannerView.bottomAnchor)
-//            ])
-//    }
-//        view.addConstraints(
-//            [NSLayoutConstraint(item: bannerView,
-//                                attribute: .bottom,
-//                                relatedBy: .equal,
-//                                toItem: bottomLayoutGuide,
-//                                attribute: .top,
-//                                multiplier: 1,
-//                                constant: 0),
-//             NSLayoutConstraint(item: bannerView,
-//                                attribute: .centerX,
-//                                relatedBy: .equal,
-//                                toItem: view,
-//                                attribute: .centerX,
-//                                multiplier: 1,
-//                                constant: 0)
-//            ])
-//    }
+        //  MARK: - Admob Banner Properties
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        view.addSubview(bannerView)
+        
+        func addBannerViewToView(_ bannerView: GADBannerView) {
+            bannerView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(bannerView)
+            if #available(iOS 11.0, *) {
+                positionBannerViewFullWidthAtBottomOfSafeArea(bannerView)
+            } else {
+                // In lower iOS versions, safe area is not available so we use
+                // bottom layout guide and view edges, Fallback on earlier versions
+            }
+        }
+        // MARK: - Admob Banner Safe Area Handling/Constraints
+        @available (iOS 11, *)
+        func positionBannerViewFullWidthAtBottomOfSafeArea(_ bannerView: UIView) {
+            let guide = view.safeAreaLayoutGuide
+            NSLayoutConstraint.activate([
+                guide.leftAnchor.constraint(equalTo: bannerView.leftAnchor),
+                guide.rightAnchor.constraint(equalTo: bannerView.rightAnchor),
+                guide.bottomAnchor.constraint(equalTo: bannerView.bottomAnchor)
+                ])
+        }
+        view.addConstraints(
+            [NSLayoutConstraint(item: bannerView,
+                                attribute: .bottom,
+                                relatedBy: .equal,
+                                toItem: bottomLayoutGuide,
+                                attribute: .top,
+                                multiplier: 1,
+                                constant: 0),
+             NSLayoutConstraint(item: bannerView,
+                                attribute: .centerX,
+                                relatedBy: .equal,
+                                toItem: view,
+                                attribute: .centerX,
+                                multiplier: 1,
+                                constant: 0)
+            ])
     }
     
-    @objc func backgroundTapped(recognizer: UITapGestureRecognizer) {
-        self.dismiss(animated: true, completion: nil)
+    @objc func handleUpdateFeed() {
+        handleRefresh()
     }
     
+    // MARK: - Refresh Wallpaper Feed
+    func handleRefresh() {
+        wallpapers.removeAll() //clear wallpaper feed to refresh
+        fetchFeed()
+    }
+    
+    // MARK: - Setup Gliding Collection/Wallpaper Feed
     func setup() {
         setupGlidingCollectionView()
         loadImages()
+    }
+    
+    // MARK: - Fetch Wallpaper Feed
+    func fetchFeed() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        FIRService.fetchUserForUID(uid: uid) { (user) in
+            
+        }
+    }
+    // MARK: - PopUp Background Touch to Dismiss
+    @objc func backgroundTapped(recognizer: UITapGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Gliding Collection
@@ -133,8 +150,10 @@ class FeedViewController: UIViewController {
             Database.database().reference().child("wallpapers").observe(.childAdded, with: { (snapshot) in // reference to wallpapers in database, load all/individual?
                 
                 DispatchQueue.main.async { // Adding New Wallpapers to beginning of Wallpaper feed, add specific categories?
-                    guard let dictionary = snapshot.value else { return }
-                    let newWallpaper = Wallpaper(user: Auth.auth().currentUser!, dictionary: dictionary as! [String : Any])
+                    guard let uid = Auth.auth().currentUser?.uid else { return }
+                    guard let userDictionary = snapshot.value as? [String : Any] else { return }
+                    let user = User(uid: uid, dictionary: userDictionary)
+                    let newWallpaper = Wallpaper(user: user, dictionary: userDictionary)
                     self.wallpapers.insert(newWallpaper, at: 0)
                     let indexPath = IndexPath(row: 0, section: 0)
                     self.collectionView.insertItems(at: [indexPath])
@@ -146,7 +165,6 @@ class FeedViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         func uploadBtnPressed(_ sender: Any) {
             presentUploadPopUp()
         }
@@ -193,7 +211,7 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         default:
             cell.imageView.image = UIImage(named: "placeholder-image")
         }
-                
+        
         cell.contentView.clipsToBounds = true
         let layer = cell.layer
         let config = GlidingConfig.shared
@@ -209,7 +227,7 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    // MARK: - PopUp Transition Function
+        // MARK: - PopUp Transition Function
         let popUpViewController = PopUpViewController()
         
         guard let cell = collectionView.cellForItem(at: indexPath) else {

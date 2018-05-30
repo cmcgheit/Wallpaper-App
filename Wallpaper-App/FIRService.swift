@@ -13,7 +13,7 @@ class FIRService {
     let authRef = Auth.auth()
     
     let wallpaperDataRef = Database.database().reference().child("wallpapers")
-    
+    let wallpaperUserRef = Database.database().reference().child("users")
     let artCatRef = Storage.storage().reference().child("art")
     let musicCatRef = Storage.storage().reference().child("music")
     let sportsCatRef = Storage.storage().reference().child("sports")
@@ -22,6 +22,18 @@ class FIRService {
     
     static var instance: FIRService {
         return _instance
+    }
+    
+    // MARK: - Fetching Posts for User uid (when have specific user wallpapers feed)
+    static func fetchUserForUID(uid: String, completion: @escaping (User) -> ()) {
+        Database.database().reference().child("uid").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let userDictionary = snapshot.value as? [String: Any] else { return }
+            let user = User(uid: uid, dictionary: userDictionary)
+            completion(user)
+        }) { (error) in
+            print("Failed to fetch user specific posts:", error)
+        }
     }
     
     // MARK: - Download Wallpapers FROM Firebase Database
@@ -68,11 +80,10 @@ class FIRService {
     // Upload Images to Firebase Storage
     func uploadWallpaperToFirebase() {
         guard let image = selectedImage else { return }
-        
         guard let uploadData = UIImageJPEGRepresentation(image, 0.5) else { return }
         
         let filename = NSUUID().uuidString // creates name to be uploaded
-        Storage.storage().reference().child("art").child(filename).putData(uploadData, metadata: nil) { (metadata, error) in
+        Storage.storage().reference().child("images").child(filename).putData(uploadData, metadata: nil) { (metadata, error) in
             
             if let error = error {
                 print("Failed to upload wallpaper image", error)
@@ -97,16 +108,17 @@ class FIRService {
     }
     
     func saveImageToDatabase(downloadURL: URL) {
+        
         guard let wallpaperImage = selectedImage else { return }
-        // guard let uploadText =
-        // guard let wallpaperCat =
+        //        guard let wallpaperDesc = wallpaperDesc else { return }
+        //        guard let wallpaperCat = wallpaperCat else { return }
         
         guard let uid = authRef.currentUser?.uid else { return }
         
-        // Dictionary saved to Database
-        let values = ["downloadURL": downloadURL, "imageWidth": wallpaperImage.size.width, "imageHeight": wallpaperImage.size.height] as [String : Any]// add dictionary item for text/category
-        
         let ref = wallpaperDataRef.childByAutoId()
+        
+        // Dictionary of uploaded info saved to Database
+        let values = ["downloadURL": downloadURL, "imageWidth": wallpaperImage.size.width, "imageHeight": wallpaperImage.size.height] as [String : Any]// add dictionary item for text/category
         
         ref.updateChildValues(values) { ( error, ref) in
             
@@ -120,7 +132,7 @@ class FIRService {
         }
     }
     
-    //         MARK: - Downloading Images from Firebase storage, currently can only download one individual image
+    //         MARK: - Downloading Images from Firebase storage
     //                let imageName = NSUUID().uuidString
     //                let imageRef = storageReference.child("images").child("sports").child("chicago-full.png") //\(imageName)
     //                imageRef.getData(maxSize: 10 * 1024 * 1024, completion: { (data, error) in

@@ -42,6 +42,7 @@
 		D8E93BE220BDB22200CE0AD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8E93BE020BDB22200CE0AD8 /* LaunchScreen.storyboard */; };
 		D8E93BE720BDB47900CE0AD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8E93BE620BDB47900CE0AD8 /* GoogleService-Info.plist */; };
 		D8E93BE920BF0D8C00CE0AD8 /* WallpaperCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BE820BF0D8C00CE0AD8 /* WallpaperCategories.swift */; };
+		D8E93BEB20BF2AD500CE0AD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BEA20BF2AD500CE0AD8 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		D8E93BE420BDB23E00CE0AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = "Wallpaper-App/Base.lproj/Info.plist"; sourceTree = "<group>"; };
 		D8E93BE620BDB47900CE0AD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D8E93BE820BF0D8C00CE0AD8 /* WallpaperCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperCategories.swift; sourceTree = "<group>"; };
+		D8E93BEA20BF2AD500CE0AD8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DA366805E8777B768E8728F2 /* Pods-Wallpaper-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.debug.xcconfig"; sourceTree = "<group>"; };
 		F3976466CEB472FD86CD9EB5 /* Pods-Wallpaper-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,6 +192,7 @@
 				D8E93B8620B8B05100CE0AD8 /* UserDefaults.swift */,
 				D8E93B8820B8B05100CE0AD8 /* Wallpaper.swift */,
 				D8E93BE820BF0D8C00CE0AD8 /* WallpaperCategories.swift */,
+				D8E93BEA20BF2AD500CE0AD8 /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				D8E93BBE20B8B63200CE0AD8 /* FunctionalEnumerated.swift in Sources */,
 				D8E93BBD20B8B63200CE0AD8 /* RoundCornersButton.swift in Sources */,
 				D8E93BC220B8B63200CE0AD8 /* CircularImageView.swift in Sources */,
+				D8E93BEB20BF2AD500CE0AD8 /* User.swift in Sources */,
 				D8E93B8E20B8B05100CE0AD8 /* Constants.swift in Sources */,
 				D8E93B8A20B8B05100CE0AD8 /* ImageResizeExt.swift in Sources */,
 				D8E93BC320B8B63200CE0AD8 /* UICollectionView+OrderedCells.swift in Sources */,

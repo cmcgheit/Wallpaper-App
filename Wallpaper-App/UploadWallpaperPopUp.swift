@@ -85,6 +85,8 @@ class UploadWallpaperPopUp: UIViewController {
         self.present(imagePicker, animated: true, completion: nil)
     }
     
+    static let updateFeedNotificationName = NSNotification.Name(rawValue: "UpdateFeed")
+    
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
         if wallpaperDescTextView.text != "" && takenImage != nil  && wallpaperCatTxtFld.text != ""  {
             closeBtn.isHidden = false // upload only if all fields are filled out
@@ -92,6 +94,7 @@ class UploadWallpaperPopUp: UIViewController {
 ////            newUploadWallpaper.uploadWallpaper()
             FIRService.instance.uploadWallpaperToFirebase()
             self.dismiss(animated: true, completion: nil)
+            NotificationCenter.default.post(name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
         }
     }
     
