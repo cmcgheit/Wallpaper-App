@@ -91,9 +91,9 @@ class UploadWallpaperPopUp: UIViewController {
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
         if wallpaperDescTextView.text != "" && takenImage != nil  && wallpaperCatTxtFld.text != ""  {
             closeBtn.isHidden = false // upload only if all fields are filled out
-//            let newUploadWallpaper = Wallpaper(wallpaperImage: takenImage, wallpaperDesc: wallpaperDescTextView.text, wallpaperCategory: wallpaperCatTxtFld.text!)
-////            newUploadWallpaper.uploadWallpaper()
-            FIRService.instance.uploadWallpaperToFirebase()
+//            FIRService.uploadWallToFirebaseStor(image: takenImage) { (<#String?#>, error) in
+//                <#code#>
+//            }
             self.dismiss(animated: true, completion: nil)
             NotificationCenter.default.post(name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
         }
@@ -141,8 +141,7 @@ extension UploadWallpaperPopUp: UIImagePickerControllerDelegate, UINavigationCon
         takenImage = takenImage.resizeWithWidth(width: 700)! // Resize taken image
          let compressData = UIImageJPEGRepresentation(takenImage, 0.5) // Compress taken image
          let compressedImage = UIImage(data: compressData!)
-        FIRService.instance.uploadWallpaperToFirebase()
-        self.dismiss(animated: true, completion: nil)
+        // Use compressedImage for upload
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

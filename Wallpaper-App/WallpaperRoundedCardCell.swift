@@ -14,7 +14,6 @@ internal class WallpaperRoundedCardCell: UICollectionViewCell {
     var wallpaper: Wallpaper! {
         didSet {
             imageView.layer.cornerRadius = 14.0
-        FIRService.instance.downloadImagesFromFirebaseData()
         }
     }
 }

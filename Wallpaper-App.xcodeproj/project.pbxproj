@@ -43,6 +43,8 @@
 		D8E93BE720BDB47900CE0AD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8E93BE620BDB47900CE0AD8 /* GoogleService-Info.plist */; };
 		D8E93BE920BF0D8C00CE0AD8 /* WallpaperCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BE820BF0D8C00CE0AD8 /* WallpaperCategories.swift */; };
 		D8E93BEB20BF2AD500CE0AD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BEA20BF2AD500CE0AD8 /* User.swift */; };
+		D8E93BED20C1A77E00CE0AD8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BEC20C1A77D00CE0AD8 /* Extensions.swift */; };
+		D8E93BEF20C1AC7300CE0AD8 /* WallpaperImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BEE20C1AC7300CE0AD8 /* WallpaperImageCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +86,8 @@
 		D8E93BE620BDB47900CE0AD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D8E93BE820BF0D8C00CE0AD8 /* WallpaperCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperCategories.swift; sourceTree = "<group>"; };
 		D8E93BEA20BF2AD500CE0AD8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D8E93BEC20C1A77D00CE0AD8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		D8E93BEE20C1AC7300CE0AD8 /* WallpaperImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperImageCache.swift; sourceTree = "<group>"; };
 		DA366805E8777B768E8728F2 /* Pods-Wallpaper-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.debug.xcconfig"; sourceTree = "<group>"; };
 		F3976466CEB472FD86CD9EB5 /* Pods-Wallpaper-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,6 +197,8 @@
 				D8E93B8820B8B05100CE0AD8 /* Wallpaper.swift */,
 				D8E93BE820BF0D8C00CE0AD8 /* WallpaperCategories.swift */,
 				D8E93BEA20BF2AD500CE0AD8 /* User.swift */,
+				D8E93BEC20C1A77D00CE0AD8 /* Extensions.swift */,
+				D8E93BEE20C1AC7300CE0AD8 /* WallpaperImageCache.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -390,7 +396,9 @@
 				D8E93B9D20B8B0B100CE0AD8 /* SignUpViewController.swift in Sources */,
 				D8E93BC920B8B63200CE0AD8 /* NibLoadbleView.swift in Sources */,
 				D8E93B9620B8B08D00CE0AD8 /* AnimatedTextField.swift in Sources */,
+				D8E93BEF20C1AC7300CE0AD8 /* WallpaperImageCache.swift in Sources */,
 				D8E93B9420B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift in Sources */,
+				D8E93BED20C1A77E00CE0AD8 /* Extensions.swift in Sources */,
 				D8E93BBF20B8B63200CE0AD8 /* CGAffineTransform+Custom.swift in Sources */,
 				D8E93BC020B8B63200CE0AD8 /* ReusableCells.swift in Sources */,
 				D8E93BC620B8B63200CE0AD8 /* CardView.swift in Sources */,

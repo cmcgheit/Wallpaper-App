@@ -39,8 +39,6 @@ var wallpaper: Wallpaper! {
         // wallpaperPopImage.layer.cornerRadius = 14.0
         // wallpaperDescLbl.text = wallpaper.wallpaperDesc
         
-        // MARK: - Download Images FROM Firebase Function
-        FIRService.instance.uploadWallpaperToFirebase()
   }
 }
 

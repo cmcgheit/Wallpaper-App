@@ -19,6 +19,8 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var vibeBlurView: UIVisualEffectView!
     var bannerView: GADBannerView!
     
+    let wallpaperRef = databaseRef.child("wallpapers")
+    
     private var modalTransitionDelegate = ModalTransitionDelegate()
     private var animatorInfo: AppStoreAnimatorInfo?
     
@@ -41,7 +43,8 @@ class FeedViewController: UIViewController {
         if Auth.auth().currentUser != nil {
             // User signed-In
         } else {
-            // User NOT signed-In
+            let signUpVC = SignUpViewController()
+            present(signUpVC, animated: true)
         }
         
         // Firebase
@@ -127,9 +130,8 @@ class FeedViewController: UIViewController {
     // MARK: - Fetch Wallpaper Feed
     func fetchFeed() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        
         FIRService.fetchUserForUID(uid: uid) { (user) in
-            
+            // Load database for user.uid
         }
     }
     // MARK: - PopUp Background Touch to Dismiss
@@ -150,17 +152,18 @@ class FeedViewController: UIViewController {
     }
     
     fileprivate func loadImages() {
-        DispatchQueue.main.async {
             // Load all wallpapers from db
-            FIRService.instance.downloadImagesFromFirebaseData()
-            
-            DispatchQueue.main.async {
-                let indexPath = IndexPath(row: 0, section: 0)
-                self.collectionView.insertItems(at: [indexPath]) // insert in glidingCollection?
+        FIRService.downloadImagesFromFirebaseData {
+            if self.wallpapers.count > 0 {
+                // grab wallpapers
             }
         }
-        self.collectionView.reloadData()
-        self.glidingView.reloadData()
+        let indexPath = IndexPath(row: 0, section: 0)
+        self.collectionView.insertItems(at: [indexPath]) // insert in glidingCollection?
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            self.glidingView.reloadData()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
