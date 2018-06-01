@@ -10,6 +10,7 @@ import Kingfisher
 import SwiftyJSON
 import EasyTransitions
 import GoogleMobileAds
+import Instructions
 
 class FeedViewController: UIViewController {
     
@@ -43,9 +44,14 @@ class FeedViewController: UIViewController {
             // User NOT signed-In
         }
         
+        // Firebase
+        FIRService.instance.getArtCategory() //downloading functions from firebase, put in array?
+        FIRService.instance.getMusicCategory()
+        FIRService.instance.getSportsCategory()
+        
         // MARK: - Update feed notification
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
-    
+        
         // MARK: - Setup Visual Effect, no blur when app starts
         effect = vibeBlurView.effect
         vibeBlurView.effect = nil
@@ -145,21 +151,14 @@ class FeedViewController: UIViewController {
     
     fileprivate func loadImages() {
         DispatchQueue.main.async {
-            // Loading from database?
+            // Load all wallpapers from db
             FIRService.instance.downloadImagesFromFirebaseData()
-            Database.database().reference().child("wallpapers").observe(.childAdded, with: { (snapshot) in // reference to wallpapers in database, load all/individual?
-                
-                DispatchQueue.main.async { // Adding New Wallpapers to beginning of Wallpaper feed, add specific categories?
-                    guard let uid = Auth.auth().currentUser?.uid else { return }
-                    guard let userDictionary = snapshot.value as? [String : Any] else { return }
-                    let user = User(uid: uid, dictionary: userDictionary)
-                    let newWallpaper = Wallpaper(user: user, dictionary: userDictionary)
-                    self.wallpapers.insert(newWallpaper, at: 0)
-                    let indexPath = IndexPath(row: 0, section: 0)
-                    self.collectionView.insertItems(at: [indexPath])
-                }
+            
+            DispatchQueue.main.async {
+                let indexPath = IndexPath(row: 0, section: 0)
+                self.collectionView.insertItems(at: [indexPath]) // insert in glidingCollection?
             }
-            )}
+        }
         self.collectionView.reloadData()
         self.glidingView.reloadData()
     }
@@ -191,23 +190,23 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WallpaperCell", for: indexPath) as? WallpaperRoundedCardCell else { return UICollectionViewCell() }
-        let section = glidingView.expandedItemIndex
-        // let wallpaper = wallpapers[indexPath.row]
-        // (section: glidingCollection.expandedItemIndex, atIndex: indexPath.row)
-        // cell.imageView.kf.setImage(with: URL(string: wallpaper.wallpaperURL!))
+        //        let section = glidingView.expandedItemIndex
+        //         let wallpaper = wallpapers[indexPath.row]
+        //         (section: glidingCollection.expandedItemIndex, atIndex: indexPath.row)
+        //         cell.imageView.kf.setImage(with: URL(string: wallpaper.wallpaperURL!))
         
         
-        let sportsCategory = wallpapers[indexPath.row]
-        let musicCategory = wallpapers[indexPath.row]
-        let artCategory = wallpapers[indexPath.row]
+        let sportsCat = sportsCategory[indexPath.row]
+        let musicCat = musicCategory[indexPath.row]
+        let artCat = artCategory[indexPath.row]
         let wallpaperCategories = wallpaperCatList[indexPath.row]
         switch wallpaperCategories {
         case .Sports:
-            cell.imageView.kf.setImage(with: URL(string: sportsCategory.wallpaperURL!))
+            cell.imageView.kf.setImage(with: URL(string: sportsCat))
         case .Music:
-            cell.imageView.kf.setImage(with: URL(string: musicCategory.wallpaperURL!))
+            cell.imageView.kf.setImage(with: URL(string: musicCat))
         case .Art:
-            cell.imageView.kf.setImage(with: URL(string: artCategory.wallpaperURL!))
+            cell.imageView.kf.setImage(with: URL(string: artCat))
         default:
             cell.imageView.image = UIImage(named: "placeholder-image")
         }

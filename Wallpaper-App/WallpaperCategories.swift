@@ -7,3 +7,5 @@ enum WallpaperCategories: String {
 }
 
 var wallpaperCatList: [WallpaperCategories] = [.Sports, .Music, .Art]
+
+

@@ -4,6 +4,7 @@
 import UIKit
 import Firebase
 import McPicker
+import Instructions
 
 class UploadWallpaperPopUp: UIViewController {
     

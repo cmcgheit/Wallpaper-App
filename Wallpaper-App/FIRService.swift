@@ -3,20 +3,26 @@
 import Foundation
 import UIKit
 import Firebase
+import SwiftyJSON
 
 var selectedImage: UIImage?
 
-class FIRService {
+class FIRService: NSObject {
+
+    var wallpaperDataRef = databaseRef.child("wallpapers")
+    var wallpaperUserRef = databaseRef.child("users")
     
-    let storageRef = Storage.storage().reference()
-    let databaseRef = Database.database().reference()
-    let authRef = Auth.auth()
+    var artCatStorRef = storageRef.child("images").child("art")
+    var musicCatStorRef = storageRef.child("images").child("music")
+    var sportsCatStorRef = storageRef.child("images").child("sports")
     
-    let wallpaperDataRef = Database.database().reference().child("wallpapers")
-    let wallpaperUserRef = Database.database().reference().child("users")
-    let artCatRef = Storage.storage().reference().child("art")
-    let musicCatRef = Storage.storage().reference().child("music")
-    let sportsCatRef = Storage.storage().reference().child("sports")
+    var artCatDataRef = databaseRef.child("wallpapers").queryOrdered(byChild: "wallpaperCategory/art")
+    var musicCatDataRef = databaseRef.child("wallpapers").queryOrdered(byChild: "wallpaperCategory/music")
+    var sportsCatDataRef = databaseRef.child("wallpapers").queryOrdered(byChild: "wallpaperCategory/sports")
+    
+    var sportsCategory = [String]()
+    var musicCategory = [String]()
+    var artCategory = [String]()
     
     private static let _instance = FIRService()
     
@@ -26,7 +32,7 @@ class FIRService {
     
     // MARK: - Fetching Posts for User uid (when have specific user wallpapers feed)
     static func fetchUserForUID(uid: String, completion: @escaping (User) -> ()) {
-        Database.database().reference().child("uid").observeSingleEvent(of: .value, with: { (snapshot) in
+        databaseRef.child("uid").observeSingleEvent(of: .value, with: { (snapshot) in
             
             guard let userDictionary = snapshot.value as? [String: Any] else { return }
             let user = User(uid: uid, dictionary: userDictionary)
@@ -39,8 +45,8 @@ class FIRService {
     // MARK: - Download Wallpapers FROM Firebase Database
     
     func downloadImagesFromFirebaseData() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let wallpaperDataDownloadRef = Database.database().reference().child("wallpapers").child(uid)
+        guard let uid = authRef.currentUser?.uid else { return }
+        let wallpaperDataDownloadRef = databaseRef.child("wallpapers").child(uid)
         wallpaperDataDownloadRef.observeSingleEvent(of: .value, with: { (snapshot) in
             print(snapshot.value)
             
@@ -83,7 +89,7 @@ class FIRService {
         guard let uploadData = UIImageJPEGRepresentation(image, 0.5) else { return }
         
         let filename = NSUUID().uuidString // creates name to be uploaded
-        Storage.storage().reference().child("images").child(filename).putData(uploadData, metadata: nil) { (metadata, error) in
+        storageRef.child("images").child(filename).putData(uploadData, metadata: nil) { (metadata, error) in
             
             if let error = error {
                 print("Failed to upload wallpaper image", error)
@@ -95,7 +101,7 @@ class FIRService {
                 return
             }
             
-            self.storageRef.downloadURL { (url, error ) in
+            storageRef.downloadURL { (url, error ) in
                 guard let downloadURL = url else {
                     // Error
                     return
@@ -132,41 +138,113 @@ class FIRService {
         }
     }
     
-    //         MARK: - Downloading Images from Firebase storage
-    //                let imageName = NSUUID().uuidString
-    //                let imageRef = storageReference.child("images").child("sports").child("chicago-full.png") //\(imageName)
-    //                imageRef.getData(maxSize: 10 * 1024 * 1024, completion: { (data, error) in
-    //                    if error != nil {
-    //                        let image = UIImage(named: "placeholder-image")
-    //                        cell.imageView?.kf.setImage(with: data as? Resource, placeholder: image)
-    //                    }
-    //                })
+    //    //        databaseReference.child("wallpapers").queryOrdered(byChild: "wallpaperCategory").queryEqual(toValue: "sports").observe(.childAdded, with: { (snapshot) in
+    //    //            var sportsCategory = [Wallpaper]()
+    //    //            if let sportsCatSnapshot = snapshot.children.allObjects as? [DataSnapshot] {
+    //    //                for snapshot in sportsCatSnapshot {
+    //    //                    let sportsCat = Wallpaper(snapshot: snapshot)
+    //    //                    sportsCategory.append(sportsCat)
+    //    //                }
+    //    //            }
+    //    //        })
+    //    //    }
+    //    //   MARK: Categories Function SwiftyJSON way, need to call firebase database
+    //    // class func from(json: JSON) -> SportsCategory? {
+    //    // var wallpaperCategory: String
+    //    // if let unwrappedwallCatTitle = json["wallpaperCategory"].string {
+    //    // wallpaperCategory = unwrappedwallCatTitle
+    //    // } else {
+    //    // wallpaperCategory = ""
+    //    // }
+    //    // let wallpaperDesc = json["wallpaperDesc"].string
+    //    // let wallpaperURL = json["wallpaperURL"].string
+    //    // return SportsCategory(wallpaperCategory: wallpaperCategory, wallpaperDesc: wallpaperDesc, wallpaperURL:  wallpaperURL)
+    //    // }
+    //    // }
+    //
     
-    //        // MARK: - Function to save images user uploads to Firebase storage
-    // OR TWEAK UPLOADWALLPAPER FUNCTION??
-    //        let uniqueString = NSUUID().uuidString
-    //        if let userUploadedImage = takenImage { // have to do case by category, currently just goes to wallpaper general folder in firebase storage
-    //            let storageRef = storageReference.child("wallpapers").child("\(uniqueString).png")
-    //            if let uploadData = UIImagePNGRepresentation(userUploadedImage) {
-    //                storageRef.put(uploadData, metadata: nil, completion: { (data, error) in
-    //                    if error != nil {
-    //                        print("Error: \(error!.localizedDescription)")
-    //                        return
-    //                    }
-    //                    if let uploadImageUrl = data?.wallpaperURL()?.absoluteString {
-    //                        print("Photo Url: \(uploadImageUrl)")
-    //        let databaseRef = FIRDatabase.database().reference().child("wallpapers").child("wallpaperCategory")child(uniqueString) // put in appropiate category
-    //        databaseRef.setValue(uploadImageUrl, withCompletionBlock: { (error, dataRef) in
-    //            if error != nil {
-    //                print("Database Error: \(error!.localizedDescription)")
-    //            }
-    //            else {
-    //                print("Image successfully saved to Firebase Database")
-    //            }
-    //        })
-    //    }
-    //})
-    //}
-    //}
+    // MARK: Firebase Category Functions
+        func getMusicCategory() {
+            self.musicCategory = [] //init it any time this func is called.
+            let wallpapersRef = databaseRef.child("wallpapers")
+            let queryRef = wallpapersRef.queryOrdered(byChild: "wallpaperCategory").queryEqual(toValue: "music")
+    
+            queryRef.observe(.childAdded, with: { snapshot in
+    
+                if ( snapshot.value is NSNull ) {
+                    print("no snapshot made from music node")
+                } else {
+    
+                    for child in (snapshot.children) {
+    
+                        let snap = child as! DataSnapshot //each child is a snapshot
+    
+                        let musicDict = snap.value as! [String: String] // make art dict from art node in firebase ata
+    
+                        let wallpaperCategoryTitle = musicDict["wallpaperCategory"]
+                        let wallpaperDesc = musicDict["wallpaperDesc"]
+                        let wallpaperURL = musicDict["wallpaperURL"]
+                        self.musicCategory.append(wallpaperCategoryTitle!)
+                        self.musicCategory.append(wallpaperDesc!)
+                        self.musicCategory.append(wallpaperURL!)
+                    }
+                }
+            })
+        }
+        func getArtCategory() {
+            self.artCategory = [] //init it any time this func is called.
+            let wallpapersRef = databaseRef.child("wallpapers")
+            let queryRef = wallpapersRef.queryOrdered(byChild: "wallpaperCategory").queryEqual(toValue: "art")
+    
+            queryRef.observe(.childAdded, with: { snapshot in
+    
+                if ( snapshot.value is NSNull ) {
+                    print("no snapshot made from art node")
+                } else {
+    
+                    for child in (snapshot.children) {
+    
+                        let snap = child as! DataSnapshot //each child is a snapshot
+    
+                        let artDict = snap.value as! [String: String] // make art dict from art node in firebase data
+    
+                        let wallpaperCategoryTitle = artDict["wallpaperCategory"]
+                        let wallpaperDesc = artDict["wallpaperDesc"]
+                        let wallpaperURL = artDict["wallpaperURL"]
+                        self.artCategory.append(wallpaperCategoryTitle!)
+                        self.artCategory.append(wallpaperDesc!)
+                        self.artCategory.append(wallpaperURL!)
+                    }
+                }
+            })
+        }
+    
+        func getSportsCategory() {
+            self.sportsCategory = [] //init it any time this func is called.
+            let wallpapersRef = databaseRef.child("wallpapers")
+            let queryRef = wallpapersRef.queryOrdered(byChild: "wallpaperCategory").queryEqual(toValue: "sports")
+    
+            queryRef.observe(.childAdded, with: { snapshot in
+    
+                if ( snapshot.value is NSNull ) {
+                    print("no snapshot made from music node")
+                } else {
+    
+                    for child in (snapshot.children) {
+    
+                        let snap = child as! DataSnapshot //each child is a snapshot
+    
+                        let sportsDict = snap.value as! [String: String] // make art dict from art node in firebase data
+    
+                        let wallpaperCategoryTitle = sportsDict["wallpaperCategory"]
+                        let wallpaperDesc = sportsDict["wallpaperDesc"]
+                        let wallpaperURL = sportsDict["wallpaperURL"]
+                        self.sportsCategory.append(wallpaperCategoryTitle!)
+                        self.sportsCategory.append(wallpaperDesc!)
+                        self.sportsCategory.append(wallpaperURL!)
+                    }
+                }
+            })
+        }
 }
 

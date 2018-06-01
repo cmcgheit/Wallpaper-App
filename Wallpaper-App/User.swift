@@ -2,7 +2,7 @@
 
 import Foundation
 
-// User profile can be used for a profile page later
+// Dictionary of User Info
 struct User {
     
     let uid: String
