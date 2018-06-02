@@ -22,6 +22,8 @@ target 'Wallpaper-App' do
   pod "McPicker"
   pod 'Siren'
   pod 'Instructions'
+  pod 'NVActivityIndicatorView'
+  pod 'Twinkle'
 
   # post_install do |installer|
   #     installer.pods_project.targets.each do |target|

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="e5t-Dg-8Hj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hwN-uW-ZJg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -224,6 +224,41 @@
             </objects>
             <point key="canvasLocation" x="1029.5999999999999" y="125.4872563718141"/>
         </scene>
+        <!--SplashViewController-->
+        <scene sceneID="7Ed-Zr-fLx">
+            <objects>
+                <viewController storyboardIdentifier="SplashViewController" title="SplashViewController" id="hwN-uW-ZJg" customClass="SplashViewController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NDH-aC-u4E"/>
+                        <viewControllerLayoutGuide type="bottom" id="1ug-WX-CXU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bvY-5U-V9k">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="handiphonesparkle2" translatesAutoresizingMaskIntoConstraints="NO" id="RhB-hg-7OI">
+                                <rect key="frame" x="37.5" y="203.5" width="300" height="260"/>
+                                <color key="backgroundColor" red="0.41960784309999999" green="0.71764705880000002" blue="0.67843137249999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="PNY-b6-1vm"/>
+                                    <constraint firstAttribute="height" constant="260" id="kaI-ci-HzA"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.41960784313725491" green="0.71764705882352942" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="RhB-hg-7OI" firstAttribute="centerX" secondItem="bvY-5U-V9k" secondAttribute="centerX" id="d5u-OF-ceo"/>
+                            <constraint firstItem="RhB-hg-7OI" firstAttribute="centerY" secondItem="bvY-5U-V9k" secondAttribute="centerY" id="hMA-DV-Ue0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="phonePhoto" destination="RhB-hg-7OI" id="s1y-dc-dtt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="itm-7s-tfr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1330" y="126"/>
+        </scene>
         <!--LoginViewController-->
         <scene sceneID="gMl-Nl-ycl">
             <objects>
@@ -376,6 +411,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="handiphonesparkle2" width="400" height="300"/>
         <image name="imageupload" width="100" height="100"/>
         <image name="iphone-outline" width="132" height="271"/>
         <image name="tealarrowback" width="540" height="960"/>

@@ -45,6 +45,8 @@
 		D8E93BEB20BF2AD500CE0AD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BEA20BF2AD500CE0AD8 /* User.swift */; };
 		D8E93BED20C1A77E00CE0AD8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BEC20C1A77D00CE0AD8 /* Extensions.swift */; };
 		D8E93BEF20C1AC7300CE0AD8 /* WallpaperImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BEE20C1AC7300CE0AD8 /* WallpaperImageCache.swift */; };
+		D8E93BF120C3257800CE0AD8 /* CustomLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BF020C3257800CE0AD8 /* CustomLoadingView.swift */; };
+		D8E93BF320C32AC000CE0AD8 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BF220C32AC000CE0AD8 /* SplashViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +90,8 @@
 		D8E93BEA20BF2AD500CE0AD8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D8E93BEC20C1A77D00CE0AD8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D8E93BEE20C1AC7300CE0AD8 /* WallpaperImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperImageCache.swift; sourceTree = "<group>"; };
+		D8E93BF020C3257800CE0AD8 /* CustomLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoadingView.swift; sourceTree = "<group>"; };
+		D8E93BF220C32AC000CE0AD8 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		DA366805E8777B768E8728F2 /* Pods-Wallpaper-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.debug.xcconfig"; sourceTree = "<group>"; };
 		F3976466CEB472FD86CD9EB5 /* Pods-Wallpaper-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,6 +173,7 @@
 				D8E93B9C20B8B0B100CE0AD8 /* PopUpViewController.swift */,
 				D8E93B9B20B8B0B100CE0AD8 /* LoginViewController.swift */,
 				D8E93B9920B8B0B000CE0AD8 /* SignUpViewController.swift */,
+				D8E93BF220C32AC000CE0AD8 /* SplashViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -181,6 +186,7 @@
 				D8E93B9320B8B08D00CE0AD8 /* UploadWallpaperPopUp.xib */,
 				D8E93B8F20B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift */,
 				D8E93B9020B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib */,
+				D8E93BF020C3257800CE0AD8 /* CustomLoadingView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -340,10 +346,12 @@
 				"${BUILT_PRODUCTS_DIR}/Instructions/Instructions.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/McPicker/McPicker.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/QuickLayout/QuickLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/Siren/Siren.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftEntryKit/SwiftEntryKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Twinkle/Twinkle.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -357,10 +365,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Instructions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/McPicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siren.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEntryKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Twinkle.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -382,6 +392,7 @@
 				D8E93BC720B8B63200CE0AD8 /* AppStoreAnimatorInfo.swift in Sources */,
 				D8E93BC520B8B63200CE0AD8 /* PopUpViewCell.swift in Sources */,
 				D8E93BBE20B8B63200CE0AD8 /* FunctionalEnumerated.swift in Sources */,
+				D8E93BF120C3257800CE0AD8 /* CustomLoadingView.swift in Sources */,
 				D8E93BBD20B8B63200CE0AD8 /* RoundCornersButton.swift in Sources */,
 				D8E93BC220B8B63200CE0AD8 /* CircularImageView.swift in Sources */,
 				D8E93BEB20BF2AD500CE0AD8 /* User.swift in Sources */,
@@ -396,6 +407,7 @@
 				D8E93B8C20B8B05100CE0AD8 /* AppDelegate.swift in Sources */,
 				D8E93B9F20B8B0B100CE0AD8 /* LoginViewController.swift in Sources */,
 				D8E93BA020B8B0B100CE0AD8 /* PopUpViewController.swift in Sources */,
+				D8E93BF320C32AC000CE0AD8 /* SplashViewController.swift in Sources */,
 				D8E93B9E20B8B0B100CE0AD8 /* FeedViewController.swift in Sources */,
 				D8E93B9D20B8B0B100CE0AD8 /* SignUpViewController.swift in Sources */,
 				D8E93BC920B8B63200CE0AD8 /* NibLoadbleView.swift in Sources */,

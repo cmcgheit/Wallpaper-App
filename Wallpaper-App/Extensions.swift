@@ -21,3 +21,20 @@ extension UIImage {
         }
     }
 }
+
+// Loading Ext
+
+enum LoadingState {
+    case start
+    case stop
+}
+
+extension UIViewController {
+    func loading(_ state: LoadingState) {
+        if state == .start {
+            CustomLoadingView.shared.startLoading(view)
+        } else {
+            CustomLoadingView.shared.stopLoading()
+        }
+    }
+}

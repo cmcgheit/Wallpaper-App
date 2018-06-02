@@ -20,14 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        // MARK: - Firebase Auth (Check to see if user is signed in (if not new user to sign up)
-        if Auth.auth().currentUser == nil {
-            UserDefaults.standard.setIsLoggedIn(value: false)
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-            window?.rootViewController?.present(loginVC, animated: true, completion: nil)
-        }
-        
+        // Splash
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let splashVC = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
+        self.window?.rootViewController = splashVC
+        self.window?.makeKeyAndVisible()
+                
         // Initialize the Google Mobile Ads SDK.
         GADMobileAds.configure(withApplicationID: "adMobAppID")
         

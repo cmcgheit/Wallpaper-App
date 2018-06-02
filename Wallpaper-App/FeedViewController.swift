@@ -19,6 +19,7 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var vibeBlurView: UIVisualEffectView!
     @IBOutlet weak var signOutBtn: UIButton!
+    var handle: AuthStateDidChangeListenerHandle?
     var bannerView: GADBannerView!
     
     let wallpaperRef = databaseRef.child("wallpapers")
@@ -41,15 +42,11 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // self.loading(.start) // start indicator when view loads
         setup()
         
-        // MARK: - Check Auth User Signed-In
-        if Auth.auth().currentUser != nil {
-            // User signed-In
-        } else {
-            let signUpVC = SignUpViewController()
-            present(signUpVC, animated: true)
-        }
+        // Instructions
+        self.instructionsController.dataSource = self
         
         // Firebase
         FIRService.instance.getArtCategory() //downloading functions from firebase, put in array?
@@ -88,14 +85,14 @@ class FeedViewController: UIViewController {
                 positionBannerViewWidthAtBottomOfView(bannerView)
             }
         }
-       @available (iOS 11, *)
+        @available (iOS 11, *)
         func positionBannerViewFullWidthBottomOfSafeArea(_ bannerView: UIView) {
-        let guide = view.safeAreaLayoutGuide
-        NSLayoutConstraint.activate([
-            guide.leftAnchor.constraint(equalTo: bannerView.leftAnchor),
-            guide.rightAnchor.constraint(equalTo: bannerView.rightAnchor),
-            guide.bottomAnchor.constraint(equalTo: bannerView.bottomAnchor)
-            ])
+            let guide = view.safeAreaLayoutGuide
+            NSLayoutConstraint.activate([
+                guide.leftAnchor.constraint(equalTo: bannerView.leftAnchor),
+                guide.rightAnchor.constraint(equalTo: bannerView.rightAnchor),
+                guide.bottomAnchor.constraint(equalTo: bannerView.bottomAnchor)
+                ])
         }
         
         func positionBannerViewWidthAtBottomOfView(_ bannerView: UIView) {
@@ -122,9 +119,24 @@ class FeedViewController: UIViewController {
                                                   constant: 0))
             
         }
-        
-     // Instructions
-        self.instructionsController.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // MARK: - Check Auth User Signed-In (already checked?)
+        handle = Auth.auth().addStateDidChangeListener { ( auth, user) in
+            if Auth.auth().currentUser != nil {
+                // User signed-In
+                UserDefaults.standard.setIsLoggedIn(value: true)
+            } else {
+                UserDefaults.standard.setIsLoggedIn(value: false)
+                let signUpVC = SignUpViewController()
+                self.present(signUpVC, animated: true)
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     @objc func handleUpdateFeed() {
@@ -174,9 +186,10 @@ class FeedViewController: UIViewController {
                 print(self.wallpapers)
             }
         }
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        self.collectionView.insertItems(at: [indexPath]) // insert in glidingCollection?
+        //        let indexPath = IndexPath(row: 0, section: 0)
+        //        self.collectionView.insertItems(at: [indexPath]) // insert in glidingCollection?
         DispatchQueue.main.async {
+            // self.loading(.stop) // stop loading when collection refreshes
             self.collectionView.reloadData()
             self.glidingView.reloadData()
         }
@@ -246,9 +259,10 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     @IBAction func signOutBtnPressed() {
         if authRef.currentUser != nil {
-        AuthService.instance.logOutUser()
-        let loginVC = LoginViewController()
-        present(loginVC, animated: true)
+            AuthService.instance.logOutUser()
+            UserDefaults.standard.setIsLoggedIn(value: false)
+            let loginVC = LoginViewController()
+            present(loginVC, animated: true)
         } else {
             // MARK: Floating Signout Indicator
             var attributes = EKAttributes.topFloat
