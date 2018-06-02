@@ -5,6 +5,7 @@
 
 import UIKit
 import Firebase
+import SwiftEntryKit
 
 class LoginViewController: UIViewController {
     
@@ -42,7 +43,22 @@ class LoginViewController: UIViewController {
         guard let pass = passTextFld.text else { return }
         if email != "" || pass != ""  {
             // MARK: - No Email/Password entered Alert (not registered)
+            var attributes = EKAttributes.topFloat
+            attributes.entryBackground = .color(color: tealColor)
+            attributes.roundCorners = .all(radius: 10)
+            attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
+            attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
             
+            let titleText = "User Not Registered"
+            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont(name: "Gills-Sans", size: 20)!, color: UIColor.darkGray))
+            let descText = "No email and/or password entered, please enter an email or password and login"
+            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont(name: "Gill-Sans", size: 17)!, color: UIColor.darkGray))
+            let image = EKProperty.ImageContent(image: #imageLiteral(resourceName: "exclaimred"))
+            let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
+            let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+            
+            let contentView = EKNotificationMessageView(with: notificationMessage)
+            SwiftEntryKit.display(entry: contentView, using: attributes)
         } else {
             // MARK: - Login User Successfully
             AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, loginError) in
@@ -53,6 +69,22 @@ class LoginViewController: UIViewController {
                         "toFeedViewController", sender: nil)
                 } else {
                     // MARK: - Incorrect Email/Password Alert
+                    var attributes = EKAttributes.topFloat
+                    attributes.entryBackground = .color(color: tealColor)
+                    attributes.roundCorners = .all(radius: 10)
+                    attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
+                    attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+                    
+                    let titleText = "Incorrect Email/Password"
+                    let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont(name: "Gills-Sans", size: 20)!, color: UIColor.darkGray))
+                    let descText = "You have entered the incorrect email/password. Please enter your email/password and try again"
+                    let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont(name: "Gill-Sans", size: 17)!, color: UIColor.darkGray))
+                    let image = EKProperty.ImageContent(image: #imageLiteral(resourceName: "exclaimred"))
+                    let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
+                    let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+                    
+                    let contentView = EKNotificationMessageView(with: notificationMessage)
+                    SwiftEntryKit.display(entry: contentView, using: attributes)
                     // Auth.auth().sendPasswordReset(withEmail: email)
                     print(String(describing: loginError?.localizedDescription))
                     // Take User to SignUp if not a registered user

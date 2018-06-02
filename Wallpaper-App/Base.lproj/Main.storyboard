@@ -58,6 +58,15 @@
                                     <segue destination="3qs-Bd-fOm" kind="show" identifier="toUploadWallpaperPopUp" id="6kx-3b-rYY"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQH-b3-jIB">
+                                <rect key="frame" x="9" y="35" width="61" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
+                                <state key="normal" title="Sign-Out">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -75,6 +84,7 @@
                     </view>
                     <connections>
                         <outlet property="glidingView" destination="P5n-SR-yuM" id="SAD-xm-qQc"/>
+                        <outlet property="signOutBtn" destination="OQH-b3-jIB" id="NPR-Di-EtX"/>
                         <outlet property="uploadBtn" destination="KWp-ye-yUT" id="nfh-lS-wSd"/>
                         <outlet property="vibeBlurView" destination="cV2-S0-e7C" id="bEf-dg-65r"/>
                     </connections>
@@ -114,25 +124,25 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KIc-ps-9vn">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KIc-ps-9vn">
                                         <rect key="frame" x="2" y="70" width="250" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="250" id="MWj-BP-o5Z"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="C4D-ok-KvU"/>
                                             <constraint firstAttribute="height" constant="30" id="i1d-ca-G5c"/>
                                         </constraints>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mrw-Ur-t6h">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mrw-Ur-t6h">
                                         <rect key="frame" x="2" y="130" width="250" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="250" id="C8Z-5H-dNs"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="C8Z-5H-dNs"/>
                                             <constraint firstAttribute="height" constant="30" id="JdQ-Tq-1iI"/>
                                         </constraints>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -194,7 +204,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqA-Nf-kiP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="249" y="841"/>
+            <point key="canvasLocation" x="248.80000000000001" y="840.62968515742136"/>
         </scene>
         <!--UploadViewController-->
         <scene sceneID="BIc-7i-bui">
@@ -248,25 +258,25 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CgG-2R-r9C">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CgG-2R-r9C">
                                                 <rect key="frame" x="5" y="70" width="250" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="250" id="X2D-44-4G4"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="X2D-44-4G4"/>
                                                     <constraint firstAttribute="height" constant="30" id="tXJ-YT-23o"/>
                                                 </constraints>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7B7-UD-EK1">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7B7-UD-EK1">
                                                 <rect key="frame" x="5" y="130" width="250" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="LRj-Gv-u6u"/>
-                                                    <constraint firstAttribute="width" constant="250" id="svn-93-nAB"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="svn-93-nAB"/>
                                                 </constraints>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -301,6 +311,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="signInBtnPressed:" destination="e5t-Dg-8Hj" eventType="touchUpInside" id="xJk-vC-lQh"/>
+                                                    <action selector="signUpBtnPressed:" destination="e5t-Dg-8Hj" eventType="touchUpInside" id="Vze-iN-BU0"/>
                                                     <segue destination="GZF-Tt-wBC" kind="show" identifier="toSignUpViewController" id="zgL-Jl-Cgd"/>
                                                 </connections>
                                             </button>

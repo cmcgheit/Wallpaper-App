@@ -42,4 +42,13 @@ class AuthService {
             loginComplete(true, nil)
         }
     }
+    
+    // MARK - Logout User from Firebase Function
+    func logOutUser() {
+        do {
+            try Auth.auth().signOut()
+        } catch let error {
+            print("Failed to logout user", error)
+        }
+    }
 }

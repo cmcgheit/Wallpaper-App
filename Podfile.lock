@@ -48,7 +48,10 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - QuickLayout (2.0.2)
   - Siren (3.4.0)
+  - SwiftEntryKit (0.2.2):
+    - QuickLayout (= 2.0.2)
   - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
@@ -64,6 +67,7 @@ DEPENDENCIES:
   - Kingfisher
   - McPicker
   - Siren
+  - SwiftEntryKit
   - SwiftyJSON
 
 SPEC REPOS:
@@ -86,7 +90,9 @@ SPEC REPOS:
     - leveldb-library
     - McPicker
     - nanopb
+    - QuickLayout
     - Siren
+    - SwiftEntryKit
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -108,9 +114,11 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   McPicker: 130183cd3d22fc6933ea9e63c5a0d0d1becc0122
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  QuickLayout: a730730b646b231fd4ef7cffaeb1e81fe0e1ca92
   Siren: 5b8be41b5cd05aa3528303325966e919bd53e412
+  SwiftEntryKit: 59bb564c4c40ed76383a5f463b8d9086ecaeced0
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: bf19a302379a7d3e4b67261cabe2a806d37d47d6
+PODFILE CHECKSUM: a7511c0bf9188cc79c660732fecc9bf5464833fa
 
 COCOAPODS: 1.5.0

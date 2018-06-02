@@ -3,6 +3,7 @@
 
 import UIKit
 import Firebase
+import SwiftEntryKit
 import McPicker
 import Instructions
 
@@ -21,6 +22,9 @@ class UploadWallpaperPopUp: UIViewController {
     //Upload Camera properties
     var imagePicker: UIImagePickerController!
     var takenImage: UIImage!
+    
+    // Instructions
+    let uploadInstructionsController = CoachMarksController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +88,8 @@ class UploadWallpaperPopUp: UIViewController {
             imagePicker.sourceType = .photoLibrary
         }
         self.present(imagePicker, animated: true, completion: nil)
+        
+        self.uploadInstructionsController.dataSource = self
     }
     
     static let updateFeedNotificationName = NSNotification.Name(rawValue: "UpdateFeed")
@@ -94,8 +100,25 @@ class UploadWallpaperPopUp: UIViewController {
 //            FIRService.uploadWallToFirebaseStor(image: takenImage) { (<#String?#>, error) in
 //                <#code#>
 //            }
-            self.dismiss(animated: true, completion: nil)
             NotificationCenter.default.post(name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
+            // MARK: - Upload Successful Alert
+            var attributes = EKAttributes.topFloat
+            attributes.entryBackground = .color(color: tealColor)
+            attributes.roundCorners = .all(radius: 10)
+            attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
+            attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+            
+            let titleText = "Upload Successful"
+            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont(name: "Gills-Sans", size: 20)!, color: UIColor.darkGray))
+            let descText = "Your wallpaper image has been uploaded successfully"
+            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont(name: "Gill-Sans", size: 17)!, color: UIColor.darkGray))
+            let image = EKProperty.ImageContent(image: #imageLiteral(resourceName: "exclaimred"))
+            let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
+            let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+            
+            let contentView = EKNotificationMessageView(with: notificationMessage)
+            SwiftEntryKit.display(entry: contentView, using: attributes)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -146,5 +169,28 @@ extension UploadWallpaperPopUp: UIImagePickerControllerDelegate, UINavigationCon
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Instructions Functions
+extension UploadWallpaperPopUp: CoachMarksControllerDelegate, CoachMarksControllerDataSource {
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
+        let instructionsView = uploadInstructionsController.helper.makeDefaultCoachViews()
+        
+        instructionsView.bodyView.hintLabel.text = "Test Upload Instruction"
+        instructionsView.bodyView.nextLabel.text = "Got it!"
+        
+        return (bodyView: instructionsView.bodyView, arrowView: nil)
+    }
+    
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+        let instructionsView = UIView()
+        return uploadInstructionsController.helper.makeCoachMark(for: instructionsView)
+    }
+    
+    
+    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+        return 1
     }
 }
