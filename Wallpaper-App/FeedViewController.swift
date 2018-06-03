@@ -30,13 +30,13 @@ class FeedViewController: UIViewController {
     fileprivate var collectionView: UICollectionView!
     var effect: UIVisualEffect!
     
-    var wallpapers = [Wallpaper]() // feed wallpapers from db
+    var wallpapers = [Wallpaper]() // dont' need?
     
-    var wallpaperCategory = [Wallpaper]() // feed category names from db
+    var wallpaperCategory = [Wallpaper]() // dont need?
     
-    var sportsCategory = [String]() // individual feed info?
-    var musicCategory = [String]()
-    var artCategory = [String]()
+    var sportsCategory = [[String:Any]]()
+    var musicCategory = [[String:Any]]()
+    var artCategory = [[String:Any]]()
     
     let instructionsController = CoachMarksController()
     
@@ -49,9 +49,20 @@ class FeedViewController: UIViewController {
         self.instructionsController.dataSource = self
         
         // Firebase
-        FIRService.instance.getArtCategory() //downloading functions from firebase, put in array?
-        FIRService.instance.getMusicCategory()
-        FIRService.instance.getSportsCategory()
+        FIRService.getMusicCategory { (musicCategory) in
+            self.musicCategory = musicCategory
+            print(musicCategory)
+        }
+        
+        FIRService.getArtCategory { (artCategory) in
+            self.artCategory = artCategory
+            print(artCategory)
+        }
+        
+        FIRService.getSportsCategory { (sportsCategory) in
+            self.sportsCategory = sportsCategory
+            print(sportsCategory)
+        }
         
         // MARK: - Update feed notification
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
@@ -158,8 +169,11 @@ class FeedViewController: UIViewController {
     // MARK: - Fetch Wallpaper Feed
     func fetchFeed() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        FIRService.fetchUserForUID(uid: uid) { (user) in
-            // Load database for user.uid
+        if Auth.auth().currentUser != nil {
+            FIRService.fetchUserForUID(uid: uid) { (user) in
+                // Load database for user.uid
+            }
+        } else {
         }
     }
     // MARK: - PopUp Background Touch to Dismiss
@@ -222,10 +236,10 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WallpaperCell", for: indexPath) as? WallpaperRoundedCardCell else { return UICollectionViewCell() }
-        let section = glidingView.expandedItemIndex
-        let wallpaper = wallpapers[indexPath.row]
+        //        let section = glidingView.expandedItemIndex
+        //        let wallpaper = wallpapers[indexPath.row]
         //(section: glidingCollection.expandedItemIndex, atIndex: indexPath.row)
-        cell.imageView.kf.setImage(with: URL(string: wallpaper.wallpaperURL!))
+        //        cell.imageView.kf.setImage(with: URL(string: wallpaper.wallpaperURL!))
         
         
         //        let sportsCat = sportsCategory[indexPath.row]
@@ -350,8 +364,6 @@ extension FeedViewController: CoachMarksControllerDelegate, CoachMarksController
         return 1
     }
 }
-
-
 
 
 

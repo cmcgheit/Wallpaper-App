@@ -39,10 +39,10 @@ open class CustomLoadingView: UIView {
         
         animationLabel.text = "Loading..."
         animationLabel.sizeToFit()
-        animationLabel.backgroundColor = tealColor
+        animationLabel.backgroundColor = UIColor.white
         animationLabel.textColor = goldColor
         animationLabel.frame.origin.x += 152
-        animationLabel.frame.origin.y += 350
+        animationLabel.frame.origin.y += 275
         
         progressView.addSubview(activityIndicator)
         view.addSubview(animationLabel)
