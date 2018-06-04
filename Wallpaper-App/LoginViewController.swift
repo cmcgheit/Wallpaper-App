@@ -6,6 +6,7 @@
 import UIKit
 import Firebase
 import SwiftEntryKit
+// import KeychainSwift//SwiftKeychainWrapper
 
 class LoginViewController: UIViewController {
     
@@ -41,7 +42,7 @@ class LoginViewController: UIViewController {
     @IBAction func signInBtnPressed(_ sender: UIButton) {
         guard let email = emailTextFld.text else { return }
         guard let pass = passTextFld.text else { return }
-        if email != "" || pass != ""  {
+        if email.isEmpty || pass.isEmpty  {
             // MARK: - No Email/Password entered Alert (not registered)
             var attributes = EKAttributes.topFloat
             attributes.entryBackground = .color(color: tealColor)
@@ -50,10 +51,10 @@ class LoginViewController: UIViewController {
             attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
             
             let titleText = "User Not Registered"
-            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont(name: "Gills-Sans", size: 20)!, color: UIColor.darkGray))
+            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.systemFont(ofSize: 20), color: UIColor.darkGray))
             let descText = "No email and/or password entered, please enter an email or password and login"
-            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont(name: "Gill-Sans", size: 17)!, color: UIColor.darkGray))
-            let image = EKProperty.ImageContent(image: #imageLiteral(resourceName: "exclaimred"))
+            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+            let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
             let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
             let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
             
@@ -76,16 +77,16 @@ class LoginViewController: UIViewController {
                     attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
                     
                     let titleText = "Incorrect Email/Password"
-                    let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont(name: "Gills-Sans", size: 20)!, color: UIColor.darkGray))
+                    let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.systemFont(ofSize: 20), color: UIColor.darkGray))
                     let descText = "You have entered the incorrect email/password. Please enter your email/password and try again"
-                    let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont(name: "Gill-Sans", size: 17)!, color: UIColor.darkGray))
-                    let image = EKProperty.ImageContent(image: #imageLiteral(resourceName: "exclaimred"))
+                    let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+                    let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
                     let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
                     let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
                     
                     let contentView = EKNotificationMessageView(with: notificationMessage)
                     SwiftEntryKit.display(entry: contentView, using: attributes)
-                    // Auth.auth().sendPasswordReset(withEmail: email)
+                    // Auth.auth().sendPasswordReset(withEmail: email) ask to reset, logic for mutliple incorrect tries?
                     print(String(describing: loginError?.localizedDescription))
                     // Take User to SignUp if not a registered user
                 }
@@ -116,7 +117,7 @@ class LoginViewController: UIViewController {
     //func completeSignIn(id: String) {
     //    let saveSuccessful: Bool = KeychainWrapper.standard.set(id, forKey: KEY_UID)
     //    print("Keychain Status: \(saveSuccessful)")
-    //    // Take student to StudentVC once stored keychain wrapper
+    //    // Take user to feed once stored keychain wrapper
     //    performSegue(withIdentifier: SegueIdentifier.toStudentVC.rawValue, sender: self)
     //}
 }

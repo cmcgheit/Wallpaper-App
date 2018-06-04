@@ -46,7 +46,7 @@ class UploadWallpaperPopUp: UIViewController {
             self.wallpaperCatTxtFld?.text = "Cancelled."
         }
         wallpaperCatTxtFld.textFieldWillBeginEditingHandler = { [weak wallpaperCatTxtFld] (selections) in
-            if wallpaperCatTxtFld?.text == "" {
+            if (wallpaperCatTxtFld?.text?.isEmpty)! {
                 // Selections always default to the first value per component
                 wallpaperCatTxtFld?.text = selections[0]
             }
@@ -95,7 +95,7 @@ class UploadWallpaperPopUp: UIViewController {
     static let updateFeedNotificationName = NSNotification.Name(rawValue: "UpdateFeed")
     
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
-        if wallpaperDescTextView.text != "" && takenImage != nil  && wallpaperCatTxtFld.text != ""  {
+        if wallpaperDescTextView.text.isEmpty && takenImage != nil  && (wallpaperCatTxtFld.text?.isEmpty)!  {
             closeBtn.isHidden = false // upload only if all fields are filled out
 //            FIRService.uploadWallToFirebaseStor(image: takenImage) { (<#String?#>, error) in
 //                <#code#>
@@ -109,10 +109,10 @@ class UploadWallpaperPopUp: UIViewController {
             attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
             
             let titleText = "Upload Successful"
-            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont(name: "Gills-Sans", size: 20)!, color: UIColor.darkGray))
+            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.systemFont(ofSize: 20), color: UIColor.darkGray))
             let descText = "Your wallpaper image has been uploaded successfully"
-            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont(name: "Gill-Sans", size: 17)!, color: UIColor.darkGray))
-            let image = EKProperty.ImageContent(image: #imageLiteral(resourceName: "exclaimred"))
+            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+            let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
             let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
             let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
             
@@ -123,7 +123,7 @@ class UploadWallpaperPopUp: UIViewController {
     }
     
     @IBAction  func closeBtnPressed(_ sender: UIButton) {
-        if wallpaperDescTextView.text != "" && wallpaperPopUpView.image != nil && wallpaperCatTxtFld.text != "" {
+        if wallpaperDescTextView.text.isEmpty && wallpaperPopUpView.image != nil && (wallpaperCatTxtFld.text?.isEmpty)! {
             self.closeBtn?.isHidden = false
             self.dismiss(animated: true, completion: nil)
             //            viewController.willMove(toParentViewController: nil)

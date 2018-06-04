@@ -3,6 +3,7 @@
 import Foundation
 import UIKit
 
+// Firebase images Extensions
 extension Data {
     func getImageFromData() -> UIImage? {
         if let img = UIImage(data: self) {
@@ -40,20 +41,21 @@ extension UIViewController {
     }
 }
 
-extension UIWindow {
-    func topViewController() -> UIViewController? {
-        var top = self.rootViewController
-        while true {
-            if let presented = top?.presentedViewController {
-                top = presented
-            } else if let nav = top as? UINavigationController {
-                top = nav.visibleViewController
-            } else if let tab = top as? UITabBarController {
-                top = tab.selectedViewController
-            } else {
-                break
+// Top View Controller Ext
+
+extension UIApplication {
+    class func topViewController(viewController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = viewController as? UINavigationController {
+            return topViewController(viewController: nav.visibleViewController)
+        }
+        if let tab = viewController as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(viewController: selected)
             }
         }
-        return top
+        if let presented = viewController?.presentedViewController {
+            return topViewController(viewController: presented)
+        }
+        return viewController
     }
 }

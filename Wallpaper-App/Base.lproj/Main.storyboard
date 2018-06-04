@@ -58,14 +58,17 @@
                                     <segue destination="3qs-Bd-fOm" kind="show" identifier="toUploadWallpaperPopUp" id="6kx-3b-rYY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQH-b3-jIB">
-                                <rect key="frame" x="9" y="35" width="61" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQH-b3-jIB">
+                                <rect key="frame" x="10" y="35" width="70" height="32"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
                                 <state key="normal" title="Sign-Out">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="signOutBtnPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="mrE-1F-pTm"/>
+                                    <segue destination="e5t-Dg-8Hj" kind="show" identifier="backtoLoginViewController" id="NZ3-jy-2Sf"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -74,8 +77,11 @@
                             <constraint firstItem="AwP-uk-x4R" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="KzD-ov-Nut"/>
                             <constraint firstItem="KWp-ye-yUT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="Laf-ek-Bmu"/>
                             <constraint firstItem="P5n-SR-yuM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="RW3-7A-pvv"/>
+                            <constraint firstItem="KWp-ye-yUT" firstAttribute="leading" secondItem="OQH-b3-jIB" secondAttribute="trailing" constant="251" id="TcS-Zx-Qqn"/>
                             <constraint firstAttribute="trailing" secondItem="P5n-SR-yuM" secondAttribute="trailing" id="Tz6-bg-ykA"/>
+                            <constraint firstItem="OQH-b3-jIB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="U1q-tS-ung"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="AwP-uk-x4R" secondAttribute="bottom" id="XAn-q9-b6o"/>
+                            <constraint firstItem="OQH-b3-jIB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="dj0-DB-IEM"/>
                             <constraint firstItem="AwP-uk-x4R" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="kdh-ws-kHa"/>
                             <constraint firstItem="P5n-SR-yuM" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="nDW-Fp-B8C"/>
                             <constraint firstAttribute="trailing" secondItem="AwP-uk-x4R" secondAttribute="trailing" id="qPN-Fb-X82"/>
@@ -416,4 +422,7 @@
         <image name="iphone-outline" width="132" height="271"/>
         <image name="tealarrowback" width="540" height="960"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="NZ3-jy-2Sf"/>
+    </inferredMetricsTieBreakers>
 </document>

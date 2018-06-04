@@ -30,9 +30,7 @@ class FeedViewController: UIViewController {
     fileprivate var collectionView: UICollectionView!
     var effect: UIVisualEffect!
     
-    var wallpapers = [Wallpaper]() // dont' need?
-    
-    var wallpaperCategory = [Wallpaper]() // dont need?
+    var wallpaperCategories = [WallpaperCategory]() // add
     
     var sportsCategory = [[String:Any]]()
     var musicCategory = [[String:Any]]()
@@ -42,27 +40,28 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // self.loading(.start) // start indicator when view loads
         setup()
         
         // Instructions
         self.instructionsController.dataSource = self
         
-        // Firebase
-        FIRService.getMusicCategory { (musicCategory) in
-            self.musicCategory = musicCategory
-            print(musicCategory)
+        // Load Categories
+        FIRService.getMusicCategory { [weak self] (musicCategory) in
+            self?.musicCategory = musicCategory
+            //            print(musicCategory)
         }
         
-        FIRService.getArtCategory { (artCategory) in
-            self.artCategory = artCategory
-            print(artCategory)
+        FIRService.getArtCategory { [weak self] (artCategory) in
+            self?.artCategory = artCategory
+            //            print(artCategory)
         }
         
-        FIRService.getSportsCategory { (sportsCategory) in
-            self.sportsCategory = sportsCategory
-            print(sportsCategory)
+        FIRService.getSportsCategory { [weak self] (sportsCategory) in
+            self?.sportsCategory = sportsCategory
+            //            print(sportsCategory)
         }
+        
+        combineCategories()
         
         // MARK: - Update feed notification
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
@@ -133,7 +132,7 @@ class FeedViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // MARK: - Check Auth User Signed-In (already checked?)
+        // MARK: - Check Auth User Signed-In
         handle = Auth.auth().addStateDidChangeListener { ( auth, user) in
             if Auth.auth().currentUser != nil {
                 // User signed-In
@@ -156,7 +155,7 @@ class FeedViewController: UIViewController {
     
     // MARK: - Refresh Wallpaper Feed
     func handleRefresh() {
-        wallpapers.removeAll() //clear wallpaper feed to refresh
+        wallpaperCategories.removeAll() //clear wallpaper feed to refresh
         fetchFeed()
     }
     
@@ -194,16 +193,10 @@ class FeedViewController: UIViewController {
     }
     
     fileprivate func loadImages() {
-        // Load all wallpapers from db
-        FIRService.downloadImagesFromFirebaseData {
-            for wallpaperItems in self.wallpapers {
-                print(self.wallpapers)
-            }
-        }
+        // Load all wallpapers from db?
         //        let indexPath = IndexPath(row: 0, section: 0)
         //        self.collectionView.insertItems(at: [indexPath]) // insert in glidingCollection?
         DispatchQueue.main.async {
-            // self.loading(.stop) // stop loading when collection refreshes
             self.collectionView.reloadData()
             self.glidingView.reloadData()
         }
@@ -220,15 +213,68 @@ class FeedViewController: UIViewController {
         let uploadPopUpVC = UploadWallpaperPopUp()
         present(uploadPopUpVC, animated: true, completion: nil)
     }
+    
+    @IBAction func signOutBtnPressed() {
+        if authRef.currentUser != nil {
+            AuthService.instance.logOutUser()
+            UserDefaults.standard.setIsLoggedIn(value: false)
+            // MARK: Floating Signout Indicator (Success)
+            var attributes = EKAttributes.topFloat
+            attributes.entryBackground = .color(color: tealColor)
+            attributes.roundCorners = .all(radius: 10)
+            attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
+            attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+            
+            let titleText = "Signed Out Successfully"
+            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.systemFont(ofSize: 20), color: UIColor.darkGray))
+            let descText = "You have signed out of Wall Variety succesfully. Sign back in from the Login Screen"
+            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+            let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
+            let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
+            let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+            
+            let contentView = EKNotificationMessageView(with: notificationMessage)
+            SwiftEntryKit.display(entry: contentView, using: attributes)
+            
+            UIApplication.topViewController()?.performSegue(withIdentifier: "backtoLoginViewController", sender: self)
+        } else {
+            // MARK: - Floating Signout Indicator (Error)
+            var attributes = EKAttributes.topFloat
+            attributes.entryBackground = .color(color: tealColor)
+            attributes.roundCorners = .all(radius: 10)
+            attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
+            attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+            
+            let titleText = "Problem Signing Out"
+            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont(name: "Gills-Sans", size: 20)!, color: UIColor.darkGray))
+            let descText = "Please check that you have signed in successfully"
+            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+            let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
+            let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
+            let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+            
+            let contentView = EKNotificationMessageView(with: notificationMessage)
+            SwiftEntryKit.display(entry: contentView, using: attributes)
+            
+        }
+    }
+    
+    func combineCategories() {
+        wallpaperCategories = [WallpaperCategory(name:"Sports", data: sportsCategory),
+                    WallpaperCategory(name:"Music", data: musicCategory),
+                    WallpaperCategory(name:"Art", data: artCategory)]
+        print(wallpaperCategories)
+    }
 }
+
 
 // MARK: - CollectionView
 extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let section = glidingView.expandedItemIndex
-        if self.wallpapers.count > 0 {
-            return wallpapers.count
+        if self.wallpaperCategories.count > 0 {
+            return wallpaperCategories.count
         } else {
             return 1
         }
@@ -241,21 +287,8 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         //(section: glidingCollection.expandedItemIndex, atIndex: indexPath.row)
         //        cell.imageView.kf.setImage(with: URL(string: wallpaper.wallpaperURL!))
         
-        
-        //        let sportsCat = sportsCategory[indexPath.row]
-        //        let musicCat = musicCategory[indexPath.row]
-        //        let artCat = artCategory[indexPath.row]
-        //        let wallpaperCategories = wallpaperCatList[indexPath.row]
-        //        switch wallpaperCategories {
-        //        case .Sports:
-        //            cell.imageView.kf.setImage(with: URL(string: sportsCat))
-        //        case .Music:
-        //            cell.imageView.kf.setImage(with: URL(string: musicCat))
-        //        case .Art:
-        //            cell.imageView.kf.setImage(with: URL(string: artCat))
-        //        default:
-        //            cell.imageView.image = UIImage(named: "placeholder-image")
-        //        }
+        let items = self.wallpaperCategories[indexPath.section].data
+        let data = items[indexPath.row]
         
         cell.contentView.clipsToBounds = true
         let layer = cell.layer
@@ -269,33 +302,6 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         layer.rasterizationScale = UIScreen.main.scale
         
         return cell
-    }
-    
-    @IBAction func signOutBtnPressed() {
-        if authRef.currentUser != nil {
-            AuthService.instance.logOutUser()
-            UserDefaults.standard.setIsLoggedIn(value: false)
-            let loginVC = LoginViewController()
-            present(loginVC, animated: true)
-        } else {
-            // MARK: Floating Signout Indicator
-            var attributes = EKAttributes.topFloat
-            attributes.entryBackground = .color(color: tealColor)
-            attributes.roundCorners = .all(radius: 10)
-            attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
-            attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
-            
-            let titleText = "Signed Out Successfully"
-            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont(name: "Gills-Sans", size: 20)!, color: UIColor.darkGray))
-            let descText = "You have signed out of Wall Variety succesfully. Sign back in from the Login Screen"
-            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont(name: "Gill-Sans", size: 17)!, color: UIColor.darkGray))
-            let image = EKProperty.ImageContent(image: #imageLiteral(resourceName: "exclaimred"))
-            let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
-            let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
-            
-            let contentView = EKNotificationMessageView(with: notificationMessage)
-            SwiftEntryKit.display(entry: contentView, using: attributes)
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -333,7 +339,7 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
 extension FeedViewController: GlidingCollectionDatasource {
     
     func numberOfItems(in collection: GlidingCollection) -> Int {
-        return wallpapers.count
+        return wallpaperCategories.count
     }
     
     func glidingCollection(_ collection: GlidingCollection, itemAtIndex index: Int) -> String {
