@@ -11,4 +11,9 @@ enum WallpaperCategories: String {
 struct WallpaperCategory {
     let name: String
     var data: [[String:Any]]
+    
+    init(name: String, data: [[String:Any]]) {
+        self.name = name
+        self.data = data
+    }
 }

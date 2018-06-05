@@ -30,7 +30,7 @@ class FeedViewController: UIViewController {
     fileprivate var collectionView: UICollectionView!
     var effect: UIVisualEffect!
     
-    var wallpaperCategories = [WallpaperCategory]() // add
+    var wallpaperCategories = [WallpaperCategory]()
     
     var sportsCategory = [[String:Any]]()
     var musicCategory = [[String:Any]]()
@@ -48,7 +48,7 @@ class FeedViewController: UIViewController {
         // Load Categories
         FIRService.getMusicCategory { [weak self] (musicCategory) in
             self?.musicCategory = musicCategory
-            //            print(musicCategory)
+                        print(musicCategory)
         }
         
         FIRService.getArtCategory { [weak self] (artCategory) in
@@ -61,7 +61,17 @@ class FeedViewController: UIViewController {
             //            print(sportsCategory)
         }
         
-        combineCategories()
+        func combineCategories() {
+            wallpaperCategories = [WallpaperCategory(name:"Sports", data: sportsCategory),
+                                   WallpaperCategory(name:"Music", data: musicCategory),
+                                   WallpaperCategory(name:"Art", data: artCategory)]
+            
+                        print(wallpaperCategories)
+        }
+        
+        //combineCategories()
+        
+    
         
         // MARK: - Update feed notification
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
@@ -162,7 +172,6 @@ class FeedViewController: UIViewController {
     // MARK: - Setup Gliding Collection/Wallpaper Feed
     func setup() {
         setupGlidingCollectionView()
-        loadImages()
     }
     
     // MARK: - Fetch Wallpaper Feed
@@ -170,7 +179,13 @@ class FeedViewController: UIViewController {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         if Auth.auth().currentUser != nil {
             FIRService.fetchUserForUID(uid: uid) { (user) in
-                // Load database for user.uid
+                // Load all wallpapers from db?
+                //        let indexPath = IndexPath(row: 0, section: 0)
+                //        self.collectionView.insertItems(at: [indexPath]) // insert in glidingCollection?
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                    self.glidingView.reloadData()
+                }
             }
         } else {
         }
@@ -190,16 +205,6 @@ class FeedViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = glidingView.backgroundColor
-    }
-    
-    fileprivate func loadImages() {
-        // Load all wallpapers from db?
-        //        let indexPath = IndexPath(row: 0, section: 0)
-        //        self.collectionView.insertItems(at: [indexPath]) // insert in glidingCollection?
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-            self.glidingView.reloadData()
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -259,12 +264,6 @@ class FeedViewController: UIViewController {
         }
     }
     
-    func combineCategories() {
-        wallpaperCategories = [WallpaperCategory(name:"Sports", data: sportsCategory),
-                    WallpaperCategory(name:"Music", data: musicCategory),
-                    WallpaperCategory(name:"Art", data: artCategory)]
-        print(wallpaperCategories)
-    }
 }
 
 
@@ -282,13 +281,9 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WallpaperCell", for: indexPath) as? WallpaperRoundedCardCell else { return UICollectionViewCell() }
-        //        let section = glidingView.expandedItemIndex
-        //        let wallpaper = wallpapers[indexPath.row]
-        //(section: glidingCollection.expandedItemIndex, atIndex: indexPath.row)
-        //        cell.imageView.kf.setImage(with: URL(string: wallpaper.wallpaperURL!))
-        
-        let items = self.wallpaperCategories[indexPath.section].data
-        let data = items[indexPath.row]
+        let section = glidingView.expandedItemIndex
+        let image = self.wallpaperCategories[indexPath.section].data
+        let data = image[indexPath.row]
         
         cell.contentView.clipsToBounds = true
         let layer = cell.layer
@@ -308,7 +303,6 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         // MARK: - PopUp Transition Function
         let section = glidingView.expandedItemIndex
         let item = indexPath.item
-        print("selected item #\(item) in section #\(section)")
         let popUpViewController = PopUpViewController()
         
         guard let cell = collectionView.cellForItem(at: indexPath) else {

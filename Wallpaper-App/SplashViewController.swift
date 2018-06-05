@@ -9,11 +9,13 @@ class SplashViewController: UIViewController {
     
     @IBOutlet weak var phonePhoto: UIImageView!
     
+    var splashTimer = Timer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTwinkle()
         self.loading(.start) // show loading indicator when showing twinkle
-        
+        splashTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(SplashViewController.checkIfLoggedIn), userInfo: nil, repeats: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -24,14 +26,14 @@ class SplashViewController: UIViewController {
         Twinkle.twinkle(phonePhoto)
     }
     
-    func checkIfLoggedIn() {
+    @objc func checkIfLoggedIn() {
         if Auth.auth().currentUser != nil {
             UserDefaults.standard.setIsLoggedIn(value: true)
             self.loading(.stop)
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let feedVC = storyboard.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
             UIApplication.topViewController()?.present(feedVC, animated: true, completion: nil)
-            print(Auth.auth().currentUser!)
+            self.splashTimer.invalidate()
         } else {
             UserDefaults.standard.setIsLoggedIn(value: false)
             self.loading(.stop)
@@ -39,6 +41,7 @@ class SplashViewController: UIViewController {
             let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
                 as! LoginViewController
             UIApplication.topViewController()?.present(loginVC, animated: true, completion: nil)
+            self.splashTimer.invalidate()
         }
     }
 }
