@@ -30,11 +30,11 @@ class FeedViewController: UIViewController {
     fileprivate var collectionView: UICollectionView!
     var effect: UIVisualEffect!
     
-    var wallpaperCategories = [WallpaperCategory]()
+    var wallpaperCategories = [WallpaperCategory]() //all
     
-    var sportsCategory = [[String:Any]]()
-    var musicCategory = [[String:Any]]()
-    var artCategory = [[String:Any]]()
+    var sportsCategory = [WallpaperCategory]()
+    var musicCategory = [WallpaperCategory]()
+    var artCategory = [WallpaperCategory]()
     
     let instructionsController = CoachMarksController()
     
@@ -42,36 +42,14 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         setup()
         
+        FIRService.getSportsCategory(completion: { (sportsCategory) in
+            self.sportsCategory = sportsCategory
+            print(sportsCategory)
+        })
+        makeCategories()
+        
         // Instructions
         self.instructionsController.dataSource = self
-        
-        // Load Categories
-        FIRService.getMusicCategory { [weak self] (musicCategory) in
-            self?.musicCategory = musicCategory
-                        print(musicCategory)
-        }
-        
-        FIRService.getArtCategory { [weak self] (artCategory) in
-            self?.artCategory = artCategory
-            //            print(artCategory)
-        }
-        
-        FIRService.getSportsCategory { [weak self] (sportsCategory) in
-            self?.sportsCategory = sportsCategory
-            //            print(sportsCategory)
-        }
-        
-        func combineCategories() {
-            wallpaperCategories = [WallpaperCategory(name:"Sports", data: sportsCategory),
-                                   WallpaperCategory(name:"Music", data: musicCategory),
-                                   WallpaperCategory(name:"Art", data: artCategory)]
-            
-                        print(wallpaperCategories)
-        }
-        
-        //combineCategories()
-        
-    
         
         // MARK: - Update feed notification
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
@@ -139,6 +117,17 @@ class FeedViewController: UIViewController {
                                                   constant: 0))
             
         }
+    }
+    
+    func makeCategories() {
+        FIRService.getArtCategory(completion: { (artCategory) in
+            self.artCategory = artCategory
+            // print(artCategory)
+        })
+        FIRService.getMusicCategory(completion: { (musicCategory) in
+            self.musicCategory = musicCategory
+            // print(musicCategory)
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -219,6 +208,7 @@ class FeedViewController: UIViewController {
         present(uploadPopUpVC, animated: true, completion: nil)
     }
     
+
     @IBAction func signOutBtnPressed() {
         if authRef.currentUser != nil {
             AuthService.instance.logOutUser()
@@ -241,7 +231,7 @@ class FeedViewController: UIViewController {
             let contentView = EKNotificationMessageView(with: notificationMessage)
             SwiftEntryKit.display(entry: contentView, using: attributes)
             
-            UIApplication.topViewController()?.performSegue(withIdentifier: "backtoLoginViewController", sender: self)
+            self.performSegue(withIdentifier: "backtoLoginViewController", sender: self)
         } else {
             // MARK: - Floating Signout Indicator (Error)
             var attributes = EKAttributes.topFloat
@@ -251,7 +241,7 @@ class FeedViewController: UIViewController {
             attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
             
             let titleText = "Problem Signing Out"
-            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont(name: "Gills-Sans", size: 20)!, color: UIColor.darkGray))
+            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.boldSystemFont(ofSize: 20), color: UIColor.darkGray))
             let descText = "Please check that you have signed in successfully"
             let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
             let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
@@ -272,8 +262,8 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let section = glidingView.expandedItemIndex
-        if self.wallpaperCategories.count > 0 {
-            return wallpaperCategories.count
+        if self.sportsCategory.count > 0 {
+            return sportsCategory.count
         } else {
             return 1
         }
@@ -282,9 +272,10 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WallpaperCell", for: indexPath) as? WallpaperRoundedCardCell else { return UICollectionViewCell() }
         let section = glidingView.expandedItemIndex
-        let image = self.wallpaperCategories[indexPath.section].data
-        let data = image[indexPath.row]
         
+        let wallpapers = sportsCategory[indexPath.row]
+        let url = URL(string: wallpapers.wallpaperURL)
+        cell.imageView.kf.setImage(with: url)
         cell.contentView.clipsToBounds = true
         let layer = cell.layer
         let config = GlidingConfig.shared
@@ -333,11 +324,11 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
 extension FeedViewController: GlidingCollectionDatasource {
     
     func numberOfItems(in collection: GlidingCollection) -> Int {
-        return wallpaperCategories.count
+        return sportsCategory.count
     }
     
     func glidingCollection(_ collection: GlidingCollection, itemAtIndex index: Int) -> String {
-        return wallpaperCatList[index].rawValue
+        return sportsCategory[index].catName
     }
 }
 
@@ -364,6 +355,4 @@ extension FeedViewController: CoachMarksControllerDelegate, CoachMarksController
         return 1
     }
 }
-
-
 

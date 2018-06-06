@@ -120,57 +120,46 @@ class FIRService: NSObject {
     // MARK: - Wallpaper Category Functions
     
     // MARK: - Wallpaper Firebase Music Function
-    public static func getMusicCategory(completion: @escaping ([[String : Any]]) -> ()) {
-        var musicCategory = [[String: Any]]()
+    public static func getMusicCategory(completion: @escaping ([WallpaperCategory]) -> ()) {
         let wallpapersRef = databaseRef.child("wallpapers")
         let queryRef = wallpapersRef.queryOrdered(byChild: "wallpaperCategory").queryEqual(toValue: "music")
         
-        queryRef.observe(.childAdded, with: { snapshot in
-            
-            if let musicDict = snapshot.value as? [String: Any] {
-                let wallpaperURL = musicDict["wallpaperURL"] as? String
-                let wallpaperDesc = musicDict["wallpaperDesc"] as? String
-                let wallpaperCategory = musicDict["wallpaperCategory"] as? String
-                musicCategory.append(musicDict)
-                
-                completion(musicCategory)
+        queryRef.observe(.value, with: { snapshot in
+            var musicCategory = [WallpaperCategory]()
+            for child in snapshot.children {
+                let musicCat = WallpaperCategory(snapshot: child as! DataSnapshot)
+                musicCategory.append(musicCat!)
             }
+            completion(musicCategory)
         })
     }
     // MARK: - Wallpaper Firebase Art Function
-    public static func getArtCategory(completion: @escaping ([[String : Any]]) -> ()) {
-        var artCategory = [[String: Any]]()
+    public static func getArtCategory(completion: @escaping ([WallpaperCategory]) -> ()) {
         let wallpapersRef = databaseRef.child("wallpapers")
         let queryRef = wallpapersRef.queryOrdered(byChild: "wallpaperCategory").queryEqual(toValue: "art")
         
-        queryRef.observe(.childAdded, with: { snapshot in
-            
-            if let artDict = snapshot.value as? [String: Any] {
-                let wallpaperURL = artDict["wallpaperURL"] as? String
-                let wallpaperDesc = artDict["wallpaperDesc"] as? String
-                let wallpaperCategory = artDict["wallpaperCategory"] as? String
-                artCategory.append(artDict)
-                
-                completion(artCategory)
+        queryRef.observe(.value, with: { snapshot in
+            var artCategory = [WallpaperCategory]()
+            for child in snapshot.children {
+                let artCat = WallpaperCategory(snapshot: child as! DataSnapshot)
+                artCategory.append(artCat!)
             }
-            
+            completion(artCategory)
         })
     }
+    
     // MARK: - Wallpaper Firebase Sports Function
-    public static func getSportsCategory(completion: @escaping ([[String: Any]]) -> ()) {
-        var sportsCategory = [[String: Any]]()
+    public static func getSportsCategory(completion: @escaping ([WallpaperCategory]) -> ()) {
         let wallpapersRef = databaseRef.child("wallpapers")
         let queryRef = wallpapersRef.queryOrdered(byChild: "wallpaperCategory").queryEqual(toValue: "sports")
         
-        queryRef.observe(.childAdded, with: { snapshot in
-            if let sportsDict = snapshot.value as? [String: Any] {
-                let wallpaperURL = sportsDict["wallpaperURL"] as? String
-                let wallpaperDesc = sportsDict["wallpaperDesc"] as? String
-                let wallpaperCategory = sportsDict["wallpaperCategory"] as? String
-                sportsCategory.append(sportsDict)
-                
-                completion(sportsCategory)
+        queryRef.observe(.value, with: { snapshot in
+            var sportsCategory = [WallpaperCategory]()
+            for child in snapshot.children {
+                let sportsCat = WallpaperCategory(snapshot: child as! DataSnapshot)
+                sportsCategory.append(sportsCat!)
             }
+            completion(sportsCategory)
         })
     }
 }

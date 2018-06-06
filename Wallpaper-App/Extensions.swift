@@ -59,3 +59,18 @@ extension UIApplication {
         return viewController
     }
 }
+
+// Font
+enum FontName: String {
+    case regular = "GillsSans"
+}
+
+enum FontSize: CGFloat {
+    case size = 15
+}
+
+extension UIFont {
+    class var regularFont15: UIFont {
+        return UIFont(name: FontName.regular.rawValue, size: FontSize.size.rawValue)!
+    }
+}
