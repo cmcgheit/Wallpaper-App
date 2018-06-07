@@ -12,7 +12,6 @@ class AuthService {
     }
     
     // MARK: - Create/Register New User
-    
     func registerUser(withEmail email: String, andPassword password: String, userCreationComplete: @escaping (_ status: Bool, _ error: Error?) -> ()) {
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                 

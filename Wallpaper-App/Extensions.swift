@@ -25,7 +25,6 @@ extension UIImage {
 }
 
 // Loading Ext
-
 enum LoadingState {
     case start
     case stop
@@ -42,7 +41,6 @@ extension UIViewController {
 }
 
 // Top View Controller Ext
-
 extension UIApplication {
     class func topViewController(viewController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
         if let nav = viewController as? UINavigationController {
@@ -63,6 +61,11 @@ extension UIApplication {
 // Font
 enum FontName: String {
     case regular = "GillsSans"
+    case light = "GillsSans-Light"
+    case bold = "GillSans-Bold"
+    case italic = "GillsSans-Italic"
+    case semibold = "GillsSans-SemiBold"
+    case semiBoldItalic = "GillsSans-SemiBoldItalic"
 }
 
 enum FontSize: CGFloat {

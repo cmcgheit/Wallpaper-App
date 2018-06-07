@@ -4,17 +4,11 @@ import Foundation
 import UIKit
 import Firebase
 
-var wallpaperCatList: [WallpaperCategories] = [.Sports, .Music, .Art] // don't need
-
-enum WallpaperCategories: String {
-    case Sports, Music, Art
-} // don't need
-
 struct WallpaperCategory: Codable {
     var catName: String
     var wallpaperURL: String
     var wallpaperDesc: String
-    // var wallpaperCatImage: UIImage // save image?
+    // private var wallpaperCatImage: UIImage // save image?
     
     init(catName: String, wallpaperURL: String, wallpaperDesc: String) {
         self.catName = catName
@@ -35,3 +29,9 @@ struct WallpaperCategory: Codable {
         }
     }
 }
+
+struct WallpaperCategories {
+    let catName: String
+    let wallpaperData: [WallpaperCategory]
+}
+

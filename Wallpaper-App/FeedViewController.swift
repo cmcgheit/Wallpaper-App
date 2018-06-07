@@ -7,7 +7,6 @@ import UIKit
 import Firebase
 import GlidingCollection
 import SwiftEntryKit
-import Kingfisher
 import SwiftyJSON
 import EasyTransitions
 import GoogleMobileAds
@@ -19,19 +18,17 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var vibeBlurView: UIVisualEffectView!
     @IBOutlet weak var signOutBtn: UIButton!
+    
     var handle: AuthStateDidChangeListenerHandle?
     var bannerView: GADBannerView!
-    
-    let wallpaperRef = databaseRef.child("wallpapers")
+    fileprivate var collectionView: UICollectionView!
+    var effect: UIVisualEffect!
     
     private var modalTransitionDelegate = ModalTransitionDelegate()
     private var animatorInfo: AppStoreAnimatorInfo?
     
-    fileprivate var collectionView: UICollectionView!
-    var effect: UIVisualEffect!
-    
-    var wallpaperCategories = [WallpaperCategory]() //all
-    
+    var wallpaperCategories = [WallpaperCategories]() //all
+
     var sportsCategory = [WallpaperCategory]()
     var musicCategory = [WallpaperCategory]()
     var artCategory = [WallpaperCategory]()
@@ -42,10 +39,6 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
         setup()
         
-        FIRService.getSportsCategory(completion: { (sportsCategory) in
-            self.sportsCategory = sportsCategory
-            print(sportsCategory)
-        })
         makeCategories()
         
         // Instructions
@@ -124,14 +117,31 @@ class FeedViewController: UIViewController {
             self.artCategory = artCategory
             // print(artCategory)
         })
+        
         FIRService.getMusicCategory(completion: { (musicCategory) in
             self.musicCategory = musicCategory
             // print(musicCategory)
         })
+        
+        FIRService.getSportsCategory(completion: { (sportsCategory) in
+            self.sportsCategory = sportsCategory
+            // print(sportsCategory)
+        })
+        
+        wallpaperCategories = [WallpaperCategories(catName: "Art", wallpaperData: artCategory),
+                               WallpaperCategories(catName: "Music", wallpaperData: musicCategory),
+                               WallpaperCategories(catName: "Sports", wallpaperData: sportsCategory)]
+        // print(wallpaperCategories)
+        
+        DispatchQueue.main.async {
+            self.handleRefresh() // refresh before updating collection
+            self.glidingView.collectionView.reloadData()
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // MARK: - Check Auth User Signed-In
+        // MARK: - Check Auth User Signed-In Listener/Handler
         handle = Auth.auth().addStateDidChangeListener { ( auth, user) in
             if Auth.auth().currentUser != nil {
                 // User signed-In
@@ -163,7 +173,7 @@ class FeedViewController: UIViewController {
         setupGlidingCollectionView()
     }
     
-    // MARK: - Fetch Wallpaper Feed
+    // MARK: - Fetch Wallpaper Feed For Specific User
     func fetchFeed() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         if Auth.auth().currentUser != nil {
@@ -208,7 +218,7 @@ class FeedViewController: UIViewController {
         present(uploadPopUpVC, animated: true, completion: nil)
     }
     
-
+    // MARK: - Sign Out Button Action
     @IBAction func signOutBtnPressed() {
         if authRef.currentUser != nil {
             AuthService.instance.logOutUser()
@@ -222,7 +232,7 @@ class FeedViewController: UIViewController {
             
             let titleText = "Signed Out Successfully"
             let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.systemFont(ofSize: 20), color: UIColor.darkGray))
-            let descText = "You have signed out of Wall Variety succesfully. Sign back in from the Login Screen"
+            let descText = "You have signed out of Wall Variety successfully. Sign back in from the Login Screen"
             let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
             let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
             let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
@@ -254,6 +264,35 @@ class FeedViewController: UIViewController {
         }
     }
     
+    // MARK: - Category Section Functions (put wallpaper images in each category section)
+    func numberOfWallpapersAt(section: Int) -> Int {
+        switch section {
+        case 0: return artCategory.count
+        case 1: return musicCategory.count
+        case 2: return sportsCategory.count
+        default: return 0
+        }
+    }
+    
+    func allWallpapersAt(section: Int) -> [WallpaperCategory] {
+        if section == 0 {
+            return artCategory
+        } else if section == 1 {
+            return musicCategory
+        } else {
+            return sportsCategory
+        }
+    }
+    
+    func wallpapersAt(section: Int, atIndex index: Int) -> (WallpaperCategory) {
+        if section == 0 {
+            return (artCategory[index])
+        } else if section == 1 {
+            return (musicCategory[index])
+        } else {
+            return (sportsCategory[index])
+        }
+    }
 }
 
 
@@ -261,29 +300,15 @@ class FeedViewController: UIViewController {
 extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let section = glidingView.expandedItemIndex
-        if self.sportsCategory.count > 0 {
-            return sportsCategory.count
-        } else {
-            return 1
-        }
+        return numberOfWallpapersAt(section: glidingView.expandedItemIndex)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WallpaperCell", for: indexPath) as? WallpaperRoundedCardCell else { return UICollectionViewCell() }
-        let section = glidingView.expandedItemIndex
-        
-        let wallpapers = sportsCategory[indexPath.row]
-        let url = URL(string: wallpapers.wallpaperURL)
-        cell.imageView.kf.setImage(with: url)
-        cell.contentView.clipsToBounds = true
+       
+        let wallpapers = wallpapersAt(section: glidingView.expandedItemIndex, atIndex: indexPath.row)
+        cell.setUpCell(wallpaper: wallpapers)
         let layer = cell.layer
-        let config = GlidingConfig.shared
-        layer.shadowOffset = config.cardShadowOffset
-        layer.shadowColor = config.cardShadowColor.cgColor
-        layer.shadowOpacity = config.cardShadowOpacity
-        layer.shadowRadius = config.cardShadowRadius
-        
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
         
@@ -291,30 +316,29 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! WallpaperRoundedCardCell
         // MARK: - PopUp Transition Function
-        let section = glidingView.expandedItemIndex
-        let item = indexPath.item
-        let popUpViewController = PopUpViewController()
-        
-        guard let cell = collectionView.cellForItem(at: indexPath) else {
-            present(popUpViewController, animated: true, completion: nil)
-            return
-        }
+        let popUpVC = self.storyboard?.instantiateViewController(withIdentifier: "PopUpViewController") as! PopUpViewController
+        popUpVC.selectedIndex = indexPath
+        popUpVC.selectedImage = cell.imageView.image
+        popUpVC.wallpaper = allWallpapersAt(section: glidingView.expandedItemIndex)
+        // popUpVC.placeholder =
+        present(popUpVC, animated: true, completion: nil)
         
         let cellFrame = view.convert(cell.frame, from: glidingView)
         let appStoreAnimator = AppStoreAnimator(initialFrame: cellFrame)
         appStoreAnimator.onReady = { cell.isHidden = true}
         appStoreAnimator.onDismissed = { cell.isHidden = false }
-        appStoreAnimator.auxAnimation = {popUpViewController.layout(presenting: $0)}
+        appStoreAnimator.auxAnimation = {popUpVC.layout(presenting: $0)}
         
         modalTransitionDelegate.set(animator: appStoreAnimator, for: .present)
         modalTransitionDelegate.set(animator: appStoreAnimator, for: .dismiss)
-        modalTransitionDelegate.wire(viewController: popUpViewController, with: .regular(.fromTop))
+        modalTransitionDelegate.wire(viewController: popUpVC, with: .regular(.fromTop))
         
-        popUpViewController.transitioningDelegate = modalTransitionDelegate
-        popUpViewController.modalPresentationStyle = .custom
+        popUpVC.transitioningDelegate = modalTransitionDelegate
+        popUpVC.modalPresentationStyle = .custom
         
-        present(popUpViewController, animated: true, completion: nil)
+        present(popUpVC, animated: true, completion: nil)
         animatorInfo = AppStoreAnimatorInfo(animator: appStoreAnimator, index: indexPath)
         
     }
@@ -324,16 +348,15 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
 extension FeedViewController: GlidingCollectionDatasource {
     
     func numberOfItems(in collection: GlidingCollection) -> Int {
-        return sportsCategory.count
+        return wallpaperCategories.count
     }
     
     func glidingCollection(_ collection: GlidingCollection, itemAtIndex index: Int) -> String {
-        return sportsCategory[index].catName
+        return wallpaperCategories[index].catName
     }
 }
 
 // MARK: - Instructions Extension Functions
-
 extension FeedViewController: CoachMarksControllerDelegate, CoachMarksControllerDataSource {
     
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {

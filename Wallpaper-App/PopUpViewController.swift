@@ -14,6 +14,10 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var wallpaperPopImage: UIImageView!
     @IBOutlet weak var wallpaperDescLbl: UILabel!
     
+    var wallpaper: [WallpaperCategory] = []
+    var selectedIndex: IndexPath!
+    var selectedImage: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         cardView.delegate = self
@@ -30,16 +34,6 @@ class PopUpViewController: UIViewController {
         backView.layer.cornerRadius = cardLayout.cornerRadius
         cardView.set(layout: cardLayout)
     }
-}
-
-// MARK: Downloading Wallpaper for PopUp
-var wallpaper: Wallpaper! {
-    didSet {
-        // Wallpaper Info sent from CollectionViewCell
-        // wallpaperPopImage.layer.cornerRadius = 14.0
-        // wallpaperDescLbl.text = wallpaper.wallpaperDesc
-        
-  }
 }
 
 extension PopUpViewController: CardViewDelegate {
