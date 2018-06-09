@@ -51,9 +51,9 @@ class LoginViewController: UIViewController {
             attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
             
             let titleText = "User Not Registered"
-            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.systemFont(ofSize: 20), color: UIColor.darkGray))
+            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.regularFont17, color: UIColor.darkGray))
             let descText = "No email and/or password entered, please enter an email or password and login"
-            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.regularFont15, color: UIColor.darkGray))
             let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
             let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
             let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
@@ -77,9 +77,9 @@ class LoginViewController: UIViewController {
                     attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
                     
                     let titleText = "Incorrect Email/Password"
-                    let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.systemFont(ofSize: 20), color: UIColor.darkGray))
+                    let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.regularFont17, color: UIColor.darkGray))
                     let descText = "You have entered the incorrect email/password. Please enter your email/password and try again"
-                    let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+                    let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.regularFont15, color: UIColor.darkGray))
                     let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
                     let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
                     let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)

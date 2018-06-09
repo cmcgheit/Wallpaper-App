@@ -13,21 +13,21 @@ class AuthService {
     
     // MARK: - Create/Register New User
     func registerUser(withEmail email: String, andPassword password: String, userCreationComplete: @escaping (_ status: Bool, _ error: Error?) -> ()) {
-            Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                
-                // MARK: - Register User/Send Email Verification
-                Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
-                    if (error != nil) {
-                        print(error!)
-                    }
-                })
-                guard let user = user else {
-                    userCreationComplete(false, error)
-                    return
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            
+            // MARK: - Register User/Send Email Verification
+            Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                if (error != nil) {
+                    print(error!)
                 }
-                //            let userData = ["accountType": user.providerID, "email": user.email!, "age": age] as [String: Any] // Register user with data, puts in Dictionary
-                //            DataService.instance.createDBUser(uid: user.uid, userData: userData) //.setValue(userData)
-                userCreationComplete(true, nil)
+            })
+            guard let user = user else {
+                userCreationComplete(false, error)
+                return
+            }
+            let userData = ["accountType": user.user.providerID, "email": user.user.email!] as [String: Any] // Register user with data, puts in Dictionary
+            FIRService.createDBUser(uid: user.user.uid, userData: userData)
+            userCreationComplete(true, nil)
         }
     }
     

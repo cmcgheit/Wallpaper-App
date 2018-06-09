@@ -5,12 +5,12 @@ import UIKit
 import Firebase
 import SwiftyJSON
 
+var wallpaperDataRef = databaseRef.child("wallpapers")
+var wallpaperUserRef = databaseRef.child("users")
+
 var selectedImage: UIImage?
 
 class FIRService: NSObject {
-    
-    var wallpaperDataRef = databaseRef.child("wallpapers")
-    var wallpaperUserRef = databaseRef.child("users")
     
     var artCatStorRef = storageRef.child("images").child("art")
     var musicCatStorRef = storageRef.child("images").child("music")
@@ -24,6 +24,10 @@ class FIRService: NSObject {
     
     static var instance: FIRService {
         return _instance
+    }
+    
+    public static func createDBUser(uid: String, userData: Dictionary<String, Any>) {
+        wallpaperUserRef.child(uid).updateChildValues(userData)
     }
     
     // MARK: - Fetching Posts for User uid (when have specific user wallpapers feed)

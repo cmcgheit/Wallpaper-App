@@ -32,7 +32,7 @@ class SplashViewController: UIViewController {
             self.loading(.stop)
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let feedVC = storyboard.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
-            UIApplication.topViewController()?.present(feedVC, animated: true, completion: nil)
+            self.present(feedVC, animated: true, completion: nil)
             self.splashTimer.invalidate()
         } else {
             UserDefaults.standard.setIsLoggedIn(value: false)
@@ -40,7 +40,7 @@ class SplashViewController: UIViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
                 as! LoginViewController
-            UIApplication.topViewController()?.present(loginVC, animated: true, completion: nil)
+            self.present(loginVC, animated: true, completion: nil)
             self.splashTimer.invalidate()
         }
     }

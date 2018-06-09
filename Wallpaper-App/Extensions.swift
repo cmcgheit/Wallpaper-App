@@ -40,40 +40,63 @@ extension UIViewController {
     }
 }
 
-// Top View Controller Ext
-extension UIApplication {
-    class func topViewController(viewController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
-        if let nav = viewController as? UINavigationController {
-            return topViewController(viewController: nav.visibleViewController)
-        }
-        if let tab = viewController as? UITabBarController {
-            if let selected = tab.selectedViewController {
-                return topViewController(viewController: selected)
+// UIWindow Ext
+public extension UIWindow {
+    public var visibleViewController: UIViewController? {
+        return UIWindow.getVisibleViewControllerFrom(viewC: self.rootViewController)
+    }
+    
+    public static func getVisibleViewControllerFrom(viewC: UIViewController?) -> UIViewController? {
+        if let naviVC = viewC as? UINavigationController {
+            return UIWindow.getVisibleViewControllerFrom(viewC: naviVC.visibleViewController)
+        } else if let tabbarVC = viewC as? UITabBarController {
+            return UIWindow.getVisibleViewControllerFrom(viewC: tabbarVC.selectedViewController)
+        } else {
+            if let presentedVC = viewC?.presentedViewController {
+                return UIWindow.getVisibleViewControllerFrom(viewC: presentedVC)
+            } else {
+                return viewC
             }
         }
-        if let presented = viewController?.presentedViewController {
-            return topViewController(viewController: presented)
-        }
-        return viewController
     }
 }
 
 // Font
 enum FontName: String {
-    case regular = "GillsSans"
-    case light = "GillsSans-Light"
-    case bold = "GillSans-Bold"
-    case italic = "GillsSans-Italic"
-    case semibold = "GillsSans-SemiBold"
-    case semiBoldItalic = "GillsSans-SemiBoldItalic"
-}
-
-enum FontSize: CGFloat {
-    case size = 15
+    case regular = "GillsSans.ttf"
+    case light = "GillsSans-Light.ttf"
+    case bold = "GillSans-Bold.ttf"
+    case italic = "GillsSans-Italic.ttf"
+    case semibold = "GillsSans-SemiBold.ttf"
+    case semiBoldItalic = "GillsSans-SemiBoldItalic.ttf"
 }
 
 extension UIFont {
     class var regularFont15: UIFont {
-        return UIFont(name: FontName.regular.rawValue, size: FontSize.size.rawValue)!
+        return UIFont(name: FontName.regular.rawValue, size: 15)!
+    }
+    
+    class var regularFont17: UIFont {
+        return UIFont(name: FontName.regular.rawValue, size: 17)!
+    }
+    
+    class var regularFont20: UIFont {
+        return UIFont(name: FontName.regular.rawValue, size: 20)!
+    }
+    
+    class var boldFont20: UIFont {
+        return UIFont(name: FontName.regular.rawValue, size: 20)!
+    }
+    
+    class var boldItalic17: UIFont {
+        return UIFont(name: FontName.regular.rawValue, size: 17)!
+    }
+    
+    class var semiBold17: UIFont {
+        return UIFont(name: FontName.regular.rawValue, size: 17)!
+    }
+    
+    class var semiBoldItalic20: UIFont {
+        return UIFont(name: FontName.regular.rawValue, size: 20)!
     }
 }

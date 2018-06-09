@@ -17,10 +17,13 @@ internal class WallpaperRoundedCardCell: UICollectionViewCell {
         //self.wallpaper = wallpaper
         imageView.layer.cornerRadius = 14.0
         contentView.clipsToBounds = true
-        layer.shadowOffset = GlidingConfig.shared.cardShadowOffset
-        layer.shadowColor = GlidingConfig.shared.cardShadowColor.cgColor
-        layer.shadowOpacity = GlidingConfig.shared.cardShadowOpacity
-        layer.shadowRadius = GlidingConfig.shared.cardShadowRadius
+        var config = GlidingConfig.shared
+        layer.shadowOffset = config.cardShadowOffset
+        layer.shadowColor = config.cardShadowColor.cgColor
+        layer.shadowOpacity = config.cardShadowOpacity
+        layer.shadowRadius = config.cardShadowRadius
+        config.buttonsFont = UIFont.regularFont15
+        config.inactiveButtonsColor = config.activeButtonColor
         
         if let url = URL(string: wallpaper.wallpaperURL) {
             imageView.kf.setImage(with: url) // add placeholder?
