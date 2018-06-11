@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        // Override System Font
+        UIFont.overrideInitialize()
+        
         // Splash
 //        self.window = UIWindow(frame: UIScreen.main.bounds)
 //        let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -62,9 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setupGlidingCollection() {
         var config = GlidingConfig.shared
-        config.buttonsFont = UIFont.boldSystemFont(ofSize: 22) // Setting font for heading category titles?
+        config.buttonsFont = UIFont.gillsRegFont(ofSize: 30) // Category text
+        config.activeButtonColor = UIColor.darkGray
+        GlidingConfig.shared.inactiveButtonsColor = config.activeButtonColor
+        GlidingConfig.shared.cardsSize = CGSize(width: round(UIScreen.main.bounds.width * 0.7), height: round(UIScreen.main.bounds.height * 0.45))
         config.inactiveButtonsColor = config.activeButtonColor
-        GlidingConfig.shared = config
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

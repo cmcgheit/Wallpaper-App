@@ -18,31 +18,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="280" height="500"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxf-5a-29X">
-                        <rect key="frame" x="20" y="20" width="240" height="460"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DEM-zG-CDg">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="460"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="DEM-zG-CDg" secondAttribute="bottom" id="1rE-Ge-oon"/>
-                            <constraint firstItem="DEM-zG-CDg" firstAttribute="top" secondItem="vxf-5a-29X" secondAttribute="top" id="9f1-fH-CE0"/>
-                            <constraint firstAttribute="trailing" secondItem="DEM-zG-CDg" secondAttribute="trailing" id="jpv-bD-ERK"/>
-                            <constraint firstItem="DEM-zG-CDg" firstAttribute="leading" secondItem="vxf-5a-29X" secondAttribute="leading" id="zTg-6i-7dq"/>
-                        </constraints>
-                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DEM-zG-CDg">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="500"/>
+                    </imageView>
                 </subviews>
             </view>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="vxf-5a-29X" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="AFi-g6-euj"/>
-                <constraint firstAttribute="trailing" secondItem="vxf-5a-29X" secondAttribute="trailing" constant="20" id="Opi-UE-xyf"/>
-                <constraint firstItem="vxf-5a-29X" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="SQj-Tg-hMj"/>
-                <constraint firstAttribute="bottom" secondItem="vxf-5a-29X" secondAttribute="bottom" constant="20" id="UHt-s9-vki"/>
+                <constraint firstItem="DEM-zG-CDg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="HyO-TK-43K"/>
+                <constraint firstAttribute="bottom" secondItem="DEM-zG-CDg" secondAttribute="bottom" id="JGK-yK-1vT"/>
+                <constraint firstAttribute="trailing" secondItem="DEM-zG-CDg" secondAttribute="trailing" id="QXt-ur-2Ok"/>
+                <constraint firstItem="DEM-zG-CDg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xhM-lT-3zm"/>
             </constraints>
             <connections>
                 <outlet property="imageView" destination="DEM-zG-CDg" id="uWI-sf-8sc"/>

@@ -16,22 +16,26 @@ class FeedViewController: UIViewController {
     
     @IBOutlet var glidingView: GlidingCollection!
     @IBOutlet weak var uploadBtn: UIButton!
-    @IBOutlet weak var vibeBlurView: UIVisualEffectView!
+//    @IBOutlet weak var vibeBlurView: UIVisualEffectView!
     @IBOutlet weak var signOutBtn: UIButton!
     
     var handle: AuthStateDidChangeListenerHandle?
     var bannerView: GADBannerView!
     fileprivate var collectionView: UICollectionView!
-    var effect: UIVisualEffect!
     
     private var modalTransitionDelegate = ModalTransitionDelegate()
     private var animatorInfo: AppStoreAnimatorInfo?
     
     var wallpaperCategories = [WallpaperCategories]() //all
-    var wallpaperSections = ["Art", "Sports", "Music"]
+    var wallpaperSections = ["Art", "Music", "Sports"]
     var sportsCategory = [WallpaperCategory]()
     var musicCategory = [WallpaperCategory]()
     var artCategory = [WallpaperCategory]()
+    
+    // Placeholders
+    let artPlaceholder = UIImage(named: "placeholder-image")
+    let musicPlaceholder = UIImage(named: "placeholder-image")
+    let sportsPlaceholder = UIImage(named: "placeholder-image")
     
     let instructionsController = CoachMarksController()
     
@@ -47,16 +51,9 @@ class FeedViewController: UIViewController {
         // MARK: - Update feed notification
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
         
-        // MARK: - Setup Visual Effect, no blur when app starts
-        effect = vibeBlurView.effect
-        vibeBlurView.effect = nil
-        
         // MARK: - Double Tap Gesture to close PopUpView
         let closeTapGesture = UITapGestureRecognizer(target: self, action: #selector(FeedViewController.backgroundTapped))
         closeTapGesture.numberOfTapsRequired = 2
-        
-        vibeBlurView.isUserInteractionEnabled = true
-        vibeBlurView.addGestureRecognizer(closeTapGesture) // tap vibeBlurView (background) to dismiss PopUpView
         
         //  MARK: - Admob Banner Properties
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
@@ -227,9 +224,9 @@ class FeedViewController: UIViewController {
             attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
             
             let titleText = "Signed Out Successfully"
-            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.regularFont17, color: UIColor.darkGray))
-            let descText = "You have signed out of Wall Variety successfully. Sign back in from the Login Screen"
-            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.regularFont15, color: UIColor.darkGray))
+            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.gillsLightFont(ofSize: 20), color: UIColor.darkGray))
+            let descText = "You have signed out of Wall Variety successfully"
+            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.gillsLightFont(ofSize: 17), color: UIColor.darkGray))
             let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
             let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
             let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
@@ -247,9 +244,9 @@ class FeedViewController: UIViewController {
             attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
             
             let titleText = "Problem Signing Out"
-            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.regularFont17, color: UIColor.darkGray))
-            let descText = "Please check that you have signed in successfully"
-            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.regularFont15, color: UIColor.darkGray))
+            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.gillsLightFont(ofSize: 20), color: UIColor.darkGray))
+            let descText = "Please check that you have entered the correct email or password"
+            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.gillsLightFont(ofSize: 17), color: UIColor.darkGray))
             let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
             let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
             let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
@@ -287,6 +284,27 @@ class FeedViewController: UIViewController {
             return (musicCategory[index])
         } else {
             return (sportsCategory[index])
+        }
+    }
+    
+    // Set image as placeholder, best when can place individual placeholder images for each category
+    func placeholderFor(section: Int) -> UIImage {
+        if section == 0 {
+            return artPlaceholder!
+        } else if section == 1 {
+            return musicPlaceholder!
+        } else {
+            return sportsPlaceholder!
+        }
+    }
+    
+    func wallpaperFor(section: Int, atIndex index: Int) -> (wallpaper: WallpaperCategory, placeholder: UIImage) {
+        if section == 0 {
+            return (artCategory[index], placeholder: artPlaceholder!)
+        } else if section == 1 {
+            return (musicCategory[index], placeholder: musicPlaceholder!)
+        } else {
+            return (sportsCategory[index], placeholder: sportsPlaceholder!)
         }
     }
 }

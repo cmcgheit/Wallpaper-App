@@ -21,30 +21,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P5n-SR-yuM" customClass="GlidingCollection" customModule="GlidingCollection">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <subviews>
-                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cV2-S0-e7C">
-                                        <rect key="frame" x="0.0" y="70" width="375" height="597"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Oas-aF-NCX">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="597"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                        <blurEffect style="extraLight"/>
-                                    </visualEffectView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.29828664660453796" green="0.63011717796325684" blue="0.74322926998138428" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="tintColor" red="0.29828664659999998" green="0.630117178" blue="0.74322927000000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="cV2-S0-e7C" firstAttribute="leading" secondItem="P5n-SR-yuM" secondAttribute="leading" id="GMf-8q-Huh"/>
-                                    <constraint firstItem="cV2-S0-e7C" firstAttribute="top" secondItem="P5n-SR-yuM" secondAttribute="top" constant="70" id="ZNR-pP-mZU"/>
-                                    <constraint firstAttribute="trailing" secondItem="cV2-S0-e7C" secondAttribute="trailing" id="Zwi-eC-ZmO"/>
-                                    <constraint firstAttribute="bottom" secondItem="cV2-S0-e7C" secondAttribute="bottom" id="ipd-iz-Blh"/>
-                                </constraints>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-b4-UEY" customClass="GlidingCollection" customModule="GlidingCollection">
+                                <rect key="frame" x="0.0" y="67" width="375" height="600"/>
+                                <color key="backgroundColor" red="0.49803921568627452" green="0.76078431372549016" blue="0.76470588235294112" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tealarrowback" translatesAutoresizingMaskIntoConstraints="NO" id="AwP-uk-x4R">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-ye-yUT">
                                 <rect key="frame" x="331" y="30" width="34" height="34"/>
                                 <constraints>
@@ -71,28 +51,23 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.49803921569999998" green="0.76078431369999999" blue="0.76470588240000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="KWp-ye-yUT" secondAttribute="trailing" constant="10" id="469-p6-rsM"/>
-                            <constraint firstItem="AwP-uk-x4R" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="KzD-ov-Nut"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wn6-b4-UEY" secondAttribute="bottom" id="84a-Nr-Hb1"/>
                             <constraint firstItem="KWp-ye-yUT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="Laf-ek-Bmu"/>
-                            <constraint firstItem="P5n-SR-yuM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="RW3-7A-pvv"/>
                             <constraint firstItem="KWp-ye-yUT" firstAttribute="leading" secondItem="OQH-b3-jIB" secondAttribute="trailing" constant="251" id="TcS-Zx-Qqn"/>
-                            <constraint firstAttribute="trailing" secondItem="P5n-SR-yuM" secondAttribute="trailing" id="Tz6-bg-ykA"/>
                             <constraint firstItem="OQH-b3-jIB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="U1q-tS-ung"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="AwP-uk-x4R" secondAttribute="bottom" id="XAn-q9-b6o"/>
+                            <constraint firstAttribute="trailing" secondItem="wn6-b4-UEY" secondAttribute="trailing" id="dN6-lH-KPY"/>
                             <constraint firstItem="OQH-b3-jIB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="dj0-DB-IEM"/>
-                            <constraint firstItem="AwP-uk-x4R" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="kdh-ws-kHa"/>
-                            <constraint firstItem="P5n-SR-yuM" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="nDW-Fp-B8C"/>
-                            <constraint firstAttribute="trailing" secondItem="AwP-uk-x4R" secondAttribute="trailing" id="qPN-Fb-X82"/>
-                            <constraint firstItem="P5n-SR-yuM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tW9-Ze-9wu"/>
+                            <constraint firstItem="wn6-b4-UEY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vGn-Vz-8uQ"/>
+                            <constraint firstItem="wn6-b4-UEY" firstAttribute="top" secondItem="OQH-b3-jIB" secondAttribute="bottom" id="ynf-68-dG6"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="glidingView" destination="P5n-SR-yuM" id="SAD-xm-qQc"/>
+                        <outlet property="glidingView" destination="wn6-b4-UEY" id="aR0-g3-VEM"/>
                         <outlet property="signOutBtn" destination="OQH-b3-jIB" id="NPR-Di-EtX"/>
                         <outlet property="uploadBtn" destination="KWp-ye-yUT" id="nfh-lS-wSd"/>
-                        <outlet property="vibeBlurView" destination="cV2-S0-e7C" id="bEf-dg-65r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
