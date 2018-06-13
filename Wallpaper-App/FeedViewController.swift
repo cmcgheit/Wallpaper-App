@@ -3,6 +3,7 @@
 //  Created by C McGhee on 6/23/17.
 //  Copyright © 2017 C McGhee. All rights reserved.
 
+import Foundation
 import UIKit
 import Firebase
 import GlidingCollection
@@ -16,8 +17,8 @@ class FeedViewController: UIViewController {
     
     @IBOutlet var glidingView: GlidingCollection!
     @IBOutlet weak var uploadBtn: UIButton!
-//    @IBOutlet weak var vibeBlurView: UIVisualEffectView!
     @IBOutlet weak var signOutBtn: UIButton!
+    @IBOutlet weak var glidingIntView: UIView!
     
     var handle: AuthStateDidChangeListenerHandle?
     var bannerView: GADBannerView!
@@ -47,6 +48,8 @@ class FeedViewController: UIViewController {
         
         // Instructions
         self.instructionsController.dataSource = self
+        self.instructionsController.overlay.color = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
+        self.instructionsController.overlay.allowTap = true
         
         // MARK: - Update feed notification
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
@@ -145,10 +148,14 @@ class FeedViewController: UIViewController {
                 self.present(signUpVC, animated: true)
             }
         }
+        
+        self.instructionsController.start(on: self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         Auth.auth().removeStateDidChangeListener(handle!)
+        
+        self.instructionsController.stop(immediately: true)
     }
     
     @objc func handleUpdateFeed() {
@@ -218,7 +225,7 @@ class FeedViewController: UIViewController {
             UserDefaults.standard.setIsLoggedIn(value: false)
             // MARK: Floating Signout Indicator (Success)
             var attributes = EKAttributes.topFloat
-            attributes.entryBackground = .color(color: tealColor)
+            attributes.entryBackground = .color(color: UIColor.white)
             attributes.roundCorners = .all(radius: 10)
             attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
             attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
@@ -238,7 +245,7 @@ class FeedViewController: UIViewController {
         } else {
             // MARK: - Floating Signout Indicator (Error)
             var attributes = EKAttributes.topFloat
-            attributes.entryBackground = .color(color: tealColor)
+            attributes.entryBackground = .color(color: UIColor.white)
             attributes.roundCorners = .all(radius: 10)
             attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
             attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
@@ -366,7 +373,7 @@ extension FeedViewController: GlidingCollectionDatasource {
     }
     
     func glidingCollection(_ collection: GlidingCollection, itemAtIndex index: Int) -> String {
-        return wallpaperSections[index]
+        return "⚡ " + wallpaperSections[index]
     }
 }
 
@@ -374,21 +381,35 @@ extension FeedViewController: GlidingCollectionDatasource {
 extension FeedViewController: CoachMarksControllerDelegate, CoachMarksControllerDataSource {
     
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
-        let instructionsView = instructionsController.helper.makeDefaultCoachViews()
         
-        instructionsView.bodyView.hintLabel.text = "Test Instruction"
-        instructionsView.bodyView.nextLabel.text = "Got it!"
-        
-        return (bodyView: instructionsView.bodyView, arrowView: nil)
+        let instructionsView = instructionsController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
+    
+        switch (index) {
+        case 0:
+            instructionsView.bodyView.hintLabel.text = "Scroll through Wallpaper Categories here"
+            instructionsView.bodyView.nextLabel.text = "Got it!"
+        case 1:
+            instructionsView.bodyView.hintLabel.text = "Click to Edit Wallpapers here"
+            instructionsView.bodyView.nextLabel.text = "Got it!"
+        default: break
+        }
+        return (bodyView: instructionsView.bodyView, arrowView: instructionsView.arrowView)
     }
     
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
-        let instructionsView = UIView()
-        return instructionsController.helper.makeCoachMark(for: instructionsView)
+        // Set Instruction markers around UI Elements
+        switch (index) {
+        case 0:
+            return coachMarksController.helper.makeCoachMark(for: glidingIntView)
+        case 1:
+            return coachMarksController.helper.makeCoachMark(for: uploadBtn)
+        default:
+            return coachMarksController.helper.makeCoachMark()
+        }
     }
     
     func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
-        return 1
+        return 2
     }
 }
 

@@ -20,7 +20,7 @@ class SignUpViewController: UIViewController {
         if email.isEmpty || pass.isEmpty {
             // MARK: - No Email/Password entered Alert (not registered)
             var attributes = EKAttributes.topFloat
-            attributes.entryBackground = .color(color: tealColor)
+            attributes.entryBackground = .color(color: UIColor.white)
             attributes.roundCorners = .all(radius: 10)
             attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
             attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
@@ -44,7 +44,7 @@ class SignUpViewController: UIViewController {
                     })
                 } else {
                     var attributes = EKAttributes.topFloat
-                    attributes.entryBackground = .color(color: tealColor)
+                    attributes.entryBackground = .color(color: UIColor.white)
                     attributes.roundCorners = .all(radius: 10)
                     attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
                     attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))

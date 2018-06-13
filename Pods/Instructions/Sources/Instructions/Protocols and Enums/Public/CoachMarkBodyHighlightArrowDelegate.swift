@@ -1,4 +1,4 @@
-// Instructions.swift
+// CoachMarkBodyHighlightArrowDelegate.swift
 //
 // Copyright (c) 2015, 2016 Frédéric Maquin <fred@ephread.com>
 //
@@ -22,9 +22,14 @@
 
 import UIKit
 
-struct Constants {
-    static let overlayFadeAnimationDuration: TimeInterval = 0.3
-    static let coachMarkFadeAnimationDuration: TimeInterval = 0.3
+/// Delegate the hilight mecanism of the arrow. This protocol is
+/// useful in case the whole body itself is the active control and
+/// we want the arrow to looks like it is part of this control.
+public protocol CoachMarkBodyHighlightArrowDelegate: class {
 
-    static let overlayColor = #colorLiteral(red: 0.9086670876, green: 0.908688426, blue: 0.9086769819, alpha: 0.65)
+    /// Set wethe ror not the arrow should get in its
+    /// highlighted state.
+    ///
+    /// - Parameters isHighlighted: `true` if the arrow should be highlighted, `false` otherwise.
+    func highlightArrow(_ highlighted: Bool)
 }

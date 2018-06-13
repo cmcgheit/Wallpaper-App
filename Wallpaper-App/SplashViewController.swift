@@ -15,7 +15,7 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         setupTwinkle()
         self.loading(.start) // show loading indicator when showing twinkle
-        splashTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(SplashViewController.checkIfLoggedIn), userInfo: nil, repeats: false)
+        splashTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(SplashViewController.checkIfLoggedIn), userInfo: nil, repeats: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {

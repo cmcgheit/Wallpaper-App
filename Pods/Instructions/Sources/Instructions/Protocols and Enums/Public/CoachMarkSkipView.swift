@@ -1,4 +1,4 @@
-// CoachMarkBodyHighlightArrowDelegate.swift
+// CoachMarkSkipView.swift
 //
 // Copyright (c) 2015, 2016 Frédéric Maquin <fred@ephread.com>
 //
@@ -22,14 +22,21 @@
 
 import UIKit
 
-/// Delegate the hilight mecanism of the arrow. This protocol is
-/// useful in case the whole body itself is the active control and
-/// we want the arrow to looks like it is part of this control.
-public protocol CoachMarkBodyHighlightArrowDelegate : class {
+/// A protocol to which all the "skip views" must conform.
+public protocol CoachMarkSkipView: class {
+    /// The control that will trigger the stop, in the display flow.
+    var skipControl: UIControl? { get }
+    var asView: UIView? { get }
+}
 
-    /// Set wethe ror not the arrow should get in its
-    /// highlighted state.
-    ///
-    /// - Parameters isHighlighted: `true` if the arrow should be highlighted, `false` otherwise.
-    func highlightArrow(_ highlighted: Bool)
+public extension CoachMarkSkipView {
+    public var skipControl: UIControl? {
+        return nil
+    }
+}
+
+public extension CoachMarkSkipView where Self: UIView {
+    public var asView: UIView? {
+        return self
+    }
 }

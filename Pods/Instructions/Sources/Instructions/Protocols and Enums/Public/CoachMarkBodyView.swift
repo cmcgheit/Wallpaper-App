@@ -1,4 +1,4 @@
-// Instructions.swift
+// CoachMarkBodyView.swift
 //
 // Copyright (c) 2015, 2016 Frédéric Maquin <fred@ephread.com>
 //
@@ -22,9 +22,17 @@
 
 import UIKit
 
-struct Constants {
-    static let overlayFadeAnimationDuration: TimeInterval = 0.3
-    static let coachMarkFadeAnimationDuration: TimeInterval = 0.3
+/// A protocol to which all the "body views" of a coach mark must conform.
+public protocol CoachMarkBodyView: class {
+    /// The control that will trigger the change between the current coach mark
+    /// and the next one.
+    var nextControl: UIControl? { get }
 
-    static let overlayColor = #colorLiteral(red: 0.9086670876, green: 0.908688426, blue: 0.9086769819, alpha: 0.65)
+    /// A delegate to call, when the arrow view to mirror the current highlight
+    /// state of the body view. This is useful in case the entier view is actually a `UIControl`.
+    ///
+    /// The `CoachMarkView`, of which the current view must be
+    /// part, will automatically set itself as the delegate and will take care
+    /// of fowarding the state to the arrow view.
+    var highlightArrowDelegate: CoachMarkBodyHighlightArrowDelegate? { get set }
 }

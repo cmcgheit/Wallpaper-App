@@ -1,6 +1,6 @@
-// CoachMarkBodyView.swift
+// PauseStyle.swift
 //
-// Copyright (c) 2015, 2016 Frédéric Maquin <fred@ephread.com>
+// Copyright (c) 2018 Frédéric Maquin <fred@ephread.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,20 +19,8 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+import Foundation
 
-import UIKit
-
-/// A protocol to which all the "body views" of a coach mark must conform.
-public protocol CoachMarkBodyView : class {
-    /// The control that will trigger the change between the current coach mark
-    /// and the next one.
-    var nextControl: UIControl? { get }
-
-    /// A delegate to call, when the arrow view to mirror the current highlight
-    /// state of the body view. This is useful in case the entier view is actually a `UIControl`.
-    ///
-    /// The `CoachMarkView`, of which the current view must be
-    /// part, will automatically set itself as the delegate and will take care
-    /// of fowarding the state to the arrow view.
-    var highlightArrowDelegate: CoachMarkBodyHighlightArrowDelegate? { get set }
+public enum PauseStyle {
+    case hideInstructions, hideOverlay, hideNothing
 }

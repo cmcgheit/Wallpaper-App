@@ -1,6 +1,6 @@
-// CoachMarkArrowView.swift
+// CoachMarksViewController+Regular.swift
 //
-// Copyright (c) 2015, 2016 Frédéric Maquin <fred@ephread.com>
+// Copyright (c) 2018 Frédéric Maquin <fred@ephread.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,10 +22,29 @@
 
 import UIKit
 
-/// A protocol to which all the "arrow views" of a coach mark must conform.
-public protocol CoachMarkArrowView : class {
-    /// A method to change the arrow highlighted state.
-    /// If you feel the arrow should mirror the state of the "body view",
-    /// You will most likely change the background color of the view here.
-    var isHighlighted: Bool { set get }
+// MARK: - Extension: Controller Containment
+extension CoachMarksViewController {
+    /// Will attach the controller as the rootViewController of a given window. This will
+    /// allow the coach mark controller to respond to size changes and present itself
+    /// above evrything.
+    ///
+    /// - Parameter window: the window holding the controller
+    func attach(to window: UIWindow, of viewController: UIViewController) {
+        window.windowLevel = overlayManager.windowLevel
+
+        retrieveConfig(from: viewController)
+
+        registerForSystemEventChanges()
+        addOverlayView()
+
+        window.rootViewController = self
+        window.isHidden = false
+    }
+
+    /// Detach the controller from its parent view controller.
+    func detachFromWindow() {
+        deregisterFromSystemEventChanges()
+        self.view.window?.isHidden = true
+        self.view.window?.rootViewController = nil
+    }
 }

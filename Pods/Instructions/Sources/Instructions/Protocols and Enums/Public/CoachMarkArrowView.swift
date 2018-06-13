@@ -1,4 +1,4 @@
-// Instructions.swift
+// CoachMarkArrowView.swift
 //
 // Copyright (c) 2015, 2016 Frédéric Maquin <fred@ephread.com>
 //
@@ -22,9 +22,10 @@
 
 import UIKit
 
-struct Constants {
-    static let overlayFadeAnimationDuration: TimeInterval = 0.3
-    static let coachMarkFadeAnimationDuration: TimeInterval = 0.3
-
-    static let overlayColor = #colorLiteral(red: 0.9086670876, green: 0.908688426, blue: 0.9086769819, alpha: 0.65)
+/// A protocol to which all the "arrow views" of a coach mark must conform.
+public protocol CoachMarkArrowView: class {
+    /// A method to change the arrow highlighted state.
+    /// If you feel the arrow should mirror the state of the "body view",
+    /// You will most likely change the background color of the view here.
+    var isHighlighted: Bool { get set }
 }

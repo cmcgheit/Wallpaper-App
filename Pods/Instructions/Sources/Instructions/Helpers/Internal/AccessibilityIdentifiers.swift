@@ -1,6 +1,6 @@
-// CoachMarkSkipView.swift
+// AccessibilityIdentifiers
 //
-// Copyright (c) 2015, 2016 Frédéric Maquin <fred@ephread.com>
+// Copyright (c) 2018 Frédéric Maquin <fred@ephread.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,23 +20,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import UIKit
+import Foundation
 
-/// A protocol to which all the "skip views" must conform.
-public protocol CoachMarkSkipView : class {
-    /// The control that will trigger the stop, in the display flow.
-    var skipControl: UIControl? { get }
-    var asView: UIView? { get }
-}
+struct AccessibilityIdentifiers {
+    static let coachMarkNext = "AccessibilityIdentifiers.coachMarkNext"
+    static let coachMarkHint = "AccessibilityIdentifiers.coachMarkHint"
+    static let coachMarkBody = "AccessibilityIdentifiers.coachMarkBody"
 
-public extension CoachMarkSkipView {
-    public var skipControl: UIControl? {
-        return nil
-    }
-}
-
-public extension CoachMarkSkipView where Self: UIView {
-    public var asView: UIView? {
-        return self
-    }
+    static let skipButton = "AccessibilityIdentifiers.skipButton"
+    static let overlayView = "AccessibilityIdentifiers.overlayView"
 }
