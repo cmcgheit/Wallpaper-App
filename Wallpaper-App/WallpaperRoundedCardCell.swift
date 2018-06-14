@@ -8,10 +8,12 @@ import UIKit
 import Firebase
 import GlidingCollection
 import Kingfisher
+import EasyTransitions
 
 internal class WallpaperRoundedCardCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var cardView: CardView!
     
     var wallpaper: WallpaperCategory!
     
@@ -20,7 +22,7 @@ internal class WallpaperRoundedCardCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 14.0
         contentView.clipsToBounds = true
         
-        var config = GlidingConfig.shared
+        let config = GlidingConfig.shared
         imageView.layer.shadowOffset = config.cardShadowOffset
         imageView.layer.shadowColor = config.cardShadowColor.cgColor
         imageView.layer.shadowOpacity = config.cardShadowOpacity
@@ -29,5 +31,10 @@ internal class WallpaperRoundedCardCell: UICollectionViewCell {
         if let url = URL(string: wallpaper.wallpaperURL) {
             imageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))
         }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        set(shadowStyle: .todayCard)
     }
 }

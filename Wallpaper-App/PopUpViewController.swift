@@ -1,8 +1,6 @@
 //PopUpViewController.swift, coded with love by C McGhee
 
-import Foundation
 import UIKit
-import Firebase
 import EasyTransitions
 
 class PopUpViewController: UIViewController {
@@ -12,7 +10,7 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var backView: UIView!
     
     @IBOutlet weak var wallpaperPopImage: UIImageView!
-    @IBOutlet weak var wallpaperDescLbl: UILabel!
+    @IBOutlet weak var wallpaperDescLbl: PaddedLabel!
     
     var wallpaper: [WallpaperCategory] = []
     var selectedIndex: IndexPath!
@@ -32,7 +30,7 @@ class PopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         cardView.delegate = self
-        // backView.set(shadowStyle: .todayCard)
+        backView.set(shadowStyle: .todayCard)
         layout(presenting: false)
         if #available(iOS 11, *) {
             contentView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]

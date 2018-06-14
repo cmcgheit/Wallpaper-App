@@ -33,7 +33,6 @@
 		D8E93BC220B8B63200CE0AD8 /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB520B8B63000CE0AD8 /* CircularImageView.swift */; };
 		D8E93BC320B8B63200CE0AD8 /* UICollectionView+OrderedCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB620B8B63100CE0AD8 /* UICollectionView+OrderedCells.swift */; };
 		D8E93BC420B8B63200CE0AD8 /* UIWindow+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB720B8B63100CE0AD8 /* UIWindow+SafeArea.swift */; };
-		D8E93BC520B8B63200CE0AD8 /* PopUpViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB820B8B63100CE0AD8 /* PopUpViewCell.swift */; };
 		D8E93BC620B8B63200CE0AD8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB920B8B63100CE0AD8 /* CardView.swift */; };
 		D8E93BC720B8B63200CE0AD8 /* AppStoreAnimatorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BBA20B8B63100CE0AD8 /* AppStoreAnimatorInfo.swift */; };
 		D8E93BC820B8B63200CE0AD8 /* NSLayoutConstraint+Multiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BBB20B8B63100CE0AD8 /* NSLayoutConstraint+Multiplier.swift */; };
@@ -47,6 +46,10 @@
 		D8E93BEF20C1AC7300CE0AD8 /* WallpaperImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BEE20C1AC7300CE0AD8 /* WallpaperImageCache.swift */; };
 		D8E93BF120C3257800CE0AD8 /* CustomLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BF020C3257800CE0AD8 /* CustomLoadingView.swift */; };
 		D8E93BF320C32AC000CE0AD8 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BF220C32AC000CE0AD8 /* SplashViewController.swift */; };
+		D8FC5D8520D2BA2B00FA632F /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8FC5D8420D2BA2B00FA632F /* PopUpViewController.xib */; };
+		D8FC5D8720D2C89500FA632F /* ShadowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC5D8620D2C89500FA632F /* ShadowStyle.swift */; };
+		D8FC5D8920D2C9FA00FA632F /* UIView+ShadowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC5D8820D2C9FA00FA632F /* UIView+ShadowStyle.swift */; };
+		D8FC5D8B20D2CBDB00FA632F /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC5D8A20D2CBDB00FA632F /* PaddedLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,7 +80,6 @@
 		D8E93BB520B8B63000CE0AD8 /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularImageView.swift; path = "Wallpaper-App/CircularImageView.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93BB620B8B63100CE0AD8 /* UICollectionView+OrderedCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UICollectionView+OrderedCells.swift"; path = "Wallpaper-App/UICollectionView+OrderedCells.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93BB720B8B63100CE0AD8 /* UIWindow+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIWindow+SafeArea.swift"; path = "Wallpaper-App/UIWindow+SafeArea.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93BB820B8B63100CE0AD8 /* PopUpViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpViewCell.swift; path = "Wallpaper-App/PopUpViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93BB920B8B63100CE0AD8 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = "Wallpaper-App/CardView.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93BBA20B8B63100CE0AD8 /* AppStoreAnimatorInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppStoreAnimatorInfo.swift; path = "Wallpaper-App/AppStoreAnimatorInfo.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93BBB20B8B63100CE0AD8 /* NSLayoutConstraint+Multiplier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSLayoutConstraint+Multiplier.swift"; path = "Wallpaper-App/NSLayoutConstraint+Multiplier.swift"; sourceTree = SOURCE_ROOT; };
@@ -92,6 +94,10 @@
 		D8E93BEE20C1AC7300CE0AD8 /* WallpaperImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperImageCache.swift; sourceTree = "<group>"; };
 		D8E93BF020C3257800CE0AD8 /* CustomLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoadingView.swift; sourceTree = "<group>"; };
 		D8E93BF220C32AC000CE0AD8 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		D8FC5D8420D2BA2B00FA632F /* PopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
+		D8FC5D8620D2C89500FA632F /* ShadowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowStyle.swift; sourceTree = "<group>"; };
+		D8FC5D8820D2C9FA00FA632F /* UIView+ShadowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ShadowStyle.swift"; sourceTree = "<group>"; };
+		D8FC5D8A20D2CBDB00FA632F /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		DA366805E8777B768E8728F2 /* Pods-Wallpaper-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.debug.xcconfig"; sourceTree = "<group>"; };
 		F3976466CEB472FD86CD9EB5 /* Pods-Wallpaper-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,6 +177,7 @@
 			children = (
 				D8E93B9A20B8B0B000CE0AD8 /* FeedViewController.swift */,
 				D8E93B9C20B8B0B100CE0AD8 /* PopUpViewController.swift */,
+				D8FC5D8420D2BA2B00FA632F /* PopUpViewController.xib */,
 				D8E93B9B20B8B0B100CE0AD8 /* LoginViewController.swift */,
 				D8E93B9920B8B0B000CE0AD8 /* SignUpViewController.swift */,
 				D8E93BF220C32AC000CE0AD8 /* SplashViewController.swift */,
@@ -187,6 +194,7 @@
 				D8E93B8F20B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift */,
 				D8E93B9020B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib */,
 				D8E93BF020C3257800CE0AD8 /* CustomLoadingView.swift */,
+				D8FC5D8A20D2CBDB00FA632F /* PaddedLabel.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -229,11 +237,12 @@
 				D8E93BB120B8B63000CE0AD8 /* FunctionalEnumerated.swift */,
 				D8E93BBC20B8B63200CE0AD8 /* NibLoadbleView.swift */,
 				D8E93BBB20B8B63100CE0AD8 /* NSLayoutConstraint+Multiplier.swift */,
-				D8E93BB820B8B63100CE0AD8 /* PopUpViewCell.swift */,
 				D8E93BB320B8B63000CE0AD8 /* ReusableCells.swift */,
 				D8E93BB020B8B63000CE0AD8 /* RoundCornersButton.swift */,
 				D8E93BB620B8B63100CE0AD8 /* UICollectionView+OrderedCells.swift */,
 				D8E93BB720B8B63100CE0AD8 /* UIWindow+SafeArea.swift */,
+				D8FC5D8620D2C89500FA632F /* ShadowStyle.swift */,
+				D8FC5D8820D2C9FA00FA632F /* UIView+ShadowStyle.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -305,6 +314,7 @@
 				D8E93BDF20BDB20E00CE0AD8 /* Main.storyboard in Resources */,
 				D8E93B9520B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib in Resources */,
 				D8E93BE220BDB22200CE0AD8 /* LaunchScreen.storyboard in Resources */,
+				D8FC5D8520D2BA2B00FA632F /* PopUpViewController.xib in Resources */,
 				D8E93BA220B8B0C100CE0AD8 /* Assets.xcassets in Resources */,
 				D8E93B9820B8B08D00CE0AD8 /* UploadWallpaperPopUp.xib in Resources */,
 			);
@@ -390,7 +400,6 @@
 				D8E93B8B20B8B05100CE0AD8 /* UserDefaults.swift in Sources */,
 				D8E93B9720B8B08D00CE0AD8 /* UploadWallpaperPopUp.swift in Sources */,
 				D8E93BC720B8B63200CE0AD8 /* AppStoreAnimatorInfo.swift in Sources */,
-				D8E93BC520B8B63200CE0AD8 /* PopUpViewCell.swift in Sources */,
 				D8E93BBE20B8B63200CE0AD8 /* FunctionalEnumerated.swift in Sources */,
 				D8E93BF120C3257800CE0AD8 /* CustomLoadingView.swift in Sources */,
 				D8E93BBD20B8B63200CE0AD8 /* RoundCornersButton.swift in Sources */,
@@ -405,8 +414,11 @@
 				D8E93BE920BF0D8C00CE0AD8 /* WallpaperCategories.swift in Sources */,
 				D8E93BC820B8B63200CE0AD8 /* NSLayoutConstraint+Multiplier.swift in Sources */,
 				D8E93B8C20B8B05100CE0AD8 /* AppDelegate.swift in Sources */,
+				D8FC5D8B20D2CBDB00FA632F /* PaddedLabel.swift in Sources */,
+				D8FC5D8920D2C9FA00FA632F /* UIView+ShadowStyle.swift in Sources */,
 				D8E93B9F20B8B0B100CE0AD8 /* LoginViewController.swift in Sources */,
 				D8E93BA020B8B0B100CE0AD8 /* PopUpViewController.swift in Sources */,
+				D8FC5D8720D2C89500FA632F /* ShadowStyle.swift in Sources */,
 				D8E93BF320C32AC000CE0AD8 /* SplashViewController.swift in Sources */,
 				D8E93B9E20B8B0B100CE0AD8 /* FeedViewController.swift in Sources */,
 				D8E93B9D20B8B0B100CE0AD8 /* SignUpViewController.swift in Sources */,

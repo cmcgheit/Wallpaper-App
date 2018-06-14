@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopUpViewController" customModule="Wallpaper_App" customModuleProvider="target">
+            <connections>
+                <outlet property="backView" destination="7cD-qI-9XV" id="ZYP-wO-4b3"/>
+                <outlet property="cardView" destination="ZQ2-cn-TPQ" id="3qU-Pe-ySz"/>
+                <outlet property="contentView" destination="Bdf-We-NY8" id="DID-2T-CfV"/>
+                <outlet property="wallpaperDescLbl" destination="hcp-4Q-gUm" id="WFL-9h-rOM"/>
+                <outlet property="wallpaperPopImage" destination="Ixq-Mb-NQN" id="2SH-4O-Q27"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7cD-qI-9XV">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bdf-We-NY8">
+                    <rect key="frame" x="0.0" y="429" width="375" height="238"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="headTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcp-4Q-gUm">
+                            <rect key="frame" x="15" y="15" width="345" height="215"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <string key="text">Wallpaper Desc. This is the wallpaper desc, long version. This is the wallpaper desc, long version. This is the wallpaper desc, long version. This is the wallpaper desc, long version. This is the wallpaper desc, long version. This is the wallpaper desc, long version. This is the wallpaper desc, long version.</string>
+                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="16"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                            <size key="shadowOffset" width="0.0" height="0.0"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.8784313725490196" green="0.87450980392156863" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ2-cn-TPQ" customClass="CardView" customModule="Wallpaper_App" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ixq-Mb-NQN">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="433"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="7cD-qI-9XV" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4Yb-BJ-sZB"/>
+                <constraint firstAttribute="bottom" secondItem="Bdf-We-NY8" secondAttribute="bottom" id="5Wj-tU-QF6"/>
+                <constraint firstItem="ZQ2-cn-TPQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5dD-CI-J8R"/>
+                <constraint firstItem="ZQ2-cn-TPQ" firstAttribute="width" secondItem="Bdf-We-NY8" secondAttribute="height" multiplier="375:238" id="GDW-Nw-Hcr"/>
+                <constraint firstAttribute="bottom" secondItem="7cD-qI-9XV" secondAttribute="bottom" id="JB6-GR-WkL"/>
+                <constraint firstItem="Bdf-We-NY8" firstAttribute="top" secondItem="ZQ2-cn-TPQ" secondAttribute="bottom" id="Mgo-Zw-gXm"/>
+                <constraint firstItem="Bdf-We-NY8" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="NhZ-Hm-AvZ"/>
+                <constraint firstItem="Bdf-We-NY8" firstAttribute="top" secondItem="ZQ2-cn-TPQ" secondAttribute="bottom" id="Nik-4Z-hTd"/>
+                <constraint firstItem="7cD-qI-9XV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OBz-me-mVy"/>
+                <constraint firstItem="ZQ2-cn-TPQ" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="eIs-89-m9T"/>
+                <constraint firstAttribute="trailing" secondItem="7cD-qI-9XV" secondAttribute="trailing" id="f00-pK-II6"/>
+                <constraint firstItem="ZQ2-cn-TPQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="iSC-vZ-A7S"/>
+                <constraint firstItem="Bdf-We-NY8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="xQa-Jf-0Kf"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+        </view>
+    </objects>
+</document>
