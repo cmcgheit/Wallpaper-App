@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="ReflexGeoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="WAa-z2-Qms">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Grey" translatesAutoresizingMaskIntoConstraints="NO" id="WAa-z2-Qms">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DW-in-jk3">
@@ -101,7 +102,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tealarrowback" translatesAutoresizingMaskIntoConstraints="NO" id="SlE-jp-TAa">
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Grey" translatesAutoresizingMaskIntoConstraints="NO" id="SlE-jp-TAa">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="iphone-outline" translatesAutoresizingMaskIntoConstraints="NO" id="rfe-58-SqX">
@@ -195,8 +196,64 @@
                     <view key="view" contentMode="scaleToFill" id="rg5-D7-U9j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bgA-NW-sef">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9fo-Gw-yzE" customClass="CardView" customModule="Wallpaper_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="456"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QPv-NS-eye">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="456"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="QPv-NS-eye" firstAttribute="top" secondItem="9fo-Gw-yzE" secondAttribute="top" id="96T-kU-awc"/>
+                                    <constraint firstItem="QPv-NS-eye" firstAttribute="leading" secondItem="9fo-Gw-yzE" secondAttribute="leading" id="Qew-Up-s3L"/>
+                                    <constraint firstAttribute="bottom" secondItem="QPv-NS-eye" secondAttribute="bottom" id="jdy-YM-oOv"/>
+                                    <constraint firstAttribute="trailing" secondItem="QPv-NS-eye" secondAttribute="trailing" id="p10-Ok-WCY"/>
+                                    <constraint firstAttribute="width" secondItem="9fo-Gw-yzE" secondAttribute="height" multiplier="125:152" id="uGa-Qw-rMw"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7xj-02-Qcg">
+                                <rect key="frame" x="0.0" y="456" width="375" height="211"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wallpaper Desc Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ym-pD-gDP">
+                                        <rect key="frame" x="8" y="8" width="359" height="195"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.8784313725490196" green="0.87450980392156863" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7xj-02-Qcg" firstAttribute="top" secondItem="9fo-Gw-yzE" secondAttribute="bottom" id="7mN-AH-J1c"/>
+                            <constraint firstItem="bgA-NW-sef" firstAttribute="leading" secondItem="rg5-D7-U9j" secondAttribute="leading" id="AIJ-31-ulc"/>
+                            <constraint firstAttribute="trailing" secondItem="7xj-02-Qcg" secondAttribute="trailing" id="B2i-yz-WKQ"/>
+                            <constraint firstItem="3hX-ml-k30" firstAttribute="top" secondItem="7xj-02-Qcg" secondAttribute="bottom" id="FfA-ka-Me5"/>
+                            <constraint firstItem="9fo-Gw-yzE" firstAttribute="leading" secondItem="rg5-D7-U9j" secondAttribute="leading" id="Mkm-k7-Yit"/>
+                            <constraint firstAttribute="trailing" secondItem="bgA-NW-sef" secondAttribute="trailing" id="Orv-lK-5Rq"/>
+                            <constraint firstAttribute="trailing" secondItem="9fo-Gw-yzE" secondAttribute="trailing" id="TSh-W5-sEZ"/>
+                            <constraint firstItem="3hX-ml-k30" firstAttribute="top" secondItem="bgA-NW-sef" secondAttribute="bottom" id="U5c-mm-Hzf"/>
+                            <constraint firstItem="7xj-02-Qcg" firstAttribute="leading" secondItem="rg5-D7-U9j" secondAttribute="leading" id="WLB-iD-ex3"/>
+                            <constraint firstItem="bgA-NW-sef" firstAttribute="top" secondItem="rg5-D7-U9j" secondAttribute="top" id="kij-0L-4m2"/>
+                            <constraint firstItem="9fo-Gw-yzE" firstAttribute="top" secondItem="rg5-D7-U9j" secondAttribute="top" id="yFT-Po-WEX"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backView" destination="bgA-NW-sef" id="VfB-Qo-7uC"/>
+                        <outlet property="cardView" destination="9fo-Gw-yzE" id="Xvq-7B-v6m"/>
+                        <outlet property="contentView" destination="7xj-02-Qcg" id="Fae-f1-s6q"/>
+                        <outlet property="wallpaperDescLbl" destination="3Ym-pD-gDP" id="J6m-Pu-Z7Y"/>
+                        <outlet property="wallpaperPopImage" destination="QPv-NS-eye" id="bfX-bJ-bDA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pqA-Nf-kiP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -267,7 +324,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ReflexGeoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="mK5-UG-TDJ">
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Grey" translatesAutoresizingMaskIntoConstraints="NO" id="mK5-UG-TDJ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -407,13 +464,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ReflexGeoWhite" width="540" height="960"/>
+        <image name="Grey" width="540" height="960"/>
         <image name="handiphonesparkle2" width="400" height="300"/>
         <image name="imageupload" width="100" height="100"/>
         <image name="iphone-outline" width="132" height="271"/>
-        <image name="tealarrowback" width="540" height="960"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NZ3-jy-2Sf"/>
+        <segue reference="puX-wA-Sho"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -340,10 +340,11 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.cellForItem(at: indexPath) as! WallpaperRoundedCardCell
         // MARK: - PopUp Transition Function
         let popUpVC = self.storyboard?.instantiateViewController(withIdentifier: "PopUpViewController") as! PopUpViewController
+        let section = glidingView.expandedItemIndex
         popUpVC.selectedIndex = indexPath
         popUpVC.selectedImage = cell.imageView.image
-        popUpVC.wallpaper = allWallpapersAt(section: glidingView.expandedItemIndex)
-        // popUpVC.placeholder =
+        popUpVC.wallpaper = allWallpapersAt(section: section)
+        popUpVC.placeholder = placeholderFor(section: section)
         present(popUpVC, animated: true, completion: nil)
         
         let cellFrame = view.convert(cell.frame, from: glidingView)
