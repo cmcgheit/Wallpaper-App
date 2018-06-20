@@ -50,6 +50,7 @@
 		D8FC5D8720D2C89500FA632F /* ShadowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC5D8620D2C89500FA632F /* ShadowStyle.swift */; };
 		D8FC5D8920D2C9FA00FA632F /* UIView+ShadowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC5D8820D2C9FA00FA632F /* UIView+ShadowStyle.swift */; };
 		D8FC5D8B20D2CBDB00FA632F /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC5D8A20D2CBDB00FA632F /* PaddedLabel.swift */; };
+		D8FC5D8D20D5A82400FA632F /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8FC5D8C20D5A82400FA632F /* CardView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		D8FC5D8620D2C89500FA632F /* ShadowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowStyle.swift; sourceTree = "<group>"; };
 		D8FC5D8820D2C9FA00FA632F /* UIView+ShadowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ShadowStyle.swift"; sourceTree = "<group>"; };
 		D8FC5D8A20D2CBDB00FA632F /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
+		D8FC5D8C20D5A82400FA632F /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		DA366805E8777B768E8728F2 /* Pods-Wallpaper-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.debug.xcconfig"; sourceTree = "<group>"; };
 		F3976466CEB472FD86CD9EB5 /* Pods-Wallpaper-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -188,6 +190,7 @@
 		6A17C4161EFD5B120047CBA5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D8FC5D8C20D5A82400FA632F /* CardView.xib */,
 				D8E93B9120B8B08D00CE0AD8 /* AnimatedTextField.swift */,
 				D8E93B9220B8B08D00CE0AD8 /* UploadWallpaperPopUp.swift */,
 				D8E93B9320B8B08D00CE0AD8 /* UploadWallpaperPopUp.xib */,
@@ -312,6 +315,7 @@
 			files = (
 				D8E93BE720BDB47900CE0AD8 /* GoogleService-Info.plist in Resources */,
 				D8E93BDF20BDB20E00CE0AD8 /* Main.storyboard in Resources */,
+				D8FC5D8D20D5A82400FA632F /* CardView.xib in Resources */,
 				D8E93B9520B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib in Resources */,
 				D8E93BE220BDB22200CE0AD8 /* LaunchScreen.storyboard in Resources */,
 				D8FC5D8520D2BA2B00FA632F /* PopUpViewController.xib in Resources */,

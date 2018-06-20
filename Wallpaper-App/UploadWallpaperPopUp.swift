@@ -1,11 +1,12 @@
 //  UploadWallpaperPopUp.swift
 //  Copyright © 2017 C McGhee. All rights reserved.
 
+import Foundation
 import UIKit
 import Firebase
 import SwiftEntryKit
-import McPicker
 import Instructions
+import McPicker
 
 class UploadWallpaperPopUp: UIViewController {
     
@@ -14,11 +15,11 @@ class UploadWallpaperPopUp: UIViewController {
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var wallpaperDescTextView: UITextView!
     @IBOutlet weak var wallpaperCatLbl: UILabel!
-    @IBOutlet weak var wallpaperCatTxtFld: McTextField!
+    @IBOutlet weak var wallpaperCatPickLbl: UILabel!
     
     var wallpaperDescPlaceholderText = "Describe this wallpaper"
     var wallpaperCatPlaceholderText = "Give the wallpaper a category"
-
+    
     //Upload Camera properties
     var imagePicker: UIImagePickerController!
     var takenImage: UIImage!
@@ -26,53 +27,16 @@ class UploadWallpaperPopUp: UIViewController {
     // Instructions
     let uploadInstructionsController = CoachMarksController()
     
+    // Picker
+    let catPickerData: [[String]] = [["Sports", "Music", "Arts"]]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // MARK: - Category McPicker
-        let pickerData: [[String]] = [["Sports", "Music", "Art"]]
-        let mcInputView = McPicker(data: pickerData)
-        mcInputView.backgroundColor = .gray
-        mcInputView.backgroundColorAlpha = 0.25
-        wallpaperCatTxtFld.inputViewMcPicker = mcInputView
-        
-        wallpaperCatTxtFld.doneHandler = { [weak wallpaperCatTxtFld] (selections) in
-            wallpaperCatTxtFld?.text = selections[0]!
-        }
-        wallpaperCatTxtFld.selectionChangedHandler = { [weak wallpaperCatTxtFld] (selections, componentThatChanged) in
-            wallpaperCatTxtFld?.text = selections[componentThatChanged]!
-        }
-        wallpaperCatTxtFld.cancelHandler = { [weak wallpaperCatTxtFld] in
-            self.wallpaperCatTxtFld?.text = "Cancelled."
-        }
-        wallpaperCatTxtFld.textFieldWillBeginEditingHandler = { [weak wallpaperCatTxtFld] (selections) in
-            if (wallpaperCatTxtFld?.text?.isEmpty)! {
-                // Selections always default to the first value per component
-                wallpaperCatTxtFld?.text = selections[0]
-            }
-        }
-        
-        McPicker.showAsPopover(data: pickerData, fromViewController: self) { [weak self] (selections: [Int : String]) -> Void in
-            if let name = selections[0] {
-                self?.wallpaperCatLbl.text = name
-            }
-        }
-        
-        // Right now calling from Navigation controller needs to be called from UIView/UIViewController
-        if let rootController = UIApplication.shared.keyWindow?.rootViewController {
-            
-            if rootController is UINavigationController {
-                if let navigationController = rootController as? UINavigationController {
-                    if let topViewController = navigationController.topViewController {
-                        topViewController.present(imagePicker, animated: true, completion: nil)
-                    }
-                }
-            }
-            else {
-                // is a view controller
-                rootController.present(imagePicker, animated: true, completion: nil)
-            }
-        }
+        // Instructions
+        self.uploadInstructionsController.dataSource = self
+        self.uploadInstructionsController.overlay.color = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
+        self.uploadInstructionsController.overlay.allowTap = true
         
         closeBtn?.isHidden = true // hide close until user has filled out all fields to upload image
         wallpaperDescTextView?.textColor = .darkGray
@@ -89,21 +53,57 @@ class UploadWallpaperPopUp: UIViewController {
         }
         self.present(imagePicker, animated: true, completion: nil)
         
-        self.uploadInstructionsController.dataSource = self
+        // Assign image from View Controller/Navigation Controller
+        if let rootController = UIApplication.shared.keyWindow?.rootViewController {
+            
+            if rootController is UINavigationController {
+                if let navigationController = rootController as? UINavigationController {
+                    if let topViewController = navigationController.topViewController {
+                        topViewController.present(imagePicker, animated: true, completion: nil)
+                    }
+                }
+            } else {
+                // is a view controller
+                rootController.present(imagePicker, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    // MARK: - Category Picker Button Action
+    @IBAction func categoryPicker(_ sender: UIButton) {
+        McPicker.showAsPopover(data: catPickerData, fromViewController: self, sourceView: sender, doneHandler: { [weak self] (selections: [Int : String]) -> Void in
+            if let catName = selections[0] {
+                self?.wallpaperCatPickLbl.text = catName // updates selection with catName
+            }
+            }, cancelHandler: { () -> Void in
+                print("Canceled Popover")
+        }, selectionChangedHandler: { (selections: [Int:String], componentThatChanged: Int) -> Void  in
+            let newSelection = selections[componentThatChanged] ?? "Failed to get new selection!"
+            print("Component \(componentThatChanged) changed value to \(newSelection)")
+        })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.uploadInstructionsController.start(on: self)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.uploadInstructionsController.stop(immediately: true)
+        
     }
     
     static let updateFeedNotificationName = NSNotification.Name(rawValue: "UpdateFeed")
     
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
-        if wallpaperDescTextView.text.isEmpty && takenImage != nil  && (wallpaperCatTxtFld.text?.isEmpty)!  {
+        if wallpaperDescTextView.text.isEmpty && takenImage != nil  && (wallpaperCatPickLbl.text?.isEmpty)!  {
             closeBtn.isHidden = false // upload only if all fields are filled out
-//            FIRService.uploadWallToFirebaseStor(image: takenImage) { (<#String?#>, error) in
-//                <#code#>
-//            }
+            //            FIRService.uploadWallToFirebaseStor(image: takenImage) { (, error) in
+            //                
+            //            }
             NotificationCenter.default.post(name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
             // MARK: - Upload Successful Alert
             var attributes = EKAttributes.topFloat
-            attributes.entryBackground = .color(color: tealColor)
+            attributes.entryBackground = .color(color: UIColor.white)
             attributes.roundCorners = .all(radius: 10)
             attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
             attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
@@ -123,7 +123,8 @@ class UploadWallpaperPopUp: UIViewController {
     }
     
     @IBAction  func closeBtnPressed(_ sender: UIButton) {
-        if wallpaperDescTextView.text.isEmpty && wallpaperPopUpView.image != nil && (wallpaperCatTxtFld.text?.isEmpty)! {
+        if wallpaperDescTextView.text.isEmpty && wallpaperPopUpView.image != nil && (wallpaperCatLbl.text?.isEmpty)! { // only close if data fields empty?
+            // send data from wallpaperCatLbl?
             self.closeBtn?.isHidden = false
             self.dismiss(animated: true, completion: nil)
             //            viewController.willMove(toParentViewController: nil)
@@ -162,8 +163,8 @@ extension UploadWallpaperPopUp: UIImagePickerControllerDelegate, UINavigationCon
         self.takenImage = image
         self.wallpaperPopUpView.image = self.takenImage
         takenImage = takenImage.resizeWithWidth(width: 700)! // Resize taken image
-         let compressData = UIImageJPEGRepresentation(takenImage, 0.5) // Compress taken image
-         let compressedImage = UIImage(data: compressData!)
+        let compressData = UIImageJPEGRepresentation(takenImage, 0.5) // Compress taken image
+        let compressedImage = UIImage(data: compressData!)
         // Use compressedImage for upload
     }
     
@@ -176,21 +177,34 @@ extension UploadWallpaperPopUp: UIImagePickerControllerDelegate, UINavigationCon
 extension UploadWallpaperPopUp: CoachMarksControllerDelegate, CoachMarksControllerDataSource {
     
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
-        let instructionsView = uploadInstructionsController.helper.makeDefaultCoachViews()
         
-        instructionsView.bodyView.hintLabel.text = "Test Upload Instruction"
-        instructionsView.bodyView.nextLabel.text = "Got it!"
+        let uploadIntView = uploadInstructionsController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
         
-        return (bodyView: instructionsView.bodyView, arrowView: nil)
+        switch (index) {
+        case 0:
+            uploadIntView.bodyView.hintLabel.text = "Write information about Wallpaper here"
+            uploadIntView.bodyView.nextLabel.text = "Got it!"
+        case 1:
+            uploadIntView.bodyView.hintLabel.text = "Upload Wallpaper to the database here"
+            uploadIntView.bodyView.nextLabel.text = "Got it!"
+        default: break
+        }
+        return (bodyView: uploadIntView.bodyView, arrowView: uploadIntView.arrowView)
     }
     
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
-        let instructionsView = UIView()
-        return uploadInstructionsController.helper.makeCoachMark(for: instructionsView)
+        // Set Instruction markers around UI Elements
+        switch (index) {
+        case 0:
+            return uploadInstructionsController.helper.makeCoachMark(for: wallpaperDescTextView)
+        case 1:
+            return uploadInstructionsController.helper.makeCoachMark(for: uploadBtn)
+        default:
+            return uploadInstructionsController.helper.makeCoachMark()
+        }
     }
     
-    
     func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
-        return 1
+        return 2
     }
 }

@@ -16,6 +16,7 @@
                 <outlet property="backView" destination="7cD-qI-9XV" id="ZYP-wO-4b3"/>
                 <outlet property="cardView" destination="ZQ2-cn-TPQ" id="3qU-Pe-ySz"/>
                 <outlet property="contentView" destination="Bdf-We-NY8" id="DID-2T-CfV"/>
+                <outlet property="view" destination="iN0-l3-epB" id="dHa-99-aaf"/>
                 <outlet property="wallpaperDescLbl" destination="hcp-4Q-gUm" id="WFL-9h-rOM"/>
                 <outlet property="wallpaperPopImage" destination="Ixq-Mb-NQN" id="2SH-4O-Q27"/>
             </connections>

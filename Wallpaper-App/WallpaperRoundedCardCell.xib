@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="280" height="500"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DEM-zG-CDg">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chicago-full" translatesAutoresizingMaskIntoConstraints="NO" id="DEM-zG-CDg">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="500"/>
                     </imageView>
                 </subviews>
@@ -43,4 +43,7 @@
             </connections>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="chicago-full" width="400" height="300"/>
+    </resources>
 </document>

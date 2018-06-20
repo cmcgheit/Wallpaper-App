@@ -33,7 +33,7 @@ class FeedViewController: UIViewController {
     var musicCategory = [WallpaperCategory]()
     var artCategory = [WallpaperCategory]()
     
-    // Placeholders
+    // Placeholders - set individual eventually
     let artPlaceholder = UIImage(named: "placeholder-image")
     let musicPlaceholder = UIImage(named: "placeholder-image")
     let sportsPlaceholder = UIImage(named: "placeholder-image")
@@ -148,8 +148,13 @@ class FeedViewController: UIViewController {
                 self.present(signUpVC, animated: true)
             }
         }
-        
-        self.instructionsController.start(on: self)
+        // MARK: - Check for User (Instructions)
+        if Auth.auth().currentUser != nil {
+            // User signed-In, don't show instructions, way to show instructions to user only once
+        } else {
+            // No user, show instructions
+            self.instructionsController.start(on: self)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -339,14 +344,15 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! WallpaperRoundedCardCell
         // MARK: - PopUp Transition Function
-        let popUpVC = self.storyboard?.instantiateViewController(withIdentifier: "PopUpViewController") as! PopUpViewController
+        let popUpVC = PopUpViewController()
         let section = glidingView.expandedItemIndex
         popUpVC.selectedIndex = indexPath
-        popUpVC.selectedImage = cell.imageView.image
         popUpVC.wallpaper = allWallpapersAt(section: section)
         popUpVC.placeholder = placeholderFor(section: section)
-        present(popUpVC, animated: true, completion: nil)
-        
+        print(allWallpapersAt(section: section))
+//        popUpVC.selectedImage = cell.wallpaper.wallpaperURL
+//        popUpVC.wallpaperDescLbl.text = cell.wallpaper.wallpaperDesc
+    
         let cellFrame = view.convert(cell.frame, from: glidingView)
         let appStoreAnimator = AppStoreAnimator(initialFrame: cellFrame)
         appStoreAnimator.onReady = { cell.isHidden = true}

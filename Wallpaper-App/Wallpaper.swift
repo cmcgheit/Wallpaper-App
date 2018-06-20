@@ -12,7 +12,7 @@ struct Wallpaper {
     
     // let user: User
     var wallpaperURL: String?
-    var wallpaperDesc: String!
+    var wallpaperDesc: String?
     var wallpaperCategory: String! // WallpaperCategory()
     private var wallpaperImage: UIImage!
         
