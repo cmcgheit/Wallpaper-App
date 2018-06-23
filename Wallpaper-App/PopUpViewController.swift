@@ -13,10 +13,12 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var wallpaperPopImage: UIImageView!
     @IBOutlet weak var wallpaperDescLbl: PaddedLabel!
     
-    var wallpaper: [WallpaperCategory] = []
+    var wallpaper = [WallpaperCategory]()
     var selectedIndex: IndexPath!
-    var selectedImage: String?
     var placeholder: UIImage?
+    
+    var wallpaperDescText = ""
+    var wallpaperPhotoURL = ""
     
     // Init VC as nib (easytransitions)
     init() {
@@ -36,10 +38,9 @@ class PopUpViewController: UIViewController {
         if #available(iOS 11, *) {
             contentView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         }
-        wallpaperDescLbl.text = ""
-        let url = URL(string: selectedImage!)
+        wallpaperDescLbl.text = wallpaperDescText
+        let url = URL(string: wallpaperPhotoURL)
         wallpaperPopImage.kf.setImage(with: url)
-        
     }
     
     func layout(presenting: Bool) {

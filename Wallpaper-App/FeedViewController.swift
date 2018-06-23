@@ -19,6 +19,7 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var signOutBtn: UIButton!
     @IBOutlet weak var glidingIntView: UIView!
+    @IBOutlet weak var darkModeSwitchOutlet: UISwitch!
     
     var handle: AuthStateDidChangeListenerHandle?
     var bannerView: GADBannerView!
@@ -40,6 +41,8 @@ class FeedViewController: UIViewController {
     
     let instructionsController = CoachMarksController()
     
+    var darkisOn = Bool()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -53,6 +56,10 @@ class FeedViewController: UIViewController {
         
         // MARK: - Update feed notification
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
+        
+        // MARK: - Dark Theme Notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(darkModeEnabled(_:)), name: .darkModeEnabled, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(darkModeDisabled(_:)), name: .darkModeDisabled, object: nil)
         
         // MARK: - Double Tap Gesture to close PopUpView
         let closeTapGesture = UITapGestureRecognizer(target: self, action: #selector(FeedViewController.backgroundTapped))
@@ -136,6 +143,41 @@ class FeedViewController: UIViewController {
         })
     }
     
+    // MARK: - Dark Theme Functions
+    @objc private func darkModeEnabled(_ notification: Notification) {
+        view.layer.contents = #imageLiteral(resourceName: "ReflexGeoDark").cgImage
+    }
+    
+    @objc private func darkModeDisabled(_ notification: Notification) {
+        view.layer.contents = #imageLiteral(resourceName: "ReflexGeoWhite").cgImage // already set
+        
+    }
+    
+    // MARK: - Dark Theme Switch Button Action
+    @IBAction func darkModeSwitched(_ sender: Any) {
+        
+        if darkModeSwitchOutlet.isOn == true {
+            
+            //Enable Dark Theme
+            darkisOn = true
+            
+            UserDefaults.standard.set(true, forKey: "darkTheme")
+            UserDefaults.standard.set(false, forKey: "lightTheme")
+            
+            NotificationCenter.default.post(name: .darkModeEnabled, object: nil)
+            
+        } else {
+            
+            // Enable Light Theme
+            darkisOn = false
+            
+            UserDefaults.standard.set(false, forKey: "darkTheme")
+            UserDefaults.standard.set(true, forKey: "lightTheme")
+            
+            NotificationCenter.default.post(name: .darkModeDisabled, object: nil)
+        }
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         // MARK: - Check Auth User Signed-In Listener/Handler
         handle = Auth.auth().addStateDidChangeListener { ( auth, user) in
@@ -151,8 +193,10 @@ class FeedViewController: UIViewController {
         // MARK: - Check for User (Instructions)
         if Auth.auth().currentUser != nil {
             // User signed-In, don't show instructions, way to show instructions to user only once
+            UserDefaults.standard.setInstructions(value: false)
         } else {
             // No user, show instructions
+            UserDefaults.standard.setInstructions(value: true)
             self.instructionsController.start(on: self)
         }
     }
@@ -344,14 +388,15 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! WallpaperRoundedCardCell
         // MARK: - PopUp Transition Function
-        let popUpVC = PopUpViewController()
         let section = glidingView.expandedItemIndex
+        
+        let popUpVC = PopUpViewController()
         popUpVC.selectedIndex = indexPath
         popUpVC.wallpaper = allWallpapersAt(section: section)
         popUpVC.placeholder = placeholderFor(section: section)
-        print(allWallpapersAt(section: section))
-//        popUpVC.selectedImage = cell.wallpaper.wallpaperURL
-//        popUpVC.wallpaperDescLbl.text = cell.wallpaper.wallpaperDesc
+
+        popUpVC.wallpaperPhotoURL = cell.wallpaper.wallpaperURL
+        popUpVC.wallpaperDescText = cell.wallpaper.wallpaperDesc
     
         let cellFrame = view.convert(cell.frame, from: glidingView)
         let appStoreAnimator = AppStoreAnimator(initialFrame: cellFrame)

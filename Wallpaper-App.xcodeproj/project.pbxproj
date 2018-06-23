@@ -51,6 +51,7 @@
 		D8FC5D8920D2C9FA00FA632F /* UIView+ShadowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC5D8820D2C9FA00FA632F /* UIView+ShadowStyle.swift */; };
 		D8FC5D8B20D2CBDB00FA632F /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC5D8A20D2CBDB00FA632F /* PaddedLabel.swift */; };
 		D8FC5D8D20D5A82400FA632F /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8FC5D8C20D5A82400FA632F /* CardView.xib */; };
+		D8FC5D8F20DEC4B300FA632F /* Notifications+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC5D8E20DEC4B300FA632F /* Notifications+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		D8FC5D8820D2C9FA00FA632F /* UIView+ShadowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ShadowStyle.swift"; sourceTree = "<group>"; };
 		D8FC5D8A20D2CBDB00FA632F /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		D8FC5D8C20D5A82400FA632F /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
+		D8FC5D8E20DEC4B300FA632F /* Notifications+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notifications+Extensions.swift"; sourceTree = "<group>"; };
 		DA366805E8777B768E8728F2 /* Pods-Wallpaper-App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.debug.xcconfig"; sourceTree = "<group>"; };
 		F3976466CEB472FD86CD9EB5 /* Pods-Wallpaper-App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallpaper-App.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,6 +218,7 @@
 				D8E93BEA20BF2AD500CE0AD8 /* User.swift */,
 				D8E93BEC20C1A77D00CE0AD8 /* Extensions.swift */,
 				D8E93BEE20C1AC7300CE0AD8 /* WallpaperImageCache.swift */,
+				D8FC5D8E20DEC4B300FA632F /* Notifications+Extensions.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				D8E93BC720B8B63200CE0AD8 /* AppStoreAnimatorInfo.swift in Sources */,
 				D8E93BBE20B8B63200CE0AD8 /* FunctionalEnumerated.swift in Sources */,
 				D8E93BF120C3257800CE0AD8 /* CustomLoadingView.swift in Sources */,
+				D8FC5D8F20DEC4B300FA632F /* Notifications+Extensions.swift in Sources */,
 				D8E93BBD20B8B63200CE0AD8 /* RoundCornersButton.swift in Sources */,
 				D8E93BC220B8B63200CE0AD8 /* CircularImageView.swift in Sources */,
 				D8E93BEB20BF2AD500CE0AD8 /* User.swift in Sources */,

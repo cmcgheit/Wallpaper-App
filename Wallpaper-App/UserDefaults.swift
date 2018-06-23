@@ -7,6 +7,9 @@ extension UserDefaults {
     enum UserDefaultKeys: String {
         case isLoggedIn
         case anonymousLoggedIn
+        case darkTheme
+        case lightTheme
+        case instructions
     }
     
     func setAnonymousLogin(value: Bool) {
@@ -27,4 +30,17 @@ extension UserDefaults {
     func isLoggedIn() -> Bool {
         return bool(forKey: UserDefaultKeys.isLoggedIn.rawValue)
     }
+    
+    func setInstructions(value: Bool) {
+        set(value, forKey: UserDefaultKeys.instructions.rawValue)
+    }
+    
+    func showInstructions() -> Bool {
+        return bool(forKey: UserDefaultKeys.instructions.rawValue)
+    }
+    
+    func dontShowInstructions() -> Bool {
+        return bool(forKey: UserDefaultKeys.instructions.rawValue)
+    }
+
 }
