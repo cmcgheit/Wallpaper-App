@@ -6,11 +6,11 @@
 import Foundation
 import UIKit
 import Firebase
-import GlidingCollection
-import SwiftEntryKit
 import SwiftyJSON
-import EasyTransitions
+import GlidingCollection
 import GoogleMobileAds
+import SwiftEntryKit
+import EasyTransitions
 import Instructions
 
 class FeedViewController: UIViewController {
@@ -19,7 +19,7 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var signOutBtn: UIButton!
     @IBOutlet weak var glidingIntView: UIView!
-    @IBOutlet weak var darkModeSwitchOutlet: UISwitch!
+    @IBOutlet weak var themeSwitch: CustomSwitch!
     
     var handle: AuthStateDidChangeListenerHandle?
     var bannerView: GADBannerView!
@@ -41,25 +41,28 @@ class FeedViewController: UIViewController {
     
     let instructionsController = CoachMarksController()
     
-    var darkisOn = Bool()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         
         makeCategories()
         
+        applyTheme()
+        
+        // Theme - checks for theme setting
+        if UserDefaults.standard.object(forKey: "lightTheme") != nil {
+            UserDefaults.standard.set(true, forKey: "lightTheme")
+        } else {
+            UserDefaults.standard.set(true, forKey: "darkTheme")
+        }
+        
         // Instructions
         self.instructionsController.dataSource = self
         self.instructionsController.overlay.color = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
         self.instructionsController.overlay.allowTap = true
         
-        // MARK: - Update feed notification
+        // MARK: - Update feed Notification
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
-        
-        // MARK: - Dark Theme Notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(darkModeEnabled(_:)), name: .darkModeEnabled, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(darkModeDisabled(_:)), name: .darkModeDisabled, object: nil)
         
         // MARK: - Double Tap Gesture to close PopUpView
         let closeTapGesture = UITapGestureRecognizer(target: self, action: #selector(FeedViewController.backgroundTapped))
@@ -143,41 +146,6 @@ class FeedViewController: UIViewController {
         })
     }
     
-    // MARK: - Dark Theme Functions
-    @objc private func darkModeEnabled(_ notification: Notification) {
-        view.layer.contents = #imageLiteral(resourceName: "ReflexGeoDark").cgImage
-    }
-    
-    @objc private func darkModeDisabled(_ notification: Notification) {
-        view.layer.contents = #imageLiteral(resourceName: "ReflexGeoWhite").cgImage // already set
-        
-    }
-    
-    // MARK: - Dark Theme Switch Button Action
-    @IBAction func darkModeSwitched(_ sender: Any) {
-        
-        if darkModeSwitchOutlet.isOn == true {
-            
-            //Enable Dark Theme
-            darkisOn = true
-            
-            UserDefaults.standard.set(true, forKey: "darkTheme")
-            UserDefaults.standard.set(false, forKey: "lightTheme")
-            
-            NotificationCenter.default.post(name: .darkModeEnabled, object: nil)
-            
-        } else {
-            
-            // Enable Light Theme
-            darkisOn = false
-            
-            UserDefaults.standard.set(false, forKey: "darkTheme")
-            UserDefaults.standard.set(true, forKey: "lightTheme")
-            
-            NotificationCenter.default.post(name: .darkModeDisabled, object: nil)
-        }
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         // MARK: - Check Auth User Signed-In Listener/Handler
         handle = Auth.auth().addStateDidChangeListener { ( auth, user) in
@@ -198,6 +166,19 @@ class FeedViewController: UIViewController {
             // No user, show instructions
             UserDefaults.standard.setInstructions(value: true)
             self.instructionsController.start(on: self)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        view.backgroundColor = UIColor(patternImage: Theme.current.backgroundImage)
+        
+        if Theme.themeChanged {
+            collectionView.reloadData() //reload collection for theme change
+        }
+        
+        func uploadBtnPressed(_ sender: Any) {
+            presentUploadPopUp()
         }
     }
     
@@ -255,10 +236,21 @@ class FeedViewController: UIViewController {
         collectionView.backgroundColor = glidingView.backgroundColor
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        func uploadBtnPressed(_ sender: Any) {
-            presentUploadPopUp()
-        }
+    
+    // MARK: - Theme
+    @IBAction func themeChanged(_ sender: CustomSwitch) {
+        
+        Theme.current = sender.isOn ? LightTheme() : DarkTheme()
+        Theme.themeChanged = true
+        applyTheme()
+        
+        UserDefaults.standard.set(true, forKey: "lightTheme")
+    }
+    
+    fileprivate func applyTheme() {
+        
+        view.backgroundColor = UIColor(patternImage: Theme.current.backgroundImage)
+        
     }
     
     // MARK: - Upload Pop Up Function/Transition

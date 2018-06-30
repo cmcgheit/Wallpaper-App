@@ -31,6 +31,19 @@ extension UserDefaults {
         return bool(forKey: UserDefaultKeys.isLoggedIn.rawValue)
     }
     
+    func setTheme(value: Bool) {
+        set(value, forKey: UserDefaultKeys.lightTheme.rawValue)
+        set(value, forKey: UserDefaultKeys.darkTheme.rawValue)
+    }
+    
+    func lightTheme() -> Bool {
+        return bool(forKey: UserDefaultKeys.lightTheme.rawValue)
+    }
+    
+    func darkTheme() -> Bool {
+        return bool(forKey: UserDefaultKeys.darkTheme.rawValue)
+    }
+    
     func setInstructions(value: Bool) {
         set(value, forKey: UserDefaultKeys.instructions.rawValue)
     }
