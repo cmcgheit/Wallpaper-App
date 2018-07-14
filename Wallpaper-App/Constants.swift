@@ -18,6 +18,10 @@ var adMobAppID = "" // Google AdMob
 
 // Colors
 var tealColor = UIColor(red: 0.02, green: 0.56, blue: 0.65, alpha: 1.0) // #0690a6
+var wallBlue = UIColor(red: 0.2627, green: 0.6275, blue: 0.7294, alpha: 1.0) // #43A0BA
+var wallGold = UIColor(red: 0.9686, green: 0.7765, blue: 0.5137, alpha: 1.0) // #F7C683
+var wallDarkBlue = UIColor(red: 0.2039, green: 0.502, blue: 0.5686, alpha: 1.0) // #348091
+var wallPink = UIColor(red: 0.9059, green: 0.5355, blue: 0.5804, alpha: 1.0) // #E78694
 var greenColor = UIColor(red: 0.02, green: 0.74, blue: 0.68, alpha: 1.0) // #06bcad
 var goldColor = UIColor(red: 0.89, green: 0.78, blue: 0.36, alpha: 0.36) // EDC65B
 var redColor = UIColor(red: 0.77, green: 0.28, blue: 0.38, alpha: 1.0) // #ae5389

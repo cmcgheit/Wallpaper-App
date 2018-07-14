@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		49576B963725442268CF8D9F /* Pods_Wallpaper_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */; };
+		D87DA23620FA4CE800777B0D /* RoundedRectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */; };
+		D87DA23820FA556B00777B0D /* CustomCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23720FA556B00777B0D /* CustomCardView.swift */; };
 		D8E93B8220B8B02100CE0AD8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8120B8B02000CE0AD8 /* AuthService.swift */; };
 		D8E93B8420B8B02D00CE0AD8 /* FIRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */; };
 		D8E93B8A20B8B05100CE0AD8 /* ImageResizeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */; };
@@ -63,6 +65,8 @@
 /* Begin PBXFileReference section */
 		6A17C4001EFD5AD30047CBA5 /* Wallpaper-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wallpaper-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallpaper_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectButton.swift; sourceTree = "<group>"; };
+		D87DA23720FA556B00777B0D /* CustomCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardView.swift; sourceTree = "<group>"; };
 		D8E93B8120B8B02000CE0AD8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = "Wallpaper-App/AuthService.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIRService.swift; path = "Wallpaper-App/FIRService.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageResizeExt.swift; path = "Wallpaper-App/ImageResizeExt.swift"; sourceTree = SOURCE_ROOT; };
@@ -213,6 +217,8 @@
 				D8E93B9020B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib */,
 				D8E93BF020C3257800CE0AD8 /* CustomLoadingView.swift */,
 				D8FC5D8A20D2CBDB00FA632F /* PaddedLabel.swift */,
+				D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */,
+				D87DA23720FA556B00777B0D /* CustomCardView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -459,6 +465,7 @@
 				D8FC5D9C20E724B000FA632F /* DarkTheme.swift in Sources */,
 				D8FC5D9A20E7242100FA632F /* LightTheme.swift in Sources */,
 				D8E93BE920BF0D8C00CE0AD8 /* WallpaperCategories.swift in Sources */,
+				D87DA23620FA4CE800777B0D /* RoundedRectButton.swift in Sources */,
 				D8E93BC820B8B63200CE0AD8 /* NSLayoutConstraint+Multiplier.swift in Sources */,
 				D8E93B8C20B8B05100CE0AD8 /* AppDelegate.swift in Sources */,
 				D8FC5D8B20D2CBDB00FA632F /* PaddedLabel.swift in Sources */,
@@ -475,6 +482,7 @@
 				D8E93B9420B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift in Sources */,
 				D8E93BED20C1A77E00CE0AD8 /* Extensions.swift in Sources */,
 				D8E93BBF20B8B63200CE0AD8 /* CGAffineTransform+Custom.swift in Sources */,
+				D87DA23820FA556B00777B0D /* CustomCardView.swift in Sources */,
 				D8E93BC020B8B63200CE0AD8 /* ReusableCells.swift in Sources */,
 				D8E93BC620B8B63200CE0AD8 /* CardView.swift in Sources */,
 				D8FC5D9120E00C0800FA632F /* CustomSwitch.swift in Sources */,

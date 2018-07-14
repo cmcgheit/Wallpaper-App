@@ -7,7 +7,7 @@ class DarkTheme: ThemeProtocol {
     var mainFontName: String = FontName.regular
     var textColor: UIColor = purpleColor
     var accent: UIColor = orangeColor
-    var backgroundImage = #imageLiteral(resourceName: "ReflexGeoDark")
+    var backgroundImage = #imageLiteral(resourceName: "MultiCurvesV2")
     var tint: UIColor = orangeColor
     
 }

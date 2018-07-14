@@ -7,7 +7,7 @@ class LightTheme: ThemeProtocol {
     var mainFontName: String = FontName.regular
     var textColor: UIColor = tealColor
     var accent: UIColor = goldColor
-    var backgroundImage = #imageLiteral(resourceName: "ReflexGeoWhite")
+    var backgroundImage = #imageLiteral(resourceName: "MultiCurves")
     var tint: UIColor = goldColor
     
 }

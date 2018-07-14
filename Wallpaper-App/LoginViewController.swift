@@ -10,14 +10,19 @@ import SwiftEntryKit
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var loginCardView: UIView!
+    @IBOutlet weak var loginCardView: CustomCardView!
     @IBOutlet weak var emailTextFld: AnimatedTextField!
-    @IBOutlet weak var signInBtn: UIButton!
-    @IBOutlet weak var signUpBtn: UIButton!
+    @IBOutlet weak var signInBtn: RoundedRectButton!
+    @IBOutlet weak var signUpBtn: RoundedRectButton!
+    @IBOutlet weak var loginAnBtn: RoundedRectButton!
     @IBOutlet weak var passTextFld: AnimatedTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        signInBtn.layer.cornerRadius = 15
+        signUpBtn.layer.cornerRadius = 15
+        loginAnBtn.layer.cornerRadius = 15
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +44,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func signInBtnPressed(_ sender: UIButton) {
+    @IBAction func signInBtnPressed(_ sender: Any) {
         guard let email = emailTextFld.text else { return }
         guard let pass = passTextFld.text else { return }
         if email.isEmpty || pass.isEmpty  {
@@ -94,7 +99,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func signUpBtnPressed(_ sender: UIButton) {
+    @IBAction func signUpBtnPressed(_ sender: Any) {
         performSegue(withIdentifier: "toSignUpViewController", sender: nil)
     }
     

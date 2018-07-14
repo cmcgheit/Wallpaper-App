@@ -8,10 +8,14 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var signUpTxtFld: AnimatedTextField!
     @IBOutlet weak var signUpPassFld: AnimatedTextField!
-    @IBOutlet weak var signUpBtn: UIButton!
+    @IBOutlet weak var signUpBtn: RoundedRectButton!
+    @IBOutlet weak var goBackBtn: RoundedRectButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        signUpBtn.layer.cornerRadius = 15
+        goBackBtn.layer.cornerRadius = 15
     }
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
@@ -63,5 +67,9 @@ class SignUpViewController: UIViewController {
                 }
             })
         }
+    }
+    
+    @IBAction func goBackBtnPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 }
