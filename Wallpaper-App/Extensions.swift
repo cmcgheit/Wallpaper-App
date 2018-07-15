@@ -147,3 +147,37 @@ extension UIFont {
         }
     }
 }
+
+extension UINavigationController {
+    public func presentTransparentNavigationBar() {
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.isTranslucent = true
+        navigationBar.shadowImage = UIImage()
+        setNavigationBarHidden(true, animated: true)
+    }
+    
+    public func hideTransparentNavigationBar() {
+        setNavigationBarHidden(true, animated: false)
+        navigationBar.setBackgroundImage(UINavigationBar.appearance().backgroundImage(for: .default), for: .default)
+        navigationBar.isTranslucent = UINavigationBar.appearance().isTranslucent
+        navigationBar.shadowImage = UINavigationBar.appearance().shadowImage
+    }
+}
+
+extension UIViewController {
+    
+    func customBackBtn() {
+        let customBackBtnLeft: UIButton = UIButton()
+        let image = UIImage(named: "light-back-button")
+        customBackBtnLeft.setImage(image, for: .normal)
+        customBackBtnLeft.setTitle(nil, for: .normal)
+        customBackBtnLeft.sizeToFit()
+        customBackBtnLeft.addTarget(self, action: #selector(customBackBtnAction), for: .touchUpInside)
+        let barButton = UIBarButtonItem(customView: customBackBtnLeft)
+        self.navigationItem.leftBarButtonItem = barButton
+    }
+    
+    @objc func customBackBtnAction(sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+}

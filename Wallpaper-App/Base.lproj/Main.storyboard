@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hwN-uW-ZJg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="e5t-Dg-8Hj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -26,11 +26,9 @@
                             </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DW-in-jk3">
                                 <rect key="frame" x="17" y="147" width="341" height="370"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-b4-UEY" customClass="GlidingCollection" customModule="GlidingCollection">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-b4-UEY" customClass="GlidingCollection" customModule="GlidingCollection">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-ye-yUT">
                                 <rect key="frame" x="331" y="30" width="34" height="34"/>
@@ -45,8 +43,9 @@
                                     <segue destination="3qs-Bd-fOm" kind="show" identifier="toUploadWallpaperPopUp" id="6kx-3b-rYY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQH-b3-jIB">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQH-b3-jIB" customClass="RoundedRectPinkButton" customModule="Wallpaper_App" customModuleProvider="target">
                                 <rect key="frame" x="10" y="35" width="70" height="32"/>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.52549019610000003" blue="0.58039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
                                 <state key="normal" title="Sign-Out">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -57,10 +56,18 @@
                                     <segue destination="e5t-Dg-8Hj" kind="show" identifier="backtoLoginViewController" id="NZ3-jy-2Sf"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9SO-aj-fWK" customClass="CustomSwitch" customModule="Wallpaper_App" customModuleProvider="target">
+                                <rect key="frame" x="162" y="35" width="50" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ry3-lz-cZp"/>
+                                    <constraint firstAttribute="width" constant="50" id="bCj-uY-4dv"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6DW-in-jk3" secondAttribute="bottom" constant="150" id="0a4-N1-5Xg"/>
                             <constraint firstItem="WAa-z2-Qms" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="18i-Dl-HeA"/>
+                            <constraint firstItem="9SO-aj-fWK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="39b-MR-pqD"/>
                             <constraint firstAttribute="trailing" secondItem="KWp-ye-yUT" secondAttribute="trailing" constant="10" id="469-p6-rsM"/>
                             <constraint firstAttribute="trailing" secondItem="6DW-in-jk3" secondAttribute="trailing" constant="17" id="7h9-de-BYE"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wn6-b4-UEY" secondAttribute="bottom" id="84a-Nr-Hb1"/>
@@ -68,10 +75,12 @@
                             <constraint firstItem="6DW-in-jk3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="17" id="HAU-i3-Ave"/>
                             <constraint firstItem="WAa-z2-Qms" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LTQ-sX-aIR"/>
                             <constraint firstItem="KWp-ye-yUT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="Laf-ek-Bmu"/>
+                            <constraint firstItem="KWp-ye-yUT" firstAttribute="leading" secondItem="9SO-aj-fWK" secondAttribute="trailing" constant="119" id="RtP-SJ-rBc"/>
                             <constraint firstItem="wn6-b4-UEY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="S1w-ry-1Jz"/>
                             <constraint firstItem="KWp-ye-yUT" firstAttribute="leading" secondItem="OQH-b3-jIB" secondAttribute="trailing" constant="251" id="TcS-Zx-Qqn"/>
                             <constraint firstItem="OQH-b3-jIB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="U1q-tS-ung"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WAa-z2-Qms" secondAttribute="bottom" id="XPh-Kb-oEm"/>
+                            <constraint firstItem="9SO-aj-fWK" firstAttribute="leading" secondItem="OQH-b3-jIB" secondAttribute="trailing" constant="82" id="acI-we-tzK"/>
                             <constraint firstAttribute="trailing" secondItem="wn6-b4-UEY" secondAttribute="trailing" id="dN6-lH-KPY"/>
                             <constraint firstItem="OQH-b3-jIB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="dj0-DB-IEM"/>
                             <constraint firstItem="6DW-in-jk3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hfP-ee-nPn"/>
@@ -79,16 +88,18 @@
                             <constraint firstItem="wn6-b4-UEY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vGn-Vz-8uQ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="YC4-aS-A34"/>
                     <connections>
                         <outlet property="glidingIntView" destination="6DW-in-jk3" id="AmW-NX-x9c"/>
                         <outlet property="glidingView" destination="wn6-b4-UEY" id="aR0-g3-VEM"/>
                         <outlet property="signOutBtn" destination="OQH-b3-jIB" id="NPR-Di-EtX"/>
+                        <outlet property="themeSwitch" destination="9SO-aj-fWK" id="G1e-mB-9V1"/>
                         <outlet property="uploadBtn" destination="KWp-ye-yUT" id="nfh-lS-wSd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="248.80000000000001" y="125.4872563718141"/>
+            <point key="canvasLocation" x="1144.8" y="124.58770614692655"/>
         </scene>
         <!--SignUpViewController-->
         <scene sceneID="Phh-VC-Rxd">
@@ -106,7 +117,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWF-Xb-Ah7" customClass="CustomCardView" customModule="Wallpaper_App" customModuleProvider="target">
-                                <rect key="frame" x="37" y="158" width="300" height="350"/>
+                                <rect key="frame" x="37" y="158.5" width="300" height="350"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2QC-FE-YbQ">
                                         <rect key="frame" x="23" y="49" width="250.5" height="134.5"/>
@@ -143,7 +154,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QLZ-lg-TWB">
                                         <rect key="frame" x="50" y="213.5" width="200" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gue-TG-lhA" customClass="RoundedRectButton" customModule="Wallpaper_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gue-TG-lhA" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="95" height="30"/>
                                                 <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -158,7 +169,7 @@
                                                     <action selector="signUpBtnPressed:" destination="GZF-Tt-wBC" eventType="touchUpInside" id="HBd-4R-0SE"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mz9-bU-WVz" customClass="RoundedRectButton" customModule="Wallpaper_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mz9-bU-WVz" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
                                                 <rect key="frame" x="105" y="0.0" width="95" height="30"/>
                                                 <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -229,7 +240,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jgg-Jr-4U2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1029.5999999999999" y="125.4872563718141"/>
+            <point key="canvasLocation" x="1906" y="125"/>
         </scene>
         <!--SplashViewController-->
         <scene sceneID="7Ed-Zr-fLx">
@@ -245,7 +256,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="handiphonesparkle2" translatesAutoresizingMaskIntoConstraints="NO" id="RhB-hg-7OI">
                                 <rect key="frame" x="37.5" y="203.5" width="300" height="260"/>
-                                <color key="backgroundColor" red="0.31764705882352939" green="0.72549019607843135" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.29019607843137257" green="0.2627450980392157" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="PNY-b6-1vm"/>
                                     <constraint firstAttribute="height" constant="260" id="kaI-ci-HzA"/>
@@ -322,7 +333,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="IcW-Sy-6Ua">
                                         <rect key="frame" x="42" y="235" width="215" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLo-yH-V89" customClass="RoundedRectButton" customModule="Wallpaper_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLo-yH-V89" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
                                                 <color key="backgroundColor" red="0.2627450980392157" green="0.62745098039215685" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -338,7 +349,7 @@
                                                     <action selector="signInBtnPressed:" destination="e5t-Dg-8Hj" eventType="touchUpInside" id="5uo-lX-ra8"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flm-PU-odZ" customClass="RoundedRectButton" customModule="Wallpaper_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flm-PU-odZ" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
                                                 <rect key="frame" x="115" y="0.0" width="100" height="30"/>
                                                 <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -361,7 +372,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="dlY-Kb-FrY">
                                         <rect key="frame" x="75" y="280" width="150" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiB-AT-fsZ" customClass="RoundedRectButton" customModule="Wallpaper_App" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiB-AT-fsZ" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
                                                 <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -392,11 +403,6 @@
                                     <constraint firstItem="Cbo-2V-dDz" firstAttribute="centerX" secondItem="JQd-Ow-a5c" secondAttribute="centerX" id="c8F-OP-Jzz"/>
                                     <constraint firstItem="IcW-Sy-6Ua" firstAttribute="centerX" secondItem="JQd-Ow-a5c" secondAttribute="centerX" id="p0a-J5-j7K"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -412,12 +418,29 @@
                         <outlet property="passTextFld" destination="7B7-UD-EK1" id="OJ8-ie-jWE"/>
                         <outlet property="signInBtn" destination="cLo-yH-V89" id="pdW-YX-l2P"/>
                         <outlet property="signUpBtn" destination="flm-PU-odZ" id="bdm-as-xwF"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="toFeedViewController" id="puX-wA-Sho"/>
+                        <segue destination="nf6-LJ-NTm" kind="show" identifier="toFeedViewController" id="puX-wA-Sho"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5zi-YU-UTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-551.20000000000005" y="126.38680659670166"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jye-y5-DR5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="nf6-LJ-NTm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="WMH-aY-DaY">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="1BK-oz-sAA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jTy-8p-p7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="334" y="125"/>
         </scene>
     </scenes>
     <resources>
@@ -425,7 +448,4 @@
         <image name="handiphonesparkle2" width="400" height="300"/>
         <image name="imageupload" width="100" height="100"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="puX-wA-Sho"/>
-    </inferredMetricsTieBreakers>
 </document>

@@ -8,14 +8,23 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var signUpTxtFld: AnimatedTextField!
     @IBOutlet weak var signUpPassFld: AnimatedTextField!
-    @IBOutlet weak var signUpBtn: RoundedRectButton!
-    @IBOutlet weak var goBackBtn: RoundedRectButton!
+    @IBOutlet weak var signUpBtn: RoundedRectBlueButton!
+    @IBOutlet weak var goBackBtn: RoundedRectBlueButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        signUpBtn.layer.cornerRadius = 15
-        goBackBtn.layer.cornerRadius = 15
+        signUpBtn?.layer.cornerRadius = 15
+        goBackBtn?.layer.cornerRadius = 15
+        
+        customBackBtn()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // MARK: - Set navigation bar to transparent
+        self.navigationController?.hideTransparentNavigationBar()
+        
     }
     
     @IBAction func signUpBtnPressed(_ sender: Any) {

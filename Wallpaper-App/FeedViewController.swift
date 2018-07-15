@@ -17,7 +17,7 @@ class FeedViewController: UIViewController {
     
     @IBOutlet var glidingView: GlidingCollection!
     @IBOutlet weak var uploadBtn: UIButton!
-    @IBOutlet weak var signOutBtn: UIButton!
+    @IBOutlet weak var signOutBtn: RoundedRectPinkButton!
     @IBOutlet weak var glidingIntView: UIView!
     @IBOutlet weak var themeSwitch: CustomSwitch!
     
@@ -49,12 +49,16 @@ class FeedViewController: UIViewController {
         
         applyTheme()
         
+        customBackBtn()
+        
         // Theme - checks for theme setting
         if UserDefaults.standard.object(forKey: "lightTheme") != nil {
             UserDefaults.standard.set(true, forKey: "lightTheme")
         } else {
             UserDefaults.standard.set(true, forKey: "darkTheme")
         }
+        
+        signOutBtn.layer.cornerRadius = 15
         
         // Instructions
         self.instructionsController.dataSource = self
@@ -147,6 +151,10 @@ class FeedViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        // MARK: - Set navigation bar to transparent
+        self.navigationController?.hideTransparentNavigationBar()
+        
         // MARK: - Check Auth User Signed-In Listener/Handler
         handle = Auth.auth().addStateDidChangeListener { ( auth, user) in
             if Auth.auth().currentUser != nil {

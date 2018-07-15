@@ -12,9 +12,9 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginCardView: CustomCardView!
     @IBOutlet weak var emailTextFld: AnimatedTextField!
-    @IBOutlet weak var signInBtn: RoundedRectButton!
-    @IBOutlet weak var signUpBtn: RoundedRectButton!
-    @IBOutlet weak var loginAnBtn: RoundedRectButton!
+    @IBOutlet weak var signInBtn: RoundedRectBlueButton!
+    @IBOutlet weak var signUpBtn: RoundedRectBlueButton!
+    @IBOutlet weak var loginAnBtn: RoundedRectBlueButton!
     @IBOutlet weak var passTextFld: AnimatedTextField!
     
     override func viewDidLoad() {
@@ -23,10 +23,15 @@ class LoginViewController: UIViewController {
         signInBtn.layer.cornerRadius = 15
         signUpBtn.layer.cornerRadius = 15
         loginAnBtn.layer.cornerRadius = 15
+        
+        customBackBtn()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // MARK: - Set navigation bar to transparent
+        self.navigationController?.hideTransparentNavigationBar()
         
         // Take user to Feed if already logged-in
         if (Auth.auth().currentUser?.uid != nil)  {

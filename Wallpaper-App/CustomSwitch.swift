@@ -23,14 +23,14 @@ final class CustomSwitch: UIControl {
         }
     }
     
-    @IBInspectable  public var onTintColor: UIColor = UIColor(red: 144/255, green: 202/255, blue: 119/255, alpha: 1) {
+    @IBInspectable  public var onTintColor: UIColor = wallBlue {
         didSet {
             self.setupUI()
             
         }
     }
     
-    @IBInspectable public var offTintColor: UIColor = UIColor.black {
+    @IBInspectable public var offTintColor: UIColor = wallPink {
         didSet {
             self.setupUI()
         }
@@ -59,7 +59,7 @@ final class CustomSwitch: UIControl {
     }
     
     // thumb properties
-    @IBInspectable public var thumbTintColor: UIColor = UIColor.white {
+    @IBInspectable public var thumbTintColor: UIColor = wallBlue {
         didSet {
             self.thumbView.backgroundColor = self.thumbTintColor
         }
@@ -121,7 +121,7 @@ final class CustomSwitch: UIControl {
     
     
     // dodati kasnije
-    @IBInspectable public var thumbShadowColor: UIColor = UIColor.black {
+    @IBInspectable public var thumbShadowColor: UIColor = UIColor.darkGray {
         didSet {
             self.thumbView.layer.shadowColor = self.thumbShadowColor.cgColor
         }
@@ -348,8 +348,8 @@ extension CustomSwitch {
         self.labelOff.textColor = UIColor.white
         
         self.labelOff.sizeToFit()
-        self.labelOff.text = "Off"
-        self.labelOn.text = "On"
+        self.labelOff.text = "Light"
+        self.labelOn.text = "Dark"
         self.labelOff.textAlignment = .center
         self.labelOn.textAlignment = .center
         

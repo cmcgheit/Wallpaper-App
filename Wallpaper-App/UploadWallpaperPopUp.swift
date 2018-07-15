@@ -41,6 +41,8 @@ class UploadWallpaperPopUp: UIViewController {
         closeBtn?.isHidden = true // hide close until user has filled out all fields to upload image
         wallpaperDescTextView?.textColor = .darkGray
         
+        customBackBtn()
+        
         // MARK: Camera Setup
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -67,6 +69,11 @@ class UploadWallpaperPopUp: UIViewController {
                 rootController.present(imagePicker, animated: true, completion: nil)
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // MARK: - Set navigation bar to transparent
+        self.navigationController?.hideTransparentNavigationBar()
     }
     
     // MARK: - Category Picker Button Action
