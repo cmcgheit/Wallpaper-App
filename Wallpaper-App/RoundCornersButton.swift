@@ -13,5 +13,5 @@ final class RoundCornersButton: UIButton {
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.cornerRadius = min(bounds.size.width, bounds.size.height)/2
-   }
+    }
 }

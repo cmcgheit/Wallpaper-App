@@ -5,18 +5,17 @@
 //  Created by Marcos Griselli on 21/04/2018.
 //  Copyright © 2018 CocoaPods. All rights reserved.
 //
-
 import Foundation
 import UIKit
 
 open class PresentationControllerAnimator: ModalTransitionAnimator {
-
+    
     private var finalFrame: CGRect
     private var shadowView = UIView()
     public var auxAnimation: ((Bool) -> Void)?
     public var onDismissed: (() -> Void)?
     public var onPresented: (() -> Void)?
-
+    
     // TODO: Add configuration.
     public init(finalFrame: CGRect) {
         self.finalFrame = finalFrame
@@ -55,3 +54,4 @@ open class PresentationControllerAnimator: ModalTransitionAnimator {
         auxAnimation?(presenting)
     }
 }
+

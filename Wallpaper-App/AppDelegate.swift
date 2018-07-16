@@ -72,9 +72,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var config = GlidingConfig.shared
         config.buttonsFont = UIFont.gillsRegFont(ofSize: 45) // Category text
         config.activeButtonColor = UIColor.darkGray
-        GlidingConfig.shared.inactiveButtonsColor = config.activeButtonColor
-        GlidingConfig.shared.cardsSize = CGSize(width: round(UIScreen.main.bounds.width * 0.7), height: round(UIScreen.main.bounds.height * 0.45))
-        config.inactiveButtonsColor = config.activeButtonColor
+        config.inactiveButtonsColor = UIColor.lightGray
+        config.cardsSize = CGSize(width: round(UIScreen.main.bounds.width * 0.7), height: round(UIScreen.main.bounds.height * 0.45))
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

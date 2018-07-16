@@ -79,7 +79,7 @@ class FIRService: NSObject {
     }
     
     //MARK: - Upload/Save Images to Firebase Storage/Firebase Database
-    public static func saveWalltoFirebase(image: UIImage, wallpaperURL: String?, wallpaperDesc: String?, wallpaperCategory: String?, completion: @escaping (Error?)->()) {
+    public static func saveWalltoFirebase(image: UIImage, wallpaperURL: URL?, wallpaperDesc: String?, wallpaperCategory: String?, completion: @escaping (Error?)->()) {
         // guard let uid = authRef.currentUser?.uid else { return }
         let ref = storageRef.child("images") //.child(uid) add images to specific user uid
         guard let data = image.prepareImageForSaving() else { return }

@@ -4,12 +4,11 @@
 //
 //  Created by Marcos Griselli on 07/04/2018.
 //
-
 import Foundation
 import UIKit
 
 open class ModalTransitionDelegate: NSObject {
-
+    
     private var animators = [ModalOperation: ModalTransitionAnimator]()
     private let interactiveController = TransitionInteractiveController()
     private var presentationController: UIPresentationController?
@@ -22,7 +21,7 @@ open class ModalTransitionDelegate: NSObject {
         interactiveController.navigationAction = navigationAction
         interactiveController.shouldBeginTransition = beginWhen
     }
-
+    
     open func set(animator: ModalTransitionAnimator, for operation: ModalOperation) {
         animators[operation] = animator
     }

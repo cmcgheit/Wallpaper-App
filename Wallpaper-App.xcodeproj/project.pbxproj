@@ -10,6 +10,24 @@
 		49576B963725442268CF8D9F /* Pods_Wallpaper_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */; };
 		D87DA23620FA4CE800777B0D /* RoundedRectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */; };
 		D87DA23820FA556B00777B0D /* CustomCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23720FA556B00777B0D /* CustomCardView.swift */; };
+		D87DA23B20FBAC2500777B0D /* RevealPasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */; };
+		D87DA23D20FBAC2E00777B0D /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23C20FBAC2E00777B0D /* LoginButton.swift */; };
+		D87DA23F20FBB8AB00777B0D /* PresentationControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23E20FBB8AB00777B0D /* PresentationControllerAnimator.swift */; };
+		D87DA24120FBB8DD00777B0D /* ModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA24020FBB8DD00777B0D /* ModalTransitionAnimator.swift */; };
+		D87DA24420FBB91C00777B0D /* ModalOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA24320FBB91C00777B0D /* ModalOperation.swift */; };
+		D87DA24620FBB93F00777B0D /* ModalTransitionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA24520FBB93F00777B0D /* ModalTransitionConfigurator.swift */; };
+		D87DA24820FBB96C00777B0D /* ModalTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA24720FBB96C00777B0D /* ModalTransitionDelegate.swift */; };
+		D87DA24B20FBB9AC00777B0D /* Pan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA24A20FBB9AC00777B0D /* Pan.swift */; };
+		D87DA24D20FBB9D400777B0D /* PanDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA24C20FBB9D400777B0D /* PanDirection.swift */; };
+		D87DA24F20FBB9F400777B0D /* PanFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA24E20FBB9F400777B0D /* PanFactory.swift */; };
+		D87DA25220FBBA4500777B0D /* TransitionEdgePanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25120FBBA4500777B0D /* TransitionEdgePanGestureRecognizer.swift */; };
+		D87DA25420FBBA6C00777B0D /* TransitionPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25320FBBA6C00777B0D /* TransitionPanGestureRecognizer.swift */; };
+		D87DA25720FBBAF400777B0D /* PanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25620FBBAF400777B0D /* PanGesture.swift */; };
+		D87DA25A20FBBB8000777B0D /* NavigationTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25920FBBB8000777B0D /* NavigationTransitionDelegate.swift */; };
+		D87DA25C20FBBBA600777B0D /* NavigationTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25B20FBBBA600777B0D /* NavigationTransitionAnimator.swift */; };
+		D87DA25E20FBBBC500777B0D /* NavigationTransitionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25D20FBBBC500777B0D /* NavigationTransitionConfigurator.swift */; };
+		D87DA26020FBBC0300777B0D /* TransitionInteractiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25F20FBBC0300777B0D /* TransitionInteractiveController.swift */; };
+		D87DA26220FBBC4D00777B0D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA26120FBBC4D00777B0D /* Configuration.swift */; };
 		D8E93B8220B8B02100CE0AD8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8120B8B02000CE0AD8 /* AuthService.swift */; };
 		D8E93B8420B8B02D00CE0AD8 /* FIRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */; };
 		D8E93B8A20B8B05100CE0AD8 /* ImageResizeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */; };
@@ -67,6 +85,24 @@
 		736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallpaper_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectButton.swift; sourceTree = "<group>"; };
 		D87DA23720FA556B00777B0D /* CustomCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardView.swift; sourceTree = "<group>"; };
+		D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealPasswordTextField.swift; sourceTree = "<group>"; };
+		D87DA23C20FBAC2E00777B0D /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		D87DA23E20FBB8AB00777B0D /* PresentationControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationControllerAnimator.swift; sourceTree = "<group>"; };
+		D87DA24020FBB8DD00777B0D /* ModalTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTransitionAnimator.swift; sourceTree = "<group>"; };
+		D87DA24320FBB91C00777B0D /* ModalOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalOperation.swift; sourceTree = "<group>"; };
+		D87DA24520FBB93F00777B0D /* ModalTransitionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTransitionConfigurator.swift; sourceTree = "<group>"; };
+		D87DA24720FBB96C00777B0D /* ModalTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTransitionDelegate.swift; sourceTree = "<group>"; };
+		D87DA24A20FBB9AC00777B0D /* Pan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pan.swift; sourceTree = "<group>"; };
+		D87DA24C20FBB9D400777B0D /* PanDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanDirection.swift; sourceTree = "<group>"; };
+		D87DA24E20FBB9F400777B0D /* PanFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanFactory.swift; sourceTree = "<group>"; };
+		D87DA25120FBBA4500777B0D /* TransitionEdgePanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionEdgePanGestureRecognizer.swift; sourceTree = "<group>"; };
+		D87DA25320FBBA6C00777B0D /* TransitionPanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionPanGestureRecognizer.swift; sourceTree = "<group>"; };
+		D87DA25620FBBAF400777B0D /* PanGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanGesture.swift; sourceTree = "<group>"; };
+		D87DA25920FBBB8000777B0D /* NavigationTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionDelegate.swift; sourceTree = "<group>"; };
+		D87DA25B20FBBBA600777B0D /* NavigationTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionAnimator.swift; sourceTree = "<group>"; };
+		D87DA25D20FBBBC500777B0D /* NavigationTransitionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionConfigurator.swift; sourceTree = "<group>"; };
+		D87DA25F20FBBC0300777B0D /* TransitionInteractiveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionInteractiveController.swift; sourceTree = "<group>"; };
+		D87DA26120FBBC4D00777B0D /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		D8E93B8120B8B02000CE0AD8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = "Wallpaper-App/AuthService.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIRService.swift; path = "Wallpaper-App/FIRService.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageResizeExt.swift; path = "Wallpaper-App/ImageResizeExt.swift"; sourceTree = SOURCE_ROOT; };
@@ -208,6 +244,7 @@
 		6A17C4161EFD5B120047CBA5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D87DA23920FBAC0A00777B0D /* RevealPassword */,
 				D8FC5D9220E00C3600FA632F /* Switch */,
 				D8FC5D8C20D5A82400FA632F /* CardView.xib */,
 				D8E93B9120B8B08D00CE0AD8 /* AnimatedTextField.swift */,
@@ -243,6 +280,128 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		D87DA23920FBAC0A00777B0D /* RevealPassword */ = {
+			isa = PBXGroup;
+			children = (
+				D87DA23C20FBAC2E00777B0D /* LoginButton.swift */,
+				D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */,
+			);
+			name = RevealPassword;
+			sourceTree = "<group>";
+		};
+		D87DA24220FBB90800777B0D /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				D87DA24020FBB8DD00777B0D /* ModalTransitionAnimator.swift */,
+				D87DA24320FBB91C00777B0D /* ModalOperation.swift */,
+				D87DA24520FBB93F00777B0D /* ModalTransitionConfigurator.swift */,
+				D87DA24720FBB96C00777B0D /* ModalTransitionDelegate.swift */,
+			);
+			name = Modal;
+			sourceTree = "<group>";
+		};
+		D87DA24920FBB9A300777B0D /* Pan */ = {
+			isa = PBXGroup;
+			children = (
+				D87DA24A20FBB9AC00777B0D /* Pan.swift */,
+				D87DA24C20FBB9D400777B0D /* PanDirection.swift */,
+				D87DA24E20FBB9F400777B0D /* PanFactory.swift */,
+			);
+			name = Pan;
+			sourceTree = "<group>";
+		};
+		D87DA25020FBBA2400777B0D /* Gestures */ = {
+			isa = PBXGroup;
+			children = (
+				D87DA25120FBBA4500777B0D /* TransitionEdgePanGestureRecognizer.swift */,
+				D87DA25320FBBA6C00777B0D /* TransitionPanGestureRecognizer.swift */,
+			);
+			name = Gestures;
+			sourceTree = "<group>";
+		};
+		D87DA25520FBBAD000777B0D /* Animators */ = {
+			isa = PBXGroup;
+			children = (
+				D8E93BBA20B8B63100CE0AD8 /* AppStoreAnimatorInfo.swift */,
+				D87DA23E20FBB8AB00777B0D /* PresentationControllerAnimator.swift */,
+			);
+			name = Animators;
+			sourceTree = "<group>";
+		};
+		D87DA25820FBBB6200777B0D /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				D87DA25920FBBB8000777B0D /* NavigationTransitionDelegate.swift */,
+				D87DA25B20FBBBA600777B0D /* NavigationTransitionAnimator.swift */,
+				D87DA25D20FBBBC500777B0D /* NavigationTransitionConfigurator.swift */,
+			);
+			name = Navigation;
+			sourceTree = "<group>";
+		};
+		D87DA26320FBCD8A00777B0D /* CoreGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				D8E93BB220B8B63000CE0AD8 /* CGAffineTransform+Custom.swift */,
+			);
+			name = CoreGraphics;
+			sourceTree = "<group>";
+		};
+		D87DA26420FBCDA300777B0D /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				D8E93BB120B8B63000CE0AD8 /* FunctionalEnumerated.swift */,
+			);
+			name = Foundation;
+			sourceTree = "<group>";
+		};
+		D87DA26520FBCDBB00777B0D /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				D8E93BBB20B8B63100CE0AD8 /* NSLayoutConstraint+Multiplier.swift */,
+				D8E93BB620B8B63100CE0AD8 /* UICollectionView+OrderedCells.swift */,
+				D8E93BB720B8B63100CE0AD8 /* UIWindow+SafeArea.swift */,
+			);
+			name = UIKit;
+			sourceTree = "<group>";
+		};
+		D87DA26620FBCE1000777B0D /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				D8E93BB520B8B63000CE0AD8 /* CircularImageView.swift */,
+				D8E93BB020B8B63000CE0AD8 /* RoundCornersButton.swift */,
+				D87DA26820FBCE9400777B0D /* Views */,
+				D87DA26720FBCE1C00777B0D /* Shadow */,
+			);
+			name = Style;
+			sourceTree = "<group>";
+		};
+		D87DA26720FBCE1C00777B0D /* Shadow */ = {
+			isa = PBXGroup;
+			children = (
+				D8FC5D8820D2C9FA00FA632F /* UIView+ShadowStyle.swift */,
+				D8FC5D8620D2C89500FA632F /* ShadowStyle.swift */,
+			);
+			name = Shadow;
+			sourceTree = "<group>";
+		};
+		D87DA26820FBCE9400777B0D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D8E93BB920B8B63100CE0AD8 /* CardView.swift */,
+				D8E93BB420B8B63000CE0AD8 /* CardViewDelegate.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D87DA26920FBCEEB00777B0D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D8E93BBC20B8B63200CE0AD8 /* NibLoadbleView.swift */,
+				D8E93BB320B8B63000CE0AD8 /* ReusableCells.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		D8D2A4AC20A7AC160014ADAE /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,20 +414,19 @@
 		D8E93B6820B8AC3F00CE0AD8 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				D8E93BBA20B8B63100CE0AD8 /* AppStoreAnimatorInfo.swift */,
-				D8E93BB920B8B63100CE0AD8 /* CardView.swift */,
-				D8E93BB420B8B63000CE0AD8 /* CardViewDelegate.swift */,
-				D8E93BB220B8B63000CE0AD8 /* CGAffineTransform+Custom.swift */,
-				D8E93BB520B8B63000CE0AD8 /* CircularImageView.swift */,
-				D8E93BB120B8B63000CE0AD8 /* FunctionalEnumerated.swift */,
-				D8E93BBC20B8B63200CE0AD8 /* NibLoadbleView.swift */,
-				D8E93BBB20B8B63100CE0AD8 /* NSLayoutConstraint+Multiplier.swift */,
-				D8E93BB320B8B63000CE0AD8 /* ReusableCells.swift */,
-				D8E93BB020B8B63000CE0AD8 /* RoundCornersButton.swift */,
-				D8E93BB620B8B63100CE0AD8 /* UICollectionView+OrderedCells.swift */,
-				D8E93BB720B8B63100CE0AD8 /* UIWindow+SafeArea.swift */,
-				D8FC5D8620D2C89500FA632F /* ShadowStyle.swift */,
-				D8FC5D8820D2C9FA00FA632F /* UIView+ShadowStyle.swift */,
+				D87DA26920FBCEEB00777B0D /* Utilities */,
+				D87DA26620FBCE1000777B0D /* Style */,
+				D87DA26520FBCDBB00777B0D /* UIKit */,
+				D87DA26420FBCDA300777B0D /* Foundation */,
+				D87DA26320FBCD8A00777B0D /* CoreGraphics */,
+				D87DA25820FBBB6200777B0D /* Navigation */,
+				D87DA25520FBBAD000777B0D /* Animators */,
+				D87DA25020FBBA2400777B0D /* Gestures */,
+				D87DA24920FBB9A300777B0D /* Pan */,
+				D87DA24220FBB90800777B0D /* Modal */,
+				D87DA25620FBBAF400777B0D /* PanGesture.swift */,
+				D87DA25F20FBBC0300777B0D /* TransitionInteractiveController.swift */,
+				D87DA26120FBBC4D00777B0D /* Configuration.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -449,16 +607,28 @@
 				D8E93B9720B8B08D00CE0AD8 /* UploadWallpaperPopUp.swift in Sources */,
 				D8E93BC720B8B63200CE0AD8 /* AppStoreAnimatorInfo.swift in Sources */,
 				D8E93BBE20B8B63200CE0AD8 /* FunctionalEnumerated.swift in Sources */,
+				D87DA26220FBBC4D00777B0D /* Configuration.swift in Sources */,
+				D87DA24F20FBB9F400777B0D /* PanFactory.swift in Sources */,
 				D8E93BF120C3257800CE0AD8 /* CustomLoadingView.swift in Sources */,
 				D8FC5D8F20DEC4B300FA632F /* Notifications+Extensions.swift in Sources */,
 				D8E93BBD20B8B63200CE0AD8 /* RoundCornersButton.swift in Sources */,
 				D8E93BC220B8B63200CE0AD8 /* CircularImageView.swift in Sources */,
 				D8E93BEB20BF2AD500CE0AD8 /* User.swift in Sources */,
+				D87DA24120FBB8DD00777B0D /* ModalTransitionAnimator.swift in Sources */,
 				D8E93B8E20B8B05100CE0AD8 /* Constants.swift in Sources */,
 				D8FC5D9620E721C800FA632F /* ThemeProtocol.swift in Sources */,
+				D87DA23D20FBAC2E00777B0D /* LoginButton.swift in Sources */,
+				D87DA25420FBBA6C00777B0D /* TransitionPanGestureRecognizer.swift in Sources */,
 				D8E93B8A20B8B05100CE0AD8 /* ImageResizeExt.swift in Sources */,
+				D87DA24420FBB91C00777B0D /* ModalOperation.swift in Sources */,
+				D87DA25E20FBBBC500777B0D /* NavigationTransitionConfigurator.swift in Sources */,
+				D87DA24820FBB96C00777B0D /* ModalTransitionDelegate.swift in Sources */,
+				D87DA25220FBBA4500777B0D /* TransitionEdgePanGestureRecognizer.swift in Sources */,
 				D8E93BC320B8B63200CE0AD8 /* UICollectionView+OrderedCells.swift in Sources */,
+				D87DA25C20FBBBA600777B0D /* NavigationTransitionAnimator.swift in Sources */,
 				D8E93BC420B8B63200CE0AD8 /* UIWindow+SafeArea.swift in Sources */,
+				D87DA23F20FBB8AB00777B0D /* PresentationControllerAnimator.swift in Sources */,
+				D87DA23B20FBAC2500777B0D /* RevealPasswordTextField.swift in Sources */,
 				D8E93B8420B8B02D00CE0AD8 /* FIRService.swift in Sources */,
 				D8FC5D9820E723DD00FA632F /* Theme.swift in Sources */,
 				D8E93B8D20B8B05100CE0AD8 /* Wallpaper.swift in Sources */,
@@ -475,18 +645,24 @@
 				D8FC5D8720D2C89500FA632F /* ShadowStyle.swift in Sources */,
 				D8E93BF320C32AC000CE0AD8 /* SplashViewController.swift in Sources */,
 				D8E93B9E20B8B0B100CE0AD8 /* FeedViewController.swift in Sources */,
+				D87DA25A20FBBB8000777B0D /* NavigationTransitionDelegate.swift in Sources */,
 				D8E93B9D20B8B0B100CE0AD8 /* SignUpViewController.swift in Sources */,
 				D8E93BC920B8B63200CE0AD8 /* NibLoadbleView.swift in Sources */,
 				D8E93B9620B8B08D00CE0AD8 /* AnimatedTextField.swift in Sources */,
 				D8E93BEF20C1AC7300CE0AD8 /* WallpaperImageCache.swift in Sources */,
+				D87DA24620FBB93F00777B0D /* ModalTransitionConfigurator.swift in Sources */,
+				D87DA24B20FBB9AC00777B0D /* Pan.swift in Sources */,
 				D8E93B9420B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift in Sources */,
 				D8E93BED20C1A77E00CE0AD8 /* Extensions.swift in Sources */,
 				D8E93BBF20B8B63200CE0AD8 /* CGAffineTransform+Custom.swift in Sources */,
 				D87DA23820FA556B00777B0D /* CustomCardView.swift in Sources */,
 				D8E93BC020B8B63200CE0AD8 /* ReusableCells.swift in Sources */,
+				D87DA25720FBBAF400777B0D /* PanGesture.swift in Sources */,
 				D8E93BC620B8B63200CE0AD8 /* CardView.swift in Sources */,
 				D8FC5D9120E00C0800FA632F /* CustomSwitch.swift in Sources */,
 				D8E93B8220B8B02100CE0AD8 /* AuthService.swift in Sources */,
+				D87DA24D20FBB9D400777B0D /* PanDirection.swift in Sources */,
+				D87DA26020FBBC0300777B0D /* TransitionInteractiveController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

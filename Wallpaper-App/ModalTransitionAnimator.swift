@@ -4,7 +4,6 @@
 //
 //  Created by Marcos Griselli on 07/04/2018.
 //
-
 import Foundation
 import UIKit
 
@@ -18,5 +17,5 @@ public protocol ModalTransitionAnimator {
                 in container: UIView)
     func animate(presenting: Bool,
                  modalView: UIView,
-                 in container: UIView) 
+                 in container: UIView)
 }

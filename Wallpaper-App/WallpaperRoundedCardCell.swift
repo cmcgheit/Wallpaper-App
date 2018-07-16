@@ -23,10 +23,14 @@ internal class WallpaperRoundedCardCell: UICollectionViewCell {
         contentView.clipsToBounds = true
         
         let config = GlidingConfig.shared
+        imageView.layer.backgroundColor = UIColor.clear.cgColor
         imageView.layer.shadowOffset = config.cardShadowOffset
         imageView.layer.shadowColor = config.cardShadowColor.cgColor
         imageView.layer.shadowOpacity = config.cardShadowOpacity
         imageView.layer.shadowRadius = config.cardShadowRadius
+        
+        //        layer.shouldRasterize = true
+        //        layer.rasterizationScale = UIScreen.main.scale
        
         if let url = URL(string: wallpaper.wallpaperURL) {
             imageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder-image"))

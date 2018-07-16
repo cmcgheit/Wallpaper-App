@@ -4,14 +4,13 @@
 //
 //  Created by Marcos Griselli on 07/04/2018.
 //
-
 import UIKit
 
 @available(iOS 10.0, *)
 internal final class ModalTransitionConfigurator: NSObject, UIViewControllerAnimatedTransitioning {
-
+    
     private let transitionAnimator: ModalTransitionAnimator
-
+    
     public init(transitionAnimator: ModalTransitionAnimator) {
         self.transitionAnimator = transitionAnimator
     }
@@ -24,13 +23,13 @@ internal final class ModalTransitionConfigurator: NSObject, UIViewControllerAnim
         transitionAnimator(using: transitionContext).startAnimation()
     }
     
-     private func transitionAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {
+    private func transitionAnimator(using transitionContext: UIViewControllerContextTransitioning) -> UIViewImplicitlyAnimating {
         let fromViewController = transitionContext.viewController(forKey: .from)!
         let toViewController = transitionContext.viewController(forKey: .to)!
         
         let containerView = transitionContext.containerView
         let isPresenting = (toViewController.presentingViewController === fromViewController)
-
+        
         let modalView: UIView
         if transitionContext.responds(to: #selector(UIViewControllerContextTransitioning.view(forKey:))) {
             let key: UITransitionContextViewKey = isPresenting ? .to : .from
@@ -38,7 +37,7 @@ internal final class ModalTransitionConfigurator: NSObject, UIViewControllerAnim
         } else {
             modalView = isPresenting ? toViewController.view : fromViewController.view
         }
-
+        
         transitionAnimator.layout(presenting: isPresenting, modalView: modalView, in: containerView)
         
         let duration = transitionDuration(using: transitionContext)
@@ -48,7 +47,7 @@ internal final class ModalTransitionConfigurator: NSObject, UIViewControllerAnim
             self.transitionAnimator.animate(presenting: isPresenting,
                                             modalView: modalView, in: containerView)
         }
-
+        
         animator.addCompletion { position in
             switch position {
             case .end:
@@ -74,3 +73,4 @@ internal final class ModalTransitionConfigurator: NSObject, UIViewControllerAnim
         return transitionAnimator(using: transitionContext)
     }
 }
+

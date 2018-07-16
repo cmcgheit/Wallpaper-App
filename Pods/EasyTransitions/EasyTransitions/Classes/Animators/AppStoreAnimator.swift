@@ -4,7 +4,6 @@
 //
 //  Created by Marcos Griselli on 07/04/2018.
 //
-
 import Foundation
 import UIKit
 
@@ -13,7 +12,7 @@ public class AppStoreAnimator: ModalTransitionAnimator {
     public var initialFrame: CGRect
     private var edgeLayoutConstraints: NSEdgeLayoutConstraints?
     private let blurView: UIVisualEffectView = UIVisualEffectView(effect: nil)
-
+    
     public var blurEffectStyle: UIBlurEffectStyle = .light {
         didSet {
             if blurView.effect != nil && oldValue != blurEffectStyle {
@@ -21,16 +20,17 @@ public class AppStoreAnimator: ModalTransitionAnimator {
             }
         }
     }
-
+    
     public var auxAnimation: ((Bool) -> Void)? = .none
-
+    
     public var onReady: () -> Void = {}
     public var onDismissed: (() -> Void)? = .none
-
+    public var onPresented: (() -> Void)? = .none
+    
     public init(initialFrame: CGRect) {
         self.initialFrame = initialFrame
     }
-
+    
     public init(initialFrame: CGRect, blurEffectStyle: UIBlurEffectStyle) {
         self.blurEffectStyle = blurEffectStyle
         self.initialFrame = initialFrame
@@ -52,7 +52,7 @@ public class AppStoreAnimator: ModalTransitionAnimator {
         let blurConstraints = NSEdgeLayoutConstraints(view: blurView, container: container)
         blurConstraints.toggleConstraints(true)
         blurConstraints.constants(to: 0)
-
+        
         
         modalView.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(modalView)
@@ -73,7 +73,7 @@ public class AppStoreAnimator: ModalTransitionAnimator {
         } else {
             blurView.effect = nil
             edgeLayoutConstraints?.match(to: self.initialFrame,
-                                              container: container)
+                                         container: container)
         }
         auxAnimation?(presenting)
         modalView.layoutIfNeeded()

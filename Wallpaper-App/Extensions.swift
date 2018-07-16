@@ -3,6 +3,14 @@
 import Foundation
 import UIKit
 
+// Notifications
+
+extension Notification.Name {
+    
+    static let updateFeedNotificationName = NSNotification.Name(rawValue: "UpdateFeed")
+    static let textFieldDidChange = NSNotification.Name(rawValue: "User Typing Textfield")
+}
+
 // Firebase images Extensions
 extension Data {
     func getImageFromData() -> UIImage? {
@@ -30,6 +38,7 @@ enum LoadingState {
     case stop
 }
 
+// Custom Loading View Ext
 extension UIViewController {
     func loading(_ state: LoadingState) {
         if state == .start {
@@ -148,6 +157,7 @@ extension UIFont {
     }
 }
 
+// UINavigationBar Function Ext
 extension UINavigationController {
     public func presentTransparentNavigationBar() {
         navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -164,6 +174,7 @@ extension UINavigationController {
     }
 }
 
+// Custom Back Button Ext
 extension UIViewController {
     
     func customBackBtn() {

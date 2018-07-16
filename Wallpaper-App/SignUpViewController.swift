@@ -17,6 +17,7 @@ class SignUpViewController: UIViewController {
         signUpBtn?.layer.cornerRadius = 15
         goBackBtn?.layer.cornerRadius = 15
         
+        notificationObservers()
         customBackBtn()
     }
     
@@ -27,10 +28,20 @@ class SignUpViewController: UIViewController {
         
     }
     
+    // MARK - Notifications
+    func notificationObservers() {
+        
+        // NotificationCenter.default.addObserver(self, selector: #selector(, name: , object: nil)
+    }
+    
+
     @IBAction func signUpBtnPressed(_ sender: Any) {
         guard let email = signUpTxtFld.text else { return }
         guard let pass = signUpPassFld.text else { return }
-        if email.isEmpty || pass.isEmpty {
+        
+        
+        if email.isEmpty || pass.isEmpty // && textFieldDidChangeAction(notification)
+            {
             // MARK: - No Email/Password entered Alert (not registered)
             var attributes = EKAttributes.topFloat
             attributes.entryBackground = .color(color: UIColor.white)
@@ -81,4 +92,5 @@ class SignUpViewController: UIViewController {
     @IBAction func goBackBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
 }

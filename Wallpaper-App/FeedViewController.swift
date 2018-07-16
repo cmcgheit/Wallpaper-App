@@ -65,9 +65,6 @@ class FeedViewController: UIViewController {
         self.instructionsController.overlay.color = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
         self.instructionsController.overlay.allowTap = true
         
-        // MARK: - Update feed Notification
-        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
-        
         // MARK: - Double Tap Gesture to close PopUpView
         let closeTapGesture = UITapGestureRecognizer(target: self, action: #selector(FeedViewController.backgroundTapped))
         closeTapGesture.numberOfTapsRequired = 2
@@ -124,8 +121,22 @@ class FeedViewController: UIViewController {
                                                   constant: 0))
             
         }
+        
+        // MARK: - Custom Switch
+        themeSwitch.onTintColor = wallPink
+        themeSwitch.offTintColor = wallBlue
+        themeSwitch.cornerRadius = 0.5
+        themeSwitch.thumbCornerRadius = 0.5
+        themeSwitch.thumbSize = CGSize(width: 25, height: 25)
+        themeSwitch.thumbTintColor = UIColor.white
+        themeSwitch.padding = 2
+        themeSwitch.animationDuration = 0.6
+        themeSwitch.thumbShaddowOppacity = 0
+        
+        notificationObservers()
     }
     
+    // MARK: - Categories Function
     func makeCategories() {
         FIRService.getArtCategory(completion: { (artCategory) in
             self.artCategory = artCategory
@@ -150,10 +161,19 @@ class FeedViewController: UIViewController {
         })
     }
     
+    func notificationObservers() {
+
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: Notification.Name.updateFeedNotificationName, object: nil)
+        
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
-        // MARK: - Set navigation bar to transparent
-        self.navigationController?.hideTransparentNavigationBar()
+        // MARK: - Navi Bar
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.presentTransparentNavigationBar()
+        
+        // self.navigationController?.hideTransparentNavigationBar()
         
         // MARK: - Check Auth User Signed-In Listener/Handler
         handle = Auth.auth().addStateDidChangeListener { ( auth, user) in
@@ -176,6 +196,7 @@ class FeedViewController: UIViewController {
             self.instructionsController.start(on: self)
         }
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -241,7 +262,9 @@ class FeedViewController: UIViewController {
         collectionView.register(nib, forCellWithReuseIdentifier: "WallpaperCell")
         collectionView.delegate = self
         collectionView.dataSource = self
+        glidingView.backgroundColor = UIColor.clear
         collectionView.backgroundColor = glidingView.backgroundColor
+        
     }
     
     
@@ -263,8 +286,37 @@ class FeedViewController: UIViewController {
     
     // MARK: - Upload Pop Up Function/Transition
     @objc func presentUploadPopUp() {
-        let uploadPopUpVC = UploadWallpaperPopUp()
-        present(uploadPopUpVC, animated: true, completion: nil)
+        prepareModalPresentation()
+    }
+    
+    func prepareModalPresentation() {
+        let modalTransitionsDelegate = ModalTransitionDelegate()
+        let controller = UploadWallpaperPopUp()
+        let popUpController = P(presentedViewController: controller, presenting: self)
+        modalTransitionsDelegate.set(presentationController: popUpController)
+        
+        let presentAnimator = PresentationControllerAnimator(finalFrame: popUpController.frameOfPresentedViewInContainerView)
+        presentAnimator.auxAnimation = { controller.animations(presenting: $0)}
+        modalTransitionsDelegate.set(animator: presentAnimator, for: .present)
+        modalTransitionsDelegate.set(animator: presentAnimator, for: .dismiss)
+        
+        modalTransitionsDelegate.wire(
+            viewController: self,
+            with: .regular(.fromBottom),
+            navigationAction: { self.present(controller, animated: true, completion: nil)
+                
+        })
+        
+        presentAnimator.onDismissed = prepareModalPresentation
+        presentAnimator.onPresented = {
+            modalTransitionsDelegate.wire( viewController: controller,
+                                           with: .regular(.fromTop),
+                                           navigationAction: {
+                                            controller.dismiss(animated: true, completion: nil)
+            })
+        }
+        controller.transitioningDelegate = modalTransitionsDelegate
+        controller.modalPresentationStyle = .custom
     }
     
     // MARK: - Sign Out Button Action
@@ -378,9 +430,6 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         let wallpapers = wallpapersAt(section: glidingView.expandedItemIndex, atIndex: indexPath.row)
         cell.setUpCell(wallpaper: wallpapers)
-        let layer = cell.layer
-        layer.shouldRasterize = true
-        layer.rasterizationScale = UIScreen.main.scale
         
         return cell
     }
@@ -394,19 +443,25 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         popUpVC.selectedIndex = indexPath
         popUpVC.wallpaper = allWallpapersAt(section: section)
         popUpVC.placeholder = placeholderFor(section: section)
-
+        
         popUpVC.wallpaperPhotoURL = cell.wallpaper.wallpaperURL
         popUpVC.wallpaperDescText = cell.wallpaper.wallpaperDesc
-    
-        let cellFrame = view.convert(cell.frame, from: glidingView)
+        
+        let cellFrame = view.convert(cell.frame, from: collectionView)
+        
         let appStoreAnimator = AppStoreAnimator(initialFrame: cellFrame)
-        appStoreAnimator.onReady = { cell.isHidden = true}
+        appStoreAnimator.onReady = { cell.isHidden = true }
         appStoreAnimator.onDismissed = { cell.isHidden = false }
-        appStoreAnimator.auxAnimation = {popUpVC.layout(presenting: $0)}
+        appStoreAnimator.auxAnimation = { popUpVC.layout(presenting: $0) }
         
         modalTransitionDelegate.set(animator: appStoreAnimator, for: .present)
         modalTransitionDelegate.set(animator: appStoreAnimator, for: .dismiss)
-        modalTransitionDelegate.wire(viewController: popUpVC, with: .regular(.fromTop))
+        modalTransitionDelegate.wire(
+            viewController: popUpVC,
+            with: .regular(.fromTop),
+            navigationAction: {
+                popUpVC.dismiss(animated: true, completion: nil)
+        })
         
         popUpVC.transitioningDelegate = modalTransitionDelegate
         popUpVC.modalPresentationStyle = .custom
@@ -435,7 +490,7 @@ extension FeedViewController: CoachMarksControllerDelegate, CoachMarksController
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
         
         let instructionsView = instructionsController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
-    
+        
         switch (index) {
         case 0:
             instructionsView.bodyView.hintLabel.text = "Scroll through Wallpaper Categories here"

@@ -8,6 +8,15 @@ import SwiftEntryKit
 import Instructions
 import McPicker
 
+class P: UIPresentationController {
+    override var frameOfPresentedViewInContainerView: CGRect {
+        return CGRect(x: 10,
+                      y: presentingViewController.view.bounds.height - 380,
+                      width: 355,
+                      height: 370)
+    }
+}
+
 class UploadWallpaperPopUp: UIViewController {
     
     @IBOutlet weak var wallpaperPopUpView: UIImageView!
@@ -30,8 +39,26 @@ class UploadWallpaperPopUp: UIViewController {
     // Picker
     let catPickerData: [[String]] = [["Sports", "Music", "Arts"]]
     
+    // Popup Presentation Layouts
+    private typealias Layout = (transform: CGAffineTransform, alpha: CGFloat)
+    private let startLayout: Layout  = (.init(translationX: 0, y: 30), 0.0)
+    private let endLayout: Layout = (.identity, 1.0)
+    
+    init() {
+        super.init(nibName: String(describing: UploadWallpaperPopUp.self),
+                   bundle: Bundle(for: UploadWallpaperPopUp.self))
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Popup Easy Transitions
+        view.layer.cornerRadius = 15.0
+        set(layout: startLayout)
         
         // Instructions
         self.uploadInstructionsController.dataSource = self
@@ -55,25 +82,22 @@ class UploadWallpaperPopUp: UIViewController {
         }
         self.present(imagePicker, animated: true, completion: nil)
         
-        // Assign image from View Controller/Navigation Controller
-        if let rootController = UIApplication.shared.keyWindow?.rootViewController {
-            
-            if rootController is UINavigationController {
-                if let navigationController = rootController as? UINavigationController {
-                    if let topViewController = navigationController.topViewController {
-                        topViewController.present(imagePicker, animated: true, completion: nil)
-                    }
-                }
-            } else {
-                // is a view controller
-                rootController.present(imagePicker, animated: true, completion: nil)
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         // MARK: - Set navigation bar to transparent
         self.navigationController?.hideTransparentNavigationBar()
+    }
+    
+    // MARK: - Popup Transition Setup
+    public func animations(presenting: Bool) {
+        let layout = presenting ? endLayout : startLayout
+        set(layout: layout)
+    }
+    
+    private func set(layout: Layout) {
+        wallpaperPopUpView.transform = layout.transform
+        wallpaperPopUpView.alpha = layout.alpha
     }
     
     // MARK: - Category Picker Button Action
@@ -99,15 +123,13 @@ class UploadWallpaperPopUp: UIViewController {
         
     }
     
-    static let updateFeedNotificationName = NSNotification.Name(rawValue: "UpdateFeed")
-    
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
         if wallpaperDescTextView.text.isEmpty && takenImage != nil  && (wallpaperCatPickLbl.text?.isEmpty)!  {
             closeBtn.isHidden = false // upload only if all fields are filled out
             //            FIRService.uploadWallToFirebaseStor(image: takenImage) { (, error) in
             //                
             //            }
-            NotificationCenter.default.post(name: UploadWallpaperPopUp.updateFeedNotificationName, object: nil)
+            NotificationCenter.default.post(name: Notification.Name.updateFeedNotificationName, object: nil)
             // MARK: - Upload Successful Alert
             var attributes = EKAttributes.topFloat
             attributes.entryBackground = .color(color: UIColor.white)
@@ -166,13 +188,39 @@ extension UploadWallpaperPopUp: UITextViewDelegate {
 extension UploadWallpaperPopUp: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        // MARK: - Upload Wallpapers to Firebase
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.takenImage = image
         self.wallpaperPopUpView.image = self.takenImage
         takenImage = takenImage.resizeWithWidth(width: 700)! // Resize taken image
         let compressData = UIImageJPEGRepresentation(takenImage, 0.5) // Compress taken image
         let compressedImage = UIImage(data: compressData!)
-        // Use compressedImage for upload
+        _ = storageRef.putData(compressData!, metadata: nil) { (metadata, error) in
+            // let size = metadata?.size
+            let metaData = StorageMetadata()
+            metaData.contentType = "image/jpeg"
+            guard metadata != nil else {
+                if error != nil {
+                    print(error?.localizedDescription as Any)
+                }
+                return
+            }
+            // You can also access to download URL after upload.
+            storageRef.downloadURL { (url, error) in
+                guard let downloadURL = url else {
+                    if error != nil {
+                        print(error?.localizedDescription as Any)
+                    }
+                    return
+                }
+                FIRService.saveWalltoFirebase(image: compressedImage!, wallpaperURL: downloadURL, wallpaperDesc: self.wallpaperDescTextView.text, wallpaperCategory: self.wallpaperCatLbl.text) { (error) in
+                    if error != nil {
+                        print(error?.localizedDescription as Any)
+                        return
+                    }
+                }
+            }
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

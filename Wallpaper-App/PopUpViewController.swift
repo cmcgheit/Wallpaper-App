@@ -38,9 +38,6 @@ class PopUpViewController: UIViewController {
         if #available(iOS 11, *) {
             contentView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         }
-        wallpaperDescLbl.text = wallpaperDescText
-        let url = URL(string: wallpaperPhotoURL)
-        wallpaperPopImage.kf.setImage(with: url)
     }
     
     func layout(presenting: Bool) {
@@ -56,4 +53,5 @@ extension PopUpViewController: CardViewDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
+
 

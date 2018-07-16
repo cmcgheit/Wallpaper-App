@@ -22,4 +22,3 @@ public extension ShadowStyle {
                                         radius: 30,
                                         offset: CGSize(width: 0, height: 15))
 }
-

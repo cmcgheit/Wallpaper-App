@@ -5,6 +5,7 @@
 //  Created by Marcos Griselli on 18/03/2018.
 //  Copyright © 2018 Marcos Griselli. All rights reserved.
 //
+
 import UIKit
 
 public final class CardView: UIView, NibOwnerLoadable {
@@ -63,13 +64,13 @@ public final class CardView: UIView, NibOwnerLoadable {
         attributedString.addAttribute(NSAttributedStringKey.paragraphStyle,
                                       value: paragraphStyle,
                                       range: NSMakeRange(0, attributedString.length))
-        // titleLabel.attributedText = attributedString
+        titleLabel.attributedText = attributedString
     }
     
     public func set(layout: CardView.Layout) {
         self.layer.cornerRadius = layout.cornerRadius
         self.layer.masksToBounds = true
-        // iconTopLayoutConstraint.constant = layout.topOffset
+        iconTopLayoutConstraint.constant = layout.topOffset
         closeButton.alpha = layout.closeButtonAlpha
     }
     
@@ -77,3 +78,4 @@ public final class CardView: UIView, NibOwnerLoadable {
         delegate?.closeCardView()
     }
 }
+

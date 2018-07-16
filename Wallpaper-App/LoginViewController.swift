@@ -12,10 +12,11 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginCardView: CustomCardView!
     @IBOutlet weak var emailTextFld: AnimatedTextField!
+    @IBOutlet weak var passTextFld: RevealPasswordTextField!
     @IBOutlet weak var signInBtn: RoundedRectBlueButton!
     @IBOutlet weak var signUpBtn: RoundedRectBlueButton!
     @IBOutlet weak var loginAnBtn: RoundedRectBlueButton!
-    @IBOutlet weak var passTextFld: AnimatedTextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,9 @@ class LoginViewController: UIViewController {
         signUpBtn.layer.cornerRadius = 15
         loginAnBtn.layer.cornerRadius = 15
         
+        notificationObservers()
         customBackBtn()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,10 +52,20 @@ class LoginViewController: UIViewController {
         }
     }
     
+    // MARK: - Notifications
+    func notificationObservers() {
+        
+         // NotificationCenter.default.addObserver(self, selector: #selector(, name: , object: nil)
+
+    }
+    
     @IBAction func signInBtnPressed(_ sender: Any) {
+        
+    
         guard let email = emailTextFld.text else { return }
         guard let pass = passTextFld.text else { return }
-        if email.isEmpty || pass.isEmpty  {
+        if email.isEmpty || pass.isEmpty // && textFieldDidChangeAction(signInNotifiction)
+            {
             // MARK: - No Email/Password entered Alert (not registered)
             var attributes = EKAttributes.topFloat
             attributes.entryBackground = .color(color: UIColor.white)
@@ -123,6 +136,7 @@ class LoginViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+   
     //// MARK: KeyChain Wrapper Function - storing user data
     //func completeSignIn(id: String) {
     //    let saveSuccessful: Bool = KeychainWrapper.standard.set(id, forKey: KEY_UID)

@@ -1,6 +1,6 @@
 PODS:
   - Armchair (0.3.5)
-  - EasyTransitions (0.5.1)
+  - EasyTransitions (0.5.4)
   - Firebase/Auth (5.0.1):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.0)
@@ -77,7 +77,7 @@ DEPENDENCIES:
   - Twinkle
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Armchair
     - EasyTransitions
     - Firebase
@@ -105,7 +105,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Armchair: 0ab9237bc373e26245c7651acf193d85fb9c033a
-  EasyTransitions: ce997b223437040ef74d300b2cba79e466db2cdf
+  EasyTransitions: 843a3e93b4cac14315e5d997b762bd1d214beb9c
   Firebase: d6861c2059d8c32d1e6dd8932e22ada346d90a3a
   FirebaseAnalytics: 19812b49fa5f283dd6b23edf8a14b5d477029ab8
   FirebaseAuth: acbeef02fe7c3a26624e309849f3fe30c84115af
@@ -129,6 +129,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   Twinkle: e30dc720c1b1b56a13b3b9952850b7d5030acd25
 
-PODFILE CHECKSUM: 8064d6513a697d1a1ce305292614b3c25149b14e
+PODFILE CHECKSUM: f8fd7234072a9eb32c3e63865a285140ca48bcb9
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3
