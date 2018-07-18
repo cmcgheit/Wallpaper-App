@@ -46,7 +46,7 @@ class FIRService: NSObject {
     public static func downloadImagesFromFirebaseData(completion: @escaping () -> ()) {
         // guard let uid = authRef.currentUser?.uid else { return }
         let ref = databaseRef.child("wallpapers")//.child(uid) download wallpapers for specific user
-        let handle = ref.observe(.childAdded) { (snapshot) in
+        _ = ref.observe(.childAdded) { (snapshot) in
             if let wallpaperPostDict = snapshot.value as? [String: Any] {
                 let wallpaperURL = wallpaperPostDict["wallpaperURL"] as! String
                 let wallpaperDesc = wallpaperPostDict["wallpaperDesc"] as? String

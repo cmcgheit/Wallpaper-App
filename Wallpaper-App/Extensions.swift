@@ -3,13 +3,6 @@
 import Foundation
 import UIKit
 
-// Notifications
-
-extension Notification.Name {
-    
-    static let updateFeedNotificationName = NSNotification.Name(rawValue: "UpdateFeed")
-    static let textFieldDidChange = NSNotification.Name(rawValue: "User Typing Textfield")
-}
 
 // Firebase images Extensions
 extension Data {

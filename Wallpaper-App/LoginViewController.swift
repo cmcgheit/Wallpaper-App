@@ -17,6 +17,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signUpBtn: RoundedRectBlueButton!
     @IBOutlet weak var loginAnBtn: RoundedRectBlueButton!
     
+    // Restore text
+    var defaultsKey: String = ""
+    var text: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,10 @@ class LoginViewController: UIViewController {
         notificationObservers()
         customBackBtn()
         
+        NotificationCenter.default.addObserver(self,
+                                       selector: #selector(textFieldDidChange(_:)),
+                                       name: Notification.Name.UITextFieldTextDidChange,
+                                       object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,8 +62,10 @@ class LoginViewController: UIViewController {
     // MARK: - Notifications
     func notificationObservers() {
         
-         // NotificationCenter.default.addObserver(self, selector: #selector(, name: , object: nil)
-
+        emailTextFld.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
+        passTextFld.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
+        emailTextFld.addTarget(self, action: #selector(saveToUserDefaults(_:)), for: .editingDidEnd)
+        
     }
     
     @IBAction func signInBtnPressed(_ sender: Any) {
@@ -64,7 +73,7 @@ class LoginViewController: UIViewController {
     
         guard let email = emailTextFld.text else { return }
         guard let pass = passTextFld.text else { return }
-        if email.isEmpty || pass.isEmpty // && textFieldDidChangeAction(signInNotifiction)
+        if email.isEmpty || pass.isEmpty
             {
             // MARK: - No Email/Password entered Alert (not registered)
             var attributes = EKAttributes.topFloat
@@ -136,6 +145,32 @@ class LoginViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    // MARK: - TextField Change Function
+    @objc func textFieldDidChange(_ textField: AnimatedTextField) {
+        if emailTextFld.text == "" && passTextFld.text == "" {
+            // Empty
+        } else {
+            // Text has been changed
+            NotificationCenter.default.post(name: .textFieldDidChange, object: nil)
+        }
+    }
+    
+    // MARK: - Save User Text
+    @objc func saveToUserDefaults(_ sender: AnimatedTextField) {
+        guard defaultsKey != "" else { return }
+        UserDefaults.standard.set(sender.text ?? "", forKey: defaultsKey)
+        // this method is unnecessary and shouldn't be used.
+        // UserDefaults.standard.synchronize()
+    }
+    
+    func restoreByUserDefaults() {
+        guard defaultsKey != "" else { return }
+        guard let text = UserDefaults.standard.string(forKey: defaultsKey) else { return }
+        guard text != "" else { return }
+        
+        self.text = text
+    }
+    
    
     //// MARK: KeyChain Wrapper Function - storing user data
     //func completeSignIn(id: String) {
@@ -145,5 +180,6 @@ class LoginViewController: UIViewController {
     //    performSegue(withIdentifier: SegueIdentifier.toStudentVC.rawValue, sender: self)
     //}
 }
+
 
 

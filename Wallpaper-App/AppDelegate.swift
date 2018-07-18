@@ -58,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         siren.showAlertAfterCurrentVersionHasBeenReleasedForDays = 5
         siren.checkVersion(checkType: .weekly)
         
+        // Gliding
         setupGlidingCollection()
         
         // Set Theme, defaults to light, checks for light when leaves app
