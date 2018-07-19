@@ -3,6 +3,7 @@
 
 import Foundation
 import UIKit
+import Photos
 import Firebase
 import SwiftEntryKit
 import Instructions
@@ -124,22 +125,79 @@ class UploadWallpaperPopUp: UIViewController {
     }
     
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
-        if wallpaperDescTextView.text.isEmpty && takenImage != nil  && (wallpaperCatPickLbl.text?.isEmpty)!  {
-            closeBtn.isHidden = false // upload only if all fields are filled out
-            //            FIRService.uploadWallToFirebaseStor(image: takenImage) { (, error) in
-            //                
-            //            }
-            NotificationCenter.default.post(name: Notification.Name.updateFeedNotificationName, object: nil)
-            // MARK: - Upload Successful Alert
+        // MARK: - Ask User Permission to Access Camera
+//        AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
+//            if response {
+//                //access granted
+//            } else {
+//
+//            }
+//        }
+        // MARK: - Ask User Permission to Access Photo Library before Upload Wallpapers
+        let photos = PHPhotoLibrary.authorizationStatus()
+        if photos == .notDetermined {
+            PHPhotoLibrary.requestAuthorization({status in
+                if status == .authorized {
+                    // If User authorizes, allow upload
+                    if self.wallpaperDescTextView.text.isEmpty && self.takenImage != nil  && (self.wallpaperCatPickLbl.text?.isEmpty)!  {
+                        self.closeBtn.isHidden = false // upload only if all fields are filled out
+                        //            FIRService.uploadWallToFirebaseStor(image: takenImage) { (, error) in
+                        //
+                        //            }
+                        NotificationCenter.default.post(name: Notification.Name.updateFeedNotificationName, object: nil)
+                        // MARK: - Upload Successful Alert
+                        var attributes = EKAttributes.topFloat
+                        attributes.entryBackground = .color(color: UIColor.white)
+                        attributes.roundCorners = .all(radius: 10)
+                        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
+                        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+                        
+                        let titleText = "Upload Successful"
+                        let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.systemFont(ofSize: 20), color: UIColor.darkGray))
+                        let descText = "Your wallpaper image has been uploaded successfully"
+                        let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+                        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
+                        let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
+                        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+                        
+                        let contentView = EKNotificationMessageView(with: notificationMessage)
+                        SwiftEntryKit.display(entry: contentView, using: attributes)
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                } else {
+                    // User declined authorization
+                    // MARK: - No Authorization Alert
+                    var attributes = EKAttributes.topFloat
+                    attributes.entryBackground = .color(color: UIColor.white)
+                    attributes.roundCorners = .all(radius: 10)
+                    attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
+                    attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+                    
+                    let titleText = "Authorization Declined"
+                    let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.systemFont(ofSize: 20), color: UIColor.darkGray))
+                    let descText = "You declined authorization of access to your photos, please allow access to upload wallpapers"
+                    let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+                    let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
+                    let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
+                    let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+                    
+                    let contentView = EKNotificationMessageView(with: notificationMessage)
+                    SwiftEntryKit.display(entry: contentView, using: attributes)
+                    self.dismiss(animated: true, completion: nil)
+                }
+            })
+        } else {
+            // Error in Upload
+            // MARK: - Upload Error Alert
             var attributes = EKAttributes.topFloat
             attributes.entryBackground = .color(color: UIColor.white)
             attributes.roundCorners = .all(radius: 10)
             attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
             attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
             
-            let titleText = "Upload Successful"
+            let titleText = "Error in Upload"
             let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.systemFont(ofSize: 20), color: UIColor.darkGray))
-            let descText = "Your wallpaper image has been uploaded successfully"
+            let descText = "Something went wrong in the upload. Please try again"
             let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
             let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
             let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
@@ -205,7 +263,7 @@ extension UploadWallpaperPopUp: UIImagePickerControllerDelegate, UINavigationCon
                 }
                 return
             }
-            // You can also access to download URL after upload.
+            // access to download URL after upload.
             storageRef.downloadURL { (url, error) in
                 guard let downloadURL = url else {
                     if error != nil {

@@ -184,6 +184,12 @@ class FeedViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(firstTimeVC), name: Notification.Name.saveTextInField, object: nil)
     }
     
+    func removeNotifications() {
+        
+        NotificationCenter.default.removeObserver(handleUpdateFeed())
+        NotificationCenter.default.removeObserver(firstTimeVC())
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         // MARK: - Navi Bar
@@ -222,6 +228,8 @@ class FeedViewController: UIViewController {
         Auth.auth().removeStateDidChangeListener(handle!)
         
         self.instructionsController.stop(immediately: true)
+        
+        removeNotifications()
     }
     
     // MARK: - Cell Selection Setup (EasyTransitions)

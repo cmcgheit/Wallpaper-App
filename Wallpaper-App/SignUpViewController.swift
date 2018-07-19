@@ -34,14 +34,19 @@ class SignUpViewController: UIViewController {
         // NotificationCenter.default.addObserver(self, selector: #selector(, name: , object: nil)
     }
     
-
+    func removeNotifications() {
+        
+        // NotificationCenter.default.removeObserver(<#T##observer: Any##Any#>)
+    }
+    
+    
     @IBAction func signUpBtnPressed(_ sender: Any) {
         guard let email = signUpTxtFld.text else { return }
         guard let pass = signUpPassFld.text else { return }
         
         
         if email.isEmpty || pass.isEmpty // && textFieldDidChangeAction(notification)
-            {
+        {
             // MARK: - No Email/Password entered Alert (not registered)
             var attributes = EKAttributes.topFloat
             attributes.entryBackground = .color(color: UIColor.white)

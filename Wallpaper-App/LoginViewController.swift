@@ -32,9 +32,9 @@ class LoginViewController: UIViewController {
         customBackBtn()
         
         NotificationCenter.default.addObserver(self,
-                                       selector: #selector(textFieldDidChange(_:)),
-                                       name: Notification.Name.UITextFieldTextDidChange,
-                                       object: nil)
+                                               selector: #selector(textFieldDidChange(_:)),
+                                               name: Notification.Name.UITextFieldTextDidChange,
+                                               object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +59,10 @@ class LoginViewController: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        removeNotifications()
+    }
+    
     // MARK: - Notifications
     func notificationObservers() {
         
@@ -68,13 +72,18 @@ class LoginViewController: UIViewController {
         
     }
     
+    func removeNotifications() {
+        
+        NotificationCenter.default.removeObserver(Notification.Name.UITextFieldTextDidChange)
+    }
+    
     @IBAction func signInBtnPressed(_ sender: Any) {
         
-    
+        
         guard let email = emailTextFld.text else { return }
         guard let pass = passTextFld.text else { return }
         if email.isEmpty || pass.isEmpty
-            {
+        {
             // MARK: - No Email/Password entered Alert (not registered)
             var attributes = EKAttributes.topFloat
             attributes.entryBackground = .color(color: UIColor.white)
@@ -138,7 +147,7 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "toFeedViewController", sender: nil)
             }
         }
-    )}
+        )}
     
     // MARK: - Dismiss Keyboard
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -171,7 +180,7 @@ class LoginViewController: UIViewController {
         self.text = text
     }
     
-   
+    
     //// MARK: KeyChain Wrapper Function - storing user data
     //func completeSignIn(id: String) {
     //    let saveSuccessful: Bool = KeychainWrapper.standard.set(id, forKey: KEY_UID)

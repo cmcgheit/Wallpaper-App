@@ -20,6 +20,11 @@ internal class WallpaperRoundedCardCell: UICollectionViewCell {
     func setUpCell(wallpaper: WallpaperCategory) {
         self.wallpaper = wallpaper
         imageView.layer.cornerRadius = 14.0
+        if #available(iOS 11.0, *) {
+            imageView.adjustsImageSizeForAccessibilityContentSizeCategory = true
+        } else {
+            // Fallback on earlier versions
+        }
         contentView.clipsToBounds = true
         
         let config = GlidingConfig.shared
