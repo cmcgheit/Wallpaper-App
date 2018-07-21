@@ -2,7 +2,7 @@
 
 Wallpaper app to showcase diverse artists/art. Just Revamped it and the app will be available on the app store soon!
 
-[Revamped App Photo](/Resources/Simulator Screen Shot Nov 2, 2017, 3.15.34 PM.png)
+[Revamped App Photo](/Resources/Simulator Screen Shot - iPhone 8 - 2018-07-14 at 20.25.49.png)
 
 [App Store Link]()
 
