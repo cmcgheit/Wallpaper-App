@@ -30,6 +30,7 @@ class LoginViewController: UIViewController {
         
         notificationObservers()
         customBackBtn()
+        self.enableUnoccludedTextField()
         
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(textFieldDidChange(_:)),
@@ -61,6 +62,10 @@ class LoginViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         removeNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.disableUnoccludedTextField()
     }
     
     // MARK: - Notifications

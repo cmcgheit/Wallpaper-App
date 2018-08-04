@@ -19,6 +19,7 @@ class SignUpViewController: UIViewController {
         
         notificationObservers()
         customBackBtn()
+        self.enableUnoccludedTextField()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -26,6 +27,11 @@ class SignUpViewController: UIViewController {
         // MARK: - Set navigation bar to transparent
         self.navigationController?.hideTransparentNavigationBar()
         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.disableUnoccludedTextField()
+        removeNotifications()
     }
     
     // MARK - Notifications
