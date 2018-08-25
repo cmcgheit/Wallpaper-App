@@ -45,6 +45,34 @@ class SignUpViewController: UIViewController {
         // NotificationCenter.default.removeObserver(<#T##observer: Any##Any#>)
     }
     
+    // MARK: - Attributes Wrapper
+    private var attributesWrapper: EntryAttributeWrapper {
+        var attributes = EKAttributes.topFloat
+        attributes.entryBackground = .color(color: UIColor.white)
+        attributes.roundCorners = .all(radius: 10)
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+        return EntryAttributeWrapper(with: attributes)
+        
+    }
+    
+    // MARK: - SwiftEntryKit Alerts
+    // Notification Message
+    private func showNotificationEKMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String? = nil) {
+        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+        var image: EKProperty.ImageContent?
+        if let imageName = imageName {
+            image = .init(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
+        }
+        let simpleMessage = EKSimpleMessage(image: image!, title: title, description: desc)
+        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+        
+        let contentView = EKNotificationMessageView(with: notificationMessage)
+        SwiftEntryKit.display(entry: contentView, using: attributesWrapper.attributes)
+        
+    }
+    
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
         guard let email = signUpTxtFld.text else { return }
@@ -54,22 +82,9 @@ class SignUpViewController: UIViewController {
         if email.isEmpty || pass.isEmpty // && textFieldDidChangeAction(notification)
         {
             // MARK: - No Email/Password entered Alert (not registered)
-            var attributes = EKAttributes.topFloat
-            attributes.entryBackground = .color(color: UIColor.white)
-            attributes.roundCorners = .all(radius: 10)
-            attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
-            attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
-            
             let titleText = "No Email/Password Entered"
-            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.gillsLightFont(ofSize: 20), color: UIColor.darkGray))
             let descText = "Please enter a complete email/password and try again"
-            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.gillsLightFont(ofSize: 17), color: UIColor.darkGray))
-            let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
-            let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
-            let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
-            
-            let contentView = EKNotificationMessageView(with: notificationMessage)
-            SwiftEntryKit.display(entry: contentView, using: attributes)
+            showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
         } else { // Register New User
             AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in
                 if success { // After registered, login the user
@@ -78,22 +93,10 @@ class SignUpViewController: UIViewController {
                         print("Successfully registered/Signed-In user")
                     })
                 } else {
-                    var attributes = EKAttributes.topFloat
-                    attributes.entryBackground = .color(color: UIColor.white)
-                    attributes.roundCorners = .all(radius: 10)
-                    attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
-                    attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
-                    
+                    // Sign In Error Alert
                     let titleText = "Error signing in"
-                    let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.gillsLightFont(ofSize: 20), color: UIColor.darkGray))
                     let descText = "Please check that you have entered your email and password correctly and try again"
-                    let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.gillsLightFont(ofSize: 17), color: UIColor.darkGray))
-                    let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
-                    let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
-                    let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
-                    
-                    let contentView = EKNotificationMessageView(with: notificationMessage)
-                    SwiftEntryKit.display(entry: contentView, using: attributes)
+                    self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
                     print(String(describing: registrationError?.localizedDescription))
                 }
             })

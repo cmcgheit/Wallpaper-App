@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		49576B963725442268CF8D9F /* Pods_Wallpaper_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */; };
 		D808C92A21153A16004C95C9 /* UIViewController+KeyboardExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808C92921153A16004C95C9 /* UIViewController+KeyboardExt.swift */; };
+		D808C9642131EEBE004C95C9 /* EntryAttributeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808C9632131EEBE004C95C9 /* EntryAttributeWrapper.swift */; };
 		D87DA23620FA4CE800777B0D /* RoundedRectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */; };
 		D87DA23820FA556B00777B0D /* CustomCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23720FA556B00777B0D /* CustomCardView.swift */; };
 		D87DA23B20FBAC2500777B0D /* RevealPasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */; };
@@ -85,6 +86,8 @@
 		6A17C4001EFD5AD30047CBA5 /* Wallpaper-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wallpaper-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallpaper_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D808C92921153A16004C95C9 /* UIViewController+KeyboardExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardExt.swift"; sourceTree = "<group>"; };
+		D808C95E21177006004C95C9 /* Wallpaper-App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Wallpaper-App.entitlements"; sourceTree = "<group>"; };
+		D808C9632131EEBE004C95C9 /* EntryAttributeWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryAttributeWrapper.swift; sourceTree = "<group>"; };
 		D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectButton.swift; sourceTree = "<group>"; };
 		D87DA23720FA556B00777B0D /* CustomCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardView.swift; sourceTree = "<group>"; };
 		D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealPasswordTextField.swift; sourceTree = "<group>"; };
@@ -219,6 +222,7 @@
 		6A17C4021EFD5AD30047CBA5 /* Wallpaper-App */ = {
 			isa = PBXGroup;
 			children = (
+				D808C95E21177006004C95C9 /* Wallpaper-App.entitlements */,
 				D8E93B6820B8AC3F00CE0AD8 /* Animations */,
 				D8D2A4AC20A7AC160014ADAE /* Services */,
 				6A17C4171EFD5B1A0047CBA5 /* Model */,
@@ -279,6 +283,7 @@
 				D8E93BEE20C1AC7300CE0AD8 /* WallpaperImageCache.swift */,
 				D8FC5D8E20DEC4B300FA632F /* Notifications+Extensions.swift */,
 				D808C92921153A16004C95C9 /* UIViewController+KeyboardExt.swift */,
+				D808C9632131EEBE004C95C9 /* EntryAttributeWrapper.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -491,6 +496,11 @@
 						DevelopmentTeam = 48HD6AZC2E;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -633,6 +643,7 @@
 				D87DA23F20FBB8AB00777B0D /* PresentationControllerAnimator.swift in Sources */,
 				D87DA23B20FBAC2500777B0D /* RevealPasswordTextField.swift in Sources */,
 				D8E93B8420B8B02D00CE0AD8 /* FIRService.swift in Sources */,
+				D808C9642131EEBE004C95C9 /* EntryAttributeWrapper.swift in Sources */,
 				D8FC5D9820E723DD00FA632F /* Theme.swift in Sources */,
 				D808C92A21153A16004C95C9 /* UIViewController+KeyboardExt.swift in Sources */,
 				D8E93B8D20B8B05100CE0AD8 /* Wallpaper.swift in Sources */,
@@ -816,6 +827,7 @@
 			baseConfigurationReference = DA366805E8777B768E8728F2 /* Pods-Wallpaper-App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Wallpaper-App/Wallpaper-App.entitlements";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 48HD6AZC2E;
 				INFOPLIST_FILE = "Wallpaper-App/Base.lproj/Info.plist";
@@ -833,6 +845,7 @@
 			baseConfigurationReference = F3976466CEB472FD86CD9EB5 /* Pods-Wallpaper-App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Wallpaper-App/Wallpaper-App.entitlements";
 				DEVELOPMENT_TEAM = 48HD6AZC2E;
 				INFOPLIST_FILE = "Wallpaper-App/Base.lproj/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

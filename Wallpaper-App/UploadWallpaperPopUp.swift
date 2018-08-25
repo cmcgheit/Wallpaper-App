@@ -54,6 +54,17 @@ class UploadWallpaperPopUp: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Attributes Wrapper
+    private var attributesWrapper: EntryAttributeWrapper {
+        var attributes = EKAttributes.topFloat
+        attributes.entryBackground = .color(color: UIColor.white)
+        attributes.roundCorners = .all(radius: 10)
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+        return EntryAttributeWrapper(with: attributes)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,18 +81,6 @@ class UploadWallpaperPopUp: UIViewController {
         wallpaperDescTextView?.textColor = .darkGray
         
         customBackBtn()
-        
-        // MARK: Camera Setup
-        imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            imagePicker.sourceType = .camera
-            imagePicker.cameraCaptureMode = .photo
-        } else {
-            imagePicker.sourceType = .photoLibrary
-        }
-        self.present(imagePicker, animated: true, completion: nil)
         
     }
     
@@ -101,6 +100,146 @@ class UploadWallpaperPopUp: UIViewController {
         wallpaperPopUpView.alpha = layout.alpha
     }
     
+    fileprivate func sourceTypePicker() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            imagePicker.cameraCaptureMode = .photo
+        } else {
+            imagePicker.sourceType = .photoLibrary
+        }
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    fileprivate func presentPhotoPicker() {
+        let photoPicker = UIImagePickerController()
+        photoPicker.delegate = self
+        photoPicker.sourceType = .photoLibrary
+        self.present(photoPicker, animated: true)
+    }
+    
+    // MARK: - SwiftEntryKit Alerts
+    // Notification Message
+    private func showNotificationEKMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String? = nil) {
+        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+        var image: EKProperty.ImageContent?
+        if let imageName = imageName {
+            image = .init(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
+        }
+        let simpleMessage = EKSimpleMessage(image: image!, title: title, description: desc)
+        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+        
+        let contentView = EKNotificationMessageView(with: notificationMessage)
+        SwiftEntryKit.display(entry: contentView, using: attributesWrapper.attributes)
+        
+    }
+    // Denied Alert
+    private func showEKDeniedAlert(attributes: EKAttributes) {
+        let titleText = EKProperty.LabelContent(text: "Photo Library Authorization Denied", style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+        let descText = EKProperty.LabelContent(text: "You declined authorization of access to your photos, please allow access to upload wallpapers", style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
+        
+        let closeText = "Close"
+        let okayText = "Okay"
+        let simpleMessage = EKSimpleMessage(image: image, title: titleText, description: descText)
+        
+        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.systemFont(ofSize: 20), color: tealColor)
+        let okayButtonLabel = EKProperty.LabelContent(text: okayText, style: okayButtonLabelStyle)
+        let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+            DispatchQueue.main.async {
+                let url = URL(string: UIApplicationOpenSettingsURLString)
+                UIApplication.shared.open(url!, options: [:])
+            }
+        }
+
+        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.systemFont(ofSize: 20), color: tealColor)
+        let closeButtonLabel = EKProperty.LabelContent(text: closeText, style: closeButtonLabelStyle)
+        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+            SwiftEntryKit.dismiss()
+        }
+        
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: okayButton, closeButton, separatorColor: tealColor, expandAnimatedly: true)
+    
+        let alertMessage = EKAlertMessage(simpleMessage: simpleMessage, buttonBarContent: buttonsBarContent)
+        
+        let contentView = EKAlertMessageView(with: alertMessage)
+
+        SwiftEntryKit.display(entry: contentView, using: self.attributesWrapper.attributes)
+    }
+
+    // Restrict Access Alert
+    private func showEKRestrictAlert(attributes: EKAttributes) {
+        let titleText = EKProperty.LabelContent(text: "Restricted Access for Photo Library", style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+        let descText = EKProperty.LabelContent(text: "Your restrictions in settings have denied access to the photo library", style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+        
+        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
+        
+        let closeText = "Close"
+        let okayText = "Okay"
+        let simpleMessage = EKSimpleMessage(image: image, title: titleText, description: descText)
+        
+        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.systemFont(ofSize: 20), color: tealColor)
+        let okayButtonLabel = EKProperty.LabelContent(text: okayText, style: okayButtonLabelStyle)
+        let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+            // Take User to Settings Button Action
+            DispatchQueue.main.async {
+                let url = URL(string: UIApplicationOpenSettingsURLString)
+                UIApplication.shared.open(url!, options: [:])
+        }
+    }
+        
+        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.systemFont(ofSize: 20), color: tealColor)
+        let closeButtonLabel = EKProperty.LabelContent(text: closeText, style: closeButtonLabelStyle)
+        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+            SwiftEntryKit.dismiss()
+        }
+        
+        
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: okayButton, closeButton, separatorColor: tealColor, expandAnimatedly: true)
+        
+        let alertMessage = EKAlertMessage(simpleMessage: simpleMessage, buttonBarContent: buttonsBarContent)
+        
+        let contentView = EKAlertMessageView(with: alertMessage)
+        
+        SwiftEntryKit.display(entry: contentView, using: self.attributesWrapper.attributes)
+    }
+    
+    // No Determined Status Alert
+    private func showEKNotDetAlert(attributes: EKAttributes) {
+        let titleText = EKProperty.LabelContent(text: "Undetermined Access", style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+        let descText = EKProperty.LabelContent(text: "Access to your photo library is undetermined, go to settings and allow photo library access to upload/save wallpapers", style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+        
+        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
+        
+        let closeText = "Close"
+        let okayText = "Okay"
+        let simpleMessage = EKSimpleMessage(image: image, title: titleText, description: descText)
+        
+        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.systemFont(ofSize: 20), color: tealColor)
+        let okayButtonLabel = EKProperty.LabelContent(text: okayText, style: okayButtonLabelStyle)
+        let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+            DispatchQueue.main.async {
+                let url = URL(string: UIApplicationOpenSettingsURLString)
+                UIApplication.shared.open(url!, options: [:])
+            }
+        }
+        
+        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.systemFont(ofSize: 20), color: tealColor)
+        let closeButtonLabel = EKProperty.LabelContent(text: closeText, style: closeButtonLabelStyle)
+        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+            SwiftEntryKit.dismiss()
+        }
+        
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: okayButton, closeButton, separatorColor: tealColor, expandAnimatedly: true)
+        
+        let alertMessage = EKAlertMessage(simpleMessage: simpleMessage, buttonBarContent: buttonsBarContent)
+        
+        let contentView = EKAlertMessageView(with: alertMessage)
+
+        SwiftEntryKit.display(entry: contentView, using: self.attributesWrapper.attributes)
+    }
+    
+
     // MARK: - Category Picker Button Action
     @IBAction func categoryPicker(_ sender: UIButton) {
         McPicker.showAsPopover(data: catPickerData, fromViewController: self, sourceView: sender, doneHandler: { [weak self] (selections: [Int : String]) -> Void in
@@ -126,18 +265,19 @@ class UploadWallpaperPopUp: UIViewController {
     
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
         // MARK: - Ask User Permission to Access Camera
-//        AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
-//            if response {
-//                //access granted
-//            } else {
-//
-//            }
-//        }
+        //        AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
+        //            if response {
+        //                //access granted
+        //            } else {
+        //
+        //            }
+        //        }
         // MARK: - Ask User Permission to Access Photo Library before Upload Wallpapers
-        let photos = PHPhotoLibrary.authorizationStatus()
-        if photos == .notDetermined {
-            PHPhotoLibrary.requestAuthorization({status in
-                if status == .authorized {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            PHPhotoLibrary.requestAuthorization { (status) in
+                switch status {
+                case .authorized:
+                    self.presentPhotoPicker()
                     // If User authorizes, allow upload
                     if self.wallpaperDescTextView.text.isEmpty && self.takenImage != nil  && (self.wallpaperCatPickLbl.text?.isEmpty)!  {
                         self.closeBtn.isHidden = false // upload only if all fields are filled out
@@ -146,66 +286,37 @@ class UploadWallpaperPopUp: UIViewController {
                         //            }
                         NotificationCenter.default.post(name: Notification.Name.updateFeedNotificationName, object: nil)
                         // MARK: - Upload Successful Alert
-                        var attributes = EKAttributes.topFloat
-                        attributes.entryBackground = .color(color: UIColor.white)
-                        attributes.roundCorners = .all(radius: 10)
-                        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
-                        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
-                        
-                        let titleText = "Upload Successful"
-                        let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.systemFont(ofSize: 20), color: UIColor.darkGray))
-                        let descText = "Your wallpaper image has been uploaded successfully"
-                        let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-                        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
-                        let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
-                        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
-                        
-                        let contentView = EKNotificationMessageView(with: notificationMessage)
-                        SwiftEntryKit.display(entry: contentView, using: attributes)
+                        let titleUpText = "Upload Successful"
+                        let descUpText = "Your wallpaper image has been uploaded successfully"
+                        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleUpText, desc: descUpText, textColor: UIColor.darkGray)
+                        self.dismiss(animated: true, completion: nil)
+                    } else {
+                        // Error in Upload
+                        // MARK: - Upload Error Alert
+                        let titleText = "Error in Upload"
+                        let descText = "Something went wrong in the upload. Please try again"
+                        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
                         self.dismiss(animated: true, completion: nil)
                     }
-                } else {
+                case .notDetermined:
+                    if status == PHAuthorizationStatus.authorized {
+                        self.presentPhotoPicker()
+                    } else {
+                        // Not Determined and not authorized
+                        self.showEKNotDetAlert(attributes: self.attributesWrapper.attributes)
+                        self.dismiss(animated: true)
+                    }
+                case .restricted:
+                    // Restricted Access in Settings
+                    self.showEKRestrictAlert(attributes: self.attributesWrapper.attributes)
+                    self.dismiss(animated: true, completion: nil)
+                case .denied:
                     // User declined authorization
                     // MARK: - No Authorization Alert
-                    var attributes = EKAttributes.topFloat
-                    attributes.entryBackground = .color(color: UIColor.white)
-                    attributes.roundCorners = .all(radius: 10)
-                    attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
-                    attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
-                    
-                    let titleText = "Authorization Declined"
-                    let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.systemFont(ofSize: 20), color: UIColor.darkGray))
-                    let descText = "You declined authorization of access to your photos, please allow access to upload wallpapers"
-                    let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-                    let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
-                    let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
-                    let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
-                    
-                    let contentView = EKNotificationMessageView(with: notificationMessage)
-                    SwiftEntryKit.display(entry: contentView, using: attributes)
+                    self.showEKDeniedAlert(attributes: self.attributesWrapper.attributes)
                     self.dismiss(animated: true, completion: nil)
                 }
-            })
-        } else {
-            // Error in Upload
-            // MARK: - Upload Error Alert
-            var attributes = EKAttributes.topFloat
-            attributes.entryBackground = .color(color: UIColor.white)
-            attributes.roundCorners = .all(radius: 10)
-            attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
-            attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
-            
-            let titleText = "Error in Upload"
-            let title = EKProperty.LabelContent(text: titleText, style: .init(font: UIFont.systemFont(ofSize: 20), color: UIColor.darkGray))
-            let descText = "Something went wrong in the upload. Please try again"
-            let description = EKProperty.LabelContent(text: descText, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-            let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
-            let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
-            let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
-            
-            let contentView = EKNotificationMessageView(with: notificationMessage)
-            SwiftEntryKit.display(entry: contentView, using: attributes)
-            self.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
@@ -279,10 +390,11 @@ extension UploadWallpaperPopUp: UIImagePickerControllerDelegate, UINavigationCon
                 }
             }
         }
+        self.dismiss(animated: true)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true)
     }
 }
 
