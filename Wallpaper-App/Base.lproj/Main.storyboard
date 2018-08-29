@@ -24,14 +24,23 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="MultiCurves" translatesAutoresizingMaskIntoConstraints="NO" id="WAa-z2-Qms">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-b4-UEY" customClass="GlidingCollection" customModule="GlidingCollection">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DW-in-jk3">
                                 <rect key="frame" x="17" y="147" width="341" height="370"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                             </view>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-ye-yUT">
                                 <rect key="frame" x="331" y="30" width="34" height="34"/>
@@ -61,6 +70,9 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9SO-aj-fWK" customClass="CustomSwitch" customModule="Wallpaper_App" customModuleProvider="target">
                                 <rect key="frame" x="162" y="35" width="50" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ry3-lz-cZp"/>
                                     <constraint firstAttribute="width" constant="50" id="bCj-uY-4dv"/>
@@ -72,6 +84,9 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6DW-in-jk3" secondAttribute="bottom" constant="150" id="0a4-N1-5Xg"/>
                             <constraint firstItem="WAa-z2-Qms" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="18i-Dl-HeA"/>
@@ -123,6 +138,9 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MultiCurves" translatesAutoresizingMaskIntoConstraints="NO" id="SlE-jp-TAa">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iWF-Xb-Ah7" customClass="CustomCardView" customModule="Wallpaper_App" customModuleProvider="target">
                                 <rect key="frame" x="37" y="158.5" width="300" height="350"/>
@@ -201,6 +219,9 @@
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="350" id="0is-S4-Ehf"/>
                                     <constraint firstItem="QLZ-lg-TWB" firstAttribute="top" secondItem="2QC-FE-YbQ" secondAttribute="bottom" constant="30" id="FJt-BU-SGl"/>
@@ -212,6 +233,9 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstItem="iWF-Xb-Ah7" firstAttribute="centerX" secondItem="Vj2-w2-jsG" secondAttribute="centerX" id="HST-j7-Xs0"/>
                             <constraint firstItem="SlE-jp-TAa" firstAttribute="leading" secondItem="Vj2-w2-jsG" secondAttribute="leading" id="a8Z-eI-HhB"/>
@@ -244,6 +268,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jgg-Jr-4U2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -265,6 +292,9 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="handiphonesparkle2" translatesAutoresizingMaskIntoConstraints="NO" id="RhB-hg-7OI">
                                 <rect key="frame" x="37.5" y="203.5" width="300" height="260"/>
                                 <color key="backgroundColor" red="0.29019607843137257" green="0.2627450980392157" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="PNY-b6-1vm"/>
                                     <constraint firstAttribute="height" constant="260" id="kaI-ci-HzA"/>
@@ -272,6 +302,9 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.31764705879999999" green="0.72549019609999998" blue="0.67843137249999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstItem="RhB-hg-7OI" firstAttribute="centerX" secondItem="bvY-5U-V9k" secondAttribute="centerX" id="d5u-OF-ceo"/>
                             <constraint firstItem="RhB-hg-7OI" firstAttribute="centerY" secondItem="bvY-5U-V9k" secondAttribute="centerY" id="hMA-DV-Ue0"/>
@@ -300,6 +333,9 @@
                             <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MultiCurves" translatesAutoresizingMaskIntoConstraints="NO" id="mK5-UG-TDJ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQd-Ow-a5c" customClass="CustomCardView" customModule="Wallpaper_App" customModuleProvider="target">
                                 <rect key="frame" x="37" y="158.5" width="300" height="350"/>
@@ -400,6 +436,9 @@
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstItem="Cbo-2V-dDz" firstAttribute="leading" secondItem="JQd-Ow-a5c" secondAttribute="leading" constant="20" id="67o-l2-2fP"/>
                                     <constraint firstItem="Cbo-2V-dDz" firstAttribute="top" secondItem="JQd-Ow-a5c" secondAttribute="top" constant="40" id="HJX-FL-TEk"/>
@@ -414,6 +453,9 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <accessibility key="accessibilityConfiguration">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
                         <constraints>
                             <constraint firstItem="JQd-Ow-a5c" firstAttribute="centerY" secondItem="4bN-ea-uAi" secondAttribute="centerY" id="gh1-Pd-cwx"/>
                             <constraint firstItem="JQd-Ow-a5c" firstAttribute="centerX" secondItem="4bN-ea-uAi" secondAttribute="centerX" id="tWf-QX-Vgn"/>

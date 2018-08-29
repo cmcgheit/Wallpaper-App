@@ -26,6 +26,11 @@ class FeedViewController: UIViewController {
     fileprivate var collectionView: UICollectionView!
     
     private var modalTransitionDelegate = ModalTransitionDelegate()
+    
+    let presentPopUpViewController = PresentSectionViewController()
+    
+    var isStatusBarHidden = false
+    
     private var animatorInfo: AppStoreAnimatorInfo?
     
     var wallpaperCategories = [WallpaperCategories]() //all
@@ -42,15 +47,15 @@ class FeedViewController: UIViewController {
     let instructionsController = CoachMarksController()
     
     // MARK: - Init
-    init() {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 335, height: 412)
-        layout.minimumLineSpacing = 30
-        layout.minimumInteritemSpacing = 20
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        layout.scrollDirection = .vertical
-        super.init(collectionViewLayout: layout)
-    }
+    //    init() {
+    //        let layout = UICollectionViewFlowLayout()
+    //        layout.itemSize = CGSize(width: 335, height: 412)
+    //        layout.minimumLineSpacing = 30
+    //        layout.minimumInteritemSpacing = 20
+    //        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    //        layout.scrollDirection = .vertical
+    //        super.init(collectionViewLayout: layout)
+    //    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -260,34 +265,39 @@ class FeedViewController: UIViewController {
         removeNotifications()
     }
     
-    // MARK: - Cell Selection Setup (EasyTransitions)
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        recalculateItemSizes(givenWidth: size.width)
-        
-        coordinator.animate(alongsideTransition: nil) { (context) in
-            //As the position of the cells might have changed, if we have an AppStoreAnimator, we update it's
-            //"initialFrame" so the dimisss animation still matches
-            if let animatorInfo = self.animatorInfo {
-                if let cell = self.collectionView?.cellForItem(at: animatorInfo.index) {
-                    let cellFrame = self.view.convert(cell.frame, from: self.collectionView)
-                    animatorInfo.animator.initialFrame = cellFrame
-                }
-                else {
-                    //ups! the cell is not longer on the screen so… ¯\_(ツ)_/¯ lets move it out of the screen
-                    animatorInfo.animator.initialFrame = CGRect(x: (size.width-animatorInfo.animator.initialFrame.width)/2.0, y: size.height, width: animatorInfo.animator.initialFrame.width, height: animatorInfo.animator.initialFrame.height)
-                }
-            }
-        }
+    // MARK: - Status Bar
+    override var prefersStatusBarHidden: Bool {
+        return isStatusBarHidden
     }
     
-    func recalculateItemSizes(givenWidth width: CGFloat) {
-        let vcWidth = width - 20//20 is left margin
-        var width: CGFloat = 355 //335 is ideal size + 20 of right margin for each item
-        let colums = round(vcWidth / width) //Aproximate times the ideal size fits the screen
-        width = (vcWidth / colums) - 20 //we substract the right marging
-        (collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = CGSize(width: width, height: 412)
-    }
+    //    // MARK: - Cell Selection Setup (EasyTransitions)
+    //    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    //        super.viewWillTransition(to: size, with: coordinator)
+    //        recalculateItemSizes(givenWidth: size.width)
+    //
+    //        coordinator.animate(alongsideTransition: nil) { (context) in
+    //            //As the position of the cells might have changed, if we have an AppStoreAnimator, we update it's
+    //            //"initialFrame" so the dimisss animation still matches
+    //            if let animatorInfo = self.animatorInfo {
+    //                if let cell = self.collectionView?.cellForItem(at: animatorInfo.index) {
+    //                    let cellFrame = self.view.convert(cell.frame, from: self.collectionView)
+    //                    animatorInfo.animator.initialFrame = cellFrame
+    //                }
+    //                else {
+    //                    //ups! the cell is not longer on the screen so… ¯\_(ツ)_/¯ lets move it out of the screen
+    //                    animatorInfo.animator.initialFrame = CGRect(x: (size.width-animatorInfo.animator.initialFrame.width)/2.0, y: size.height, width: animatorInfo.animator.initialFrame.width, height: animatorInfo.animator.initialFrame.height)
+    //                }
+    //            }
+    //        }
+    //    }
+    
+    //    func recalculateItemSizes(givenWidth width: CGFloat) {
+    //        let vcWidth = width - 20//20 is left margin
+    //        var width: CGFloat = 355 //335 is ideal size + 20 of right margin for each item
+    //        let colums = round(vcWidth / width) //Aproximate times the ideal size fits the screen
+    //        width = (vcWidth / colums) - 20 //we substract the right marging
+    //        (collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = CGSize(width: width, height: 412)
+    //    }
     
     @objc func handleUpdateFeed() {
         handleRefresh()
@@ -367,6 +377,29 @@ class FeedViewController: UIViewController {
         
     }
     
+    // MARK: - Custom Transition
+    func animateCell(cellFrame: CGRect) -> CATransform3D {
+        let angleFromX = Double((-cellFrame.origin.x) / 10)
+        let angle = CGFloat((angleFromX * Double.pi) / 180.0)
+        var transform = CATransform3DIdentity
+        transform.m34 = -1.0/1000
+        let rotation = CATransform3DRotate(transform, angle, 0, 1, 0)
+        
+        var scaleFromX = (1000 - (cellFrame.origin.x - 200)) / 1000
+        let scaleMax: CGFloat = 1.0
+        let scaleMin: CGFloat = 0.6
+        if scaleFromX > scaleMax  {
+            scaleFromX = scaleMax
+        }
+        if scaleFromX < scaleMin {
+            scaleFromX = scaleMin
+        }
+        
+        let scale = CATransform3DScale(CATransform3DIdentity, scaleFromX, scaleFromX, 1)
+        
+        return CATransform3DConcat(rotation, scale)
+    }
+    
     // MARK: - Upload Pop Up Function/Transition
     @objc func presentUploadPopUp() {
         prepareModalPresentation()
@@ -410,7 +443,7 @@ class FeedViewController: UIViewController {
             // MARK: Floating Signout Indicator (Success)
             let titleText = "Signed Out Successfully"
             let descText = "You have signed out of Wall Variety successfully"
-
+            
             showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
             
             self.performSegue(withIdentifier: "backtoLoginViewController", sender: self)
@@ -488,6 +521,9 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         let wallpapers = wallpapersAt(section: glidingView.expandedItemIndex, atIndex: indexPath.row)
         cell.setUpCell(wallpaper: wallpapers)
         
+        // custom transition
+        cell.layer.transform = animateCell(cellFrame: cell.frame)
+        
         return cell
     }
     
@@ -510,27 +546,39 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         popUpVC.wallpaperPhotoURL = cell.wallpaper.wallpaperURL
         popUpVC.wallpaperDescText = cell.wallpaper.wallpaperDesc
         
-        let cellFrame = view.convert(cell.frame, from: collectionView)
+        // Custom
+        let attributes = collectionView.layoutAttributesForItem(at: indexPath)
+        popUpVC.transitioningDelegate = self
+        let cellFrame = collectionView.convert((attributes?.frame)!, to: view)
         
-        let appStoreAnimator = AppStoreAnimator(initialFrame: cellFrame)
-        appStoreAnimator.onReady = { cell.isHidden = true }
-        appStoreAnimator.onDismissed = { cell.isHidden = false }
-        appStoreAnimator.auxAnimation = { popUpVC.layout(presenting: $0) }
+        presentPopUpViewController.cellFrame = cellFrame
+        presentPopUpViewController.cellTransform = animateCell(cellFrame: cellFrame)
         
-        modalTransitionDelegate.set(animator: appStoreAnimator, for: .present)
-        modalTransitionDelegate.set(animator: appStoreAnimator, for: .dismiss)
-        modalTransitionDelegate.wire(
-            viewController: popUpVC,
-            with: .regular(.fromTop),
-            navigationAction: {
-                popUpVC.dismiss(animated: true, completion: nil)
-        })
+        isStatusBarHidden = true
+        UIView.animate(withDuration: 0.5) { // hides status bar when transition to popup
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+        // let cellFrame = view.convert(cell.frame, from: collectionView)
         
-        popUpVC.transitioningDelegate = modalTransitionDelegate
-        popUpVC.modalPresentationStyle = .custom
+        //        let appStoreAnimator = AppStoreAnimator(initialFrame: cellFrame)
+        //        appStoreAnimator.onReady = { cell.isHidden = true }
+        //        appStoreAnimator.onDismissed = { cell.isHidden = false }
+        //        appStoreAnimator.auxAnimation = { popUpVC.layout(presenting: $0) }
+        //
+        //        modalTransitionDelegate.set(animator: appStoreAnimator, for: .present)
+        //        modalTransitionDelegate.set(animator: appStoreAnimator, for: .dismiss)
+        //        modalTransitionDelegate.wire(
+        //            viewController: popUpVC,
+        //            with: .regular(.fromTop),
+        //            navigationAction: {
+        //                popUpVC.dismiss(animated: true, completion: nil)
+        //        })
+        
+        //        popUpVC.transitioningDelegate = modalTransitionDelegate
+        //        popUpVC.modalPresentationStyle = .custom
         
         present(popUpVC, animated: true, completion: nil)
-        animatorInfo = AppStoreAnimatorInfo(animator: appStoreAnimator, index: indexPath)
+        // animatorInfo = AppStoreAnimatorInfo(animator: appStoreAnimator, index: indexPath)
         
     }
 }
@@ -544,6 +592,13 @@ extension FeedViewController: GlidingCollectionDatasource {
     
     func glidingCollection(_ collection: GlidingCollection, itemAtIndex index: Int) -> String {
         return "⚡ " + wallpaperSections[index]
+    }
+}
+
+extension FeedViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return presentPopUpViewController
     }
 }
 
@@ -582,4 +637,39 @@ extension FeedViewController: CoachMarksControllerDelegate, CoachMarksController
         return 2
     }
 }
+// MARK: - Parallax Scrolling on CollectionView ? may not need with gliding collection
+//extension FeedViewController: UIScrollViewDelegate {
+//    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+//        if let collectionView = scrollView as? UICollectionView {
+//            for cell in collectionView.visibleCells as! [WallpaperRoundedCardCell] {
+//                let indexPath = collectionView.indexPath(for: cell)!
+//                let attributes = collectionView.layoutAttributesForItem(at: indexPath)!
+//                let cellFrame = collectionView.convert(attributes.frame, to: view)
+//
+//                let translationX = cellFrame.origin.x / 5
+//                cell.imageView.transform = CGAffineTransform(translationX: translationX, y:0)
+//
+//                let angleFromX = Double((-cellFrame.origin.x) / 10)
+//                let angle = CGFloat((angleFromX * Double.pi) / 180.0)
+//
+//                var transform = CATransform3DIdentity
+//                transform.m34 = -1.0/1000
+//                let rotation = CATransform3DRotate(transform, angle, 0, 1, 0)
+//                cell.layer.transform = rotation
+//
+//                var scaleFromX = (1000 - (cellFrame.origin.x - 200)) / 1000
+//                let scaleMax: CGFloat = 1.0
+//                let scaleMin: CGFloat = 0.6
+//                if scaleFromX > scaleMax {
+//                    scaleFromX = scaleMax
+//                }
+//                if scaleFromX < scaleMin {
+//                    scaleFromX = scaleMin
+//                }
+//                let scale = CATransform3DScale(CATransform3DIdentity, scaleFromX, scaleFromX, 1)
+//                cell.layer.transform = scale
+//            }
+//        }
+//    }
+//}
 
