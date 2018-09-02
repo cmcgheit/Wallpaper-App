@@ -32,6 +32,9 @@ class FeedViewController: UIViewController {
     var isStatusBarHidden = false
     
     private var animatorInfo: AppStoreAnimatorInfo?
+    let transition = TransitionClone()
+    var collectionIndex: IndexPath?
+    var imageFrame = CGRect.zero
     
     var wallpaperCategories = [WallpaperCategories]() //all
     var wallpaperSections = ["Art", "Music", "Sports"]
@@ -46,20 +49,20 @@ class FeedViewController: UIViewController {
     
     let instructionsController = CoachMarksController()
     
-    // MARK: - Init
-    //    init() {
-    //        let layout = UICollectionViewFlowLayout()
-    //        layout.itemSize = CGSize(width: 335, height: 412)
-    //        layout.minimumLineSpacing = 30
-    //        layout.minimumInteritemSpacing = 20
-    //        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-    //        layout.scrollDirection = .vertical
-    //        super.init(collectionViewLayout: layout)
+    //     // MARK: - Init
+    //        init() {
+    //            let layout = UICollectionViewFlowLayout()
+    //            layout.itemSize = CGSize(width: 335, height: 412)
+    //            layout.minimumLineSpacing = 30
+    //            layout.minimumInteritemSpacing = 20
+    //            layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    //            layout.scrollDirection = .vertical
+    //            super.init(collectionViewLayout: layout)
+    //        }
+    //
+    //    required init?(coder aDecoder: NSCoder) {
+    //        fatalError("init(coder:) has not been implemented")
     //    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     // MARK: - Attributes Wrapper
     private var attributesWrapper: EntryAttributeWrapper {
@@ -185,44 +188,6 @@ class FeedViewController: UIViewController {
         notificationObservers()
     }
     
-    // MARK: - Categories Function
-    func makeCategories() {
-        FIRService.getArtCategory(completion: { (artCategory) in
-            self.artCategory = artCategory
-            
-            FIRService.getMusicCategory(completion: { (musicCategory) in
-                self.musicCategory = musicCategory
-                
-                FIRService.getSportsCategory(completion: { (sportsCategory) in
-                    self.sportsCategory = sportsCategory
-                    
-                    self.wallpaperCategories = [
-                        WallpaperCategories(catName: "Art", wallpaperData: self.artCategory),
-                        WallpaperCategories(catName: "Music", wallpaperData: self.musicCategory),
-                        WallpaperCategories(catName: "Sports", wallpaperData: self.sportsCategory)]
-                    
-                    DispatchQueue.main.async {
-                        self.handleRefresh() // refresh before updating collection
-                        self.glidingView.collectionView.reloadData()
-                    }
-                })
-            })
-        })
-    }
-    
-    func notificationObservers() {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: Notification.Name.updateFeedNotificationName, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(firstTimeVC), name: Notification.Name.saveTextInField, object: nil)
-    }
-    
-    func removeNotifications() {
-        
-        NotificationCenter.default.removeObserver(handleUpdateFeed())
-        NotificationCenter.default.removeObserver(firstTimeVC())
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         
         // MARK: - Navi Bar
@@ -263,6 +228,57 @@ class FeedViewController: UIViewController {
         self.instructionsController.stop(immediately: true)
         
         removeNotifications()
+    }
+    
+    // MARK: - Categories Function
+    func makeCategories() {
+        FIRService.getArtCategory(completion: { (artCategory) in
+            self.artCategory = artCategory
+            
+            FIRService.getMusicCategory(completion: { (musicCategory) in
+                self.musicCategory = musicCategory
+                
+                FIRService.getSportsCategory(completion: { (sportsCategory) in
+                    self.sportsCategory = sportsCategory
+                    
+                    self.wallpaperCategories = [
+                        WallpaperCategories(catName: "Art", wallpaperData: self.artCategory),
+                        WallpaperCategories(catName: "Music", wallpaperData: self.musicCategory),
+                        WallpaperCategories(catName: "Sports", wallpaperData: self.sportsCategory)]
+                    
+                    DispatchQueue.main.async {
+                        self.handleRefresh() // refresh before updating collection
+                        self.glidingView.collectionView.reloadData()
+                    }
+                })
+            })
+        })
+    }
+    
+    func notificationObservers() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: Notification.Name.updateFeedNotificationName, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(firstTimeVC), name: Notification.Name.saveTextInField, object: nil)
+        
+        // Transition
+        NotificationCenter.default.addObserver(self, selector: #selector(tabBarShow), name: NSNotification.Name(rawValue: "tabBarShow"), object: nil)
+    }
+    
+    func removeNotifications() {
+        
+        NotificationCenter.default.removeObserver(handleUpdateFeed())
+        NotificationCenter.default.removeObserver(firstTimeVC())
+        NotificationCenter.default.removeObserver(tabBarShow())
+    }
+    
+    @objc func tabBarShow(){
+        var tabFrame = self.tabBarController?.tabBar.frame
+        let tabHeight = tabFrame?.size.height
+        tabFrame?.origin.y = self.view.frame.size.height - tabHeight!
+        UIView.animate(withDuration: 0.5, animations: {
+            self.tabBarController?.tabBar.frame = tabFrame!
+        })
     }
     
     // MARK: - Status Bar
@@ -524,6 +540,13 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         // custom transition
         cell.layer.transform = animateCell(cellFrame: cell.frame)
         
+        // popup transition
+        transition.destinationFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: cell.imageView.frame.height * view.frame.width / cell.imageView.frame.width)
+        print("transition.destinationFrame \(transition.destinationFrame)")
+        
+        imageFrame = cell.imageView.frame
+        print("imageFrame \(imageFrame)")
+        
         return cell
     }
     
@@ -546,6 +569,8 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         popUpVC.wallpaperPhotoURL = cell.wallpaper.wallpaperURL
         popUpVC.wallpaperDescText = cell.wallpaper.wallpaperDesc
         
+        // cell.layer.transform = animateCell(cellFrame: cellFrame) // parallax
+        
         // Custom
         let attributes = collectionView.layoutAttributesForItem(at: indexPath)
         popUpVC.transitioningDelegate = self
@@ -554,10 +579,26 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         presentPopUpViewController.cellFrame = cellFrame
         presentPopUpViewController.cellTransform = animateCell(cellFrame: cellFrame)
         
+        // PopUp Custom Transition
+        //        collectionIndex = indexPath
+        //
+        //        if let cell = collectionView.cellForItem(at: indexPath) as? WallpaperRoundedCardCell {
+        //            let a = collectionView.convert(cell.frame, to: collectionView.superview)
+        //
+        //            transition.startingFrame = CGRect(x: a.minX+15, y: a.minY+15, width: 375 / 414 * view.frame.width - 30, height: 408 / 736 * view.frame.height - 30)
+        //
+        //            let sb = storyboard?.instantiateViewController(withIdentifier: "popUpVC") as! PopUpViewController
+        //            sb.image = picture[indexPath.row]
+        //            sb.transitioningDelegate = self
+        //            sb.modalPresentationStyle = .custom
+        //
+        //            self.present(sb, animated: true, completion: nil)
+        
         isStatusBarHidden = true
         UIView.animate(withDuration: 0.5) { // hides status bar when transition to popup
             self.setNeedsStatusBarAppearanceUpdate()
         }
+        
         // let cellFrame = view.convert(cell.frame, from: collectionView)
         
         //        let appStoreAnimator = AppStoreAnimator(initialFrame: cellFrame)
@@ -581,8 +622,28 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         // animatorInfo = AppStoreAnimatorInfo(animator: appStoreAnimator, index: indexPath)
         
     }
+    
+    // PopUp Transition
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        print("collectionViewLayout")
+        return CGSize(width: 375 / 414 * view.frame.width, height: 408 / 736 * view.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        print("didHighlight")
+        let cell = collectionView.cellForItem(at: indexPath)
+        UIView.animate(withDuration: 0.3) {
+            cell?.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        UIView.animate(withDuration: 0.3) {
+            cell?.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
+    }
 }
-
 // MARK: - Gliding Collection Extension Functions
 extension FeedViewController: GlidingCollectionDatasource {
     
@@ -598,7 +659,17 @@ extension FeedViewController: GlidingCollectionDatasource {
 extension FeedViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return presentPopUpViewController
+        transition.transitionMode = .present
+        
+        return transition
+        // return presentPopUpViewController
+    }
+    
+    // Transition
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .dismiss
+        
+        return transition
     }
 }
 
@@ -649,27 +720,36 @@ extension FeedViewController: CoachMarksControllerDelegate, CoachMarksController
 //                let translationX = cellFrame.origin.x / 5
 //                cell.imageView.transform = CGAffineTransform(translationX: translationX, y:0)
 //
-//                let angleFromX = Double((-cellFrame.origin.x) / 10)
-//                let angle = CGFloat((angleFromX * Double.pi) / 180.0)
+//                cell.layer.transform = animateCell(cellFrame: cellFrame)
 //
-//                var transform = CATransform3DIdentity
-//                transform.m34 = -1.0/1000
-//                let rotation = CATransform3DRotate(transform, angle, 0, 1, 0)
-//                cell.layer.transform = rotation
-//
-//                var scaleFromX = (1000 - (cellFrame.origin.x - 200)) / 1000
-//                let scaleMax: CGFloat = 1.0
-//                let scaleMin: CGFloat = 0.6
-//                if scaleFromX > scaleMax {
-//                    scaleFromX = scaleMax
-//                }
-//                if scaleFromX < scaleMin {
-//                    scaleFromX = scaleMin
-//                }
-//                let scale = CATransform3DScale(CATransform3DIdentity, scaleFromX, scaleFromX, 1)
-//                cell.layer.transform = scale
 //            }
 //        }
+//    }
+//
+//    // Fix jump when cells first appear
+//    func animateCell(cellFrame: CGRect) -> CATransform3D {
+//        let angleFromX = Double((-cellFrame.origin.x) / 10)
+//        let angle = CGFloat((angleFromX * Double.pi) / 180.0)
+//
+//        var transform = CATransform3DIdentity
+//        transform.m34 = -1.0/1000
+//        let rotation = CATransform3DRotate(transform, angle, 0, 1, 0)
+//        cell.layer.transform = rotation // comment if use CATransform3DConcate
+//
+//        var scaleFromX = (1000 - (cellFrame.origin.x - 200)) / 1000
+//        let scaleMax: CGFloat = 1.0
+//        let scaleMin: CGFloat = 0.6
+//        if scaleFromX > scaleMax {
+//            scaleFromX = scaleMax
+//        }
+//        if scaleFromX < scaleMin {
+//            scaleFromX = scaleMin
+//        }
+//        let scale = CATransform3DScale(CATransform3DIdentity, scaleFromX, scaleFromX, 1)
+//        cell.layer.transform = scale // comment out if use CATransform3dConcate
+//        cell.layer.transform = CATransform3DConcate(rotation, scale)
+//
+//        return CATransform3DConcat(rotation, scale)
 //    }
 //}
 

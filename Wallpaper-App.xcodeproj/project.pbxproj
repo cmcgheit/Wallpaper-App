@@ -33,6 +33,7 @@
 		D87DA25E20FBBBC500777B0D /* NavigationTransitionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25D20FBBBC500777B0D /* NavigationTransitionConfigurator.swift */; };
 		D87DA26020FBBC0300777B0D /* TransitionInteractiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25F20FBBC0300777B0D /* TransitionInteractiveController.swift */; };
 		D87DA26220FBBC4D00777B0D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA26120FBBC4D00777B0D /* Configuration.swift */; };
+		D895F4BE213C54D600E7F8BE /* TransitionClone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4BD213C54D600E7F8BE /* TransitionClone.swift */; };
 		D8E93B8220B8B02100CE0AD8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8120B8B02000CE0AD8 /* AuthService.swift */; };
 		D8E93B8420B8B02D00CE0AD8 /* FIRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */; };
 		D8E93B8A20B8B05100CE0AD8 /* ImageResizeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */; };
@@ -114,6 +115,7 @@
 		D87DA25D20FBBBC500777B0D /* NavigationTransitionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionConfigurator.swift; sourceTree = "<group>"; };
 		D87DA25F20FBBC0300777B0D /* TransitionInteractiveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionInteractiveController.swift; sourceTree = "<group>"; };
 		D87DA26120FBBC4D00777B0D /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		D895F4BD213C54D600E7F8BE /* TransitionClone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionClone.swift; sourceTree = "<group>"; };
 		D8E93B8120B8B02000CE0AD8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = "Wallpaper-App/AuthService.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIRService.swift; path = "Wallpaper-App/FIRService.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageResizeExt.swift; path = "Wallpaper-App/ImageResizeExt.swift"; sourceTree = SOURCE_ROOT; };
@@ -460,6 +462,7 @@
 				D87DA25620FBBAF400777B0D /* PanGesture.swift */,
 				D87DA25F20FBBC0300777B0D /* TransitionInteractiveController.swift */,
 				D87DA26120FBBC4D00777B0D /* Configuration.swift */,
+				D895F4BD213C54D600E7F8BE /* TransitionClone.swift */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -629,8 +632,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "
-";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App-frameworks.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -663,6 +665,7 @@
 				D87DA25E20FBBBC500777B0D /* NavigationTransitionConfigurator.swift in Sources */,
 				D87DA24820FBB96C00777B0D /* ModalTransitionDelegate.swift in Sources */,
 				D87DA25220FBBA4500777B0D /* TransitionEdgePanGestureRecognizer.swift in Sources */,
+				D895F4BE213C54D600E7F8BE /* TransitionClone.swift in Sources */,
 				D8E93BC320B8B63200CE0AD8 /* UICollectionView+OrderedCells.swift in Sources */,
 				D87DA25C20FBBBA600777B0D /* NavigationTransitionAnimator.swift in Sources */,
 				D8E93BC420B8B63200CE0AD8 /* UIWindow+SafeArea.swift in Sources */,
