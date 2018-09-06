@@ -59,13 +59,10 @@ class SignUpViewController: UIViewController {
     // MARK: - SwiftEntryKit Alerts
     // Notification Message
     private func showNotificationEKMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String? = nil) {
-        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-        var image: EKProperty.ImageContent?
-        if let imageName = imageName {
-            image = .init(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
-        }
-        let simpleMessage = EKSimpleMessage(image: image!, title: title, description: desc)
+        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
+        let simpleMessage = EKSimpleMessage(image: image, title: title, description: desc)
         let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
         
         let contentView = EKNotificationMessageView(with: notificationMessage)

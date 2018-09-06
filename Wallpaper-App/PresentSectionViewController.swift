@@ -45,8 +45,8 @@ class PresentSectionViewController: NSObject, UIViewControllerAnimatedTransition
         destination.backView.alpha = 0
         destination.backView.transform = removeFromViewTransform
         
-        destination.cardView.alpha = 0
-        destination.cardView.transform = removeFromViewTransform
+//        destination.cardView.alpha = 0
+//        destination.cardView.transform = removeFromViewTransform
         
         let animator = UIViewPropertyAnimator(duration: 0.6, dampingRatio: 0.7) {
             
@@ -60,8 +60,8 @@ class PresentSectionViewController: NSObject, UIViewControllerAnimatedTransition
             destination.backView.alpha = 1
             destination.backView.transform = .identity
             
-            destination.cardView.alpha = 1
-            destination.cardView.transform = .identity
+//            destination.cardView.alpha = 1
+//            destination.cardView.transform = .identity
             
             let scaleTitleTransform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             let moveTitleTransform = CGAffineTransform(translationX: 30, y: 10)

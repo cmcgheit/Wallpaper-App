@@ -7,12 +7,10 @@ import UIKit
 import Firebase
 import GlidingCollection
 import Kingfisher
-import EasyTransitions
 
 internal class WallpaperRoundedCardCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var cardView: CardView!
     
     var wallpaper: WallpaperCategory!
     
@@ -43,6 +41,5 @@ internal class WallpaperRoundedCardCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        set(shadowStyle: .todayCard)
     }
 }

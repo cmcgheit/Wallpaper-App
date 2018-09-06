@@ -40,19 +40,19 @@ class UploadWallpaperPopUp: UIViewController {
     // Picker
     let catPickerData: [[String]] = [["Sports", "Music", "Arts"]]
     
-    // Popup Presentation Layouts
-    private typealias Layout = (transform: CGAffineTransform, alpha: CGFloat)
-    private let startLayout: Layout  = (.init(translationX: 0, y: 30), 0.0)
-    private let endLayout: Layout = (.identity, 1.0)
-    
-    init() {
-        super.init(nibName: String(describing: UploadWallpaperPopUp.self),
-                   bundle: Bundle(for: UploadWallpaperPopUp.self))
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    // Popup Presentation Layouts
+//    private typealias Layout = (transform: CGAffineTransform, alpha: CGFloat)
+//    private let startLayout: Layout  = (.init(translationX: 0, y: 30), 0.0)
+//    private let endLayout: Layout = (.identity, 1.0)
+//
+//    init() {
+//        super.init(nibName: String(describing: UploadWallpaperPopUp.self),
+//                   bundle: Bundle(for: UploadWallpaperPopUp.self))
+//    }
+//
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     // MARK: - Attributes Wrapper
     private var attributesWrapper: EntryAttributeWrapper {
@@ -68,16 +68,15 @@ class UploadWallpaperPopUp: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Popup Easy Transitions
-        view.layer.cornerRadius = 15.0
-        set(layout: startLayout)
+//        // Popup Easy Transitions
+//        view.layer.cornerRadius = 15.0
+//        set(layout: startLayout)
         
         // Instructions
         self.uploadInstructionsController.dataSource = self
         self.uploadInstructionsController.overlay.color = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
         self.uploadInstructionsController.overlay.allowTap = true
         
-        closeBtn?.isHidden = true // hide close until user has filled out all fields to upload image
         wallpaperDescTextView?.textColor = .darkGray
         
         customBackBtn()
@@ -89,16 +88,16 @@ class UploadWallpaperPopUp: UIViewController {
         self.navigationController?.hideTransparentNavigationBar()
     }
     
-    // MARK: - Popup Transition Setup
-    public func animations(presenting: Bool) {
-        let layout = presenting ? endLayout : startLayout
-        set(layout: layout)
-    }
-    
-    private func set(layout: Layout) {
-        wallpaperPopUpView.transform = layout.transform
-        wallpaperPopUpView.alpha = layout.alpha
-    }
+//    // MARK: - Popup Transition Setup
+//    public func animations(presenting: Bool) {
+//        let layout = presenting ? endLayout : startLayout
+//        set(layout: layout)
+//    }
+//    
+//    private func set(layout: Layout) {
+//        wallpaperPopUpView.transform = layout.transform
+//        wallpaperPopUpView.alpha = layout.alpha
+//    }
     
     fileprivate func sourceTypePicker() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -120,13 +119,10 @@ class UploadWallpaperPopUp: UIViewController {
     // MARK: - SwiftEntryKit Alerts
     // Notification Message
     private func showNotificationEKMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String? = nil) {
-        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-        var image: EKProperty.ImageContent?
-        if let imageName = imageName {
-            image = .init(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
-        }
-        let simpleMessage = EKSimpleMessage(image: image!, title: title, description: desc)
+        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
+        let simpleMessage = EKSimpleMessage(image: image, title: title, description: desc)
         let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
         
         let contentView = EKNotificationMessageView(with: notificationMessage)
@@ -135,15 +131,15 @@ class UploadWallpaperPopUp: UIViewController {
     }
     // Denied Alert
     private func showEKDeniedAlert(attributes: EKAttributes) {
-        let titleText = EKProperty.LabelContent(text: "Photo Library Authorization Denied", style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-        let descText = EKProperty.LabelContent(text: "You declined authorization of access to your photos, please allow access to upload wallpapers", style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
+        let titleText = EKProperty.LabelContent(text: "Photo Library Authorization Denied", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
+        let descText = EKProperty.LabelContent(text: "You declined authorization of access to your photos, please allow access to upload wallpapers", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
         
         let closeText = "Close"
         let okayText = "Okay"
         let simpleMessage = EKSimpleMessage(image: image, title: titleText, description: descText)
         
-        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.systemFont(ofSize: 20), color: tealColor)
+        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
         let okayButtonLabel = EKProperty.LabelContent(text: okayText, style: okayButtonLabelStyle)
         let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             DispatchQueue.main.async {
@@ -152,7 +148,7 @@ class UploadWallpaperPopUp: UIViewController {
             }
         }
 
-        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.systemFont(ofSize: 20), color: tealColor)
+        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
         let closeButtonLabel = EKProperty.LabelContent(text: closeText, style: closeButtonLabelStyle)
         let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             SwiftEntryKit.dismiss()
@@ -169,16 +165,16 @@ class UploadWallpaperPopUp: UIViewController {
 
     // Restrict Access Alert
     private func showEKRestrictAlert(attributes: EKAttributes) {
-        let titleText = EKProperty.LabelContent(text: "Restricted Access for Photo Library", style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-        let descText = EKProperty.LabelContent(text: "Your restrictions in settings have denied access to the photo library", style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+        let titleText = EKProperty.LabelContent(text: "Restricted Access for Photo Library", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
+        let descText = EKProperty.LabelContent(text: "Your restrictions in settings have denied access to the photo library", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
         
-        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
+        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
         
         let closeText = "Close"
         let okayText = "Okay"
         let simpleMessage = EKSimpleMessage(image: image, title: titleText, description: descText)
         
-        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.systemFont(ofSize: 20), color: tealColor)
+        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
         let okayButtonLabel = EKProperty.LabelContent(text: okayText, style: okayButtonLabelStyle)
         let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             // Take User to Settings Button Action
@@ -188,7 +184,7 @@ class UploadWallpaperPopUp: UIViewController {
         }
     }
         
-        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.systemFont(ofSize: 20), color: tealColor)
+        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
         let closeButtonLabel = EKProperty.LabelContent(text: closeText, style: closeButtonLabelStyle)
         let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             SwiftEntryKit.dismiss()
@@ -206,16 +202,16 @@ class UploadWallpaperPopUp: UIViewController {
     
     // No Determined Status Alert
     private func showEKNotDetAlert(attributes: EKAttributes) {
-        let titleText = EKProperty.LabelContent(text: "Undetermined Access", style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-        let descText = EKProperty.LabelContent(text: "Access to your photo library is undetermined, go to settings and allow photo library access to upload/save wallpapers", style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
+        let titleText = EKProperty.LabelContent(text: "Undetermined Access", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
+        let descText = EKProperty.LabelContent(text: "Access to your photo library is undetermined, go to settings and allow photo library access to upload/save wallpapers", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
         
-        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35), makeRound: true)
+        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
         
         let closeText = "Close"
         let okayText = "Okay"
         let simpleMessage = EKSimpleMessage(image: image, title: titleText, description: descText)
         
-        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.systemFont(ofSize: 20), color: tealColor)
+        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
         let okayButtonLabel = EKProperty.LabelContent(text: okayText, style: okayButtonLabelStyle)
         let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             DispatchQueue.main.async {
@@ -224,7 +220,7 @@ class UploadWallpaperPopUp: UIViewController {
             }
         }
         
-        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.systemFont(ofSize: 20), color: tealColor)
+        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
         let closeButtonLabel = EKProperty.LabelContent(text: closeText, style: closeButtonLabelStyle)
         let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             SwiftEntryKit.dismiss()
@@ -336,6 +332,8 @@ class UploadWallpaperPopUp: UIViewController {
 extension UploadWallpaperPopUp: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        self.closeBtn.isHidden = true // hide button when user first starts typing
+        
         if wallpaperDescTextView.text == wallpaperDescPlaceholderText {
             wallpaperDescTextView.text = ""
             wallpaperDescTextView.textColor = .darkGray

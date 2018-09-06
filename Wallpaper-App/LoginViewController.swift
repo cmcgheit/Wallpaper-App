@@ -96,13 +96,10 @@ class LoginViewController: UIViewController {
     // MARK: - SwiftEntryKit Alerts
     // Notification Message
     private func showNotificationEKMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String? = nil) {
-        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-        var image: EKProperty.ImageContent?
-        if let imageName = imageName {
-            image = .init(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
-        }
-        let simpleMessage = EKSimpleMessage(image: image!, title: title, description: desc)
+        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
+        let simpleMessage = EKSimpleMessage(image: image, title: title, description: desc)
         let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
         
         let contentView = EKNotificationMessageView(with: notificationMessage)
@@ -112,10 +109,10 @@ class LoginViewController: UIViewController {
     
     @IBAction func signInBtnPressed(_ sender: Any) {
         
-        
         guard let email = emailTextFld.text else { return }
         guard let pass = passTextFld.text else { return }
-        if email.isEmpty || pass.isEmpty {
+        
+        if email == "" && pass == "" {
             // MARK: - No Email/Password entered Alert (not registered)
             let titleText = "User Not Registered"
             let descText = "No email and/or password entered, please enter an email or password and login"
@@ -174,7 +171,7 @@ class LoginViewController: UIViewController {
     @objc func saveToUserDefaults(_ sender: AnimatedTextField) {
         guard defaultsKey != "" else { return }
         UserDefaults.standard.set(sender.text ?? "", forKey: defaultsKey)
-        // this method is unnecessary and shouldn't be used.
+
         // UserDefaults.standard.synchronize()
     }
     

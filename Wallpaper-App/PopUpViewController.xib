@@ -16,6 +16,7 @@
                 <outlet property="backView" destination="7cD-qI-9XV" id="ZYP-wO-4b3"/>
                 <outlet property="cardView" destination="ZQ2-cn-TPQ" id="3qU-Pe-ySz"/>
                 <outlet property="contentView" destination="Bdf-We-NY8" id="DID-2T-CfV"/>
+                <outlet property="dismissBtn" destination="RJc-NS-i9Z" id="9Id-gd-JxB"/>
                 <outlet property="view" destination="iN0-l3-epB" id="dHa-99-aaf"/>
                 <outlet property="wallpaperDescLbl" destination="hcp-4Q-gUm" id="WFL-9h-rOM"/>
                 <outlet property="wallpaperPopImage" destination="Ixq-Mb-NQN" id="2SH-4O-Q27"/>
@@ -46,15 +47,26 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ2-cn-TPQ" customClass="CardView" customModule="Wallpaper_App" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ2-cn-TPQ">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ixq-Mb-NQN">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="433"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJc-NS-i9Z">
+                            <rect key="frame" x="325" y="20" width="40" height="40"/>
+                            <state key="normal" image="light-close-button"/>
+                            <connections>
+                                <action selector="dismissBtnTapped:" destination="-1" eventType="touchUpInside" id="U2X-4L-blY"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="RJc-NS-i9Z" secondAttribute="trailing" constant="10" id="csU-sE-aiF"/>
+                        <constraint firstItem="RJc-NS-i9Z" firstAttribute="top" secondItem="ZQ2-cn-TPQ" secondAttribute="top" constant="20" id="juc-x4-y09"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -76,5 +88,13 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
+        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4xj-as-R4S">
+            <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <state key="normal" title="Button"/>
+        </button>
     </objects>
+    <resources>
+        <image name="light-close-button" width="40" height="40"/>
+    </resources>
 </document>

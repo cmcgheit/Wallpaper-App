@@ -20,6 +20,10 @@ class RevealPasswordTextField: UITextField {
         addRevealButton()
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
     func addRevealButton() {
         rightViewMode = UITextFieldViewMode.always
         

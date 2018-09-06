@@ -78,13 +78,10 @@ class FeedViewController: UIViewController {
     // MARK: - SwiftEntryKit Alerts
     // Notification Message
     private func showNotificationEKMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String? = nil) {
-        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.systemFont(ofSize: 17), color: UIColor.darkGray))
-        var image: EKProperty.ImageContent?
-        if let imageName = imageName {
-            image = .init(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
-        }
-        let simpleMessage = EKSimpleMessage(image: image!, title: title, description: desc)
+        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
+        let simpleMessage = EKSimpleMessage(image: image, title: title, description: desc)
         let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
         
         let contentView = EKNotificationMessageView(with: notificationMessage)
@@ -110,6 +107,7 @@ class FeedViewController: UIViewController {
             UserDefaults.standard.set(true, forKey: "darkTheme")
         }
         
+        glidingIntView.layer.cornerRadius = 15
         signOutBtn.layer.cornerRadius = 15
         
         // Instructions
@@ -175,7 +173,7 @@ class FeedViewController: UIViewController {
         }
         
         // MARK: - Custom Switch
-        themeSwitch.onTintColor = wallPink
+        themeSwitch.onTintColor = wallGold
         themeSwitch.offTintColor = wallBlue
         themeSwitch.cornerRadius = 0.5
         themeSwitch.thumbCornerRadius = 0.5
@@ -194,7 +192,7 @@ class FeedViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         navigationController?.presentTransparentNavigationBar()
         
-        // self.navigationController?.hideTransparentNavigationBar()
+        // navigationController?.hideTransparentNavigationBar()
         
         // MARK: - Check Auth User Signed-In Listener/Handler
         handle = Auth.auth().addStateDidChangeListener { ( auth, user) in
@@ -218,7 +216,9 @@ class FeedViewController: UIViewController {
         }
         
         func uploadBtnPressed(_ sender: Any) {
-            presentUploadPopUp()
+//            presentUploadPopUp()
+            let uploadPopUpVC = UploadWallpaperPopUp(nibName: "UploadWallpaperPopUp", bundle: nil)
+            self.present(uploadPopUpVC, animated: true, completion: nil)
         }
     }
     
@@ -368,7 +368,7 @@ class FeedViewController: UIViewController {
         
         let nib = UINib(nibName: "WallpaperRoundedCardCell", bundle: nil)
         collectionView = glidingView.collectionView
-        collectionView.register(nib, forCellWithReuseIdentifier: "WallpaperCell")
+        collectionView.register(nib, forCellWithReuseIdentifier: "wallpaperCell")
         collectionView.delegate = self
         collectionView.dataSource = self
         glidingView.backgroundColor = UIColor.clear
@@ -416,40 +416,40 @@ class FeedViewController: UIViewController {
         return CATransform3DConcat(rotation, scale)
     }
     
-    // MARK: - Upload Pop Up Function/Transition
-    @objc func presentUploadPopUp() {
-        prepareModalPresentation()
-    }
-    
-    func prepareModalPresentation() {
-        let modalTransitionsDelegate = ModalTransitionDelegate()
-        let controller = UploadWallpaperPopUp()
-        let popUpController = P(presentedViewController: controller, presenting: self)
-        modalTransitionsDelegate.set(presentationController: popUpController)
-        
-        let presentAnimator = PresentationControllerAnimator(finalFrame: popUpController.frameOfPresentedViewInContainerView)
-        presentAnimator.auxAnimation = { controller.animations(presenting: $0)}
-        modalTransitionsDelegate.set(animator: presentAnimator, for: .present)
-        modalTransitionsDelegate.set(animator: presentAnimator, for: .dismiss)
-        
-        modalTransitionsDelegate.wire(
-            viewController: self,
-            with: .regular(.fromBottom),
-            navigationAction: { self.present(controller, animated: true, completion: nil)
-                
-        })
-        
-        presentAnimator.onDismissed = prepareModalPresentation
-        presentAnimator.onPresented = {
-            modalTransitionsDelegate.wire( viewController: controller,
-                                           with: .regular(.fromTop),
-                                           navigationAction: {
-                                            controller.dismiss(animated: true, completion: nil)
-            })
-        }
-        controller.transitioningDelegate = modalTransitionsDelegate
-        controller.modalPresentationStyle = .custom
-    }
+//    // MARK: - Upload Pop Up Function/Transition
+//    @objc func presentUploadPopUp() {
+//        prepareModalPresentation()
+//    }
+//
+//    func prepareModalPresentation() {
+//        let modalTransitionsDelegate = ModalTransitionDelegate()
+//        let controller = UploadWallpaperPopUp()
+//        let popUpController = P(presentedViewController: controller, presenting: self)
+//        modalTransitionsDelegate.set(presentationController: popUpController)
+//
+//        let presentAnimator = PresentationControllerAnimator(finalFrame: popUpController.frameOfPresentedViewInContainerView)
+//        presentAnimator.auxAnimation = { controller.animations(presenting: $0)}
+//        modalTransitionsDelegate.set(animator: presentAnimator, for: .present)
+//        modalTransitionsDelegate.set(animator: presentAnimator, for: .dismiss)
+//
+//        modalTransitionsDelegate.wire(
+//            viewController: self,
+//            with: .regular(.fromBottom),
+//            navigationAction: { self.present(controller, animated: true, completion: nil)
+//
+//        })
+//
+//        presentAnimator.onDismissed = prepareModalPresentation
+//        presentAnimator.onPresented = {
+//            modalTransitionsDelegate.wire( viewController: controller,
+//                                           with: .regular(.fromTop),
+//                                           navigationAction: {
+//                                            controller.dismiss(animated: true, completion: nil)
+//            })
+//        }
+//        controller.transitioningDelegate = modalTransitionsDelegate
+//        controller.modalPresentationStyle = .custom
+//    }
     
     // MARK: - Sign Out Button Action
     @IBAction func signOutBtnPressed() {
@@ -508,7 +508,7 @@ class FeedViewController: UIViewController {
         } else if section == 1 {
             return musicPlaceholder!
         } else {
-            return sportsPlaceholder!
+            return sportsPlaceholder! 
         }
     }
     
@@ -532,7 +532,7 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WallpaperCell", for: indexPath) as? WallpaperRoundedCardCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "wallpaperCell", for: indexPath) as? WallpaperRoundedCardCell else { return UICollectionViewCell() }
         
         let wallpapers = wallpapersAt(section: glidingView.expandedItemIndex, atIndex: indexPath.row)
         cell.setUpCell(wallpaper: wallpapers)
@@ -542,11 +542,9 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         // popup transition
         transition.destinationFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: cell.imageView.frame.height * view.frame.width / cell.imageView.frame.width)
-        print("transition.destinationFrame \(transition.destinationFrame)")
         
         imageFrame = cell.imageView.frame
-        print("imageFrame \(imageFrame)")
-        
+    
         return cell
     }
     
@@ -708,48 +706,3 @@ extension FeedViewController: CoachMarksControllerDelegate, CoachMarksController
         return 2
     }
 }
-// MARK: - Parallax Scrolling on CollectionView ? may not need with gliding collection
-//extension FeedViewController: UIScrollViewDelegate {
-//    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-//        if let collectionView = scrollView as? UICollectionView {
-//            for cell in collectionView.visibleCells as! [WallpaperRoundedCardCell] {
-//                let indexPath = collectionView.indexPath(for: cell)!
-//                let attributes = collectionView.layoutAttributesForItem(at: indexPath)!
-//                let cellFrame = collectionView.convert(attributes.frame, to: view)
-//
-//                let translationX = cellFrame.origin.x / 5
-//                cell.imageView.transform = CGAffineTransform(translationX: translationX, y:0)
-//
-//                cell.layer.transform = animateCell(cellFrame: cellFrame)
-//
-//            }
-//        }
-//    }
-//
-//    // Fix jump when cells first appear
-//    func animateCell(cellFrame: CGRect) -> CATransform3D {
-//        let angleFromX = Double((-cellFrame.origin.x) / 10)
-//        let angle = CGFloat((angleFromX * Double.pi) / 180.0)
-//
-//        var transform = CATransform3DIdentity
-//        transform.m34 = -1.0/1000
-//        let rotation = CATransform3DRotate(transform, angle, 0, 1, 0)
-//        cell.layer.transform = rotation // comment if use CATransform3DConcate
-//
-//        var scaleFromX = (1000 - (cellFrame.origin.x - 200)) / 1000
-//        let scaleMax: CGFloat = 1.0
-//        let scaleMin: CGFloat = 0.6
-//        if scaleFromX > scaleMax {
-//            scaleFromX = scaleMax
-//        }
-//        if scaleFromX < scaleMin {
-//            scaleFromX = scaleMin
-//        }
-//        let scale = CATransform3DScale(CATransform3DIdentity, scaleFromX, scaleFromX, 1)
-//        cell.layer.transform = scale // comment out if use CATransform3dConcate
-//        cell.layer.transform = CATransform3DConcate(rotation, scale)
-//
-//        return CATransform3DConcat(rotation, scale)
-//    }
-//}
-
