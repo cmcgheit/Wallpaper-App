@@ -22,17 +22,7 @@ class PopUpViewController: UIViewController {
     
     var wallpaperDescText = ""
     var wallpaperPhotoURL = ""
-    
-//    // Init VC as nib (easytransitions)
-//    init() {
-//        super.init(nibName: String(describing: PopUpViewController.self),
-//                   bundle: Bundle(for: PopUpViewController.self))
-//    }
-    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         

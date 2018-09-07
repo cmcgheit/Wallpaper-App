@@ -314,14 +314,14 @@ class FeedViewController: UIViewController {
     }
     
     private func setupGlidingCollectionView() {
-        glidingView.dataSource = self
-        
-        let nib = UINib(nibName: "WallpaperRoundedCardCell", bundle: nil)
         collectionView = glidingView.collectionView
+        let nib = UINib(nibName: String(describing: WallpaperRoundedCardCell.self), bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "wallpaperCell")
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = glidingView.backgroundColor
+        
+        glidingView.dataSource = self
         
     }
     
@@ -422,16 +422,6 @@ class FeedViewController: UIViewController {
         }
     }
     
-    func allWallpapersAt(section: Int) -> [WallpaperCategory] {
-        if section == 0 {
-            return artCategory
-        } else if section == 1 {
-            return musicCategory
-        } else {
-            return sportsCategory
-        }
-    }
-    
     func wallpapersAt(section: Int, atIndex index: Int) -> (WallpaperCategory) {
         if section == 0 {
             return (artCategory[index])
@@ -439,6 +429,16 @@ class FeedViewController: UIViewController {
             return (musicCategory[index])
         } else {
             return (sportsCategory[index])
+        }
+    }
+    
+    func allWallpapersAt(section: Int) -> [WallpaperCategory] {
+        if section == 0 {
+            return artCategory
+        } else if section == 1 {
+            return musicCategory
+        } else {
+            return sportsCategory
         }
     }
     
@@ -475,11 +475,8 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "wallpaperCell", for: indexPath) as? WallpaperRoundedCardCell else { return UICollectionViewCell() }
         
-        let wallpapers = wallpapersAt(section: glidingView.expandedItemIndex, atIndex: indexPath.row)
-        cell.setUpCell(wallpaper: wallpapers)
-        
-        // custom transition
-        cell.layer.transform = animateCell(cellFrame: cell.frame)
+        let wallpapers = wallpaperFor(section: glidingView.expandedItemIndex, atIndex: indexPath.row)
+        cell.setUpCell(wallpaper: wallpapers.wallpaper, placeholder: wallpapers.placeholder)
         
         // popup transition
         transition.destinationFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: cell.imageView.frame.height * view.frame.width / cell.imageView.frame.width)
@@ -496,11 +493,6 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         let popUpVC = PopUpViewController()
         
-        //        guard let cell = collectionView.cellForItem(at: indexPath) else {
-        //            present(detailViewController, animated: true, completion: nil)
-        //            return
-        //        }
-        
         popUpVC.selectedIndex = indexPath
         popUpVC.wallpaper = allWallpapersAt(section: section)
         popUpVC.placeholder = placeholderFor(section: section)
@@ -508,38 +500,26 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         popUpVC.wallpaperPhotoURL = cell.wallpaper.wallpaperURL
         popUpVC.wallpaperDescText = cell.wallpaper.wallpaperDesc
         
-        // cell.layer.transform = animateCell(cellFrame: cellFrame) // parallax add to imac code snippets
+        collectionIndex = indexPath
+        print("didSelect")
+        var tabFrame = self.tabBarController?.tabBar.frame
+        let tabHeight = tabFrame?.size.height
+        tabFrame?.origin = CGPoint(x: 0, y: self.view.frame.size.height + tabHeight!)
+        UIView.animate(withDuration: 0.5, animations: {
+            self.tabBarController?.tabBar.frame = tabFrame!
+        })
         
-        // Custom
-        let attributes = collectionView.layoutAttributesForItem(at: indexPath)
-        popUpVC.transitioningDelegate = self
-        let cellFrame = collectionView.convert((attributes?.frame)!, to: view)
-        
-        presentPopUpViewController.cellFrame = cellFrame
-        presentPopUpViewController.cellTransform = animateCell(cellFrame: cellFrame)
-        
-        // PopUp Custom Transition
-        //        collectionIndex = indexPath
-        //
-        //        if let cell = collectionView.cellForItem(at: indexPath) as? WallpaperRoundedCardCell {
-        //            let a = collectionView.convert(cell.frame, to: collectionView.superview)
-        //
-        //            transition.startingFrame = CGRect(x: a.minX+15, y: a.minY+15, width: 375 / 414 * view.frame.width - 30, height: 408 / 736 * view.frame.height - 30)
-        //
-        //            let sb = storyboard?.instantiateViewController(withIdentifier: "popUpVC") as! PopUpViewController
-        //            sb.image = picture[indexPath.row]
-        //            sb.transitioningDelegate = self
-        //            sb.modalPresentationStyle = .custom
-        //
-        //            self.present(sb, animated: true, completion: nil)
-        
-        isStatusBarHidden = true
-        UIView.animate(withDuration: 0.5) { // hides status bar when transition to popup
-            self.setNeedsStatusBarAppearanceUpdate()
+        if let cell = collectionView.cellForItem(at: indexPath) as? WallpaperRoundedCardCell {
+            let a = collectionView.convert(cell.frame, to: collectionView.superview)
+            
+            transition.startingFrame = CGRect(x: a.minX+15, y: a.minY+15, width: 375 / 414 * view.frame.width - 30, height: 408 / 736 * view.frame.height - 30)
+            
+            // popUpVC.image = picture[indexPath.row]
+            popUpVC.transitioningDelegate = self
+            popUpVC.modalPresentationStyle = .custom
+            
+            self.present(popUpVC, animated: true, completion: nil)
         }
-        
-        present(popUpVC, animated: true, completion: nil)
-        
     }
     
     // PopUp Transition
@@ -571,7 +551,7 @@ extension FeedViewController: GlidingCollectionDatasource {
     }
     
     func glidingCollection(_ collection: GlidingCollection, itemAtIndex index: Int) -> String {
-        return "⚡ " + wallpaperSections[index]
+        return "📂 " + wallpaperSections[index]
     }
 }
 

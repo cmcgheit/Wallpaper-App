@@ -27,17 +27,16 @@
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-b4-UEY" customClass="GlidingCollection" customModule="GlidingCollection">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DW-in-jk3">
+                                <rect key="frame" x="0.0" y="82" width="375" height="570"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                             </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DW-in-jk3">
-                                <rect key="frame" x="17" y="92" width="341" height="550"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-b4-UEY" customClass="GlidingCollection" customModule="GlidingCollection">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -90,17 +89,17 @@
                             <bool key="isElement" value="YES"/>
                         </accessibility>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6DW-in-jk3" secondAttribute="bottom" constant="25" id="0a4-N1-5Xg"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6DW-in-jk3" secondAttribute="bottom" constant="15" id="0a4-N1-5Xg"/>
                             <constraint firstItem="WAa-z2-Qms" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="18i-Dl-HeA"/>
                             <constraint firstItem="9SO-aj-fWK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="39b-MR-pqD"/>
                             <constraint firstAttribute="trailing" secondItem="KWp-ye-yUT" secondAttribute="trailing" constant="10" id="469-p6-rsM"/>
                             <constraint firstItem="9SO-aj-fWK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="76F-uL-Nk9"/>
-                            <constraint firstAttribute="trailing" secondItem="6DW-in-jk3" secondAttribute="trailing" constant="17" id="7h9-de-BYE"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wn6-b4-UEY" secondAttribute="bottom" id="84a-Nr-Hb1"/>
+                            <constraint firstItem="6DW-in-jk3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="AUA-OE-box"/>
                             <constraint firstAttribute="trailing" secondItem="WAa-z2-Qms" secondAttribute="trailing" id="B2a-M6-IGL"/>
-                            <constraint firstItem="6DW-in-jk3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="17" id="HAU-i3-Ave"/>
                             <constraint firstItem="WAa-z2-Qms" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LTQ-sX-aIR"/>
                             <constraint firstItem="KWp-ye-yUT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="Laf-ek-Bmu"/>
+                            <constraint firstAttribute="trailing" secondItem="6DW-in-jk3" secondAttribute="trailing" id="O45-mR-Tqf"/>
                             <constraint firstItem="wn6-b4-UEY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="S1w-ry-1Jz"/>
                             <constraint firstItem="KWp-ye-yUT" firstAttribute="leading" secondItem="OQH-b3-jIB" secondAttribute="trailing" constant="251" id="TcS-Zx-Qqn"/>
                             <constraint firstItem="OQH-b3-jIB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="U1q-tS-ung"/>
@@ -108,7 +107,7 @@
                             <constraint firstAttribute="trailing" secondItem="wn6-b4-UEY" secondAttribute="trailing" id="dN6-lH-KPY"/>
                             <constraint firstItem="OQH-b3-jIB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="dj0-DB-IEM"/>
                             <constraint firstItem="6DW-in-jk3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hfP-ee-nPn"/>
-                            <constraint firstItem="6DW-in-jk3" firstAttribute="top" secondItem="OQH-b3-jIB" secondAttribute="bottom" constant="25" id="s1H-hY-LkV"/>
+                            <constraint firstItem="6DW-in-jk3" firstAttribute="top" secondItem="OQH-b3-jIB" secondAttribute="bottom" constant="15" id="s1H-hY-LkV"/>
                             <constraint firstItem="wn6-b4-UEY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vGn-Vz-8uQ"/>
                         </constraints>
                     </view>

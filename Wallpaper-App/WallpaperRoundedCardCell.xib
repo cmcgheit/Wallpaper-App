@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WallpaperRoundedCardCell" customModule="Wallpaper_App" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="wallpaperCell" id="gTV-IL-0wX" customClass="WallpaperRoundedCardCell" customModule="Wallpaper_App" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="280" height="500"/>
@@ -30,7 +30,7 @@
                 <constraint firstItem="DEM-zG-CDg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xhM-lT-3zm"/>
             </constraints>
             <connections>
-                <outlet property="imageView" destination="DEM-zG-CDg" id="uWI-sf-8sc"/>
+                <outlet property="imageView" destination="DEM-zG-CDg" id="QTb-Jh-o4m"/>
             </connections>
         </collectionViewCell>
     </objects>

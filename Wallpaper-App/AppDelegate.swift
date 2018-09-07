@@ -70,10 +70,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setupGlidingCollection() {
         var config = GlidingConfig.shared
-        config.buttonsFont = UIFont.gillsRegFont(ofSize: 45) // Category text
+        config.buttonsFont = UIFont.gillsRegFont(ofSize: 60) // Category text
         config.activeButtonColor = UIColor.darkGray
         config.inactiveButtonsColor = UIColor.lightGray
-        config.cardsSize = CGSize(width: round(UIScreen.main.bounds.width * 0.7), height: round(UIScreen.main.bounds.height * 0.55))
+        config.cardsSize = CGSize(width: round(UIScreen.main.bounds.width * 0.7), height: round(UIScreen.main.bounds.height * 0.75))
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
