@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.buttonsFont = UIFont.gillsRegFont(ofSize: 45) // Category text
         config.activeButtonColor = UIColor.darkGray
         config.inactiveButtonsColor = UIColor.lightGray
-        config.cardsSize = CGSize(width: round(UIScreen.main.bounds.width * 0.7), height: round(UIScreen.main.bounds.height * 0.45))
+        config.cardsSize = CGSize(width: round(UIScreen.main.bounds.width * 0.7), height: round(UIScreen.main.bounds.height * 0.55))
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

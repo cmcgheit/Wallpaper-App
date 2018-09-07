@@ -9,15 +9,6 @@ import SwiftEntryKit
 import Instructions
 import McPicker
 
-class P: UIPresentationController {
-    override var frameOfPresentedViewInContainerView: CGRect {
-        return CGRect(x: 10,
-                      y: presentingViewController.view.bounds.height - 380,
-                      width: 355,
-                      height: 370)
-    }
-}
-
 class UploadWallpaperPopUp: UIViewController {
     
     @IBOutlet weak var wallpaperPopUpView: UIImageView!
@@ -40,19 +31,7 @@ class UploadWallpaperPopUp: UIViewController {
     // Picker
     let catPickerData: [[String]] = [["Sports", "Music", "Arts"]]
     
-//    // Popup Presentation Layouts
-//    private typealias Layout = (transform: CGAffineTransform, alpha: CGFloat)
-//    private let startLayout: Layout  = (.init(translationX: 0, y: 30), 0.0)
-//    private let endLayout: Layout = (.identity, 1.0)
-//
-//    init() {
-//        super.init(nibName: String(describing: UploadWallpaperPopUp.self),
-//                   bundle: Bundle(for: UploadWallpaperPopUp.self))
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+    public var userTappedCloseButtonClosure: (() -> Void)?
     
     // MARK: - Attributes Wrapper
     private var attributesWrapper: EntryAttributeWrapper {
@@ -68,9 +47,11 @@ class UploadWallpaperPopUp: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        // Popup Easy Transitions
-//        view.layer.cornerRadius = 15.0
-//        set(layout: startLayout)
+        // popup
+        DispatchQueue.main.async {
+            self.view.backgroundColor = UIColor.clear
+            self.view.isOpaque = false
+        }
         
         // Instructions
         self.uploadInstructionsController.dataSource = self
@@ -87,17 +68,6 @@ class UploadWallpaperPopUp: UIViewController {
         // MARK: - Set navigation bar to transparent
         self.navigationController?.hideTransparentNavigationBar()
     }
-    
-//    // MARK: - Popup Transition Setup
-//    public func animations(presenting: Bool) {
-//        let layout = presenting ? endLayout : startLayout
-//        set(layout: layout)
-//    }
-//    
-//    private func set(layout: Layout) {
-//        wallpaperPopUpView.transform = layout.transform
-//        wallpaperPopUpView.alpha = layout.alpha
-//    }
     
     fileprivate func sourceTypePicker() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -147,7 +117,7 @@ class UploadWallpaperPopUp: UIViewController {
                 UIApplication.shared.open(url!, options: [:])
             }
         }
-
+        
         let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
         let closeButtonLabel = EKProperty.LabelContent(text: closeText, style: closeButtonLabelStyle)
         let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
@@ -155,14 +125,14 @@ class UploadWallpaperPopUp: UIViewController {
         }
         
         let buttonsBarContent = EKProperty.ButtonBarContent(with: okayButton, closeButton, separatorColor: tealColor, expandAnimatedly: true)
-    
+        
         let alertMessage = EKAlertMessage(simpleMessage: simpleMessage, buttonBarContent: buttonsBarContent)
         
         let contentView = EKAlertMessageView(with: alertMessage)
-
+        
         SwiftEntryKit.display(entry: contentView, using: self.attributesWrapper.attributes)
     }
-
+    
     // Restrict Access Alert
     private func showEKRestrictAlert(attributes: EKAttributes) {
         let titleText = EKProperty.LabelContent(text: "Restricted Access for Photo Library", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
@@ -181,15 +151,14 @@ class UploadWallpaperPopUp: UIViewController {
             DispatchQueue.main.async {
                 let url = URL(string: UIApplicationOpenSettingsURLString)
                 UIApplication.shared.open(url!, options: [:])
+            }
         }
-    }
         
         let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
         let closeButtonLabel = EKProperty.LabelContent(text: closeText, style: closeButtonLabelStyle)
         let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             SwiftEntryKit.dismiss()
         }
-        
         
         let buttonsBarContent = EKProperty.ButtonBarContent(with: okayButton, closeButton, separatorColor: tealColor, expandAnimatedly: true)
         
@@ -231,11 +200,11 @@ class UploadWallpaperPopUp: UIViewController {
         let alertMessage = EKAlertMessage(simpleMessage: simpleMessage, buttonBarContent: buttonsBarContent)
         
         let contentView = EKAlertMessageView(with: alertMessage)
-
+        
         SwiftEntryKit.display(entry: contentView, using: self.attributesWrapper.attributes)
     }
     
-
+    
     // MARK: - Category Picker Button Action
     @IBAction func categoryPicker(_ sender: UIButton) {
         McPicker.showAsPopover(data: catPickerData, fromViewController: self, sourceView: sender, doneHandler: { [weak self] (selections: [Int : String]) -> Void in
@@ -316,14 +285,20 @@ class UploadWallpaperPopUp: UIViewController {
         }
     }
     
+    // MARK: - Close Button Pressed Action
     @IBAction  func closeBtnPressed(_ sender: UIButton) {
+        userTappedCloseButtonClosure?()
+        dismiss(animated: true, completion: nil)
+        
         if wallpaperDescTextView.text.isEmpty && wallpaperPopUpView.image != nil && (wallpaperCatLbl.text?.isEmpty)! { // only close if data fields empty?
             // send data from wallpaperCatLbl?
             self.closeBtn?.isHidden = false
+            userTappedCloseButtonClosure?()
             self.dismiss(animated: true, completion: nil)
-            //            viewController.willMove(toParentViewController: nil)
-            //            viewController.view.removeFromSuperview()
-            //            viewController.removeFromParentViewController()
+            //            let viewController = UploadWallpaperPopUp()
+            //                viewController.willMove(toParentViewController: nil)
+            //                viewController.view.removeFromSuperview()
+            //                viewController.removeFromParentViewController()
         }
     }
 }

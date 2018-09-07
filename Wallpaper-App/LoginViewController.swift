@@ -24,9 +24,9 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        signInBtn.layer.cornerRadius = 15
-        signUpBtn.layer.cornerRadius = 15
-        loginAnBtn.layer.cornerRadius = 15
+        signInBtn?.layer.cornerRadius = 15
+        signUpBtn?.layer.cornerRadius = 15
+        loginAnBtn?.layer.cornerRadius = 15
         
         notificationObservers()
         customBackBtn()
@@ -107,16 +107,26 @@ class LoginViewController: UIViewController {
         
     }
     
+    func noEmailPassAlert() {
+        // MARK: - No Email/Password entered Alert (not registered)
+        let titleText = "User Not Registered"
+        let descText = "No email and/or password entered, please enter an email or password and login"
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+    }
+    
+    func incorrectEmailPassAlert() {
+        let titleText = "Incorrect Email/Password"
+        let descText = "You have entered the incorrect email/password. Please enter your email/password and try again"
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+    }
+    
     @IBAction func signInBtnPressed(_ sender: Any) {
         
         guard let email = emailTextFld.text else { return }
         guard let pass = passTextFld.text else { return }
         
-        if email == "" && pass == "" {
-            // MARK: - No Email/Password entered Alert (not registered)
-            let titleText = "User Not Registered"
-            let descText = "No email and/or password entered, please enter an email or password and login"
-            showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+        if email == "" && pass == "" { // add condition for checking textfield typing?
+            // MARK: - Empty Email/Pass Login
         } else {
             // MARK: - Login User Successfully
             AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, loginError) in
@@ -126,13 +136,12 @@ class LoginViewController: UIViewController {
                     self.performSegue(withIdentifier:
                         "toFeedViewController", sender: nil)
                 } else {
-                    // MARK: - Incorrect Email/Password Alert
-                    let titleText = "Incorrect Email/Password"
-                    let descText = "You have entered the incorrect email/password. Please enter your email/password and try again"
-                    self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+                    // MARK: - Incorrect Email/Password Login
+                    self.incorrectEmailPassAlert()
                     // Auth.auth().sendPasswordReset(withEmail: email) ask to reset, logic for mutliple incorrect tries?
                     print(String(describing: loginError?.localizedDescription))
                     // Take User to SignUp if not a registered user
+                    // self.performSegue(withIdentifier: "toSignUpViewController", sender: nil)
                 }
             })
         }
@@ -160,7 +169,8 @@ class LoginViewController: UIViewController {
     // MARK: - TextField Change Function
     @objc func textFieldDidChange(_ textField: AnimatedTextField) {
         if emailTextFld.text == "" && passTextFld.text == "" {
-            // Empty
+            // Call only when user types in email/pass field
+            noEmailPassAlert()
         } else {
             // Text has been changed
             NotificationCenter.default.post(name: .textFieldDidChange, object: nil)
@@ -171,7 +181,7 @@ class LoginViewController: UIViewController {
     @objc func saveToUserDefaults(_ sender: AnimatedTextField) {
         guard defaultsKey != "" else { return }
         UserDefaults.standard.set(sender.text ?? "", forKey: defaultsKey)
-
+        
         // UserDefaults.standard.synchronize()
     }
     

@@ -52,7 +52,7 @@
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="3qs-Bd-fOm" kind="show" identifier="toUploadWallpaperPopUp" id="6kx-3b-rYY"/>
+                                    <action selector="uploadBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8XQ-aJ-6qk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQH-b3-jIB" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
@@ -65,7 +65,6 @@
                                 </state>
                                 <connections>
                                     <action selector="signOutBtnPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="mrE-1F-pTm"/>
-                                    <segue destination="e5t-Dg-8Hj" kind="show" identifier="backtoLoginViewController" id="NZ3-jy-2Sf"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9SO-aj-fWK" customClass="CustomSwitch" customModule="Wallpaper_App" customModuleProvider="target">
@@ -87,8 +86,6 @@
                                 </connections>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <accessibility key="accessibilityConfiguration">
                             <bool key="isElement" value="YES"/>
                         </accessibility>
@@ -263,7 +260,7 @@
         <!--UploadViewController-->
         <scene sceneID="BIc-7i-bui">
             <objects>
-                <viewController storyboardIdentifier="UploadViewController" title="UploadViewController" id="3qs-Bd-fOm" customClass="UploadWallpaperPopUp" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UploadWallViewController" title="UploadViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="3qs-Bd-fOm" customClass="UploadWallpaperPopUp" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="A1R-Nl-dvj"/>
                         <viewControllerLayoutGuide type="bottom" id="S4u-im-SDB"/>
@@ -271,7 +268,7 @@
                     <view key="view" contentMode="scaleToFill" id="Coe-fh-6xh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <accessibility key="accessibilityConfiguration">
                             <bool key="isElement" value="YES"/>
                         </accessibility>

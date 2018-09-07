@@ -20,6 +20,11 @@ class SignUpViewController: UIViewController {
         notificationObservers()
         customBackBtn()
         self.enableUnoccludedTextField()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(textFieldDidChange(_:)),
+                                               name: Notification.Name.UITextFieldTextDidChange,
+                                               object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -37,12 +42,13 @@ class SignUpViewController: UIViewController {
     // MARK - Notifications
     func notificationObservers() {
         
-        // NotificationCenter.default.addObserver(self, selector: #selector(, name: , object: nil)
+        signUpTxtFld.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
+        signUpPassFld.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
     }
     
     func removeNotifications() {
         
-        // NotificationCenter.default.removeObserver(<#T##observer: Any##Any#>)
+        NotificationCenter.default.removeObserver(Notification.Name.UITextFieldTextDidChange)
     }
     
     // MARK: - Attributes Wrapper
@@ -70,18 +76,38 @@ class SignUpViewController: UIViewController {
         
     }
     
+    func noEmailPassAlert() {
+        let titleText = "No Email/Password Entered"
+        let descText = "Please enter a complete email/password and try again"
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+    }
+    
+    func signInErrorAlert() {
+        let titleText = "Error signing in"
+        let descText = "Please check that you have entered your email and password correctly and try again"
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+    }
+    
+    // MARK: - TextField Change Function
+    @objc func textFieldDidChange(_ textField: AnimatedTextField) {
+        if signUpTxtFld.text == "" && signUpPassFld.text == "" {
+            // Call only when user types in email/pass field
+            noEmailPassAlert()
+        } else {
+            // Text has been changed
+            NotificationCenter.default.post(name: .textFieldDidChange, object: nil)
+        }
+    }
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
         guard let email = signUpTxtFld.text else { return }
         guard let pass = signUpPassFld.text else { return }
         
         
-        if email.isEmpty || pass.isEmpty // && textFieldDidChangeAction(notification)
+        if email == "" || pass == "" // && textFieldDidChangeAction(notification)
         {
             // MARK: - No Email/Password entered Alert (not registered)
-            let titleText = "No Email/Password Entered"
-            let descText = "Please enter a complete email/password and try again"
-            showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+            
         } else { // Register New User
             AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in
                 if success { // After registered, login the user
@@ -91,9 +117,7 @@ class SignUpViewController: UIViewController {
                     })
                 } else {
                     // Sign In Error Alert
-                    let titleText = "Error signing in"
-                    let descText = "Please check that you have entered your email and password correctly and try again"
-                    self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+                    self.signInErrorAlert()
                     print(String(describing: registrationError?.localizedDescription))
                 }
             })
