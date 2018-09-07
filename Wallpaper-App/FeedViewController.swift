@@ -25,8 +25,6 @@ class FeedViewController: UIViewController {
     var handle: AuthStateDidChangeListenerHandle?
     var bannerView: GADBannerView!
     
-    let presentPopUpViewController = PresentSectionViewController()
-    
     var isStatusBarHidden = false
     
     let transition = TransitionClone()
@@ -43,7 +41,7 @@ class FeedViewController: UIViewController {
     var musicCategory = [WallpaperCategory]()
     var artCategory = [WallpaperCategory]()
     
-    // Placeholders - set individual eventually
+    // Placeholders - eventually have separate images for each category?
     let artPlaceholder = UIImage(named: "placeholder-image")
     let musicPlaceholder = UIImage(named: "placeholder-image")
     let sportsPlaceholder = UIImage(named: "placeholder-image")
@@ -305,7 +303,6 @@ class FeedViewController: UIViewController {
     }
     
     // MARK: - Gliding Collection
-    
     // MARK: - Setup Gliding Collection/Wallpaper Feed
     func setup() {
         DispatchQueue.main.async {
@@ -375,9 +372,9 @@ class FeedViewController: UIViewController {
     
     // MARK: - Upload Button Action
     @IBAction func uploadBtnPressed(_ sender: Any) {
-        let uploadWallPopUp = UploadWallpaperPopUp()
-        uploadWallPopUp.modalPresentationStyle = .overCurrentContext
-        present(uploadWallPopUp, animated: true, completion: nil)
+        let uploadPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadWallViewController") as!  UploadWallpaperPopUp
+        self.addChildViewController(uploadPopUpVC)
+        uploadPopUpVC.view.frame = self.view.frame
         if !UIAccessibilityIsReduceTransparencyEnabled() {
             self.view.backgroundColor = UIColor.clear
             let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
@@ -385,13 +382,14 @@ class FeedViewController: UIViewController {
             blurEffectView.frame = self.view.bounds
             blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             self.view.addSubview(blurEffectView)
-            uploadWallPopUp.userTappedCloseButtonClosure = { [weak blurEffectView] in
+            uploadPopUpVC.userTappedCloseButtonClosure = { [weak blurEffectView] in
                 blurEffectView?.removeFromSuperview()
             }
         }
-        self.view.addSubview(uploadWallPopUp.view)
-        uploadWallPopUp.didMove(toParentViewController: self)
+        self.view.addSubview(uploadPopUpVC.view)
+        uploadPopUpVC.didMove(toParentViewController: self)
     }
+    
     
     // MARK: - Sign Out Button Action
     @IBAction func signOutBtnPressed() {
@@ -465,7 +463,7 @@ class FeedViewController: UIViewController {
 }
 
 
-// MARK: - CollectionView
+// MARK: - CollectionView Main Functions
 extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -487,21 +485,11 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as! WallpaperRoundedCardCell
-        // MARK: - PopUp Transition Function
+        // let cell = collectionView.cellForItem(at: indexPath) as! WallpaperRoundedCardCell
+        // MARK: - Custom DidSelect Transition Function
         let section = glidingView.expandedItemIndex
-        
-        let popUpVC = PopUpViewController()
-        
-        popUpVC.selectedIndex = indexPath
-        popUpVC.wallpaper = allWallpapersAt(section: section)
-        popUpVC.placeholder = placeholderFor(section: section)
-        
-        popUpVC.wallpaperPhotoURL = cell.wallpaper.wallpaperURL
-        popUpVC.wallpaperDescText = cell.wallpaper.wallpaperDesc
-        
         collectionIndex = indexPath
-        print("didSelect")
+        
         var tabFrame = self.tabBarController?.tabBar.frame
         let tabHeight = tabFrame?.size.height
         tabFrame?.origin = CGPoint(x: 0, y: self.view.frame.size.height + tabHeight!)
@@ -514,7 +502,14 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
             
             transition.startingFrame = CGRect(x: a.minX+15, y: a.minY+15, width: 375 / 414 * view.frame.width - 30, height: 408 / 736 * view.frame.height - 30)
             
-            // popUpVC.image = picture[indexPath.row]
+            let popUpVC = PopUpViewController()
+            
+            popUpVC.selectedIndex = indexPath
+            popUpVC.wallpaper = allWallpapersAt(section: section)
+            popUpVC.placeholder = placeholderFor(section: section)
+            popUpVC.wallpaperImageURL = (cell.wallpaper?.wallpaperURL)!
+            popUpVC.wallpaperDescText = (cell.wallpaper?.wallpaperDesc)!
+            
             popUpVC.transitioningDelegate = self
             popUpVC.modalPresentationStyle = .custom
             
@@ -524,12 +519,10 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     // PopUp Transition
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print("collectionViewLayout")
         return CGSize(width: 375 / 414 * view.frame.width, height: 408 / 736 * view.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-        print("didHighlight")
         let cell = collectionView.cellForItem(at: indexPath)
         UIView.animate(withDuration: 0.3) {
             cell?.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
@@ -555,6 +548,7 @@ extension FeedViewController: GlidingCollectionDatasource {
     }
 }
 
+// MARK: - Custom Transition Functions
 extension FeedViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {

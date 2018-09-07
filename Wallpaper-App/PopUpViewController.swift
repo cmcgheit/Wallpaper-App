@@ -16,21 +16,25 @@ class PopUpViewController: UIViewController {
     @IBOutlet weak var dismissBtn: UIButton!
     
     var wallpaper = [WallpaperCategory]()
+    var wallpapers: Wallpaper!
     var selectedIndex: IndexPath!
     var placeholder: UIImage?
     var image: UIImage?
-    
+    var wallpaperImageURL = ""
     var wallpaperDescText = ""
-    var wallpaperPhotoURL = ""
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         wallpaperPopImage.image = image
+        let url = URL(string: wallpaperImageURL)
+        wallpaperPopImage.kf.setImage(with: url, placeholder: placeholder)
+        wallpaperDescLbl.text = wallpaperDescText
         
         // Create a gesture recognizer and add to a UIView
         let recognizer = InstantPanGestureRecognizer(target: self, action: #selector(panRecognizer))
         dismissBtn.addGestureRecognizer(recognizer)
+        
     }
     
    

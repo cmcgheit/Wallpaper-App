@@ -11,7 +11,6 @@
 		D808C92A21153A16004C95C9 /* UIViewController+KeyboardExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808C92921153A16004C95C9 /* UIViewController+KeyboardExt.swift */; };
 		D808C9642131EEBE004C95C9 /* EntryAttributeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808C9632131EEBE004C95C9 /* EntryAttributeWrapper.swift */; };
 		D808C96A2135B490004C95C9 /* DynamicAccessibilityLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808C9692135B490004C95C9 /* DynamicAccessibilityLayout.swift */; };
-		D808C96C2135B6BC004C95C9 /* ScaledFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808C96B2135B6BC004C95C9 /* ScaledFonts.swift */; };
 		D808C96E2135F36A004C95C9 /* PresentSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808C96D2135F36A004C95C9 /* PresentSectionViewController.swift */; };
 		D87DA23620FA4CE800777B0D /* RoundedRectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */; };
 		D87DA23820FA556B00777B0D /* CustomCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23720FA556B00777B0D /* CustomCardView.swift */; };
@@ -93,7 +92,6 @@
 		D808C95E21177006004C95C9 /* Wallpaper-App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Wallpaper-App.entitlements"; sourceTree = "<group>"; };
 		D808C9632131EEBE004C95C9 /* EntryAttributeWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryAttributeWrapper.swift; sourceTree = "<group>"; };
 		D808C9692135B490004C95C9 /* DynamicAccessibilityLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicAccessibilityLayout.swift; sourceTree = "<group>"; };
-		D808C96B2135B6BC004C95C9 /* ScaledFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledFonts.swift; sourceTree = "<group>"; };
 		D808C96D2135F36A004C95C9 /* PresentSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentSectionViewController.swift; sourceTree = "<group>"; };
 		D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectButton.swift; sourceTree = "<group>"; };
 		D87DA23720FA556B00777B0D /* CustomCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardView.swift; sourceTree = "<group>"; };
@@ -301,7 +299,6 @@
 				D8FC5D8E20DEC4B300FA632F /* Notifications+Extensions.swift */,
 				D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */,
 				D808C9692135B490004C95C9 /* DynamicAccessibilityLayout.swift */,
-				D808C96B2135B6BC004C95C9 /* ScaledFonts.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -703,7 +700,6 @@
 				D87DA23820FA556B00777B0D /* CustomCardView.swift in Sources */,
 				D8E93BC020B8B63200CE0AD8 /* ReusableCells.swift in Sources */,
 				D87DA25720FBBAF400777B0D /* PanGesture.swift in Sources */,
-				D808C96C2135B6BC004C95C9 /* ScaledFonts.swift in Sources */,
 				D8E93BC620B8B63200CE0AD8 /* CardView.swift in Sources */,
 				D8FC5D9120E00C0800FA632F /* CustomSwitch.swift in Sources */,
 				D8E93B8220B8B02100CE0AD8 /* AuthService.swift in Sources */,

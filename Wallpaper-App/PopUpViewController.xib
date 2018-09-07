@@ -14,7 +14,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopUpViewController" customModule="Wallpaper_App" customModuleProvider="target">
             <connections>
                 <outlet property="backView" destination="7cD-qI-9XV" id="ZYP-wO-4b3"/>
-                <outlet property="cardView" destination="ZQ2-cn-TPQ" id="3qU-Pe-ySz"/>
                 <outlet property="contentView" destination="Bdf-We-NY8" id="DID-2T-CfV"/>
                 <outlet property="dismissBtn" destination="RJc-NS-i9Z" id="9Id-gd-JxB"/>
                 <outlet property="view" destination="iN0-l3-epB" id="dHa-99-aaf"/>
@@ -88,11 +87,6 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
-        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4xj-as-R4S">
-            <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <state key="normal" title="Button"/>
-        </button>
     </objects>
     <resources>
         <image name="light-close-button" width="40" height="40"/>
