@@ -86,9 +86,6 @@ extension TransitionClone: UIViewControllerAnimatedTransitioning {
                 
                 let finalFrame = startingFrame
                 
-                print("\(finalFrame.width, initialFrame.width)")
-                print("\(finalFrame.height, initialFrame.height)")
-                
                 let scaleX = finalFrame.width / initialFrame.width
                 
                 let scaleY = finalFrame.height / initialFrame.height

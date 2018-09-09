@@ -122,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1144.8" y="124.58770614692655"/>
+            <point key="canvasLocation" x="697" y="126"/>
         </scene>
         <!--SignUpViewController-->
         <scene sceneID="Phh-VC-Rxd">
@@ -254,7 +254,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KeQ-bX-Oa4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-551.20000000000005" y="840.62968515742136"/>
+            <point key="canvasLocation" x="-552" y="1025"/>
         </scene>
         <!--UploadViewController-->
         <scene sceneID="BIc-7i-bui">
@@ -275,7 +275,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jgg-Jr-4U2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1906" y="125"/>
+            <point key="canvasLocation" x="1284" y="126"/>
         </scene>
         <!--SplashViewController-->
         <scene sceneID="7Ed-Zr-fLx">
@@ -316,7 +316,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itm-7s-tfr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1335.2" y="125.4872563718141"/>
+            <point key="canvasLocation" x="-1080" y="125"/>
         </scene>
         <!--LoginViewController-->
         <scene sceneID="gMl-Nl-ycl">
@@ -478,7 +478,7 @@
         <!--Custom Navi Controller-->
         <scene sceneID="jye-y5-DR5">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="nf6-LJ-NTm" customClass="CustomNaviController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CustomNaviController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="nf6-LJ-NTm" customClass="CustomNaviController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="WMH-aY-DaY">
                         <autoresizingMask key="autoresizingMask"/>
@@ -490,7 +490,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jTy-8p-p7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="334" y="125"/>
+            <point key="canvasLocation" x="77" y="125"/>
         </scene>
     </scenes>
     <resources>

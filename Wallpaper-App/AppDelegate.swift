@@ -23,11 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIFont.overrideInitialize()
         
         // Splash
-//        self.window = UIWindow(frame: UIScreen.main.bounds)
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let splashVC = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
-//        self.window?.rootViewController = splashVC
-//        self.window?.makeKeyAndVisible()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let splashVC = storyboard.instantiateViewController(withIdentifier: "SplashViewController") as! SplashViewController
+        self.window = UIWindow.init(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = splashVC
+        self.window?.makeKeyAndVisible()
         
         // Initialize the Google Mobile Ads SDK.
         GADMobileAds.configure(withApplicationID: "adMobAppID")

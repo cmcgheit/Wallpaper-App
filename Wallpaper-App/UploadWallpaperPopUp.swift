@@ -11,6 +11,7 @@ import McPicker
 
 class UploadWallpaperPopUp: UIViewController {
     
+    @IBOutlet weak var popUpView: UIView!
     @IBOutlet weak var wallpaperPopUpView: UIImageView!
     @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var uploadBtn: UIButton!
@@ -18,8 +19,8 @@ class UploadWallpaperPopUp: UIViewController {
     @IBOutlet weak var wallpaperCatLbl: UILabel!
     @IBOutlet weak var wallpaperCatPickLbl: UILabel!
     
-    var wallpaperDescPlaceholderText = "Describe this wallpaper"
-    var wallpaperCatPlaceholderText = "Give the wallpaper a category"
+    var wallpaperDescPlaceholderText = "Click here to type and describe this wallpaper"
+    var wallpaperCatPlaceholderText = "Tap here and give the wallpaper a category"
     
     //Upload Camera properties
     var imagePicker: UIImagePickerController!
@@ -47,18 +48,22 @@ class UploadWallpaperPopUp: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        wallpaperDescTextView?.textColor = .darkGray
+        wallpaperDescTextView.text = wallpaperDescPlaceholderText
+        wallpaperCatPickLbl.text = wallpaperCatPlaceholderText
+        
         // popup
         DispatchQueue.main.async {
-            self.view.backgroundColor = UIColor.clear
-            self.view.isOpaque = false
+            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+            self.popUpView.layer.cornerRadius = 5
+            self.popUpView.layer.shadowOpacity = 0.8
+            self.popUpView.layer.shadowOffset = CGSize(width: 0, height: 0)
         }
         
         // Instructions
         self.uploadInstructionsController.dataSource = self
         self.uploadInstructionsController.overlay.color = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
         self.uploadInstructionsController.overlay.allowTap = true
-        
-        wallpaperDescTextView?.textColor = .darkGray
         
         customBackBtn()
         
@@ -287,19 +292,46 @@ class UploadWallpaperPopUp: UIViewController {
     
     // MARK: - Close Button Pressed Action
     @IBAction  func closeBtnPressed(_ sender: UIButton) {
-        userTappedCloseButtonClosure?()
-        dismiss(animated: true, completion: nil)
+        self.removePopUp()
         
-        if wallpaperDescTextView.text.isEmpty && wallpaperPopUpView.image != nil && (wallpaperCatLbl.text?.isEmpty)! { // only close if data fields empty?
-            // send data from wallpaperCatLbl?
-            self.closeBtn?.isHidden = false
-            userTappedCloseButtonClosure?()
-            self.dismiss(animated: true, completion: nil)
-            //            let viewController = UploadWallpaperPopUp()
-            //                viewController.willMove(toParentViewController: nil)
-            //                viewController.view.removeFromSuperview()
-            //                viewController.removeFromParentViewController()
+//        if wallpaperDescTextView.text.isEmpty && wallpaperPopUpView.image != nil && (wallpaperCatLbl.text?.isEmpty)! { // only close if data fields empty?
+//            // send data from wallpaperCatLbl?
+//            self.closeBtn?.isHidden = false
+//            userTappedCloseButtonClosure?()
+//            self.dismiss(animated: true, completion: nil)
+//            //            let viewController = UploadWallpaperPopUp()
+//            //                viewController.willMove(toParentViewController: nil)
+//            //                viewController.view.removeFromSuperview()
+//            //                viewController.removeFromParentViewController()
+//        }
+    }
+    
+    func showInView(aView: UIView!, animated: Bool) {
+        aView.addSubview(self.view)
+        if animated {
+            self.animatePopUp()
         }
+    }
+    
+    func animatePopUp() {
+        self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        self.view.alpha = 0.0;
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.alpha = 1.0
+            self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        })
+    }
+    
+    func removePopUp() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.view.alpha = 0.0;
+        }, completion:{(finished : Bool)  in
+            if (finished) {
+                let backToFeedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+                self.navigationController?.pushViewController(backToFeedVC, animated: true)
+            }
+        })
     }
 }
 

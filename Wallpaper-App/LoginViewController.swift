@@ -148,7 +148,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
-        performSegue(withIdentifier: "toSignUpViewController", sender: nil)
+        self.performSegue(withIdentifier: "toSignUpViewController", sender: nil)
     }
     
     @IBAction func loginAnonymousBtnClicked(_ sender: Any) {

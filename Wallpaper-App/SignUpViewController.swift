@@ -42,8 +42,8 @@ class SignUpViewController: UIViewController {
     // MARK - Notifications
     func notificationObservers() {
         
-        signUpTxtFld.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
-        signUpPassFld.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
+        signUpTxtFld?.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
+        signUpPassFld?.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
     }
     
     func removeNotifications() {

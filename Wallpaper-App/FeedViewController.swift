@@ -181,11 +181,12 @@ class FeedViewController: UIViewController {
         
         // MARK: - Check Auth User Signed-In Listener/Handler
         handle = Auth.auth().addStateDidChangeListener { ( auth, user) in
-            if Auth.auth().currentUser != nil {
+            if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
                 // User signed-In
                 UserDefaults.standard.setIsLoggedIn(value: true)
             } else {
                 UserDefaults.standard.setIsLoggedIn(value: false)
+                // change for navi
                 let signUpVC = SignUpViewController()
                 self.present(signUpVC, animated: true)
             }
@@ -261,7 +262,7 @@ class FeedViewController: UIViewController {
     
     // MARK: - Check User First Time Viewing VC (Instructions)
     @objc func firstTimeVC() {
-        if Auth.auth().currentUser != nil {
+        if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
             UserDefaults.standard.setInstructions(value: false)
         } else {
             NotificationCenter.default.post(name: .firstTimeViewController, object: nil)
@@ -372,36 +373,23 @@ class FeedViewController: UIViewController {
     
     // MARK: - Upload Button Action
     @IBAction func uploadBtnPressed(_ sender: Any) {
-        let uploadPopUpVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadWallViewController") as!  UploadWallpaperPopUp
-        self.addChildViewController(uploadPopUpVC)
-        uploadPopUpVC.view.frame = self.view.frame
-        if !UIAccessibilityIsReduceTransparencyEnabled() {
-            self.view.backgroundColor = UIColor.clear
-            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            blurEffectView.frame = self.view.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            self.view.addSubview(blurEffectView)
-            uploadPopUpVC.userTappedCloseButtonClosure = { [weak blurEffectView] in
-                blurEffectView?.removeFromSuperview()
-            }
-        }
-        self.view.addSubview(uploadPopUpVC.view)
-        uploadPopUpVC.didMove(toParentViewController: self)
+        let toUploadVC = UploadWallpaperPopUp(nibName: "UploadWallpaperPopUp", bundle: nil)
+        self.navigationController?.pushViewController(toUploadVC, animated: true)
     }
     
     
     // MARK: - Sign Out Button Action
     @IBAction func signOutBtnPressed() {
-        if authRef.currentUser != nil {
+        // Signed In User
+        if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
             AuthService.instance.logOutUser()
             UserDefaults.standard.setIsLoggedIn(value: false)
             // MARK: Floating Signout Indicator (Success)
             let titleText = "Signed Out Successfully"
             let descText = "You have signed out of Wall Variety successfully"
             showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
-            let backToLoginVC = LoginViewController()
-            self.present(backToLoginVC, animated: true)
+            let backToLoginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            self.navigationController?.pushViewController(backToLoginVC, animated: true)
         } else {
             // MARK: - Floating Signout Indicator (Error)
             let titleText = "Problem Signing Out"
@@ -507,8 +495,8 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
             popUpVC.selectedIndex = indexPath
             popUpVC.wallpaper = allWallpapersAt(section: section)
             popUpVC.placeholder = placeholderFor(section: section)
-            popUpVC.wallpaperImageURL = (cell.wallpaper?.wallpaperURL)!
-            popUpVC.wallpaperDescText = (cell.wallpaper?.wallpaperDesc)!
+            popUpVC.wallpaperImageURL = cell.wallpaper.wallpaperURL
+            popUpVC.wallpaperDescText = cell.wallpaper.wallpaperDesc
             
             popUpVC.transitioningDelegate = self
             popUpVC.modalPresentationStyle = .custom
