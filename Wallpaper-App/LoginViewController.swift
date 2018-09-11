@@ -23,23 +23,23 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        signInBtn?.layer.cornerRadius = 15
-        signUpBtn?.layer.cornerRadius = 15
-        loginAnBtn?.layer.cornerRadius = 15
-        
+     
+        shouldEnableSignUpBtn(enable: false)
+        initTextFields()
         notificationObservers()
         customBackBtn()
         self.enableUnoccludedTextField()
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(textFieldDidChange(_:)),
-                                               name: Notification.Name.UITextFieldTextDidChange,
-                                               object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        DispatchQueue.main.async {
+            self.signInBtn.layer.cornerRadius = 15
+            self.signUpBtn.layer.cornerRadius = 15
+            self.loginAnBtn.layer.cornerRadius = 15
+        }
         
         // MARK: - Set navigation bar to transparent
         self.navigationController?.hideTransparentNavigationBar()
@@ -70,16 +70,12 @@ class LoginViewController: UIViewController {
     
     // MARK: - Notifications
     func notificationObservers() {
-        
-        emailTextFld.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
-        passTextFld.addTarget(self, action: #selector(LoginViewController.textFieldDidChange(_:)), for: .editingChanged)
         emailTextFld.addTarget(self, action: #selector(saveToUserDefaults(_:)), for: .editingDidEnd)
         
     }
     
     func removeNotifications() {
-        
-        NotificationCenter.default.removeObserver(Notification.Name.UITextFieldTextDidChange)
+
     }
     
     // MARK: - Attributes Wrapper
@@ -120,15 +116,26 @@ class LoginViewController: UIViewController {
         self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
     }
     
+    // MARK - TextField Setup Function
+    func initTextFields() {
+        emailTextFld.delegate = self
+        emailTextFld.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
+        passTextFld.delegate = self
+        passTextFld.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    }
+    
     @IBAction func signInBtnPressed(_ sender: Any) {
         
         guard let email = emailTextFld.text else { return }
         guard let pass = passTextFld.text else { return }
         
-        if email == "" && pass == "" { // add condition for checking textfield typing?
+        if email.count == 0 && pass.count == 0 {
             // MARK: - Empty Email/Pass Login
+            textFieldDidChange()
         } else {
             // MARK: - Login User Successfully
+            // textFieldDidChange()
             AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, loginError) in
                 if success {
                     // self.completeSignIn(id: (Auth.auth().currentUser?.uid)!) // collects uid/keychain when user signs in
@@ -137,6 +144,7 @@ class LoginViewController: UIViewController {
                         "toFeedViewController", sender: nil)
                 } else {
                     // MARK: - Incorrect Email/Password Login
+                    // textFieldDidChange()
                     self.incorrectEmailPassAlert()
                     // Auth.auth().sendPasswordReset(withEmail: email) ask to reset, logic for mutliple incorrect tries?
                     print(String(describing: loginError?.localizedDescription))
@@ -148,6 +156,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
+        textFieldDidChange()
         self.performSegue(withIdentifier: "toSignUpViewController", sender: nil)
     }
     
@@ -166,14 +175,17 @@ class LoginViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    // MARK: - Sign Up Btn Enable Function
+    func shouldEnableSignUpBtn(enable: Bool) {
+        self.signInBtn.isEnabled = enable
+    }
+    
     // MARK: - TextField Change Function
-    @objc func textFieldDidChange(_ textField: AnimatedTextField) {
-        if emailTextFld.text == "" && passTextFld.text == "" {
-            // Call only when user types in email/pass field
-            noEmailPassAlert()
-        } else {
-            // Text has been changed
-            NotificationCenter.default.post(name: .textFieldDidChange, object: nil)
+    @objc func textFieldDidChange() {
+        let enable = emailTextFld.text != "" && passTextFld.text!.count  >= 6
+        shouldEnableSignUpBtn(enable: enable)
+        if enable {
+            noEmailPassAlert() // alert for no email/pass only after text field change
         }
     }
     
@@ -202,6 +214,7 @@ class LoginViewController: UIViewController {
     //    performSegue(withIdentifier: SegueIdentifier.toStudentVC.rawValue, sender: self)
     //}
 }
+
 
 
 

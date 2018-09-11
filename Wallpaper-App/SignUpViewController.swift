@@ -14,20 +14,19 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        signUpBtn?.layer.cornerRadius = 15
-        goBackBtn?.layer.cornerRadius = 15
-        
-        notificationObservers()
+        DispatchQueue.main.async {
+            self.signUpBtn.layer.cornerRadius = 15
+            self.goBackBtn.layer.cornerRadius = 15
+        }
+        initTextFields()
         customBackBtn()
-        self.enableUnoccludedTextField()
+        shouldEnableSignUpBtn(enable: false)
+        // self.enableUnoccludedTextField()
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(textFieldDidChange(_:)),
-                                               name: Notification.Name.UITextFieldTextDidChange,
-                                               object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         // MARK: - Set navigation bar to transparent
         self.navigationController?.hideTransparentNavigationBar()
@@ -35,20 +34,7 @@ class SignUpViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.disableUnoccludedTextField()
-        removeNotifications()
-    }
-    
-    // MARK - Notifications
-    func notificationObservers() {
-        
-        signUpTxtFld?.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
-        signUpPassFld?.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
-    }
-    
-    func removeNotifications() {
-        
-        NotificationCenter.default.removeObserver(Notification.Name.UITextFieldTextDidChange)
+        // self.disableUnoccludedTextField()
     }
     
     // MARK: - Attributes Wrapper
@@ -88,14 +74,27 @@ class SignUpViewController: UIViewController {
         self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
     }
     
+    // MARK - TextField Setup Function
+    func initTextFields() {
+        signUpTxtFld.delegate = self
+        signUpTxtFld.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
+        signUpPassFld.delegate = self
+        signUpPassFld.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    }
+    
+    // MARK: - Sign Up Btn Enable Function
+    func shouldEnableSignUpBtn(enable: Bool) {
+        self.signUpBtn.isEnabled = enable
+    }
+    
     // MARK: - TextField Change Function
-    @objc func textFieldDidChange(_ textField: AnimatedTextField) {
-        if signUpTxtFld.text == "" && signUpPassFld.text == "" {
-            // Call only when user types in email/pass field
-            noEmailPassAlert()
-        } else {
-            // Text has been changed
-            NotificationCenter.default.post(name: .textFieldDidChange, object: nil)
+    @objc func textFieldDidChange() {
+        // Validate fields
+        let enable = signUpTxtFld.text != "" && signUpPassFld.text != "" && signUpPassFld.text!.count  >= 6
+        shouldEnableSignUpBtn(enable: enable)
+        if enable {
+           noEmailPassAlert() // alert users only after textfield changes of no email/pass entered
         }
     }
     
@@ -103,11 +102,9 @@ class SignUpViewController: UIViewController {
         guard let email = signUpTxtFld.text else { return }
         guard let pass = signUpPassFld.text else { return }
         
-        
-        if email == "" || pass == "" // && textFieldDidChangeAction(notification)
-        {
+        if email.count == 0 && pass.count == 0 {
             // MARK: - No Email/Password entered Alert (not registered)
-            
+            textFieldDidChange()
         } else { // Register New User
             AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in
                 if success { // After registered, login the user
