@@ -4,6 +4,8 @@ import Foundation
 
 extension Notification.Name {
     
+    static let keyboardWillShow = NSNotification.Name(rawValue: "KeyboardWillShow")
+    static let keyboardWillHide = NSNotification.Name(rawValue: "KeyboardWillHide")
     static let updateFeedNotificationName = NSNotification.Name(rawValue: "UpdateFeed")
     static let textFieldDidChange = NSNotification.Name(rawValue: "UserTypingTextfield")
     static let saveTextInField = NSNotification.Name(rawValue: "SaveUserText")

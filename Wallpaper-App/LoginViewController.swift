@@ -28,18 +28,15 @@ class LoginViewController: UIViewController {
         initTextFields()
         notificationObservers()
         customBackBtn()
-        self.enableUnoccludedTextField()
+        
+        signInBtn.layer.cornerRadius = 15
+        signUpBtn.layer.cornerRadius = 15
+        loginAnBtn.layer.cornerRadius = 15
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        DispatchQueue.main.async {
-            self.signInBtn.layer.cornerRadius = 15
-            self.signUpBtn.layer.cornerRadius = 15
-            self.loginAnBtn.layer.cornerRadius = 15
-        }
         
         // MARK: - Set navigation bar to transparent
         self.navigationController?.hideTransparentNavigationBar()
@@ -65,17 +62,22 @@ class LoginViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.disableUnoccludedTextField()
+
     }
     
     // MARK: - Notifications
     func notificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: Notification.Name.keyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: Notification.Name.keyboardWillHide, object: nil)
+        
         emailTextFld.addTarget(self, action: #selector(saveToUserDefaults(_:)), for: .editingDidEnd)
         
     }
     
     func removeNotifications() {
-
+        NotificationCenter.default.removeObserver(keyboardWillShow)
+        NotificationCenter.default.removeObserver(keyboardWillHide)
+        // NotificationCenter.default.removeObserver(saveToUserDefaults) need?
     }
     
     // MARK: - Attributes Wrapper
@@ -118,6 +120,7 @@ class LoginViewController: UIViewController {
     
     // MARK - TextField Setup Function
     func initTextFields() {
+        self.view.layoutIfNeeded()
         emailTextFld.delegate = self
         emailTextFld.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
@@ -170,22 +173,42 @@ class LoginViewController: UIViewController {
         }
         )}
     
-    // MARK: - Dismiss Keyboard
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    
     // MARK: - Sign Up Btn Enable Function
     func shouldEnableSignUpBtn(enable: Bool) {
         self.signInBtn.isEnabled = enable
     }
     
+    // MARK: - Keyboard Functions
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.view.frame.origin.y -= keyboardSize.height
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.view.frame.origin.y += keyboardSize.height
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    // MARK: - Keyboard Dismiss
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     // MARK: - TextField Change Function
     @objc func textFieldDidChange() {
-        let enable = emailTextFld.text != "" && passTextFld.text!.count  >= 6
+        let enable = emailTextFld.text != "" && passTextFld.text!.count  >= 6 // &&passTextField != ""?
         shouldEnableSignUpBtn(enable: enable)
         if enable {
-            noEmailPassAlert() // alert for no email/pass only after text field change
+            noEmailPassAlert()
+            incorrectEmailPassAlert()
         }
     }
     
@@ -213,6 +236,10 @@ class LoginViewController: UIViewController {
     //    // Take user to feed once stored keychain wrapper
     //    performSegue(withIdentifier: SegueIdentifier.toStudentVC.rawValue, sender: self)
     //}
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    
 }
 
 

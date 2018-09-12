@@ -122,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="697" y="126"/>
+            <point key="canvasLocation" x="884" y="126"/>
         </scene>
         <!--SignUpViewController-->
         <scene sceneID="Phh-VC-Rxd">
@@ -164,7 +164,7 @@
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="GZF-Tt-wBC" id="X6N-z4-a28"/>
+                                                    <outlet property="delegate" destination="GZF-Tt-wBC" id="u7C-Lu-WcG"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mrw-Ur-t6h" customClass="AnimatedTextField" customModule="Wallpaper_App" customModuleProvider="target">
@@ -177,7 +177,7 @@
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="GZF-Tt-wBC" id="omG-ry-HE8"/>
+                                                    <outlet property="delegate" destination="GZF-Tt-wBC" id="ueZ-IY-chx"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -254,8 +254,8 @@
                     <connections>
                         <outlet property="goBackBtn" destination="mz9-bU-WVz" id="Tar-Nu-Ln0"/>
                         <outlet property="signUpBtn" destination="Gue-TG-lhA" id="037-ir-vSB"/>
-                        <outlet property="signUpPassFld" destination="mrw-Ur-t6h" id="x2p-Sc-p0b"/>
-                        <outlet property="signUpTxtFld" destination="KIc-ps-9vn" id="mNp-lh-Lx5"/>
+                        <outlet property="signUpPassFld" destination="mrw-Ur-t6h" id="HLp-Qy-IjJ"/>
+                        <outlet property="signUpTxtFld" destination="KIc-ps-9vn" id="qq5-7n-meI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KeQ-bX-Oa4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -281,7 +281,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jgg-Jr-4U2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1284" y="126"/>
+            <point key="canvasLocation" x="1633" y="125"/>
         </scene>
         <!--SplashViewController-->
         <scene sceneID="7Ed-Zr-fLx">
@@ -322,7 +322,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itm-7s-tfr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1080" y="125"/>
+            <point key="canvasLocation" x="-1354" y="126"/>
         </scene>
         <!--LoginViewController-->
         <scene sceneID="gMl-Nl-ycl">
@@ -368,7 +368,7 @@
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="e5t-Dg-8Hj" id="sCZ-CP-oA1"/>
+                                                    <outlet property="delegate" destination="e5t-Dg-8Hj" id="slB-UR-kaf"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7B7-UD-EK1" customClass="RevealPasswordTextField" customModule="Wallpaper_App" customModuleProvider="target">
@@ -381,7 +381,7 @@
                                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="e5t-Dg-8Hj" id="uBT-aB-sCm"/>
+                                                    <outlet property="delegate" destination="e5t-Dg-8Hj" id="oX9-MS-1nA"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -474,10 +474,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailTextFld" destination="CgG-2R-r9C" id="Kyy-y5-1BG"/>
+                        <outlet property="emailTextFld" destination="CgG-2R-r9C" id="J3A-2M-scz"/>
                         <outlet property="loginAnBtn" destination="EiB-AT-fsZ" id="TUx-ug-sOq"/>
                         <outlet property="loginCardView" destination="JQd-Ow-a5c" id="WHj-Kx-q0q"/>
-                        <outlet property="passTextFld" destination="7B7-UD-EK1" id="OJ8-ie-jWE"/>
+                        <outlet property="passTextFld" destination="7B7-UD-EK1" id="Hnz-UQ-LZH"/>
                         <outlet property="signInBtn" destination="cLo-yH-V89" id="pdW-YX-l2P"/>
                         <outlet property="signUpBtn" destination="flm-PU-odZ" id="bdm-as-xwF"/>
                         <segue destination="nf6-LJ-NTm" kind="show" identifier="toFeedViewController" id="puX-wA-Sho"/>
@@ -502,7 +502,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jTy-8p-p7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="77" y="125"/>
+            <point key="canvasLocation" x="162" y="126"/>
         </scene>
     </scenes>
     <resources>

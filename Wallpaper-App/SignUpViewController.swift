@@ -13,28 +13,35 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        DispatchQueue.main.async {
-            self.signUpBtn.layer.cornerRadius = 15
-            self.goBackBtn.layer.cornerRadius = 15
-        }
+        loadViewIfNeeded()
         initTextFields()
         customBackBtn()
         shouldEnableSignUpBtn(enable: false)
-        // self.enableUnoccludedTextField()
-        
+        notificationObservers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        signUpBtn.layer.cornerRadius = 15
+        goBackBtn.layer.cornerRadius = 15
         // MARK: - Set navigation bar to transparent
         self.navigationController?.hideTransparentNavigationBar()
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        // self.disableUnoccludedTextField()
+        removeObservers()
+    }
+    
+    // MARK: - Notifications
+    func notificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow), name: Notification.Name.keyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide), name: Notification.Name.keyboardWillHide, object: nil)
+    }
+    
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(keyboardWillShow)
+        NotificationCenter.default.removeObserver(keyboardWillHide)
     }
     
     // MARK: - Attributes Wrapper
@@ -76,6 +83,7 @@ class SignUpViewController: UIViewController {
     
     // MARK - TextField Setup Function
     func initTextFields() {
+        self.view.layoutIfNeeded()
         signUpTxtFld.delegate = self
         signUpTxtFld.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
@@ -88,6 +96,30 @@ class SignUpViewController: UIViewController {
         self.signUpBtn.isEnabled = enable
     }
     
+    // MARK: - Keyboard Functions
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.view.frame.origin.y -= keyboardSize.height
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
+                self.view.frame.origin.y += keyboardSize.height
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    // MARK: - Keyboard Dismiss
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     // MARK: - TextField Change Function
     @objc func textFieldDidChange() {
         // Validate fields
@@ -95,6 +127,7 @@ class SignUpViewController: UIViewController {
         shouldEnableSignUpBtn(enable: enable)
         if enable {
            noEmailPassAlert() // alert users only after textfield changes of no email/pass entered
+           signInErrorAlert() // alert users with error after textfield changes
         }
     }
     
@@ -124,5 +157,9 @@ class SignUpViewController: UIViewController {
     @IBAction func goBackBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+}
+
+extension SignUpViewController: UITextFieldDelegate {
     
 }
