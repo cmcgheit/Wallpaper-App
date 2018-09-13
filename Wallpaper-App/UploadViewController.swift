@@ -11,6 +11,7 @@ import McPicker
 
 class UploadViewController: UIViewController {
     
+    @IBOutlet weak var popUpView: CustomCardView!
     @IBOutlet weak var wallpaperImgView: UIImageView!
     @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var uploadBtn: UIButton!
@@ -18,8 +19,8 @@ class UploadViewController: UIViewController {
     @IBOutlet weak var wallpaperCatLbl: UILabel!
     @IBOutlet weak var wallpaperCatPickBtn: UIButton!
     
-    var wallpaperDescPlaceholderText = "Click here to type and describe this wallpaper"
-    var wallpaperCatPlaceholderText = "Tap here and give the wallpaper a category"
+    var wallpaperDescPlaceholderText = "Click here to describe the uploaded wallpaper"
+    var wallpaperCatPlaceholderText = "Tap here to set category"
     
     //Upload Camera properties
     var imagePicker: UIImagePickerController!
