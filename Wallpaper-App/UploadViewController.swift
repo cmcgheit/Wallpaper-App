@@ -9,15 +9,14 @@ import SwiftEntryKit
 import Instructions
 import McPicker
 
-class UploadWallpaperPopUp: UIViewController {
+class UploadViewController: UIViewController {
     
-    @IBOutlet weak var popUpView: UIView!
-    @IBOutlet weak var wallpaperPopUpView: UIImageView!
+    @IBOutlet weak var wallpaperImgView: UIImageView!
     @IBOutlet weak var closeBtn: UIButton!
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var wallpaperDescTextView: UITextView!
     @IBOutlet weak var wallpaperCatLbl: UILabel!
-    @IBOutlet weak var wallpaperCatPickLbl: UILabel!
+    @IBOutlet weak var wallpaperCatPickBtn: UIButton!
     
     var wallpaperDescPlaceholderText = "Click here to type and describe this wallpaper"
     var wallpaperCatPlaceholderText = "Tap here and give the wallpaper a category"
@@ -50,18 +49,10 @@ class UploadWallpaperPopUp: UIViewController {
         
         wallpaperDescTextView?.textColor = .darkGray
         wallpaperDescTextView.text = wallpaperDescPlaceholderText
-        wallpaperCatPickLbl.text = wallpaperCatPlaceholderText
-        
-        // popup
-        DispatchQueue.main.async {
-            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.4)
-            self.popUpView.layer.cornerRadius = 5
-            self.popUpView.layer.shadowOpacity = 0.8
-            self.popUpView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        }
+        wallpaperCatPickBtn.setTitle(wallpaperCatPlaceholderText, for: .normal)
         
         // Instructions
-        self.uploadInstructionsController.dataSource = self
+        uploadInstructionsController.dataSource = self
         self.uploadInstructionsController.overlay.color = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
         self.uploadInstructionsController.overlay.allowTap = true
         
@@ -214,7 +205,7 @@ class UploadWallpaperPopUp: UIViewController {
     @IBAction func categoryPicker(_ sender: UIButton) {
         McPicker.showAsPopover(data: catPickerData, fromViewController: self, sourceView: sender, doneHandler: { [weak self] (selections: [Int : String]) -> Void in
             if let catName = selections[0] {
-                self?.wallpaperCatPickLbl.text = catName // updates selection with catName
+                self?.wallpaperCatPickBtn.setTitle(catName, for: .normal) // updates selection with catName
             }
             }, cancelHandler: { () -> Void in
                 print("Canceled Popover")
@@ -249,7 +240,7 @@ class UploadWallpaperPopUp: UIViewController {
                 case .authorized:
                     self.presentPhotoPicker()
                     // If User authorizes, allow upload
-                    if self.wallpaperDescTextView.text.isEmpty && self.takenImage != nil  && (self.wallpaperCatPickLbl.text?.isEmpty)!  {
+                    if self.wallpaperDescTextView.text.isEmpty && self.takenImage != nil {
                         self.closeBtn.isHidden = false // upload only if all fields are filled out
                         //            FIRService.uploadWallToFirebaseStor(image: takenImage) { (, error) in
                         //
@@ -292,7 +283,7 @@ class UploadWallpaperPopUp: UIViewController {
     
     // MARK: - Close Button Pressed Action
     @IBAction  func closeBtnPressed(_ sender: UIButton) {
-        self.removePopUp()
+        dismiss(animated: true, completion: nil)
         
 //        if wallpaperDescTextView.text.isEmpty && wallpaperPopUpView.image != nil && (wallpaperCatLbl.text?.isEmpty)! { // only close if data fields empty?
 //            // send data from wallpaperCatLbl?
@@ -306,37 +297,10 @@ class UploadWallpaperPopUp: UIViewController {
 //        }
     }
     
-    func showInView(aView: UIView!, animated: Bool) {
-        aView.addSubview(self.view)
-        if animated {
-            self.animatePopUp()
-        }
-    }
-    
-    func animatePopUp() {
-        self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        self.view.alpha = 0.0;
-        UIView.animate(withDuration: 0.25, animations: {
-            self.view.alpha = 1.0
-            self.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        })
-    }
-    
-    func removePopUp() {
-        UIView.animate(withDuration: 0.25, animations: {
-            self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.view.alpha = 0.0;
-        }, completion:{(finished : Bool)  in
-            if (finished) {
-                let backToFeedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
-                self.navigationController?.pushViewController(backToFeedVC, animated: true)
-            }
-        })
-    }
 }
 
 // MARK: TextView Delegate Functions
-extension UploadWallpaperPopUp: UITextViewDelegate {
+extension UploadViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         self.closeBtn.isHidden = true // hide button when user first starts typing
@@ -359,13 +323,13 @@ extension UploadWallpaperPopUp: UITextViewDelegate {
     }
 }
 
-extension UploadWallpaperPopUp: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension UploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         // MARK: - Upload Wallpapers to Firebase
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.takenImage = image
-        self.wallpaperPopUpView.image = self.takenImage
+        self.wallpaperImgView.image = self.takenImage
         takenImage = takenImage.resizeWithWidth(width: 700)! // Resize taken image
         let compressData = UIImageJPEGRepresentation(takenImage, 0.5) // Compress taken image
         let compressedImage = UIImage(data: compressData!)
@@ -404,7 +368,7 @@ extension UploadWallpaperPopUp: UIImagePickerControllerDelegate, UINavigationCon
 }
 
 // MARK: - Instructions Functions
-extension UploadWallpaperPopUp: CoachMarksControllerDelegate, CoachMarksControllerDataSource {
+extension UploadViewController: CoachMarksControllerDelegate, CoachMarksControllerDataSource {
     
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
         

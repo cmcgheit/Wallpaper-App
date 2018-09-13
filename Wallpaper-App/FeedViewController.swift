@@ -373,8 +373,12 @@ class FeedViewController: UIViewController {
     
     // MARK: - Upload Button Action
     @IBAction func uploadBtnPressed(_ sender: Any) {
-        let toUploadVC = UploadWallpaperPopUp(nibName: "UploadWallpaperPopUp", bundle: nil)
-        self.navigationController?.pushViewController(toUploadVC, animated: true)
+        let uploadVC = storyboard?.instantiateViewController(withIdentifier: "UploadViewController") as! UploadViewController
+        uploadVC.providesPresentationContextTransitionStyle = true
+        uploadVC.definesPresentationContext = true
+        uploadVC.modalPresentationStyle = .overCurrentContext
+        uploadVC.view.backgroundColor = UIColor.init(white: 0.4, alpha: 0.8)
+        present(uploadVC, animated: true)
     }
     
     

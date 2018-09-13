@@ -44,8 +44,7 @@
 		D8E93B9420B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8F20B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift */; };
 		D8E93B9520B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8E93B9020B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib */; };
 		D8E93B9620B8B08D00CE0AD8 /* AnimatedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B9120B8B08D00CE0AD8 /* AnimatedTextField.swift */; };
-		D8E93B9720B8B08D00CE0AD8 /* UploadWallpaperPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B9220B8B08D00CE0AD8 /* UploadWallpaperPopUp.swift */; };
-		D8E93B9820B8B08D00CE0AD8 /* UploadWallpaperPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8E93B9320B8B08D00CE0AD8 /* UploadWallpaperPopUp.xib */; };
+		D8E93B9720B8B08D00CE0AD8 /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B9220B8B08D00CE0AD8 /* UploadViewController.swift */; };
 		D8E93B9D20B8B0B100CE0AD8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B9920B8B0B000CE0AD8 /* SignUpViewController.swift */; };
 		D8E93B9E20B8B0B100CE0AD8 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B9A20B8B0B000CE0AD8 /* FeedViewController.swift */; };
 		D8E93B9F20B8B0B100CE0AD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B9B20B8B0B100CE0AD8 /* LoginViewController.swift */; };
@@ -125,8 +124,7 @@
 		D8E93B8F20B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WallpaperRoundedCardCell.swift; path = "Wallpaper-App/WallpaperRoundedCardCell.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B9020B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WallpaperRoundedCardCell.xib; path = "Wallpaper-App/WallpaperRoundedCardCell.xib"; sourceTree = SOURCE_ROOT; };
 		D8E93B9120B8B08D00CE0AD8 /* AnimatedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimatedTextField.swift; path = "Wallpaper-App/AnimatedTextField.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93B9220B8B08D00CE0AD8 /* UploadWallpaperPopUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadWallpaperPopUp.swift; path = "Wallpaper-App/UploadWallpaperPopUp.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93B9320B8B08D00CE0AD8 /* UploadWallpaperPopUp.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UploadWallpaperPopUp.xib; path = "Wallpaper-App/UploadWallpaperPopUp.xib"; sourceTree = SOURCE_ROOT; };
+		D8E93B9220B8B08D00CE0AD8 /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadViewController.swift; path = "Wallpaper-App/UploadViewController.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B9920B8B0B000CE0AD8 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = "Wallpaper-App/SignUpViewController.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B9A20B8B0B000CE0AD8 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewController.swift; path = "Wallpaper-App/FeedViewController.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B9B20B8B0B100CE0AD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "Wallpaper-App/LoginViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -248,6 +246,7 @@
 				D8E93B9920B8B0B000CE0AD8 /* SignUpViewController.swift */,
 				D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */,
 				D8E93B9A20B8B0B000CE0AD8 /* FeedViewController.swift */,
+				D8E93B9220B8B08D00CE0AD8 /* UploadViewController.swift */,
 				D8E93B9C20B8B0B100CE0AD8 /* PopUpViewController.swift */,
 				D8FC5D8420D2BA2B00FA632F /* PopUpViewController.xib */,
 				D895F4BF21402BEC00E7F8BE /* CustomNaviController.swift */,
@@ -261,8 +260,6 @@
 				D87DA23920FBAC0A00777B0D /* RevealPassword */,
 				D8FC5D9220E00C3600FA632F /* Switch */,
 				D8E93B9120B8B08D00CE0AD8 /* AnimatedTextField.swift */,
-				D8E93B9220B8B08D00CE0AD8 /* UploadWallpaperPopUp.swift */,
-				D8E93B9320B8B08D00CE0AD8 /* UploadWallpaperPopUp.xib */,
 				D8E93B8F20B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift */,
 				D8E93B9020B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib */,
 				D8E93BF020C3257800CE0AD8 /* CustomLoadingView.swift */,
@@ -558,7 +555,6 @@
 				D8E93BE220BDB22200CE0AD8 /* LaunchScreen.storyboard in Resources */,
 				D8FC5D8520D2BA2B00FA632F /* PopUpViewController.xib in Resources */,
 				D8E93BA220B8B0C100CE0AD8 /* Assets.xcassets in Resources */,
-				D8E93B9820B8B08D00CE0AD8 /* UploadWallpaperPopUp.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,7 +636,7 @@
 				D8FC5D9420E00C6000FA632F /* CustomThumbView.swift in Sources */,
 				D8E93BC120B8B63200CE0AD8 /* CardViewDelegate.swift in Sources */,
 				D8E93B8B20B8B05100CE0AD8 /* UserDefaults.swift in Sources */,
-				D8E93B9720B8B08D00CE0AD8 /* UploadWallpaperPopUp.swift in Sources */,
+				D8E93B9720B8B08D00CE0AD8 /* UploadViewController.swift in Sources */,
 				D8E93BC720B8B63200CE0AD8 /* AppStoreAnimatorInfo.swift in Sources */,
 				D895F4C021402BEC00E7F8BE /* CustomNaviController.swift in Sources */,
 				D8E93BBE20B8B63200CE0AD8 /* FunctionalEnumerated.swift in Sources */,
