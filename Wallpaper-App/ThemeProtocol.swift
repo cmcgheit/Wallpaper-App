@@ -8,5 +8,6 @@ protocol ThemeProtocol {
     var textColor: UIColor { get }
     var accent: UIColor { get }
     var backgroundImage: UIImage { get }
+    var cardView: UIColor { get }
     var tint: UIColor { get }
 }

@@ -175,7 +175,7 @@
                                         <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="rYz-P3-0Zi">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="rYz-P3-0Zi">
                                         <rect key="frame" x="18" y="224" width="260" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7T-Cj-ilK">
@@ -188,7 +188,8 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9u-iC-3cR">
-                                                <rect key="frame" x="72" y="0.0" width="188" height="30"/>
+                                                <rect key="frame" x="70" y="0.0" width="190" height="30"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
                                                 <state key="normal">
                                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -402,7 +403,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KeQ-bX-Oa4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-552" y="1025"/>
+            <point key="canvasLocation" x="-551" y="913"/>
         </scene>
         <!--SplashViewController-->
         <scene sceneID="7Ed-Zr-fLx">
@@ -444,6 +445,96 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itm-7s-tfr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1354" y="126"/>
+        </scene>
+        <!--Forgot Password View Controller-->
+        <scene sceneID="QyR-jv-UfH">
+            <objects>
+                <viewController storyboardIdentifier="ForgotPasswordViewController" id="WOg-N3-JrU" customClass="ForgotPasswordViewController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PRA-j7-clO"/>
+                        <viewControllerLayoutGuide type="bottom" id="TJS-eK-3JJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ACl-ST-e7F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MultiCurves" translatesAutoresizingMaskIntoConstraints="NO" id="yIw-dR-Cx9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FS-Mb-qP8" customClass="CustomCardView" customModule="Wallpaper_App" customModuleProvider="target">
+                                <rect key="frame" x="37" y="158.5" width="300" height="350"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tet-i6-y0e">
+                                        <rect key="frame" x="25" y="20" width="250" height="69"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wall Variety: Forgot Password?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9a-lx-U3I">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="69"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="250" id="uEH-0I-HDs"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="30"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Diw-FT-ba4">
+                                        <rect key="frame" x="75" y="228" width="150" height="70"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9x-pm-Hr9" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
+                                                <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                                <state key="normal" title="Email Password">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edg-yq-9pn" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="40" width="150" height="30"/>
+                                                <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                                <state key="normal" title="Reset Password">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="KCK-Qt-bQl"/>
+                                            <constraint firstAttribute="height" constant="70" id="ooK-W9-7bq"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="tet-i6-y0e" firstAttribute="centerX" secondItem="2FS-Mb-qP8" secondAttribute="centerX" id="5UL-zt-IAc"/>
+                                    <constraint firstAttribute="width" constant="300" id="7X0-H2-tbb"/>
+                                    <constraint firstAttribute="height" constant="350" id="Jfu-UL-dtk"/>
+                                    <constraint firstItem="tet-i6-y0e" firstAttribute="top" secondItem="2FS-Mb-qP8" secondAttribute="top" constant="20" id="oge-Lp-yps"/>
+                                    <constraint firstItem="Diw-FT-ba4" firstAttribute="centerX" secondItem="2FS-Mb-qP8" secondAttribute="centerX" id="yb4-zf-cmU"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2FS-Mb-qP8" firstAttribute="centerX" secondItem="ACl-ST-e7F" secondAttribute="centerX" id="A8n-Q4-bXB"/>
+                            <constraint firstItem="2FS-Mb-qP8" firstAttribute="centerY" secondItem="ACl-ST-e7F" secondAttribute="centerY" id="Rhz-ZM-5Hh"/>
+                            <constraint firstItem="TJS-eK-3JJ" firstAttribute="top" secondItem="yIw-dR-Cx9" secondAttribute="bottom" id="RoT-Ni-whe"/>
+                            <constraint firstItem="yIw-dR-Cx9" firstAttribute="top" secondItem="ACl-ST-e7F" secondAttribute="top" id="TWB-RG-7lS"/>
+                            <constraint firstAttribute="trailing" secondItem="yIw-dR-Cx9" secondAttribute="trailing" id="YZB-L8-zzM"/>
+                            <constraint firstItem="yIw-dR-Cx9" firstAttribute="leading" secondItem="ACl-ST-e7F" secondAttribute="leading" id="jnM-Wi-dTu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailPassBtn" destination="s9x-pm-Hr9" id="xRo-Fh-2ps"/>
+                        <outlet property="forgotView" destination="2FS-Mb-qP8" id="i8p-hD-C3B"/>
+                        <outlet property="resetPassBtn" destination="edg-yq-9pn" id="cjd-Sm-yYD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HVR-K4-4x0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-551.20000000000005" y="-605.84707646176912"/>
         </scene>
         <!--LoginViewController-->
         <scene sceneID="gMl-Nl-ycl">

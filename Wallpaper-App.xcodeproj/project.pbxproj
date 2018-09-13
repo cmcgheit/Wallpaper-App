@@ -34,6 +34,7 @@
 		D895F4BE213C54D600E7F8BE /* TransitionClone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4BD213C54D600E7F8BE /* TransitionClone.swift */; };
 		D895F4C021402BEC00E7F8BE /* CustomNaviController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4BF21402BEC00E7F8BE /* CustomNaviController.swift */; };
 		D895F4C221481C0200E7F8BE /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */; };
+		D895F4C4214AEF6E00E7F8BE /* UITextField+ValidationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4C3214AEF6D00E7F8BE /* UITextField+ValidationExt.swift */; };
 		D8E93B8220B8B02100CE0AD8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8120B8B02000CE0AD8 /* AuthService.swift */; };
 		D8E93B8420B8B02D00CE0AD8 /* FIRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */; };
 		D8E93B8A20B8B05100CE0AD8 /* ImageResizeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */; };
@@ -114,6 +115,7 @@
 		D895F4BD213C54D600E7F8BE /* TransitionClone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionClone.swift; sourceTree = "<group>"; };
 		D895F4BF21402BEC00E7F8BE /* CustomNaviController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNaviController.swift; sourceTree = "<group>"; };
 		D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		D895F4C3214AEF6D00E7F8BE /* UITextField+ValidationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ValidationExt.swift"; sourceTree = "<group>"; };
 		D8E93B8120B8B02000CE0AD8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = "Wallpaper-App/AuthService.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIRService.swift; path = "Wallpaper-App/FIRService.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageResizeExt.swift; path = "Wallpaper-App/ImageResizeExt.swift"; sourceTree = SOURCE_ROOT; };
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				D8E93BEC20C1A77D00CE0AD8 /* Extensions.swift */,
+				D895F4C3214AEF6D00E7F8BE /* UITextField+ValidationExt.swift */,
 				D8FC5D8E20DEC4B300FA632F /* Notifications+Extensions.swift */,
 				D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */,
 				D808C9692135B490004C95C9 /* DynamicAccessibilityLayout.swift */,
@@ -651,6 +654,7 @@
 				D87DA24120FBB8DD00777B0D /* ModalTransitionAnimator.swift in Sources */,
 				D8E93B8E20B8B05100CE0AD8 /* Constants.swift in Sources */,
 				D8FC5D9620E721C800FA632F /* ThemeProtocol.swift in Sources */,
+				D895F4C4214AEF6E00E7F8BE /* UITextField+ValidationExt.swift in Sources */,
 				D87DA23D20FBAC2E00777B0D /* LoginButton.swift in Sources */,
 				D87DA25420FBBA6C00777B0D /* TransitionPanGestureRecognizer.swift in Sources */,
 				D8E93B8A20B8B05100CE0AD8 /* ImageResizeExt.swift in Sources */,

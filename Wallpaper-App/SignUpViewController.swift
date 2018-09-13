@@ -44,6 +44,17 @@ class SignUpViewController: UIViewController {
         NotificationCenter.default.removeObserver(keyboardWillHide)
     }
     
+    // MARK: - Validation
+    func isEmailValid(text: String) -> Bool {
+        let regexp = "[A-Z0-9a-z._]+@([\\w\\d]+[\\.\\w\\d]*)"
+        return text.evaluate(with: regexp)
+    }
+    
+    func isPassValid(text: String) -> Bool {
+        let passReqexp = "^.{6,15}$" // Password length 6-15
+        return text.evaluate(with: passReqexp)
+    }
+    
     // MARK: - Attributes Wrapper
     private var attributesWrapper: EntryAttributeWrapper {
         var attributes = EKAttributes.topFloat
@@ -78,6 +89,12 @@ class SignUpViewController: UIViewController {
     func signInErrorAlert() {
         let titleText = "Error signing in"
         let descText = "Please check that you have entered your email and password correctly and try again"
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+    }
+    
+    func signUpErrorAlert() {
+        let titleText = "Invalid Email/Password"
+        let descText = "Please check that you have entered a valid email and that your password is at least 6 characters long"
         self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
     }
     
@@ -122,12 +139,29 @@ class SignUpViewController: UIViewController {
     
     // MARK: - TextField Change Function
     @objc func textFieldDidChange() {
+       guard let emailText = signUpTxtFld.text else { return }
+       guard let passText = signUpPassFld.text else { return }
         // Validate fields
-        let enable = signUpTxtFld.text != "" && signUpPassFld.text != "" && signUpPassFld.text!.count  >= 6
+        if signUpTxtFld.validateField([isEmailValid]) && signUpPassFld.validateField([isPassValid]) {
+            AuthService.instance.registerUser(withEmail: emailText, andPassword: passText) { (success, signUpError) in
+                if success {
+                    AuthService.instance.loginUser(withEmail: emailText, andPassword: passText, loginComplete: { (success, nil) in
+                        self.performSegue(withIdentifier: "toFeedViewController", sender: self)
+                        print("Successfully registered/Signed-In user with valid info")
+                    })
+                } else { // error signing up
+                    self.signInErrorAlert()
+                    print(String(describing: signUpError?.localizedDescription))
+                }
+            }
+        } else { // error with valid fields
+            // Alert email/password not valid
+            signUpErrorAlert()
+        }
+        let enable = signUpTxtFld.text != "" && signUpPassFld.text != ""
         shouldEnableSignUpBtn(enable: enable)
         if enable {
            noEmailPassAlert() // alert users only after textfield changes of no email/pass entered
-           signInErrorAlert() // alert users with error after textfield changes
         }
     }
     
@@ -135,8 +169,8 @@ class SignUpViewController: UIViewController {
         guard let email = signUpTxtFld.text else { return }
         guard let pass = signUpPassFld.text else { return }
         
-        if email.count == 0 && pass.count == 0 {
-            // MARK: - No Email/Password entered Alert (not registered)
+        if signUpTxtFld.text == nil  && signUpPassFld.text == nil {
+            // MARK: - Empty/No Email/Password entered Alert (not registered)
             textFieldDidChange()
         } else { // Register New User
             AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in

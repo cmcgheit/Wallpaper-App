@@ -8,6 +8,7 @@ class DarkTheme: ThemeProtocol {
     var textColor: UIColor = purpleColor
     var accent: UIColor = orangeColor
     var backgroundImage = #imageLiteral(resourceName: "MultiCurvesV2")
+    var cardView: UIColor = UIColor.black
     var tint: UIColor = orangeColor
     
 }

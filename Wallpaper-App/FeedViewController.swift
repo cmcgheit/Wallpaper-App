@@ -70,6 +70,17 @@ class FeedViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: attributesWrapper.attributes)
         
     }
+    func signOutSuccessAlert() {
+        let titleText = "Signed Out Successfully"
+        let descText = "You have signed out of Wall Variety successfully"
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+    }
+    
+    func problemSignOutAlert() {
+        let titleText = "Problem Signing Out"
+        let descText = "There is an error signing you out, please try again"
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +95,7 @@ class FeedViewController: UIViewController {
         }
         
         applyTheme()
+        notificationObservers()
         
         // Theme - checks for theme setting
         if UserDefaults.standard.object(forKey: "lightTheme") != nil {
@@ -167,8 +179,7 @@ class FeedViewController: UIViewController {
         themeSwitch.padding = 2
         themeSwitch.animationDuration = 0.6
         themeSwitch.thumbShaddowOppacity = 0
-        
-        notificationObservers()
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -194,7 +205,6 @@ class FeedViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         view.backgroundColor = UIColor(patternImage: Theme.current.backgroundImage)
         
         if Theme.themeChanged {
@@ -239,10 +249,9 @@ class FeedViewController: UIViewController {
     }
     
     func notificationObservers() {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: Notification.Name.updateFeedNotificationName, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(firstTimeVC), name: Notification.Name.saveTextInField, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(firstTimeVC), name: Notification.Name.firstTimeViewController, object: nil)
         
         // Transition
         NotificationCenter.default.addObserver(self, selector: #selector(tabBarShow), name: NSNotification.Name(rawValue: "tabBarShow"), object: nil)
@@ -284,7 +293,7 @@ class FeedViewController: UIViewController {
     // MARK: - Fetch Wallpaper Feed For Specific User
     func fetchFeed() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        if Auth.auth().currentUser != nil {
+        if Auth.auth().currentUser != nil && authRef.currentUser?.isAnonymous != nil {
             FIRService.fetchUserForUID(uid: uid) { (user) in
                 // Load all wallpapers from db?
                 //        let indexPath = IndexPath(row: 0, section: 0)
@@ -335,6 +344,10 @@ class FeedViewController: UIViewController {
     fileprivate func applyTheme() {
         DispatchQueue.main.async {
             self.view.backgroundColor = UIColor(patternImage: Theme.current.backgroundImage)
+            self.glidingIntView.backgroundColor = Theme.current.cardView
+            self.view.tintColor = Theme.current.tint
+            self.uploadBtn.tintColor = Theme.current.tint
+            
         }
     }
     
@@ -389,16 +402,12 @@ class FeedViewController: UIViewController {
             AuthService.instance.logOutUser()
             UserDefaults.standard.setIsLoggedIn(value: false)
             // MARK: Floating Signout Indicator (Success)
-            let titleText = "Signed Out Successfully"
-            let descText = "You have signed out of Wall Variety successfully"
-            showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+            signOutSuccessAlert()
             let backToLoginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             self.navigationController?.pushViewController(backToLoginVC, animated: true)
         } else {
             // MARK: - Floating Signout Indicator (Error)
-            let titleText = "Problem Signing Out"
-            let descText = "There is an error signing you out, please try again"
-            showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+            problemSignOutAlert()
         }
     }
     
@@ -477,7 +486,6 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // let cell = collectionView.cellForItem(at: indexPath) as! WallpaperRoundedCardCell
         // MARK: - Custom DidSelect Transition Function
         let section = glidingView.expandedItemIndex
         collectionIndex = indexPath

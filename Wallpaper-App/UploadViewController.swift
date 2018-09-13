@@ -201,6 +201,38 @@ class UploadViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: self.attributesWrapper.attributes)
     }
     
+    func uploadSuccessfulAlert() {
+        let titleUpText = "Upload Successful"
+        let descUpText = "Your wallpaper image has been uploaded successfully"
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleUpText, desc: descUpText, textColor: UIColor.darkGray)
+    }
+    
+    func uploadErrorAlert() {
+        let titleText = "Error in Upload"
+        let descText = "Something went wrong in the upload. Please try again"
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+    }
+    
+    // MARK: - Notification Observers
+    func notificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(firstTimeUploadVC), name: Notification.Name.firstTimeViewController, object: nil)
+    }
+    
+    func removeNotifications() {
+        NotificationCenter.default.removeObserver(firstTimeUploadVC())
+    }
+    
+    // MARK: - Check User First Time User Viewing VC (Instructions)
+    @objc func firstTimeUploadVC() {
+        if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
+            // User signed-In
+            UserDefaults.standard.setInstructions(value: false)
+        } else {
+            NotificationCenter.default.post(name: .firstTimeViewController, object: nil)
+            UserDefaults.standard.setInstructions(value: true)
+            self.uploadInstructionsController.start(on: self)
+        }
+    }
     
     // MARK: - Category Picker Button Action
     @IBAction func categoryPicker(_ sender: UIButton) {
@@ -216,8 +248,12 @@ class UploadViewController: UIViewController {
         })
     }
     
+    // MARK: - Keyboard Dismiss
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-        self.uploadInstructionsController.start(on: self)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -248,16 +284,12 @@ class UploadViewController: UIViewController {
                         //            }
                         NotificationCenter.default.post(name: Notification.Name.updateFeedNotificationName, object: nil)
                         // MARK: - Upload Successful Alert
-                        let titleUpText = "Upload Successful"
-                        let descUpText = "Your wallpaper image has been uploaded successfully"
-                        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleUpText, desc: descUpText, textColor: UIColor.darkGray)
+                        self.uploadSuccessfulAlert()
                         self.dismiss(animated: true, completion: nil)
                     } else {
                         // Error in Upload
                         // MARK: - Upload Error Alert
-                        let titleText = "Error in Upload"
-                        let descText = "Something went wrong in the upload. Please try again"
-                        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+                        self.uploadErrorAlert()
                         self.dismiss(animated: true, completion: nil)
                     }
                 case .notDetermined:

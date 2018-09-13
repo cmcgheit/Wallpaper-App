@@ -204,7 +204,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - TextField Change Function
     @objc func textFieldDidChange() {
-        let enable = emailTextFld.text != "" && passTextFld.text!.count  >= 6 // &&passTextField != ""?
+        let enable = emailTextFld.text != "" && passTextFld.text != "" && passTextFld.text!.count  >= 6
         shouldEnableSignUpBtn(enable: enable)
         if enable {
             noEmailPassAlert()
