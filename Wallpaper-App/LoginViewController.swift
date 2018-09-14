@@ -67,8 +67,8 @@ class LoginViewController: UIViewController {
     
     // MARK: - Notifications
     func notificationObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: Notification.Name.keyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: Notification.Name.keyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: .keyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: .keyboardWillHide, object: nil)
         
         emailTextFld.addTarget(self, action: #selector(saveToUserDefaults(_:)), for: .editingDidEnd)
         
@@ -160,7 +160,6 @@ class LoginViewController: UIViewController {
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
         textFieldDidChange()
-        self.performSegue(withIdentifier: "toSignUpViewController", sender: nil)
     }
     
     @IBAction func loginAnonymousBtnClicked(_ sender: Any) {

@@ -249,9 +249,9 @@ class FeedViewController: UIViewController {
     }
     
     func notificationObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: Notification.Name.updateFeedNotificationName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: .updateFeedNotificationName, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(firstTimeVC), name: Notification.Name.firstTimeViewController, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(firstTimeVC(_:)), name: .firstTimeViewController, object: nil)
         
         // Transition
         NotificationCenter.default.addObserver(self, selector: #selector(tabBarShow), name: NSNotification.Name(rawValue: "tabBarShow"), object: nil)
@@ -260,7 +260,7 @@ class FeedViewController: UIViewController {
     func removeNotifications() {
         
         NotificationCenter.default.removeObserver(handleUpdateFeed())
-        NotificationCenter.default.removeObserver(firstTimeVC())
+        NotificationCenter.default.removeObserver(firstTimeVC(_:))
         NotificationCenter.default.removeObserver(tabBarShow())
     }
     
@@ -270,7 +270,7 @@ class FeedViewController: UIViewController {
     }
     
     // MARK: - Check User First Time Viewing VC (Instructions)
-    @objc func firstTimeVC() {
+    @objc func firstTimeVC(_ notification: NSNotification) {
         if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
             UserDefaults.standard.setInstructions(value: false)
         } else {
