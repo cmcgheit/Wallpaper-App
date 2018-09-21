@@ -24,15 +24,14 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        notificationObservers()
+        signInBtn.layer.cornerRadius = 15
+        signUpBtn.layer.cornerRadius = 15
+        loginAnBtn.layer.cornerRadius = 15
+        
         customBackBtn()
         
         emailTextFld.delegate = self
         passTextFld.delegate = self
-        
-        signInBtn.layer.cornerRadius = 15
-        signUpBtn.layer.cornerRadius = 15
-        loginAnBtn.layer.cornerRadius = 15
         
     }
     
@@ -41,6 +40,8 @@ class LoginViewController: UIViewController {
         
         // MARK: - Set navigation bar to transparent
         self.navigationController?.hideTransparentNavigationBar()
+        
+         notificationObservers()
         
         // Take user to Feed if already logged-in
         if authRef.currentUser?.uid != nil && authRef.currentUser?.isAnonymous != nil {
@@ -152,7 +153,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
-        
+        // storyboard segue to signUp
     }
     
     @IBAction func loginAnonymousBtnClicked(_ sender: Any) {
@@ -189,11 +190,6 @@ class LoginViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    // MARK: - TextField Change Function
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        
-    }
-    
     // MARK: - Save User Text
     @objc func saveToUserDefaults(_ sender: AnimatedTextField) {
         guard defaultsKey != "" else { return }
@@ -222,14 +218,24 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: UITextFieldDelegate {
     
+    // MARK: - TextField Change Function
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == emailTextFld {
             textField.endEditing(true)
         }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextFld {
+            self.view.endEditing(true)
+        } else {
+            passTextFld.becomeFirstResponder()
+        }
+        return true
     }
 }
 

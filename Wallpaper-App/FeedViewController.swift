@@ -179,7 +179,7 @@ class FeedViewController: UIViewController {
         themeSwitch.padding = 2
         themeSwitch.animationDuration = 0.6
         themeSwitch.thumbShaddowOppacity = 0
-    
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -402,9 +402,11 @@ class FeedViewController: UIViewController {
             AuthService.instance.logOutUser()
             UserDefaults.standard.setIsLoggedIn(value: false)
             // MARK: Floating Signout Indicator (Success)
-            signOutSuccessAlert()
-            let backToLoginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-            self.navigationController?.pushViewController(backToLoginVC, animated: true)
+            DispatchQueue.main.async {
+                self.signOutSuccessAlert()
+            }
+            let backToLoginVC = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            present(backToLoginVC, animated: true)
         } else {
             // MARK: - Floating Signout Indicator (Error)
             problemSignOutAlert()

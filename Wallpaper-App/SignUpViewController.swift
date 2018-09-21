@@ -15,18 +15,19 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         customBackBtn()
         
-        signUpBtn.layer.cornerRadius = 15
-        goBackBtn.layer.cornerRadius = 15
+        signUpBtn?.layer.cornerRadius = 15
+        goBackBtn?.layer.cornerRadius = 15
 
-        notificationObservers()
-        signUpTxtFld.delegate = self
-        signUpPassFld.delegate = self
+        signUpTxtFld?.delegate = self
+        signUpPassFld?.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // MARK: - Set navigation bar to transparent
         self.navigationController?.hideTransparentNavigationBar()
+        
+        notificationObservers()
         
     }
     
@@ -39,8 +40,8 @@ class SignUpViewController: UIViewController {
     func notificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow), name: .keyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide), name: .keyboardWillHide, object: nil)
-        signUpTxtFld.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
-        signUpPassFld.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
+        signUpTxtFld?.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
+        signUpPassFld?.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
     }
     
     func removeObservers() {
@@ -126,31 +127,6 @@ class SignUpViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    // MARK: - TextField Change Function
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        
-       guard let emailText = signUpTxtFld.text, signUpTxtFld.text != "" else { return }
-       guard let passText = signUpPassFld.text, signUpPassFld.text != "" else { return }
-        
-        // Validate fields
-        if signUpTxtFld.validateField([isEmailValid]) && signUpPassFld.validateField([isPassValid]) {
-            AuthService.instance.registerUser(withEmail: emailText, andPassword: passText) { (success, signUpError) in
-                if success {
-                    AuthService.instance.loginUser(withEmail: emailText, andPassword: passText, loginComplete: { (success, nil) in
-                        self.performSegue(withIdentifier: "toFeedViewController", sender: self)
-                        print("Successfully registered/Signed-In user with valid info")
-                    })
-                } else { // error signing up
-                    self.signInErrorAlert()
-                    print(String(describing: signUpError?.localizedDescription))
-                }
-            }
-        } else { // error with valid fields
-            // Alert email/password not valid
-            signUpErrorAlert()
-        }
-    }
-    
     @IBAction func signUpBtnPressed(_ sender: Any) {
         guard let email = signUpTxtFld.text, signUpTxtFld.text != "" else { return }
         guard let pass = signUpPassFld.text, signUpPassFld.text != "" else { return }
@@ -180,10 +156,45 @@ class SignUpViewController: UIViewController {
 }
 
 extension SignUpViewController: UITextFieldDelegate {
+    
+    // MARK: - TextField Change Function
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        
+        guard let emailText = signUpTxtFld.text, signUpTxtFld.text != "" else { return }
+        guard let passText = signUpPassFld.text, signUpPassFld.text != "" else { return }
+        
+        // Validate fields
+        if signUpTxtFld.validateField([isEmailValid]) && signUpPassFld.validateField([isPassValid]) {
+            AuthService.instance.registerUser(withEmail: emailText, andPassword: passText) { (success, signUpError) in
+                if success {
+                    AuthService.instance.loginUser(withEmail: emailText, andPassword: passText, loginComplete: { (success, nil) in
+                        self.performSegue(withIdentifier: "toFeedViewController", sender: self)
+                        print("Successfully registered/Signed-In user with valid info")
+                    })
+                } else { // error signing up
+                    self.signInErrorAlert()
+                    print(String(describing: signUpError?.localizedDescription))
+                }
+            }
+        } else { // error with valid fields
+            // Alert email/password not valid
+            signUpErrorAlert()
+        }
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == signUpTxtFld {
             textField.endEditing(true)
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == signUpTxtFld {
+            self.view.endEditing(true)
+        } else {
+            signUpPassFld.becomeFirstResponder()
+        }
+        return true
     }
 }
 

@@ -52,6 +52,10 @@ class UploadViewController: UIViewController {
         wallpaperDescTextView.text = wallpaperDescPlaceholderText
         wallpaperCatPickBtn.setTitle(wallpaperCatPlaceholderText, for: .normal)
         
+        wallpaperDescTextView.layer.applySketchShadow(color: UIColor.black, alpha: 0.6, x: 0, y: 0, blur: 4, spread: 0)
+        wallpaperDescTextView.becomeFirstResponder()
+        wallpaperImgView.image = UIImage(named: "placeholder-image")
+        
         // Instructions
         uploadInstructionsController.dataSource = self
         self.uploadInstructionsController.overlay.color = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
@@ -213,6 +217,11 @@ class UploadViewController: UIViewController {
         self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
     }
     
+    // MARK: - Keyboard Dismiss
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     // MARK: - Notification Observers
     func notificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(firstTimeUploadVC), name: Notification.Name.firstTimeViewController, object: nil)
@@ -246,11 +255,6 @@ class UploadViewController: UIViewController {
             let newSelection = selections[componentThatChanged] ?? "Failed to get new selection!"
             print("Component \(componentThatChanged) changed value to \(newSelection)")
         })
-    }
-    
-    // MARK: - Keyboard Dismiss
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
