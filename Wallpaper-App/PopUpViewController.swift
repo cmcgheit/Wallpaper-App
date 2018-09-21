@@ -4,6 +4,7 @@ import UIKit
 import EasyTransitions
 import Kingfisher
 import UIKit.UIGestureRecognizerSubclass
+import SwiftEntryKit
 
 class PopUpViewController: UIViewController {
     
@@ -12,6 +13,7 @@ class PopUpViewController: UIViewController {
     
     @IBOutlet weak var wallpaperPopImage: UIImageView!
     @IBOutlet weak var wallpaperDescLbl: PaddedLabel!
+    @IBOutlet weak var savePhotoBtn: RoundedRectBlueButton!
     
     @IBOutlet weak var dismissBtn: UIButton!
     
@@ -26,6 +28,8 @@ class PopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        savePhotoBtn.layer.cornerRadius = 15
+        
         wallpaperPopImage.image = image
         let url = URL(string: wallpaperImageURL)
         wallpaperPopImage.kf.setImage(with: url, placeholder: placeholder)
@@ -37,7 +41,57 @@ class PopUpViewController: UIViewController {
         
     }
     
-   
+    // MARK: - Attributes Wrapper
+    private var attributesWrapper: EntryAttributeWrapper {
+        var attributes = EKAttributes.topFloat
+        attributes.entryBackground = .color(color: UIColor.white)
+        attributes.roundCorners = .all(radius: 10)
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+        return EntryAttributeWrapper(with: attributes)
+        
+    }
+    
+    // MARK: - SwiftEntryKit Alerts
+    // Notification Message
+    private func showNotificationEKMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String? = nil) {
+        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
+        let simpleMessage = EKSimpleMessage(image: image, title: title, description: desc)
+        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+        
+        let contentView = EKNotificationMessageView(with: notificationMessage)
+        SwiftEntryKit.display(entry: contentView, using: attributesWrapper.attributes)
+        
+    }
+    func uploadToPhotosSuccess() {
+        let titleText = "Saved Wallpaper to Photos"
+        let descText = "saved wallpaper to Photos successfully"
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+    }
+    
+    // MARK: - Save Wallpaper to Photos App
+    func getWallpaperURLData(url: URL, completion: @escaping (Data? , URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            completion(data, response, error)
+            }.resume()
+    }
+    
+    func saveWallpaperToPhotos() {
+        let wallpaperURL = wallpaperImageURL
+        guard let photoURL = URL(string: wallpaperURL) else { return }
+        
+        getWallpaperURLData(url: photoURL) { (data, response, error) in
+            guard let data = data, let imageFromData = UIImage(data: data) else { return }
+            DispatchQueue.main.async {
+                UIImageWriteToSavedPhotosAlbum(imageFromData, nil, nil, nil)
+                self.wallpaperPopImage.image = imageFromData
+                self.uploadToPhotosSuccess()
+            }
+        }
+    }
+    
     // Custom Popup Recognizer state
     var animationProgress: CGFloat = 0.0
     @objc func panRecognizer(recognizer: UIPanGestureRecognizer){
@@ -54,18 +108,18 @@ class PopUpViewController: UIViewController {
             // fractionComplete the percentage of animation progress
             animator.fractionComplete = fraction + animationProgress
             // when animation progress > 99%, stop and start the dismiss transition
-            if animator.fractionComplete > 0.99{
+            if animator.fractionComplete > 0.99 {
                 animator.stopAnimation(true)
                 dismiss(animated: true, completion: nil)
             }
         case .ended:
             // when tap  on the screen animator.fractionComplete = 0
-            if animator.fractionComplete == 0{
+            if animator.fractionComplete == 0 {
                 animator.stopAnimation(true)
                 dismiss(animated: true, completion: nil)
             }
                 // when animator.fractionComplete < 99 % and release finger, automative rebounce to the initial state
-            else{
+            else {
                 // rebounce effect
                 animator.isReversed = true
                 animator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
@@ -89,6 +143,9 @@ class PopUpViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func saveToPhotosBtnPressed(_ sender: RoundedRectBlueButton) {
+        saveWallpaperToPhotos()
+    }
 }
 
 

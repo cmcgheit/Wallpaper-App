@@ -191,7 +191,7 @@ class FeedViewController: UIViewController {
         // navigationController?.hideTransparentNavigationBar()
         
         // MARK: - Check Auth User Signed-In Listener/Handler
-        handle = Auth.auth().addStateDidChangeListener { ( auth, user) in
+        handle = authRef.addStateDidChangeListener { ( auth, user) in
             if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
                 // User signed-In
                 UserDefaults.standard.setIsLoggedIn(value: true)
@@ -215,7 +215,7 @@ class FeedViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        Auth.auth().removeStateDidChangeListener(handle!)
+        authRef.removeStateDidChangeListener(handle!)
         
         self.instructionsController.stop(immediately: true)
         
@@ -292,8 +292,8 @@ class FeedViewController: UIViewController {
     
     // MARK: - Fetch Wallpaper Feed For Specific User
     func fetchFeed() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        if Auth.auth().currentUser != nil && authRef.currentUser?.isAnonymous != nil {
+        guard let uid = authRef.currentUser?.uid else { return }
+        if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
             FIRService.fetchUserForUID(uid: uid) { (user) in
                 // Load all wallpapers from db?
                 //        let indexPath = IndexPath(row: 0, section: 0)

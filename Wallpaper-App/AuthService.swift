@@ -13,10 +13,10 @@ class AuthService {
     
     // MARK: - Create/Register New User
     func registerUser(withEmail email: String, andPassword password: String, userCreationComplete: @escaping (_ status: Bool, _ error: Error?) -> ()) {
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+        authRef.createUser(withEmail: email, password: password) { (user, error) in
             
             // MARK: - Register User/Send Email Verification
-            Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+            authRef.currentUser?.sendEmailVerification(completion: { (error) in
                 if (error != nil) {
                     print(error!)
                 }
@@ -33,7 +33,7 @@ class AuthService {
     
     // MARK: - Login Function for Existing Users
     func loginUser(withEmail email: String, andPassword password: String, loginComplete: @escaping (_ status: Bool, _ error: Error?) -> ()) {
-        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+        authRef.signIn(withEmail: email, password: password) { (user, error) in
             if (error != nil) {
                 loginComplete(false, error)
                 return
@@ -45,7 +45,7 @@ class AuthService {
     // MARK - Logout User from Firebase Function
     func logOutUser() {
         do {
-            try Auth.auth().signOut()
+            try authRef.signOut()
         } catch let error {
             print("Failed to logout user", error)
         }

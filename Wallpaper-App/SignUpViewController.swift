@@ -13,23 +13,25 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadViewIfNeeded()
-        initTextFields()
         customBackBtn()
-        shouldEnableSignUpBtn(enable: false)
+        
+        signUpBtn.layer.cornerRadius = 15
+        goBackBtn.layer.cornerRadius = 15
+
         notificationObservers()
+        signUpTxtFld.delegate = self
+        signUpPassFld.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        signUpBtn.layer.cornerRadius = 15
-        goBackBtn.layer.cornerRadius = 15
         // MARK: - Set navigation bar to transparent
         self.navigationController?.hideTransparentNavigationBar()
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         removeObservers()
     }
     
@@ -37,6 +39,8 @@ class SignUpViewController: UIViewController {
     func notificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow), name: .keyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide), name: .keyboardWillHide, object: nil)
+        signUpTxtFld.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
+        signUpPassFld.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
     }
     
     func removeObservers() {
@@ -98,21 +102,6 @@ class SignUpViewController: UIViewController {
         self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
     }
     
-    // MARK - TextField Setup Function
-    func initTextFields() {
-        self.view.layoutIfNeeded()
-        signUpTxtFld.delegate = self
-        signUpTxtFld.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        
-        signUpPassFld.delegate = self
-        signUpPassFld.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-    }
-    
-    // MARK: - Sign Up Btn Enable Function
-    func shouldEnableSignUpBtn(enable: Bool) {
-        self.signUpBtn.isEnabled = enable
-    }
-    
     // MARK: - Keyboard Functions
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -138,9 +127,11 @@ class SignUpViewController: UIViewController {
     }
     
     // MARK: - TextField Change Function
-    @objc func textFieldDidChange() {
-       guard let emailText = signUpTxtFld.text else { return }
-       guard let passText = signUpPassFld.text else { return }
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        
+       guard let emailText = signUpTxtFld.text, signUpTxtFld.text != "" else { return }
+       guard let passText = signUpPassFld.text, signUpPassFld.text != "" else { return }
+        
         // Validate fields
         if signUpTxtFld.validateField([isEmailValid]) && signUpPassFld.validateField([isPassValid]) {
             AuthService.instance.registerUser(withEmail: emailText, andPassword: passText) { (success, signUpError) in
@@ -158,20 +149,15 @@ class SignUpViewController: UIViewController {
             // Alert email/password not valid
             signUpErrorAlert()
         }
-        let enable = signUpTxtFld.text != "" && signUpPassFld.text != ""
-        shouldEnableSignUpBtn(enable: enable)
-        if enable {
-           noEmailPassAlert() // alert users only after textfield changes of no email/pass entered
-        }
     }
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
-        guard let email = signUpTxtFld.text else { return }
-        guard let pass = signUpPassFld.text else { return }
+        guard let email = signUpTxtFld.text, signUpTxtFld.text != "" else { return }
+        guard let pass = signUpPassFld.text, signUpPassFld.text != "" else { return }
         
-        if signUpTxtFld.text == nil  && signUpPassFld.text == nil {
+        if (signUpTxtFld.text?.isEmpty)! && email.count == 0  && pass.count == 0 && (signUpPassFld.text?.isEmpty)! {
             // MARK: - Empty/No Email/Password entered Alert (not registered)
-            textFieldDidChange()
+            noEmailPassAlert()
         } else { // Register New User
             AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in
                 if success { // After registered, login the user
@@ -191,9 +177,13 @@ class SignUpViewController: UIViewController {
     @IBAction func goBackBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
 }
 
 extension SignUpViewController: UITextFieldDelegate {
-    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == signUpTxtFld {
+            textField.endEditing(true)
+        }
+    }
 }
+

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,6 +15,7 @@
                 <outlet property="backView" destination="7cD-qI-9XV" id="ZYP-wO-4b3"/>
                 <outlet property="contentView" destination="Bdf-We-NY8" id="DID-2T-CfV"/>
                 <outlet property="dismissBtn" destination="RJc-NS-i9Z" id="9Id-gd-JxB"/>
+                <outlet property="savePhotoBtn" destination="o83-hp-mKi" id="4yD-Nu-fbD"/>
                 <outlet property="view" destination="iN0-l3-epB" id="dHa-99-aaf"/>
                 <outlet property="wallpaperDescLbl" destination="hcp-4Q-gUm" id="WFL-9h-rOM"/>
                 <outlet property="wallpaperPopImage" destination="Ixq-Mb-NQN" id="2SH-4O-Q27"/>
@@ -43,13 +43,32 @@
                             <nil key="highlightedColor"/>
                             <size key="shadowOffset" width="0.0" height="0.0"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o83-hp-mKi" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
+                            <rect key="frame" x="102.5" y="193" width="170" height="30"/>
+                            <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="170" id="OH2-3a-XaM"/>
+                                <constraint firstAttribute="height" constant="30" id="oaA-Gs-Kb1"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                            <state key="normal" title="Save Wallpaper To Photos">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="saveToPhotosBtnPressed:" destination="-1" eventType="touchUpInside" id="pTO-QA-JtS"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="o83-hp-mKi" secondAttribute="bottom" constant="15" id="5UG-wH-tlU"/>
+                        <constraint firstItem="o83-hp-mKi" firstAttribute="centerX" secondItem="Bdf-We-NY8" secondAttribute="centerX" id="Dqv-Kg-Eq2"/>
+                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ2-cn-TPQ">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ixq-Mb-NQN">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ixq-Mb-NQN">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="433"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>

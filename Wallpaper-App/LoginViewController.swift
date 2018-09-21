@@ -23,11 +23,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        shouldEnableSignUpBtn(enable: false)
-        initTextFields()
+        
         notificationObservers()
         customBackBtn()
+        
+        emailTextFld.delegate = self
+        passTextFld.delegate = self
         
         signInBtn.layer.cornerRadius = 15
         signUpBtn.layer.cornerRadius = 15
@@ -42,13 +43,13 @@ class LoginViewController: UIViewController {
         self.navigationController?.hideTransparentNavigationBar()
         
         // Take user to Feed if already logged-in
-        if (Auth.auth().currentUser?.uid != nil)  {
+        if authRef.currentUser?.uid != nil && authRef.currentUser?.isAnonymous != nil {
             UserDefaults.standard.setIsLoggedIn(value: true)
             self.performSegue(withIdentifier:  "toFeedViewController", sender: self)
         } else {
             // If User not logged in
             do {
-                try Auth.auth().signOut()
+                try authRef.signOut()
                 return
             } catch  {
                 print(error)
@@ -57,12 +58,9 @@ class LoginViewController: UIViewController {
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        removeNotifications()
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
-
+        super.viewWillDisappear(animated)
+        removeNotifications()
     }
     
     // MARK: - Notifications
@@ -105,51 +103,46 @@ class LoginViewController: UIViewController {
         
     }
     
+    func successfulLoginAlert() {
+        let successTitleText =  "Successfully Signed In"
+        let successDescText = "Taking you to the feed shortly"
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: successTitleText, desc: successDescText, textColor: UIColor.darkGray)
+    }
+    
     func noEmailPassAlert() {
-        // MARK: - No Email/Password entered Alert (not registered)
-        let titleText = "User Not Registered"
-        let descText = "No email and/or password entered, please enter an email or password and login"
-        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+        let noEmailTitleText = "User Not Registered"
+        let noEmailDescText = "No email and/or password entered, please enter an email or password and login"
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: noEmailTitleText, desc: noEmailDescText, textColor: UIColor.darkGray)
     }
     
     func incorrectEmailPassAlert() {
-        let titleText = "Incorrect Email/Password"
-        let descText = "You have entered the incorrect email/password. Please enter your email/password and try again"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
-    }
-    
-    // MARK - TextField Setup Function
-    func initTextFields() {
-        self.view.layoutIfNeeded()
-        emailTextFld.delegate = self
-        emailTextFld.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        
-        passTextFld.delegate = self
-        passTextFld.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        let incorrectTitleText = "Incorrect Email/Password"
+        let incorrectDescText = "You have entered the incorrect email/password. Please enter your email/password and try again"
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: incorrectTitleText, desc: incorrectDescText, textColor: UIColor.darkGray)
     }
     
     @IBAction func signInBtnPressed(_ sender: Any) {
         
-        guard let email = emailTextFld.text else { return }
-        guard let pass = passTextFld.text else { return }
+        guard let email = emailTextFld.text, emailTextFld.text != "" else { return }
+        guard let pass = passTextFld.text, passTextFld.text != "" else { return }
         
-        if email.count == 0 && pass.count == 0 {
+        if (emailTextFld.text?.isEmpty)! && email.count == 0 && (passTextFld.text?.isEmpty)!  && pass.count == 0 {
             // MARK: - Empty Email/Pass Login
-            textFieldDidChange()
+            noEmailPassAlert() // move to textFieldDidbBeginEditing?
         } else {
             // MARK: - Login User Successfully
-            // textFieldDidChange()
             AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, loginError) in
                 if success {
-                    // self.completeSignIn(id: (Auth.auth().currentUser?.uid)!) // collects uid/keychain when user signs in
+                    // self.completeSignIn(id: (authRef.currentUser?.uid)!) // collects uid/keychain when user signs in
                     UserDefaults.standard.setIsLoggedIn(value: true)
+                    // successfully registered alert
+                    
                     self.performSegue(withIdentifier:
                         "toFeedViewController", sender: nil)
                 } else {
                     // MARK: - Incorrect Email/Password Login
-                    // textFieldDidChange()
                     self.incorrectEmailPassAlert()
-                    // Auth.auth().sendPasswordReset(withEmail: email) ask to reset, logic for mutliple incorrect tries?
+                    // authRef.sendPasswordReset(withEmail: email) ask to reset, logic for mutliple incorrect tries?
                     print(String(describing: loginError?.localizedDescription))
                     // Take User to SignUp if not a registered user
                     // self.performSegue(withIdentifier: "toSignUpViewController", sender: nil)
@@ -159,23 +152,18 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
-        textFieldDidChange()
+        
     }
     
     @IBAction func loginAnonymousBtnClicked(_ sender: Any) {
         // Auth user
-        Auth.auth().signInAnonymously(completion: { (user, error) in
+        authRef.signInAnonymously(completion: { (user, error) in
             if error == nil {
                 // successful Anonymous login, segue to FeedViewController
                 self.performSegue(withIdentifier: "toFeedViewController", sender: nil)
             }
         }
         )}
-    
-    // MARK: - Sign Up Btn Enable Function
-    func shouldEnableSignUpBtn(enable: Bool) {
-        self.signInBtn.isEnabled = enable
-    }
     
     // MARK: - Keyboard Functions
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -202,13 +190,8 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - TextField Change Function
-    @objc func textFieldDidChange() {
-        let enable = emailTextFld.text != "" && passTextFld.text != "" && passTextFld.text!.count  >= 6
-        shouldEnableSignUpBtn(enable: enable)
-        if enable {
-            noEmailPassAlert()
-            incorrectEmailPassAlert()
-        }
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        
     }
     
     // MARK: - Save User Text
@@ -239,8 +222,16 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: UITextFieldDelegate {
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == emailTextFld {
+            textField.endEditing(true)
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+    }
 }
-
 
 
 
