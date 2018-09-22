@@ -6,14 +6,25 @@
 import Foundation
 import Firebase
 
+let ApplicationName = "Wall Variety"
+let ApplicationFBLink = "https://www.facebook.com/"
+let ApplicationTwitterLink = "https://www.twitter.com/"
+let ApplicationInstagramLink = "https://www.instagram.com/"
+
 // Firebase
 let storageRef = Storage.storage().reference()
 let databaseRef = Database.database().reference()
 let authRef = Auth.auth()
 
+// SwiftKeychainWrapper
+let KEY_UID = "uid" // Keychain Wrapper UID
 
+// Google Ads
 var appID = "1391180766" // from itunesconnect
 var adMobAppID = "" // Google AdMob
+
+// Terms PDF
+let termsPDF = "WallVarietyTerms.pdf"
 
 // Colors
 var tealColor = UIColor(red: 0.02, green: 0.56, blue: 0.65, alpha: 1.0) // #0690a6

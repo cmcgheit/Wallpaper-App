@@ -20,7 +20,7 @@ target 'Wallpaper-App' do
   pod 'SwiftEntryKit'
   pod 'Armchair'
   pod 'Siren'
-  #pod 'SwiftKeychainWrapper'
+  pod 'SwiftKeychainWrapper'
   pod 'Instructions'
   pod 'NVActivityIndicatorView'
   pod 'Twinkle'

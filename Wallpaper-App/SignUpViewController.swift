@@ -3,6 +3,7 @@
 import UIKit
 import Firebase
 import SwiftEntryKit
+import QuickLook
 
 class SignUpViewController: UIViewController {
     
@@ -198,3 +199,21 @@ extension SignUpViewController: UITextFieldDelegate {
     }
 }
 
+extension SignUpViewController: QLPreviewControllerDataSource {
+    
+    // MARK: - Terms and Conditions
+    func loadTermsView() {
+        let termsPreview = QLPreviewController()
+        termsPreview.dataSource = self
+        present(termsPreview, animated: true, completion: nil)
+    }
+    
+    // MARK: - Terms/Preview Controller
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        return 1
+    }
+    
+    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        return Bundle.main.url(forResource: "WallVarietyTerms", withExtension: "pdf")! as QLPreviewItem
+    }
+}

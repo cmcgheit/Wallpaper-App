@@ -6,7 +6,7 @@
 import UIKit
 import Firebase
 import SwiftEntryKit
-// import KeychainSwift//SwiftKeychainWrapper
+import SwiftKeychainWrapper
 
 class LoginViewController: UIViewController {
     
@@ -129,12 +129,12 @@ class LoginViewController: UIViewController {
         
         if (emailTextFld.text?.isEmpty)! && email.count == 0 && (passTextFld.text?.isEmpty)!  && pass.count == 0 {
             // MARK: - Empty Email/Pass Login
-            noEmailPassAlert() // move to textFieldDidbBeginEditing?
+            noEmailPassAlert()
         } else {
             // MARK: - Login User Successfully
             AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, loginError) in
                 if success {
-                    // self.completeSignIn(id: (authRef.currentUser?.uid)!) // collects uid/keychain when user signs in
+                     self.completeSignIn(id: (authRef.currentUser?.uid)!) // collects uid/keychain when user signs in
                     UserDefaults.standard.setIsLoggedIn(value: true)
                     // successfully registered alert
                     
@@ -158,9 +158,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginAnonymousBtnClicked(_ sender: Any) {
         // Auth user
-        authRef.signInAnonymously(completion: { (user, error) in
+        authRef.signInAnonymously(completion: { (authResult, error) in
             if error == nil {
                 // successful Anonymous login, segue to FeedViewController
+                let user = authResult?.user
+                let uid = user?.uid
+                self.completeSignIn(id: uid!) // firebase anonymous uid?
                 self.performSegue(withIdentifier: "toFeedViewController", sender: nil)
             }
         }
@@ -207,13 +210,11 @@ class LoginViewController: UIViewController {
     }
     
     
-    //// MARK: KeyChain Wrapper Function - storing user data
-    //func completeSignIn(id: String) {
-    //    let saveSuccessful: Bool = KeychainWrapper.standard.set(id, forKey: KEY_UID)
-    //    print("Keychain Status: \(saveSuccessful)")
-    //    // Take user to feed once stored keychain wrapper
-    //    performSegue(withIdentifier: SegueIdentifier.toStudentVC.rawValue, sender: self)
-    //}
+    // MARK: KeyChain Wrapper Function - storing user data
+    func completeSignIn(id: String) {
+        let saveSuccessful: Bool = KeychainWrapper.standard.set(id, forKey: KEY_UID)
+        print("Keychain Status: \(saveSuccessful)")
+    }
 }
 
 extension LoginViewController: UITextFieldDelegate {
