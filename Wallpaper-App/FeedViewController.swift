@@ -18,7 +18,7 @@ class FeedViewController: UIViewController {
     fileprivate var collectionView: UICollectionView!
     
     @IBOutlet weak var uploadBtn: UIButton!
-    @IBOutlet weak var signOutBtn: RoundedRectPinkButton!
+    @IBOutlet weak var signOutBtn: RoundedRectBlueButton!
     @IBOutlet weak var glidingIntView: UIView!
     @IBOutlet weak var themeSwitch: CustomSwitch!
     

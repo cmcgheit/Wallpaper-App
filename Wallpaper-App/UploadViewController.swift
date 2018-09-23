@@ -52,7 +52,7 @@ class UploadViewController: UIViewController {
         wallpaperDescTextView.text = wallpaperDescPlaceholderText
         wallpaperCatPickBtn.setTitle(wallpaperCatPlaceholderText, for: .normal)
         
-        wallpaperDescTextView.layer.applySketchShadow(color: UIColor.black, alpha: 0.6, x: 0, y: 0, blur: 4, spread: 0)
+        makeShadowView()
         wallpaperDescTextView.becomeFirstResponder()
         wallpaperImgView.image = UIImage(named: "placeholder-image")
         
@@ -215,6 +215,15 @@ class UploadViewController: UIViewController {
         let titleText = "Error in Upload"
         let descText = "Something went wrong in the upload. Please try again"
         self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+    }
+    
+    func makeShadowView() {
+        wallpaperDescTextView.layer.cornerRadius = 10
+        wallpaperDescTextView.layer.shadowOpacity = 0.2
+        wallpaperDescTextView.layer.shadowColor = UIColor.black.cgColor
+        wallpaperDescTextView.layer.shadowRadius = 2 // HALF of blur
+        wallpaperDescTextView.layer.shadowOffset = CGSize(width: 0, height: 2) // Spread x, y
+        wallpaperDescTextView.layer.masksToBounds =  false
     }
     
     // MARK: - Keyboard Dismiss
