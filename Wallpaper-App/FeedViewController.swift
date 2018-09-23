@@ -17,10 +17,15 @@ class FeedViewController: UIViewController {
     @IBOutlet var glidingView: GlidingCollection!
     fileprivate var collectionView: UICollectionView!
     
+    @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var uploadBtn: UIButton!
-    @IBOutlet weak var signOutBtn: RoundedRectBlueButton!
+    @IBOutlet weak var signOutBtn: UIButton!
     @IBOutlet weak var glidingIntView: UIView!
     @IBOutlet weak var themeSwitch: CustomSwitch!
+    
+    // Menu
+    var uploadBtnCenter: CGPoint!
+    var signOutBtnCenter: CGPoint!
     
     var handle: AuthStateDidChangeListenerHandle?
     var bannerView: GADBannerView!
@@ -85,7 +90,13 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        customBackBtn()
+        
+        uploadBtn.center = menuBtn.center
+        signOutBtn.center = menuBtn.center
+        
+        uploadBtnCenter = uploadBtn.center
+        signOutBtnCenter = signOutBtn.center
+        
         DispatchQueue.main.async {
             self.glidingView.reloadData()
         }
@@ -384,8 +395,41 @@ class FeedViewController: UIViewController {
         return CATransform3DConcat(rotation, scale)
     }
     
+    // MARK: - Menu Buttons/Toggle Function
+    func toggleMenuBtns(button: UIButton, onImage: UIImage, offImage: UIImage) {
+        if button.currentImage == offImage {
+            button.setImage(onImage, for: .normal)
+        } else {
+            button.setImage(offImage, for: .normal)
+        }
+    }
+    
+    // MARK: - Menu Button
+    @IBAction func menuBtnPressed(_ sender: UIButton) {
+        if menuBtn.currentImage == menuBtn {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.uploadBtn.alpha = 1
+                self.signOutBtn.alpha = 1
+                
+                self.uploadBtn.center = self.uploadBtnCenter
+                self.signOutBtn.center = self.signOutBtnCenter
+            })
+        } else {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.uploadBtn.alpha = 0
+                self.signOutBtn.alpha = 0
+                
+                self.uploadBtn.center = self.menuBtn.center
+                self.signOutBtn.center = self.menuBtn.center
+            })
+        }
+        // toggleMenuBtns(button: sender, onImage: <#T##UIImage#>, offImage: <#T##UIImage#>)
+    }
+    
+
     // MARK: - Upload Button Action
-    @IBAction func uploadBtnPressed(_ sender: Any) {
+    @IBAction func uploadBtnPressed(_ sender: UIButton) {
+        // toggleMenuBtns(button: <#T##UIButton#>, onImage: <#T##UIImage#>, offImage: <#T##UIImage#>)
         let uploadVC = storyboard?.instantiateViewController(withIdentifier: "UploadViewController") as! UploadViewController
         uploadVC.providesPresentationContextTransitionStyle = true
         uploadVC.definesPresentationContext = true
@@ -396,7 +440,8 @@ class FeedViewController: UIViewController {
     
     
     // MARK: - Sign Out Button Action
-    @IBAction func signOutBtnPressed() {
+    @IBAction func signOutBtnPressed(_ sender: UIButton) {
+        // toggleMenuBtns(button: <#T##UIButton#>, onImage: <#T##UIImage#>, offImage: <#T##UIImage#>)
         // Signed In User
         if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
             AuthService.instance.logOutUser()

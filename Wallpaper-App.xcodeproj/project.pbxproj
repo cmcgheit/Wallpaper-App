@@ -32,7 +32,6 @@
 		D87DA26020FBBC0300777B0D /* TransitionInteractiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25F20FBBC0300777B0D /* TransitionInteractiveController.swift */; };
 		D87DA26220FBBC4D00777B0D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA26120FBBC4D00777B0D /* Configuration.swift */; };
 		D895F4BE213C54D600E7F8BE /* TransitionClone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4BD213C54D600E7F8BE /* TransitionClone.swift */; };
-		D895F4C021402BEC00E7F8BE /* CustomNaviController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4BF21402BEC00E7F8BE /* CustomNaviController.swift */; };
 		D895F4C221481C0200E7F8BE /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */; };
 		D895F4C4214AEF6E00E7F8BE /* UITextField+ValidationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4C3214AEF6D00E7F8BE /* UITextField+ValidationExt.swift */; };
 		D8E93B8220B8B02100CE0AD8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8120B8B02000CE0AD8 /* AuthService.swift */; };
@@ -113,7 +112,6 @@
 		D87DA25F20FBBC0300777B0D /* TransitionInteractiveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionInteractiveController.swift; sourceTree = "<group>"; };
 		D87DA26120FBBC4D00777B0D /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		D895F4BD213C54D600E7F8BE /* TransitionClone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionClone.swift; sourceTree = "<group>"; };
-		D895F4BF21402BEC00E7F8BE /* CustomNaviController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNaviController.swift; sourceTree = "<group>"; };
 		D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		D895F4C3214AEF6D00E7F8BE /* UITextField+ValidationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ValidationExt.swift"; sourceTree = "<group>"; };
 		D8E93B8120B8B02000CE0AD8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = "Wallpaper-App/AuthService.swift"; sourceTree = SOURCE_ROOT; };
@@ -251,7 +249,6 @@
 				D8E93B9220B8B08D00CE0AD8 /* UploadViewController.swift */,
 				D8E93B9C20B8B0B100CE0AD8 /* PopUpViewController.swift */,
 				D8FC5D8420D2BA2B00FA632F /* PopUpViewController.xib */,
-				D895F4BF21402BEC00E7F8BE /* CustomNaviController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -643,7 +640,6 @@
 				D8E93B8B20B8B05100CE0AD8 /* UserDefaults.swift in Sources */,
 				D8E93B9720B8B08D00CE0AD8 /* UploadViewController.swift in Sources */,
 				D8E93BC720B8B63200CE0AD8 /* AppStoreAnimatorInfo.swift in Sources */,
-				D895F4C021402BEC00E7F8BE /* CustomNaviController.swift in Sources */,
 				D8E93BBE20B8B63200CE0AD8 /* FunctionalEnumerated.swift in Sources */,
 				D87DA26220FBBC4D00777B0D /* Configuration.swift in Sources */,
 				D87DA24F20FBB9F400777B0D /* PanFactory.swift in Sources */,

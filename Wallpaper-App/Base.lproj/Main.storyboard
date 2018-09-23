@@ -28,46 +28,21 @@
                                 </accessibility>
                             </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DW-in-jk3">
-                                <rect key="frame" x="0.0" y="82" width="375" height="570"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="572"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-b4-UEY" customClass="GlidingCollection" customModule="GlidingCollection">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                            </view>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-ye-yUT">
-                                <rect key="frame" x="331" y="30" width="34" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="J2R-kr-aNJ"/>
-                                    <constraint firstAttribute="width" constant="34" id="OqN-NT-9Q3"/>
-                                </constraints>
-                                <state key="normal" image="imageupload">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="uploadBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8XQ-aJ-6qk"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQH-b3-jIB" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
-                                <rect key="frame" x="10" y="35" width="70" height="32"/>
-                                <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
-                                <state key="normal" title="Sign-Out">
-                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="signOutBtnPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="mrE-1F-pTm"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wall Variety" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18q-Nh-Bn4">
+                                <rect key="frame" x="113" y="40" width="149.5" height="36"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="31"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9SO-aj-fWK" customClass="CustomSwitch" customModule="Wallpaper_App" customModuleProvider="target">
-                                <rect key="frame" x="162.5" y="35" width="50" height="30"/>
+                                <rect key="frame" x="319" y="43" width="50" height="30"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -84,6 +59,52 @@
                                     <action selector="themeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="GCX-Vv-IwD"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-b4-UEY" customClass="GlidingCollection" customModule="GlidingCollection">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQH-b3-jIB" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
+                                        <rect key="frame" x="285" y="597" width="20" height="22"/>
+                                        <state key="normal" image="light-back-button">
+                                            <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signOutBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rbh-Ma-wp4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-ye-yUT">
+                                        <rect key="frame" x="327" y="535" width="34" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="RN4-jJ-n2N"/>
+                                            <constraint firstAttribute="width" constant="34" id="pgF-1z-7BD"/>
+                                        </constraints>
+                                        <state key="normal" image="imageupload">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="uploadBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8XQ-aJ-6qk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZo-wh-HfF">
+                                        <rect key="frame" x="315" y="579" width="58" height="58"/>
+                                        <state key="normal" image="light-menu-button"/>
+                                        <connections>
+                                            <action selector="menuBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JzJ-lG-d4T"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstItem="SZo-wh-HfF" firstAttribute="top" secondItem="KWp-ye-yUT" secondAttribute="bottom" constant="10" id="54K-cA-arc"/>
+                                    <constraint firstAttribute="trailing" secondItem="SZo-wh-HfF" secondAttribute="trailing" constant="2" id="D1C-mE-RJR"/>
+                                    <constraint firstItem="OQH-b3-jIB" firstAttribute="centerY" secondItem="SZo-wh-HfF" secondAttribute="centerY" id="DOQ-vu-36g"/>
+                                    <constraint firstItem="KWp-ye-yUT" firstAttribute="centerX" secondItem="SZo-wh-HfF" secondAttribute="centerX" id="EXP-QM-45Q"/>
+                                    <constraint firstItem="SZo-wh-HfF" firstAttribute="leading" secondItem="OQH-b3-jIB" secondAttribute="trailing" constant="10" id="Hj3-RT-rti"/>
+                                    <constraint firstAttribute="bottom" secondItem="SZo-wh-HfF" secondAttribute="bottom" constant="30" id="VmQ-u9-8ge"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <accessibility key="accessibilityConfiguration">
                             <bool key="isElement" value="YES"/>
@@ -91,23 +112,20 @@
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6DW-in-jk3" secondAttribute="bottom" constant="15" id="0a4-N1-5Xg"/>
                             <constraint firstItem="WAa-z2-Qms" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="18i-Dl-HeA"/>
-                            <constraint firstItem="9SO-aj-fWK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="39b-MR-pqD"/>
-                            <constraint firstAttribute="trailing" secondItem="KWp-ye-yUT" secondAttribute="trailing" constant="10" id="469-p6-rsM"/>
-                            <constraint firstItem="9SO-aj-fWK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="76F-uL-Nk9"/>
+                            <constraint firstItem="18q-Nh-Bn4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="3lM-ON-2Qj"/>
+                            <constraint firstItem="18q-Nh-Bn4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7SB-IS-si5"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wn6-b4-UEY" secondAttribute="bottom" id="84a-Nr-Hb1"/>
                             <constraint firstItem="6DW-in-jk3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="AUA-OE-box"/>
                             <constraint firstAttribute="trailing" secondItem="WAa-z2-Qms" secondAttribute="trailing" id="B2a-M6-IGL"/>
+                            <constraint firstItem="6DW-in-jk3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="80" id="I0P-Hp-Fdi"/>
                             <constraint firstItem="WAa-z2-Qms" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LTQ-sX-aIR"/>
-                            <constraint firstItem="KWp-ye-yUT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="Laf-ek-Bmu"/>
                             <constraint firstAttribute="trailing" secondItem="6DW-in-jk3" secondAttribute="trailing" id="O45-mR-Tqf"/>
                             <constraint firstItem="wn6-b4-UEY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="S1w-ry-1Jz"/>
-                            <constraint firstItem="KWp-ye-yUT" firstAttribute="leading" secondItem="OQH-b3-jIB" secondAttribute="trailing" constant="251" id="TcS-Zx-Qqn"/>
-                            <constraint firstItem="OQH-b3-jIB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="U1q-tS-ung"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WAa-z2-Qms" secondAttribute="bottom" id="XPh-Kb-oEm"/>
                             <constraint firstAttribute="trailing" secondItem="wn6-b4-UEY" secondAttribute="trailing" id="dN6-lH-KPY"/>
-                            <constraint firstItem="OQH-b3-jIB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="dj0-DB-IEM"/>
                             <constraint firstItem="6DW-in-jk3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hfP-ee-nPn"/>
-                            <constraint firstItem="6DW-in-jk3" firstAttribute="top" secondItem="OQH-b3-jIB" secondAttribute="bottom" constant="15" id="s1H-hY-LkV"/>
+                            <constraint firstItem="9SO-aj-fWK" firstAttribute="centerX" secondItem="SZo-wh-HfF" secondAttribute="centerX" id="j8F-7x-D2U"/>
+                            <constraint firstItem="9SO-aj-fWK" firstAttribute="centerY" secondItem="18q-Nh-Bn4" secondAttribute="centerY" id="sw2-zK-VV1"/>
                             <constraint firstItem="wn6-b4-UEY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vGn-Vz-8uQ"/>
                         </constraints>
                     </view>
@@ -115,6 +133,7 @@
                     <connections>
                         <outlet property="glidingIntView" destination="6DW-in-jk3" id="AmW-NX-x9c"/>
                         <outlet property="glidingView" destination="wn6-b4-UEY" id="aR0-g3-VEM"/>
+                        <outlet property="menuBtn" destination="SZo-wh-HfF" id="9dh-0E-zaZ"/>
                         <outlet property="signOutBtn" destination="OQH-b3-jIB" id="NPR-Di-EtX"/>
                         <outlet property="themeSwitch" destination="9SO-aj-fWK" id="G1e-mB-9V1"/>
                         <outlet property="uploadBtn" destination="KWp-ye-yUT" id="nfh-lS-wSd"/>
@@ -122,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="884" y="126"/>
+            <point key="canvasLocation" x="185" y="126"/>
         </scene>
         <!--UploadViewController-->
         <scene sceneID="Ehg-xa-kka">
@@ -265,7 +284,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kYA-pi-OnD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1592.8" y="126.38680659670166"/>
+            <point key="canvasLocation" x="970" y="126"/>
         </scene>
         <!--SignUpViewController-->
         <scene sceneID="Phh-VC-Rxd">
@@ -610,6 +629,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="signInBtnPressed:" destination="e5t-Dg-8Hj" eventType="touchUpInside" id="5uo-lX-ra8"/>
+                                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toFeedViewController" id="YgR-BL-tcI"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flm-PU-odZ" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
@@ -687,35 +707,19 @@
                         <outlet property="passTextFld" destination="7B7-UD-EK1" id="Hnz-UQ-LZH"/>
                         <outlet property="signInBtn" destination="cLo-yH-V89" id="pdW-YX-l2P"/>
                         <outlet property="signUpBtn" destination="flm-PU-odZ" id="bdm-as-xwF"/>
-                        <segue destination="nf6-LJ-NTm" kind="show" identifier="toFeedViewController" id="puX-wA-Sho"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5zi-YU-UTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-551.20000000000005" y="126.38680659670166"/>
         </scene>
-        <!--Custom Navi Controller-->
-        <scene sceneID="jye-y5-DR5">
-            <objects>
-                <navigationController storyboardIdentifier="CustomNaviController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="nf6-LJ-NTm" customClass="CustomNaviController" customModule="Wallpaper_App" customModuleProvider="target" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="WMH-aY-DaY">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="1BK-oz-sAA"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jTy-8p-p7H" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="162" y="126"/>
-        </scene>
     </scenes>
     <resources>
         <image name="MultiCurves" width="540" height="960"/>
         <image name="handiphonesparkle2" width="400" height="300"/>
         <image name="imageupload" width="100" height="100"/>
+        <image name="light-back-button" width="20" height="20"/>
         <image name="light-close-button" width="40" height="40"/>
+        <image name="light-menu-button" width="58" height="58"/>
     </resources>
 </document>
