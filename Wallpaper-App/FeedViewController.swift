@@ -193,11 +193,19 @@ class FeedViewController: UIViewController {
         
     }
     
+    //MARK:  - Status Bar
+    override var prefersStatusBarHidden: Bool {
+        return isStatusBarHidden
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        // MARK: - Navi Bar
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        navigationController?.presentTransparentNavigationBar()
+        // MARK: - Show/Hide Status Bar
+        isStatusBarHidden = false
+        UIView.animate(withDuration: 0.25) {
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
         
         // navigationController?.hideTransparentNavigationBar()
         
@@ -273,11 +281,6 @@ class FeedViewController: UIViewController {
         NotificationCenter.default.removeObserver(handleUpdateFeed())
         NotificationCenter.default.removeObserver(firstTimeVC(_:))
         NotificationCenter.default.removeObserver(tabBarShow())
-    }
-    
-    // MARK: - Status Bar
-    override var prefersStatusBarHidden: Bool {
-        return isStatusBarHidden
     }
     
     // MARK: - Check User First Time Viewing VC (Instructions)
@@ -406,7 +409,7 @@ class FeedViewController: UIViewController {
     
     // MARK: - Menu Button
     @IBAction func menuBtnPressed(_ sender: UIButton) {
-        if menuBtn.currentImage == menuBtn {
+        if sender.currentImage == menuBtn {
             UIView.animate(withDuration: 0.3, animations: {
                 self.uploadBtn.alpha = 1
                 self.signOutBtn.alpha = 1
@@ -423,13 +426,13 @@ class FeedViewController: UIViewController {
                 self.signOutBtn.center = self.menuBtn.center
             })
         }
-        // toggleMenuBtns(button: sender, onImage: <#T##UIImage#>, offImage: <#T##UIImage#>)
+        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "light-menu-button"), offImage: #imageLiteral(resourceName: "light-menu-button"))
     }
     
 
     // MARK: - Upload Button Action
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
-        // toggleMenuBtns(button: <#T##UIButton#>, onImage: <#T##UIImage#>, offImage: <#T##UIImage#>)
+        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "upload"), offImage: #imageLiteral(resourceName: "upload"))
         let uploadVC = storyboard?.instantiateViewController(withIdentifier: "UploadViewController") as! UploadViewController
         uploadVC.providesPresentationContextTransitionStyle = true
         uploadVC.definesPresentationContext = true
@@ -441,7 +444,7 @@ class FeedViewController: UIViewController {
     
     // MARK: - Sign Out Button Action
     @IBAction func signOutBtnPressed(_ sender: UIButton) {
-        // toggleMenuBtns(button: <#T##UIButton#>, onImage: <#T##UIImage#>, offImage: <#T##UIImage#>)
+        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "login"), offImage: #imageLiteral(resourceName: "login"))
         // Signed In User
         if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
             AuthService.instance.logOutUser()
@@ -559,6 +562,11 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
             
             popUpVC.transitioningDelegate = self
             popUpVC.modalPresentationStyle = .custom
+            
+            isStatusBarHidden = true
+            UIView.animate(withDuration: 0.25) {
+                self.setNeedsStatusBarAppearanceUpdate()
+            }
             
             self.present(popUpVC, animated: true, completion: nil)
         }
