@@ -38,4 +38,7 @@ var redColor = UIColor(red: 0.77, green: 0.28, blue: 0.38, alpha: 1.0) // #ae538
 var orangeColor = UIColor(red: 0.90, green: 0.55, blue: 0.38, alpha: 1.0) // #e58d62
 var purpleColor = UIColor(red: 0.44, green: 0.09, blue: 9.67, alpha: 1.0) // #7117aa
 
+// UserDefaults
+let Defaults = UserDefaults.standard
+
 

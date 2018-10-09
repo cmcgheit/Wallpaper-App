@@ -244,10 +244,10 @@ class UploadViewController: UIViewController {
     @objc func firstTimeUploadVC() {
         if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
             // User signed-In
-            UserDefaults.standard.setInstructions(value: false)
+            Defaults.setInstructions(value: false)
         } else {
             NotificationCenter.default.post(name: .firstTimeViewController, object: nil)
-            UserDefaults.standard.setInstructions(value: true)
+            Defaults.setInstructions(value: true)
             self.uploadInstructionsController.start(on: self)
         }
     }

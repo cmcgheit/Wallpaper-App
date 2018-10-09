@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		49576B963725442268CF8D9F /* Pods_Wallpaper_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */; };
+		D8070668216BC0D90020B4B5 /* StoreReviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8070667216BC0D90020B4B5 /* StoreReviewHelper.swift */; };
 		D808C9642131EEBE004C95C9 /* EntryAttributeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808C9632131EEBE004C95C9 /* EntryAttributeWrapper.swift */; };
 		D808C96A2135B490004C95C9 /* DynamicAccessibilityLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808C9692135B490004C95C9 /* DynamicAccessibilityLayout.swift */; };
 		D808C96E2135F36A004C95C9 /* PresentSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D808C96D2135F36A004C95C9 /* PresentSectionViewController.swift */; };
@@ -87,6 +88,7 @@
 /* Begin PBXFileReference section */
 		6A17C4001EFD5AD30047CBA5 /* Wallpaper-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wallpaper-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		736C4A3A5ADC9C6F00DFF982 /* Pods_Wallpaper_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wallpaper_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8070667216BC0D90020B4B5 /* StoreReviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewHelper.swift; sourceTree = "<group>"; };
 		D808C95E21177006004C95C9 /* Wallpaper-App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Wallpaper-App.entitlements"; sourceTree = "<group>"; };
 		D808C9632131EEBE004C95C9 /* EntryAttributeWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryAttributeWrapper.swift; sourceTree = "<group>"; };
 		D808C9692135B490004C95C9 /* DynamicAccessibilityLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicAccessibilityLayout.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				D8E93BEA20BF2AD500CE0AD8 /* User.swift */,
 				D8E93BEE20C1AC7300CE0AD8 /* WallpaperImageCache.swift */,
 				D808C9632131EEBE004C95C9 /* EntryAttributeWrapper.swift */,
+				D8070667216BC0D90020B4B5 /* StoreReviewHelper.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				D8FC5D9C20E724B000FA632F /* DarkTheme.swift in Sources */,
 				D8FC5D9A20E7242100FA632F /* LightTheme.swift in Sources */,
 				D8E93BE920BF0D8C00CE0AD8 /* WallpaperCategories.swift in Sources */,
+				D8070668216BC0D90020B4B5 /* StoreReviewHelper.swift in Sources */,
 				D87DA23620FA4CE800777B0D /* RoundedRectButton.swift in Sources */,
 				D8E93BC820B8B63200CE0AD8 /* NSLayoutConstraint+Multiplier.swift in Sources */,
 				D8E93B8C20B8B05100CE0AD8 /* AppDelegate.swift in Sources */,

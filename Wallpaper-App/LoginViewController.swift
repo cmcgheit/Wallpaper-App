@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
         
         // Take user to Feed if already logged-in
         if authRef.currentUser?.uid != nil && authRef.currentUser?.isAnonymous != nil {
-            UserDefaults.standard.setIsLoggedIn(value: true)
+            Defaults.setIsLoggedIn(value: true)
             self.performSegue(withIdentifier:  "toFeedViewController", sender: self)
         } else {
             // If User not logged in
@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
             } catch  {
                 print(error)
             }
-            UserDefaults.standard.setIsLoggedIn(value: false)
+            Defaults.setIsLoggedIn(value: false)
         }
     }
     
@@ -135,7 +135,7 @@ class LoginViewController: UIViewController {
             AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, loginError) in
                 if success {
                      self.completeSignIn(id: (authRef.currentUser?.uid)!) // collects uid/keychain when user signs in
-                    UserDefaults.standard.setIsLoggedIn(value: true)
+                    Defaults.setIsLoggedIn(value: true)
                     // successfully registered alert
                     
                     self.performSegue(withIdentifier:
@@ -196,14 +196,14 @@ class LoginViewController: UIViewController {
     // MARK: - Save User Text
     @objc func saveToUserDefaults(_ sender: AnimatedTextField) {
         guard defaultsKey != "" else { return }
-        UserDefaults.standard.set(sender.text ?? "", forKey: defaultsKey)
+        Defaults.set(sender.text ?? "", forKey: defaultsKey)
         
-        // UserDefaults.standard.synchronize()
+        // Defaults.synchronize()
     }
     
     func restoreByUserDefaults() {
         guard defaultsKey != "" else { return }
-        guard let text = UserDefaults.standard.string(forKey: defaultsKey) else { return }
+        guard let text = Defaults.string(forKey: defaultsKey) else { return }
         guard text != "" else { return }
         
         self.text = text

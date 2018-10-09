@@ -142,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="185" y="126"/>
+            <point key="canvasLocation" x="184.80000000000001" y="125.4872563718141"/>
         </scene>
         <!--UploadViewController-->
         <scene sceneID="Ehg-xa-kka">

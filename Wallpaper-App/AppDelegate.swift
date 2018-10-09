@@ -61,8 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupGlidingCollection()
         
         // Set Theme, defaults to light, checks for light when leaves app
-        if UserDefaults.standard.object(forKey: "lightTheme") != nil {
-            Theme.current = UserDefaults.standard.bool(forKey: "lightTheme") ? LightTheme() : DarkTheme()
+        if Defaults.object(forKey: "lightTheme") != nil {
+            Theme.current = Defaults.bool(forKey: "lightTheme") ? LightTheme() : DarkTheme()
         }
         
         return true

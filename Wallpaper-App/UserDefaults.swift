@@ -10,6 +10,7 @@ extension UserDefaults {
         case darkTheme
         case lightTheme
         case instructions
+        case appOpenCount
     }
     
     func setAnonymousLogin(value: Bool) {

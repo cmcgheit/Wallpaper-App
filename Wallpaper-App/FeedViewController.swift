@@ -109,10 +109,10 @@ class FeedViewController: UIViewController {
         notificationObservers()
         
         // Theme - checks for theme setting
-        if UserDefaults.standard.object(forKey: "lightTheme") != nil {
-            UserDefaults.standard.set(true, forKey: "lightTheme")
+        if Defaults.object(forKey: "lightTheme") != nil {
+            Defaults.set(true, forKey: "lightTheme")
         } else {
-            UserDefaults.standard.set(true, forKey: "darkTheme")
+            Defaults.set(true, forKey: "darkTheme")
         }
         
         glidingIntView.layer.cornerRadius = 15
@@ -213,9 +213,9 @@ class FeedViewController: UIViewController {
         handle = authRef.addStateDidChangeListener { ( auth, user) in
             if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
                 // User signed-In
-                UserDefaults.standard.setIsLoggedIn(value: true)
+                Defaults.setIsLoggedIn(value: true)
             } else {
-                UserDefaults.standard.setIsLoggedIn(value: false)
+                Defaults.setIsLoggedIn(value: false)
                 // change for navi
                 let signUpVC = SignUpViewController()
                 self.present(signUpVC, animated: true)
@@ -286,10 +286,10 @@ class FeedViewController: UIViewController {
     // MARK: - Check User First Time Viewing VC (Instructions)
     @objc func firstTimeVC(_ notification: NSNotification) {
         if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
-            UserDefaults.standard.setInstructions(value: false)
+            Defaults.setInstructions(value: false)
         } else {
             NotificationCenter.default.post(name: .firstTimeViewController, object: nil)
-            UserDefaults.standard.setInstructions(value: true)
+            Defaults.setInstructions(value: true)
             self.instructionsController.start(on: self)
         }
     }
@@ -352,7 +352,7 @@ class FeedViewController: UIViewController {
         Theme.themeChanged = true
         applyTheme()
         
-        UserDefaults.standard.set(true, forKey: "lightTheme")
+        Defaults.set(true, forKey: "lightTheme")
     }
     
     fileprivate func applyTheme() {
@@ -448,7 +448,7 @@ class FeedViewController: UIViewController {
         // Signed In User
         if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
             AuthService.instance.logOutUser()
-            UserDefaults.standard.setIsLoggedIn(value: false)
+            Defaults.setIsLoggedIn(value: false)
             // MARK: Floating Signout Indicator (Success)
             DispatchQueue.main.async {
                 self.signOutSuccessAlert()

@@ -31,14 +31,14 @@ class SplashViewController: UIViewController {
     
     @objc func checkIfLoggedIn() {
         if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
-            UserDefaults.standard.setIsLoggedIn(value: true)
+            Defaults.setIsLoggedIn(value: true)
             self.loading(.stop)
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let feedVC = storyboard.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
             self.present(feedVC, animated: true, completion: nil)
             self.splashTimer.invalidate()
         } else {
-            UserDefaults.standard.setIsLoggedIn(value: false)
+            Defaults.setIsLoggedIn(value: false)
             self.loading(.stop)
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
