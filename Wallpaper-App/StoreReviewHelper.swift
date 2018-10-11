@@ -14,7 +14,7 @@ struct StoreReviewHelper {
     }
     
     static func checkAndAskForReview() {
-        guard var appOpenCount = Defaults.value(forKey: UserDefaults.UserDefaultKeys.appOpenCount.rawValue) as? Int else {
+        guard let appOpenCount = Defaults.value(forKey: UserDefaults.UserDefaultKeys.appOpenCount.rawValue) as? Int else {
             Defaults.set(1, forKey: UserDefaults.UserDefaultKeys.appOpenCount.rawValue)
             return
         }
@@ -34,7 +34,24 @@ struct StoreReviewHelper {
         if #available(iOS 10.3, *) {
             SKStoreReviewController.requestReview()
         } else {
-            // Earlier versions reviews
+            showRateUs()
+        }
+    }
+    
+    fileprivate func showRateUs() {
+        rateApp(appId: appID)
+    }
+    
+    fileprivate func rateApp(appId: String) {
+        openURL("itms-apps://itunes.apple.com/app/" + appId)
+    }
+    
+    fileprivate func openURL(_ urlString: String) {
+        let url = URL(string: urlString)!
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.open(url)
         }
     }
     

@@ -116,7 +116,6 @@ class FeedViewController: UIViewController {
         }
         
         glidingIntView.layer.cornerRadius = 15
-        signOutBtn.layer.cornerRadius = 15
         
         // Instructions
         self.instructionsController.dataSource = self
@@ -409,7 +408,7 @@ class FeedViewController: UIViewController {
     
     // MARK: - Menu Button
     @IBAction func menuBtnPressed(_ sender: UIButton) {
-        if sender.currentImage == menuBtn {
+        if menuBtn.currentImage ==  #imageLiteral(resourceName: "menubuttonoff") {
             UIView.animate(withDuration: 0.3, animations: {
                 self.uploadBtn.alpha = 1
                 self.signOutBtn.alpha = 1
@@ -426,13 +425,13 @@ class FeedViewController: UIViewController {
                 self.signOutBtn.center = self.menuBtn.center
             })
         }
-        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "light-menu-button"), offImage: #imageLiteral(resourceName: "light-menu-button"))
+        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "menubuttonon"), offImage: #imageLiteral(resourceName: "menubuttonoff"))
     }
     
 
-    // MARK: - Upload Button Action
+    // MARK: - Upload Button
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
-        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "upload"), offImage: #imageLiteral(resourceName: "upload"))
+        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "uploadbuttonoff"), offImage: #imageLiteral(resourceName: "uploadbuttonon"))
         let uploadVC = storyboard?.instantiateViewController(withIdentifier: "UploadViewController") as! UploadViewController
         uploadVC.providesPresentationContextTransitionStyle = true
         uploadVC.definesPresentationContext = true
@@ -444,7 +443,7 @@ class FeedViewController: UIViewController {
     
     // MARK: - Sign Out Button Action
     @IBAction func signOutBtnPressed(_ sender: UIButton) {
-        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "login"), offImage: #imageLiteral(resourceName: "login"))
+        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "closebuttonon"), offImage: #imageLiteral(resourceName: "closebuttonoff"))
         // Signed In User
         if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
             AuthService.instance.logOutUser()
