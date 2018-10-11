@@ -205,6 +205,12 @@ class UploadViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: self.attributesWrapper.attributes)
     }
     
+    func noAccessToCameraAlert() {
+        let titleCamText = "No Access To Camera"
+        let descCamText = "Please allow camera access, so the app can access your camera to upload a picture as a wallpaper"
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleCamText, desc: descCamText, textColor: UIColor.darkGray)
+    }
+    
     func uploadSuccessfulAlert() {
         let titleUpText = "Upload Successful"
         let descUpText = "Your wallpaper image has been uploaded successfully"
@@ -214,6 +220,12 @@ class UploadViewController: UIViewController {
     func uploadErrorAlert() {
         let titleText = "Error in Upload"
         let descText = "Something went wrong in the upload. Please try again"
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+    }
+    
+    func noAllItemsError() {
+        let titleText = "Error With Fields"
+        let descText = "Please fill out all fields, then continue"
         self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
     }
     
@@ -276,13 +288,15 @@ class UploadViewController: UIViewController {
     
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
         // MARK: - Ask User Permission to Access Camera
-        //        AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
-        //            if response {
-        //                //access granted
-        //            } else {
-        //
-        //            }
-        //        }
+                AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
+                    if response {
+                        //access granted, take camera photo
+                        // save photo firebase?
+                    } else {
+                        self.noAccessToCameraAlert()
+                        // handle other errors
+                    }
+                }
         // MARK: - Ask User Permission to Access Photo Library before Upload Wallpapers
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             PHPhotoLibrary.requestAuthorization { (status) in

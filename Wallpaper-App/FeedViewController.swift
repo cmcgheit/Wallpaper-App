@@ -17,10 +17,12 @@ class FeedViewController: UIViewController {
     @IBOutlet var glidingView: GlidingCollection!
     fileprivate var collectionView: UICollectionView!
     
+    @IBOutlet weak var backThemeView: UIImageView!
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var signOutBtn: UIButton!
     @IBOutlet weak var glidingIntView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var themeSwitch: CustomSwitch!
     
     // Menu
@@ -223,7 +225,7 @@ class FeedViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        view.backgroundColor = UIColor(patternImage: Theme.current.backgroundImage)
+        backThemeView.image = Theme.current.backgroundImage
         
         if Theme.themeChanged {
             DispatchQueue.main.async {
@@ -356,11 +358,12 @@ class FeedViewController: UIViewController {
     
     fileprivate func applyTheme() {
         DispatchQueue.main.async {
-            self.view.backgroundColor = UIColor(patternImage: Theme.current.backgroundImage)
+            self.backThemeView.image = Theme.current.backgroundImage
             self.glidingIntView.backgroundColor = Theme.current.cardView
             self.view.tintColor = Theme.current.tint
             self.uploadBtn.tintColor = Theme.current.tint
-            
+            self.titleLabel.textColor = Theme.current.textColor
+            self.menuBtn.setTitleColor(Theme.current.textColor, for: .normal)
         }
     }
     
