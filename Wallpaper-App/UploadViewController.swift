@@ -54,7 +54,7 @@ class UploadViewController: UIViewController {
         
         makeShadowView()
         wallpaperDescTextView.becomeFirstResponder()
-        wallpaperImgView.image = UIImage(named: "placeholder-image")
+        wallpaperImgView.image = UIImage(named: "cliphereupload")
         
         // Instructions
         uploadInstructionsController.dataSource = self
@@ -65,11 +65,7 @@ class UploadViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        // MARK: - Set navigation bar to transparent
-        self.navigationController?.hideTransparentNavigationBar()
-    }
-    
+    // MARK: - Media SourceTypes
     fileprivate func sourceTypePicker() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             imagePicker.sourceType = .camera
@@ -80,6 +76,15 @@ class UploadViewController: UIViewController {
         self.present(imagePicker, animated: true, completion: nil)
     }
     
+    // MARK: - Present Camera
+    fileprivate func presentCamera() {
+        let camera = UIImagePickerController()
+        camera.delegate = self
+        camera.sourceType = .camera
+        self.present(camera, animated: true)
+    }
+    
+    // MARK: - Present Photo Library Picker
     fileprivate func presentPhotoPicker() {
         let photoPicker = UIImagePickerController()
         photoPicker.delegate = self
@@ -205,6 +210,38 @@ class UploadViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: self.attributesWrapper.attributes)
     }
     
+    // Upload Types Alert
+    private func showUploadTypesAlert(attributes: EKAttributes) {
+        let titleText = EKProperty.LabelContent(text: "Upload a Photo from Your Library or Take a Photo in Camera", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
+        let descText = EKProperty.LabelContent(text: "Click on the way you want to upload a wallpaper", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        
+        let image = EKProperty.ImageContent(image: UIImage(named: "uploadbuttonon")!, size: CGSize(width: 35, height: 35))
+        
+        let camBtnText = "Camera"
+        let libraryBtnText = "Photo Library"
+        let simpleMessage = EKSimpleMessage(image: image, title: titleText, description: descText)
+        
+        let camButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
+        let camButtonLabel = EKProperty.LabelContent(text: camBtnText, style: camButtonLabelStyle)
+        let camButton = EKProperty.ButtonContent(label: camButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+            self.requestCameraAccess()
+        }
+        
+        let libraryButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
+        let libraryButtonLabel = EKProperty.LabelContent(text: libraryBtnText, style: libraryButtonLabelStyle)
+        let libraryButton = EKProperty.ButtonContent(label: libraryButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+            self.requestPhotoLibraryAccess()
+        }
+        
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: camButton, libraryButton, separatorColor: tealColor, expandAnimatedly: true)
+        
+        let alertMessage = EKAlertMessage(simpleMessage: simpleMessage, buttonBarContent: buttonsBarContent)
+        
+        let contentView = EKAlertMessageView(with: alertMessage)
+        
+        SwiftEntryKit.display(entry: contentView, using: self.attributesWrapper.attributes)
+    }
+    
     func noAccessToCameraAlert() {
         let titleCamText = "No Access To Camera"
         let descCamText = "Please allow camera access, so the app can access your camera to upload a picture as a wallpaper"
@@ -278,25 +315,26 @@ class UploadViewController: UIViewController {
         })
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
         self.uploadInstructionsController.stop(immediately: true)
         
     }
     
-    @IBAction func uploadBtnPressed(_ sender: UIButton) {
+    // MARK: - Camera Access
+    func requestCameraAccess() {
         // MARK: - Ask User Permission to Access Camera
-                AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
-                    if response {
-                        //access granted, take camera photo
-                        // save photo firebase?
-                    } else {
-                        self.noAccessToCameraAlert()
-                        // handle other errors
-                    }
-                }
+        AVCaptureDevice.requestAccess(for: .video) { response in
+            if response {
+                self.presentCamera()
+            } else {
+                self.noAccessToCameraAlert()
+                // handle other errors
+            }
+        }
+    }
+    
+    // MARK: - Photo Library Access
+    func requestPhotoLibraryAccess() {
         // MARK: - Ask User Permission to Access Photo Library before Upload Wallpapers
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             PHPhotoLibrary.requestAuthorization { (status) in
@@ -341,22 +379,23 @@ class UploadViewController: UIViewController {
         }
     }
     
+    
+    // MARK: - Wallpaper Image Button Action
+    @IBAction func wallpaperImgUploadClicked() {
+        // Option Camera/Photo Library
+        showUploadTypesAlert(attributes: self.attributesWrapper.attributes)
+    }
+    
+    // MARK: - Upload Wallpaper Button Action
+    @IBAction func uploadBtnPressed(_ sender: UIButton) {
+        // check all fields filled out
+        // upload wallpaper to database
+    }
+    
     // MARK: - Close Button Pressed Action
     @IBAction  func closeBtnPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
-        
-//        if wallpaperDescTextView.text.isEmpty && wallpaperPopUpView.image != nil && (wallpaperCatLbl.text?.isEmpty)! { // only close if data fields empty?
-//            // send data from wallpaperCatLbl?
-//            self.closeBtn?.isHidden = false
-//            userTappedCloseButtonClosure?()
-//            self.dismiss(animated: true, completion: nil)
-//            //            let viewController = UploadWallpaperPopUp()
-//            //                viewController.willMove(toParentViewController: nil)
-//            //                viewController.view.removeFromSuperview()
-//            //                viewController.removeFromParentViewController()
-//        }
     }
-    
 }
 
 // MARK: TextView Delegate Functions
