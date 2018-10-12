@@ -223,7 +223,7 @@
                                             <constraint firstAttribute="width" constant="250" id="2UI-pB-e2x"/>
                                         </constraints>
                                     </stackView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ugj-gj-sWe">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ugj-gj-sWe">
                                         <rect key="frame" x="13.5" y="259" width="268" height="313"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="ei7-dK-S1B"/>

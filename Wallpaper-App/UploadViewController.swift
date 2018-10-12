@@ -54,7 +54,8 @@ class UploadViewController: UIViewController {
         
         makeShadowView()
         wallpaperDescTextView.becomeFirstResponder()
-        wallpaperImgView.image = UIImage(named: "cliphereupload")
+        wallpaperImgView.image = UIImage(named: "clickhereupload")
+        wallpaperImgView.layer.cornerRadius = 10
         
         // Instructions
         uploadInstructionsController.dataSource = self
@@ -62,6 +63,11 @@ class UploadViewController: UIViewController {
         self.uploadInstructionsController.overlay.allowTap = true
         
         customBackBtn()
+        
+        // Wallpaper Image Tap Gesture
+        let tap = UITapGestureRecognizer(target: self, action: #selector(wallpaperImgUploadClicked))
+        wallpaperImgView.addGestureRecognizer(tap)
+        wallpaperImgView.isUserInteractionEnabled = true
         
     }
     
@@ -211,12 +217,10 @@ class UploadViewController: UIViewController {
     }
     
     // Upload Types Alert
-    private func showUploadTypesAlert(attributes: EKAttributes) {
+    private func showUploadTypesPopUp(attributes: EKAttributes) {
         let titleText = EKProperty.LabelContent(text: "Upload a Photo from Your Library or Take a Photo in Camera", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
         let descText = EKProperty.LabelContent(text: "Click on the way you want to upload a wallpaper", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
-        
         let image = EKProperty.ImageContent(image: UIImage(named: "uploadbuttonon")!, size: CGSize(width: 35, height: 35))
-        
         let camBtnText = "Camera"
         let libraryBtnText = "Photo Library"
         let simpleMessage = EKSimpleMessage(image: image, title: titleText, description: descText)
@@ -325,6 +329,7 @@ class UploadViewController: UIViewController {
         // MARK: - Ask User Permission to Access Camera
         AVCaptureDevice.requestAccess(for: .video) { response in
             if response {
+                // self.sourceTypePicker()
                 self.presentCamera()
             } else {
                 self.noAccessToCameraAlert()
@@ -340,6 +345,7 @@ class UploadViewController: UIViewController {
             PHPhotoLibrary.requestAuthorization { (status) in
                 switch status {
                 case .authorized:
+                    // self.sourceTypePicker()
                     self.presentPhotoPicker()
                     // If User authorizes, allow upload
                     if self.wallpaperDescTextView.text.isEmpty && self.takenImage != nil {
@@ -359,6 +365,7 @@ class UploadViewController: UIViewController {
                     }
                 case .notDetermined:
                     if status == PHAuthorizationStatus.authorized {
+                        // self.sourceTypePicker()
                         self.presentPhotoPicker()
                     } else {
                         // Not Determined and not authorized
@@ -380,16 +387,21 @@ class UploadViewController: UIViewController {
     }
     
     
-    // MARK: - Wallpaper Image Button Action
-    @IBAction func wallpaperImgUploadClicked() {
+    // MARK: - Wallpaper Image Tap Gesture Function
+    @objc func wallpaperImgUploadClicked() {
         // Option Camera/Photo Library
-        showUploadTypesAlert(attributes: self.attributesWrapper.attributes)
+        showUploadTypesPopUp(attributes: self.attributesWrapper.attributes)
     }
     
     // MARK: - Upload Wallpaper Button Action
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
-        // check all fields filled out
-        // upload wallpaper to database
+        if wallpaperDescTextView.text != nil && wallpaperDescTextView.text != wallpaperDescPlaceholderText && wallpaperImgView.image != UIImage(named: "clickhereupload") && wallpaperImgView.image != nil && wallpaperCatPickBtn.currentTitle != nil && wallpaperCatPickBtn.currentTitle != wallpaperCatPlaceholderText {
+            // imagePickerController(<#T##picker: UIImagePickerController##UIImagePickerController#>, didFinishPickingMediaWithInfo: <#T##[String : Any]#>)
+            // go back to feed view controller after successful upload
+        } else {
+            noAllItemsError()
+            // handle other errors
+        }
     }
     
     // MARK: - Close Button Pressed Action
