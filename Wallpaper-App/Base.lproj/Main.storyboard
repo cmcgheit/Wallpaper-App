@@ -165,7 +165,7 @@
                                 <blurEffect style="extraLight"/>
                             </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yya-2u-NqL" customClass="CustomCardView" customModule="Wallpaper_App" customModuleProvider="target">
-                                <rect key="frame" x="40" y="20" width="295" height="597"/>
+                                <rect key="frame" x="40" y="30" width="295" height="587"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Wallpaper" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5l-Xo-PF4">
                                         <rect key="frame" x="75.5" y="10" width="144.5" height="23"/>
@@ -224,13 +224,13 @@
                                         </constraints>
                                     </stackView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ugj-gj-sWe">
-                                        <rect key="frame" x="13.5" y="259" width="268" height="313"/>
+                                        <rect key="frame" x="13.5" y="259" width="268" height="303"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="ei7-dK-S1B"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZjV-jE-2Xt">
-                                        <rect key="frame" x="130.5" y="538" width="34" height="34"/>
+                                        <rect key="frame" x="130.5" y="528" width="34" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="QL5-jC-CYb"/>
                                             <constraint firstAttribute="width" constant="34" id="yc8-r5-qNy"/>
@@ -265,7 +265,7 @@
                         <constraints>
                             <constraint firstItem="vch-lu-ef7" firstAttribute="top" secondItem="2ZV-K7-uI7" secondAttribute="top" id="6vG-XF-CdI"/>
                             <constraint firstAttribute="trailing" secondItem="yya-2u-NqL" secondAttribute="trailing" constant="40" id="A9E-gx-Aqf"/>
-                            <constraint firstItem="yya-2u-NqL" firstAttribute="top" secondItem="IFe-0l-Qpr" secondAttribute="bottom" id="Jqb-ii-QUS"/>
+                            <constraint firstItem="yya-2u-NqL" firstAttribute="top" secondItem="IFe-0l-Qpr" secondAttribute="bottom" constant="10" id="Jqb-ii-QUS"/>
                             <constraint firstItem="yya-2u-NqL" firstAttribute="leading" secondItem="2ZV-K7-uI7" secondAttribute="leading" constant="40" id="bzG-X4-DbP"/>
                             <constraint firstItem="OPv-p5-Ibc" firstAttribute="top" secondItem="vch-lu-ef7" secondAttribute="bottom" id="kSL-wP-GhS"/>
                             <constraint firstItem="OPv-p5-Ibc" firstAttribute="top" secondItem="yya-2u-NqL" secondAttribute="bottom" constant="50" id="o2X-uh-efq"/>

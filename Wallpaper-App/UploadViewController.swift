@@ -71,31 +71,25 @@ class UploadViewController: UIViewController {
         
     }
     
-    // MARK: - Media SourceTypes
-    fileprivate func sourceTypePicker() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            imagePicker.sourceType = .camera
-            imagePicker.cameraCaptureMode = .photo
-        } else {
-            imagePicker.sourceType = .photoLibrary
-        }
-        self.present(imagePicker, animated: true, completion: nil)
-    }
     
     // MARK: - Present Camera
     fileprivate func presentCamera() {
-        let camera = UIImagePickerController()
-        camera.delegate = self
-        camera.sourceType = .camera
-        self.present(camera, animated: true)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let cameraPicker = UIImagePickerController()
+            cameraPicker.delegate = self
+            cameraPicker.sourceType = .camera
+            present(cameraPicker, animated: true)
+        }
     }
     
-    // MARK: - Present Photo Library Picker
+    // MARK: - Present Photo Library
     fileprivate func presentPhotoPicker() {
-        let photoPicker = UIImagePickerController()
-        photoPicker.delegate = self
-        photoPicker.sourceType = .photoLibrary
-        self.present(photoPicker, animated: true)
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let photoPicker = UIImagePickerController()
+            photoPicker.delegate = self
+            photoPicker.sourceType = .photoLibrary
+            present(photoPicker, animated: true)
+        }
     }
     
     // MARK: - SwiftEntryKit Alerts
@@ -329,7 +323,6 @@ class UploadViewController: UIViewController {
         // MARK: - Ask User Permission to Access Camera
         AVCaptureDevice.requestAccess(for: .video) { response in
             if response {
-                // self.sourceTypePicker()
                 self.presentCamera()
             } else {
                 self.noAccessToCameraAlert()
@@ -345,42 +338,22 @@ class UploadViewController: UIViewController {
             PHPhotoLibrary.requestAuthorization { (status) in
                 switch status {
                 case .authorized:
-                    // self.sourceTypePicker()
+                    // If User authorizes, present photopicker
                     self.presentPhotoPicker()
-                    // If User authorizes, allow upload
-                    if self.wallpaperDescTextView.text.isEmpty && self.takenImage != nil {
-                        self.closeBtn.isHidden = false // upload only if all fields are filled out
-                        //            FIRService.uploadWallToFirebaseStor(image: takenImage) { (, error) in
-                        //
-                        //            }
-                        NotificationCenter.default.post(name: Notification.Name.updateFeedNotificationName, object: nil)
-                        // MARK: - Upload Successful Alert
-                        self.uploadSuccessfulAlert()
-                        self.dismiss(animated: true, completion: nil)
-                    } else {
-                        // Error in Upload
-                        // MARK: - Upload Error Alert
-                        self.uploadErrorAlert()
-                        self.dismiss(animated: true, completion: nil)
-                    }
                 case .notDetermined:
                     if status == PHAuthorizationStatus.authorized {
-                        // self.sourceTypePicker()
                         self.presentPhotoPicker()
                     } else {
                         // Not Determined and not authorized
                         self.showEKNotDetAlert(attributes: self.attributesWrapper.attributes)
-                        self.dismiss(animated: true)
                     }
                 case .restricted:
                     // Restricted Access in Settings
                     self.showEKRestrictAlert(attributes: self.attributesWrapper.attributes)
-                    self.dismiss(animated: true, completion: nil)
                 case .denied:
                     // User declined authorization
                     // MARK: - No Authorization Alert
                     self.showEKDeniedAlert(attributes: self.attributesWrapper.attributes)
-                    self.dismiss(animated: true, completion: nil)
                 }
             }
         }
@@ -390,14 +363,15 @@ class UploadViewController: UIViewController {
     // MARK: - Wallpaper Image Tap Gesture Function
     @objc func wallpaperImgUploadClicked() {
         // Option Camera/Photo Library
-        showUploadTypesPopUp(attributes: self.attributesWrapper.attributes)
+        self.showUploadTypesPopUp(attributes: self.attributesWrapper.attributes)
     }
     
     // MARK: - Upload Wallpaper Button Action
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
         if wallpaperDescTextView.text != nil && wallpaperDescTextView.text != wallpaperDescPlaceholderText && wallpaperImgView.image != UIImage(named: "clickhereupload") && wallpaperImgView.image != nil && wallpaperCatPickBtn.currentTitle != nil && wallpaperCatPickBtn.currentTitle != wallpaperCatPlaceholderText {
-            // imagePickerController(<#T##picker: UIImagePickerController##UIImagePickerController#>, didFinishPickingMediaWithInfo: <#T##[String : Any]#>)
-            // go back to feed view controller after successful upload
+            // MARK: - Upload Successful Alert
+            self.uploadSuccessfulAlert()
+            self.dismiss(animated: true, completion: nil)
         } else {
             noAllItemsError()
             // handle other errors
