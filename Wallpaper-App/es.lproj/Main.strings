@@ -1,0 +1,66 @@
+
+/* Class = "UILabel"; text = "Wall Variety"; ObjectID = "18q-Nh-Bn4"; */
+"18q-Nh-Bn4.text" = "Wall Variety";
+
+/* Class = "UILabel"; text = "Wall Variety: Sign-Up"; ObjectID = "1ot-uS-o6E"; */
+"1ot-uS-o6E.text" = "Wall Variety: Sign-Up";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "7B7-UD-EK1"; */
+"7B7-UD-EK1.placeholder" = "Password";
+
+/* Class = "UIViewController"; title = "UploadViewController"; ObjectID = "7BI-Z6-70c"; */
+"7BI-Z6-70c.title" = "UploadViewController";
+
+/* Class = "UIViewController"; title = "FeedViewController"; ObjectID = "BYZ-38-t0r"; */
+"BYZ-38-t0r.title" = "FeedViewController";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "CgG-2R-r9C"; */
+"CgG-2R-r9C.placeholder" = "Email";
+
+/* Class = "UIButton"; normalTitle = "Login Anonymously"; ObjectID = "EiB-AT-fsZ"; */
+"EiB-AT-fsZ.normalTitle" = "Login Anonymously";
+
+/* Class = "UILabel"; text = "Category:"; ObjectID = "G7T-Cj-ilK"; */
+"G7T-Cj-ilK.text" = "Category:";
+
+/* Class = "UIViewController"; title = "SignUpViewController"; ObjectID = "GZF-Tt-wBC"; */
+"GZF-Tt-wBC.title" = "SignUpViewController";
+
+/* Class = "UIButton"; normalTitle = "Sign-Up"; ObjectID = "Gue-TG-lhA"; */
+"Gue-TG-lhA.normalTitle" = "Sign-Up";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "KIc-ps-9vn"; */
+"KIc-ps-9vn.placeholder" = "Email";
+
+/* Class = "UILabel"; text = "Wall Variety: Sign-In"; ObjectID = "XRt-vc-IzH"; */
+"XRt-vc-IzH.text" = "Wall Variety: Sign-In";
+
+/* Class = "UILabel"; text = "Upload Wallpaper"; ObjectID = "b5l-Xo-PF4"; */
+"b5l-Xo-PF4.text" = "Upload Wallpaper";
+
+/* Class = "UIButton"; normalTitle = "Sign-In"; ObjectID = "cLo-yH-V89"; */
+"cLo-yH-V89.normalTitle" = "Sign-In";
+
+/* Class = "UIViewController"; title = "LoginViewController"; ObjectID = "e5t-Dg-8Hj"; */
+"e5t-Dg-8Hj.title" = "LoginViewController";
+
+/* Class = "UIButton"; normalTitle = "Reset Password"; ObjectID = "edg-yq-9pn"; */
+"edg-yq-9pn.normalTitle" = "Reset Password";
+
+/* Class = "UIButton"; normalTitle = "Sign-Up"; ObjectID = "flm-PU-odZ"; */
+"flm-PU-odZ.normalTitle" = "Sign-Up";
+
+/* Class = "UIViewController"; title = "SplashViewController"; ObjectID = "hwN-uW-ZJg"; */
+"hwN-uW-ZJg.title" = "SplashViewController";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "mrw-Ur-t6h"; */
+"mrw-Ur-t6h.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "mz9-bU-WVz"; */
+"mz9-bU-WVz.normalTitle" = "Back";
+
+/* Class = "UIButton"; normalTitle = "Email Password"; ObjectID = "s9x-pm-Hr9"; */
+"s9x-pm-Hr9.normalTitle" = "Email Password";
+
+/* Class = "UILabel"; text = "Wall Variety: Forgot Password?"; ObjectID = "y9a-lx-U3I"; */
+"y9a-lx-U3I.text" = "Wall Variety: Forgot Password?";
