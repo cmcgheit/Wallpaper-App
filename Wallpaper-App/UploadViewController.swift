@@ -370,11 +370,20 @@ class UploadViewController: UIViewController {
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
         if wallpaperDescTextView.text != nil && wallpaperDescTextView.text != wallpaperDescPlaceholderText && wallpaperImgView.image != UIImage(named: "clickhereupload") && wallpaperImgView.image != nil && wallpaperCatPickBtn.currentTitle != nil && wallpaperCatPickBtn.currentTitle != wallpaperCatPlaceholderText {
             // MARK: - Upload Successful Alert
-            self.uploadSuccessfulAlert()
-            self.dismiss(animated: true, completion: nil)
+            let wallpaperURL = URL(string: "path/to/image")!
+            FIRService.saveWalltoFirebase(image: takenImage, wallpaperURL: wallpaperURL, wallpaperDesc: wallpaperDescTextView.text, wallpaperCategory: wallpaperCatPickBtn.currentTitle) { (error) in
+                if error != nil { // upload error
+                    self.uploadErrorAlert()
+                    print(error?.localizedDescription ?? "")
+                    return
+                } else { // upload successful
+                    self.uploadSuccessfulAlert()
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
         } else {
             noAllItemsError()
-            // handle other errors
+            // handle other errors/not all items
         }
     }
     
@@ -411,39 +420,12 @@ extension UploadViewController: UITextViewDelegate {
 extension UploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        // MARK: - Upload Wallpapers to Firebase
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        self.takenImage = image
-        self.wallpaperImgView.image = self.takenImage
-        takenImage = takenImage.resizeWithWidth(width: 700)! // Resize taken image
-        let compressData = UIImageJPEGRepresentation(takenImage, 0.5) // Compress taken image
-        let compressedImage = UIImage(data: compressData!)
-        _ = storageRef.putData(compressData!, metadata: nil) { (metadata, error) in
-            // let size = metadata?.size
-            let metaData = StorageMetadata()
-            metaData.contentType = "image/jpeg"
-            guard metadata != nil else {
-                if error != nil {
-                    print(error?.localizedDescription as Any)
-                }
-                return
-            }
-            // access to download URL after upload.
-            storageRef.downloadURL { (url, error) in
-                guard let downloadURL = url else {
-                    if error != nil {
-                        print(error?.localizedDescription as Any)
-                    }
-                    return
-                }
-                FIRService.saveWalltoFirebase(image: compressedImage!, wallpaperURL: downloadURL, wallpaperDesc: self.wallpaperDescTextView.text, wallpaperCategory: self.wallpaperCatLbl.text) { (error) in
-                    if error != nil {
-                        print(error?.localizedDescription as Any)
-                        return
-                    }
-                }
-            }
+        
+        if let wallpaperImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let optimizedImageData = UIImagePNGRepresentation(wallpaperImage) {
+            self.takenImage = wallpaperImage
+            print(takenImage)
         }
+        
         self.dismiss(animated: true)
     }
     
