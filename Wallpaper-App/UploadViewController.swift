@@ -25,6 +25,7 @@ class UploadViewController: UIViewController {
     //Upload Camera properties
     var imagePicker: UIImagePickerController!
     var takenImage: UIImage!
+    var wallpaperURL: URL!
     
     // Instructions
     let uploadInstructionsController = CoachMarksController()
@@ -370,7 +371,6 @@ class UploadViewController: UIViewController {
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
         if wallpaperDescTextView.text != nil && wallpaperDescTextView.text != wallpaperDescPlaceholderText && wallpaperImgView.image != UIImage(named: "clickhereupload") && wallpaperImgView.image != nil && wallpaperCatPickBtn.currentTitle != nil && wallpaperCatPickBtn.currentTitle != wallpaperCatPlaceholderText {
             // MARK: - Upload Successful Alert
-            let wallpaperURL = URL(string: "path/to/image")!
             FIRService.saveWalltoFirebase(image: takenImage, wallpaperURL: wallpaperURL, wallpaperDesc: wallpaperDescTextView.text, wallpaperCategory: wallpaperCatPickBtn.currentTitle) { (error) in
                 if error != nil { // upload error
                     self.uploadErrorAlert()
@@ -422,8 +422,14 @@ extension UploadViewController: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         if let wallpaperImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let optimizedImageData = UIImagePNGRepresentation(wallpaperImage) {
+            print(optimizedImageData)
             self.takenImage = wallpaperImage
-            print(takenImage)
+            self.wallpaperImgView.image = wallpaperImage // set wallpaper Image View as selected image
+        }
+        
+        if let imageUrl = info[UIImagePickerControllerReferenceURL] as? URL {
+            self.wallpaperURL = imageUrl
+            print(wallpaperURL)
         }
         
         self.dismiss(animated: true)
