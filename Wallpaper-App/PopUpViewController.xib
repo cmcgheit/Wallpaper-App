@@ -33,9 +33,8 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bdf-We-NY8">
                     <rect key="frame" x="0.0" y="429" width="375" height="238"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="headTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcp-4Q-gUm">
-                            <rect key="frame" x="15" y="15" width="345" height="215"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="headTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcp-4Q-gUm">
+                            <rect key="frame" x="15" y="45" width="345" height="110.5"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <string key="text">Wallpaper Desc. This is the wallpaper desc, long version. This is the wallpaper desc, long version. This is the wallpaper desc, long version. This is the wallpaper desc, long version. This is the wallpaper desc, long version. This is the wallpaper desc, long version. This is the wallpaper desc, long version.</string>
                             <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="16"/>
@@ -62,15 +61,18 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="o83-hp-mKi" secondAttribute="bottom" constant="20" id="5UG-wH-tlU"/>
+                        <constraint firstItem="hcp-4Q-gUm" firstAttribute="leading" secondItem="Bdf-We-NY8" secondAttribute="leading" constant="15" id="Dn3-7e-g7Z"/>
                         <constraint firstItem="o83-hp-mKi" firstAttribute="centerX" secondItem="Bdf-We-NY8" secondAttribute="centerX" id="Dqv-Kg-Eq2"/>
+                        <constraint firstItem="hcp-4Q-gUm" firstAttribute="top" secondItem="Bdf-We-NY8" secondAttribute="top" constant="45" id="P6K-ev-1O4"/>
+                        <constraint firstAttribute="trailing" secondItem="hcp-4Q-gUm" secondAttribute="trailing" constant="15" id="hbs-WG-0fE"/>
+                        <constraint firstItem="hcp-4Q-gUm" firstAttribute="centerX" secondItem="Bdf-We-NY8" secondAttribute="centerX" id="tog-Bf-VRq"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ2-cn-TPQ">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ixq-Mb-NQN">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="433"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ixq-Mb-NQN">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJc-NS-i9Z">
                             <rect key="frame" x="325" y="20" width="40" height="40"/>
@@ -82,6 +84,10 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="Ixq-Mb-NQN" firstAttribute="top" secondItem="ZQ2-cn-TPQ" secondAttribute="top" id="8mM-vq-cRu"/>
+                        <constraint firstItem="Ixq-Mb-NQN" firstAttribute="leading" secondItem="ZQ2-cn-TPQ" secondAttribute="leading" id="Hx9-Zr-sr2"/>
+                        <constraint firstAttribute="bottom" secondItem="Ixq-Mb-NQN" secondAttribute="bottom" id="LrE-eH-XoE"/>
+                        <constraint firstAttribute="trailing" secondItem="Ixq-Mb-NQN" secondAttribute="trailing" id="Xwn-ci-v06"/>
                         <constraint firstAttribute="trailing" secondItem="RJc-NS-i9Z" secondAttribute="trailing" constant="10" id="csU-sE-aiF"/>
                         <constraint firstItem="RJc-NS-i9Z" firstAttribute="top" secondItem="ZQ2-cn-TPQ" secondAttribute="top" constant="20" id="juc-x4-y09"/>
                     </constraints>
