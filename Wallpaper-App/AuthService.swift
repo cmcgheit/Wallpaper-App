@@ -18,6 +18,7 @@ class AuthService {
             // MARK: - Register User/Send Email Verification
             authRef.currentUser?.sendEmailVerification(completion: { (error) in
                 if (error != nil) {
+                    // handle email already in use error
                     print(error!)
                 }
             })
@@ -40,6 +41,51 @@ class AuthService {
             }
             loginComplete(true, nil)
         }
+    }
+    
+    // MARK: - Email Reset Function // sends user an email to update password
+    func resetPassword(withEmail: String, onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void) {
+        authRef.sendPasswordReset(withEmail: withEmail) {
+            error in
+            if error != nil {
+                if let errorCode = AuthErrorCode(rawValue: error!._code) {
+                    switch errorCode {
+                    case .userNotFound:
+                        // display an alert
+                        break
+                    case .invalidEmail:
+                        // display alert
+                        break
+                    default:
+                        break
+                    }
+                }
+                return
+            }
+            onSuccess()
+        }
+    }
+    
+    // MARK: - Reset Email Function
+    func resetEmail(withEmail: String, onSuccess: @escaping () -> Void, onError: @escaping (_ errorMessage: String?) -> Void) {
+        authRef.currentUser?.updateEmail(to: withEmail, completion: { (error) in
+            if error != nil {
+                if let errorCode = AuthErrorCode(rawValue: error!._code) {
+                    switch errorCode {
+                    case .invalidEmail:
+                        // display alert
+                        break
+                    case .missingEmail:
+                        // display alert
+                        break
+                    default:
+                        break
+                    }
+                }
+                return
+            }
+            onSuccess()
+        })
     }
     
     // MARK - Logout User from Firebase Function

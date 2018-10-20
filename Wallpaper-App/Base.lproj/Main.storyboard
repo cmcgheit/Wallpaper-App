@@ -494,22 +494,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Diw-FT-ba4">
-                                        <rect key="frame" x="70" y="140" width="160" height="70"/>
+                                        <rect key="frame" x="70" y="171" width="160" height="110"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9x-pm-Hr9" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="160" height="35"/>
-                                                <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="oMs-Lw-vVL"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
-                                                <state key="normal" title="Email Password">
-                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edg-yq-9pn" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="40" width="160" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="30"/>
                                                 <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="deX-5g-nfF"/>
@@ -519,22 +507,67 @@
                                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="resetPassBtnPressed:" destination="WOg-N3-JrU" eventType="touchUpInside" id="yOT-Y9-vgd"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9x-pm-Hr9" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="35" width="160" height="35"/>
+                                                <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="oMs-Lw-vVL"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                                <state key="normal" title="Update Email?">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sendEmailBtnPressed:" destination="WOg-N3-JrU" eventType="touchUpInside" id="hkD-xJ-VWP"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ao-5N-sov" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="75" width="160" height="35"/>
+                                                <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="0FU-b6-r2N"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
+                                                <state key="normal" title="Back">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="backbtnPressed:" destination="WOg-N3-JrU" eventType="touchUpInside" id="TS9-ys-Jvd"/>
+                                                    <action selector="sendEmailBtnPressed:" destination="WOg-N3-JrU" eventType="touchUpInside" id="LJE-d9-Tca"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="160" id="KCK-Qt-bQl"/>
-                                            <constraint firstAttribute="height" constant="70" id="ooK-W9-7bq"/>
                                         </constraints>
                                     </stackView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XIB-66-MJJ" customClass="AnimatedTextField" customModule="Wallpaper_App" customModuleProvider="target">
+                                        <rect key="frame" x="50" y="111" width="200" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Qt1-kI-Grs"/>
+                                            <constraint firstAttribute="height" constant="30" id="vIK-bo-BzF"/>
+                                        </constraints>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="tet-i6-y0e" firstAttribute="centerX" secondItem="2FS-Mb-qP8" secondAttribute="centerX" id="5UL-zt-IAc"/>
                                     <constraint firstAttribute="width" constant="300" id="7X0-H2-tbb"/>
+                                    <constraint firstItem="XIB-66-MJJ" firstAttribute="centerX" secondItem="2FS-Mb-qP8" secondAttribute="centerX" id="9uS-vq-1mF"/>
+                                    <constraint firstItem="Diw-FT-ba4" firstAttribute="top" secondItem="XIB-66-MJJ" secondAttribute="bottom" constant="30" id="CUy-nG-cMI"/>
+                                    <constraint firstItem="XIB-66-MJJ" firstAttribute="top" secondItem="tet-i6-y0e" secondAttribute="bottom" constant="22" id="I64-a1-IE4"/>
                                     <constraint firstAttribute="height" constant="350" id="Jfu-UL-dtk"/>
-                                    <constraint firstItem="Diw-FT-ba4" firstAttribute="centerY" secondItem="2FS-Mb-qP8" secondAttribute="centerY" id="Z9q-WH-UDH"/>
+                                    <constraint firstItem="Diw-FT-ba4" firstAttribute="centerX" secondItem="2FS-Mb-qP8" secondAttribute="centerX" id="gUH-49-5GE"/>
                                     <constraint firstItem="tet-i6-y0e" firstAttribute="top" secondItem="2FS-Mb-qP8" secondAttribute="top" constant="20" id="oge-Lp-yps"/>
-                                    <constraint firstItem="Diw-FT-ba4" firstAttribute="centerX" secondItem="2FS-Mb-qP8" secondAttribute="centerX" id="yb4-zf-cmU"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -549,7 +582,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backBtn" destination="8Ao-5N-sov" id="r8C-4G-4zM"/>
                         <outlet property="emailPassBtn" destination="s9x-pm-Hr9" id="xRo-Fh-2ps"/>
+                        <outlet property="emailTxtFld" destination="XIB-66-MJJ" id="OWP-gx-drJ"/>
                         <outlet property="forgotView" destination="2FS-Mb-qP8" id="i8p-hD-C3B"/>
                         <outlet property="resetPassBtn" destination="edg-yq-9pn" id="cjd-Sm-yYD"/>
                     </connections>
@@ -614,7 +649,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="IcW-Sy-6Ua">
-                                        <rect key="frame" x="42.5" y="235" width="215" height="30"/>
+                                        <rect key="frame" x="42.5" y="210" width="215" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLo-yH-V89" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
@@ -654,10 +689,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="dlY-Kb-FrY">
-                                        <rect key="frame" x="75" y="280" width="150" height="30"/>
+                                        <rect key="frame" x="65" y="255" width="170" height="75"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiB-AT-fsZ" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="170" height="30"/>
                                                 <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="0wW-pb-Y3h"/>
@@ -672,6 +707,23 @@
                                                     <action selector="loginAnonymousBtnClicked:" destination="e5t-Dg-8Hj" eventType="touchUpInside" id="HRE-M6-Llb"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjn-FS-rQf" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="45" width="170" height="30"/>
+                                                <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="170" id="3L6-lW-E0J"/>
+                                                    <constraint firstAttribute="height" constant="30" id="62K-eb-hl0"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
+                                                <state key="normal" title="Forgot Email/Password">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="forgotInfoBtnPressed:" destination="e5t-Dg-8Hj" eventType="touchUpInside" id="Isy-DW-2pp"/>
+                                                    <segue destination="WOg-N3-JrU" kind="show" identifier="toForgotViewController" id="O06-eA-eb9"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -681,11 +733,11 @@
                                 </accessibility>
                                 <constraints>
                                     <constraint firstItem="Cbo-2V-dDz" firstAttribute="leading" secondItem="JQd-Ow-a5c" secondAttribute="leading" constant="20" id="67o-l2-2fP"/>
+                                    <constraint firstItem="IcW-Sy-6Ua" firstAttribute="top" secondItem="Cbo-2V-dDz" secondAttribute="bottom" constant="30" id="73L-Qz-xk6"/>
                                     <constraint firstItem="Cbo-2V-dDz" firstAttribute="top" secondItem="JQd-Ow-a5c" secondAttribute="top" constant="40" id="HJX-FL-TEk"/>
                                     <constraint firstItem="dlY-Kb-FrY" firstAttribute="top" secondItem="IcW-Sy-6Ua" secondAttribute="bottom" constant="15" id="JvG-iZ-bZZ"/>
                                     <constraint firstAttribute="height" constant="350" id="L0A-gW-hmL"/>
                                     <constraint firstItem="dlY-Kb-FrY" firstAttribute="centerX" secondItem="JQd-Ow-a5c" secondAttribute="centerX" id="W5p-iI-xWn"/>
-                                    <constraint firstItem="IcW-Sy-6Ua" firstAttribute="centerY" secondItem="JQd-Ow-a5c" secondAttribute="centerY" constant="75" id="Wvt-wk-z7q"/>
                                     <constraint firstAttribute="width" constant="300" id="aE1-9H-5tO"/>
                                     <constraint firstItem="Cbo-2V-dDz" firstAttribute="centerX" secondItem="JQd-Ow-a5c" secondAttribute="centerX" id="c8F-OP-Jzz"/>
                                     <constraint firstItem="IcW-Sy-6Ua" firstAttribute="centerX" secondItem="JQd-Ow-a5c" secondAttribute="centerX" id="p0a-J5-j7K"/>
@@ -707,6 +759,7 @@
                     </view>
                     <connections>
                         <outlet property="emailTextFld" destination="CgG-2R-r9C" id="J3A-2M-scz"/>
+                        <outlet property="forgotInfoBtn" destination="hjn-FS-rQf" id="Znz-ki-Vw8"/>
                         <outlet property="loginAnBtn" destination="EiB-AT-fsZ" id="TUx-ug-sOq"/>
                         <outlet property="loginCardView" destination="JQd-Ow-a5c" id="WHj-Kx-q0q"/>
                         <outlet property="passTextFld" destination="7B7-UD-EK1" id="Hnz-UQ-LZH"/>

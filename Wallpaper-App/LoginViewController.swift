@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signInBtn: RoundedRectBlueButton!
     @IBOutlet weak var signUpBtn: RoundedRectBlueButton!
     @IBOutlet weak var loginAnBtn: RoundedRectBlueButton!
+    @IBOutlet weak var forgotInfoBtn: RoundedRectBlueButton!
     
     // Restore text
     var defaultsKey: String = ""
@@ -27,6 +28,7 @@ class LoginViewController: UIViewController {
         signInBtn.layer.cornerRadius = 15
         signUpBtn.layer.cornerRadius = 15
         loginAnBtn.layer.cornerRadius = 15
+        forgotInfoBtn.layer.cornerRadius = 15
         
         customBackBtn()
         
@@ -143,7 +145,7 @@ class LoginViewController: UIViewController {
                 } else {
                     // MARK: - Incorrect Email/Password Login
                     self.incorrectEmailPassAlert()
-                    // authRef.sendPasswordReset(withEmail: email) ask to reset, logic for mutliple incorrect tries?
+                    // alert ask to reset? send to forgot pass vc // logic for mutliple incorrect tries?
                     print(String(describing: loginError?.localizedDescription))
                     // Take User to SignUp if not a registered user
                     // self.performSegue(withIdentifier: "toSignUpViewController", sender: nil)
@@ -168,6 +170,10 @@ class LoginViewController: UIViewController {
             }
         }
         )}
+    
+    @IBAction func forgotInfoBtnPressed(_ sender: Any) {
+         // storyboard segue to forgot
+    }
     
     // MARK: - Keyboard Functions
     @objc func keyboardWillShow(_ notification: Notification) {
