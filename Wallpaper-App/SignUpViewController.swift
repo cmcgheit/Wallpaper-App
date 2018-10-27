@@ -8,7 +8,7 @@ import QuickLook
 class SignUpViewController: UIViewController {
     
     @IBOutlet weak var signUpTxtFld: AnimatedTextField!
-    @IBOutlet weak var signUpPassFld: AnimatedTextField!
+    @IBOutlet weak var signUpPassFld: RevealPasswordTextField!
     @IBOutlet weak var signUpBtn: RoundedRectBlueButton!
     @IBOutlet weak var goBackBtn: RoundedRectBlueButton!
     
@@ -132,7 +132,7 @@ class SignUpViewController: UIViewController {
         guard let email = signUpTxtFld.text, signUpTxtFld.text != "" else { return }
         guard let pass = signUpPassFld.text, signUpPassFld.text != "" else { return }
         
-        if (signUpTxtFld.text?.isEmpty)! && email.count == 0  && pass.count == 0 && (signUpPassFld.text?.isEmpty)! {
+        if email.count == 0  && pass.count == 0 {
             // MARK: - Empty/No Email/Password entered Alert (not registered)
             noEmailPassAlert()
         } else { // Register New User

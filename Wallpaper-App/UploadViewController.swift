@@ -79,6 +79,7 @@ class UploadViewController: UIViewController {
             let cameraPicker = UIImagePickerController()
             cameraPicker.delegate = self
             cameraPicker.sourceType = .camera
+            // cameraPicker.allowEditing = true // allow cropping of photo before upload
             present(cameraPicker, animated: true)
         }
     }
@@ -89,6 +90,7 @@ class UploadViewController: UIViewController {
             let photoPicker = UIImagePickerController()
             photoPicker.delegate = self
             photoPicker.sourceType = .photoLibrary
+            // photoPicker.allowsEditing = true
             present(photoPicker, animated: true)
         }
     }
@@ -426,6 +428,12 @@ extension UploadViewController: UIImagePickerControllerDelegate, UINavigationCon
             self.takenImage = wallpaperImage
             self.wallpaperImgView.image = wallpaperImage // set wallpaper Image View as selected image
         }
+//        else if let editedWallpaperImage = info[UIImagePickerControllerEditedImage] as? UIImage, let editedOptimizedImageData = UIImagePNGRepresentation(editedWallpaperImage) {
+//            print(editedOptimizedImageData)
+//            self.takenImage = editedWallpaperImage
+//            self.wallpaperImgView.image = editedWallpaperImage
+//            
+//        }
         
         if let imageUrl = info[UIImagePickerControllerReferenceURL] as? URL {
             self.wallpaperURL = imageUrl

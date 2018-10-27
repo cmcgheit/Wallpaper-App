@@ -89,6 +89,12 @@ class FeedViewController: UIViewController {
         showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
     }
     
+    func noNetworkConnectionAlert() {
+        let titleText = "No Network Connection"
+        let descText = "Check your network/internet settings, then close and restart the app"
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -99,16 +105,21 @@ class FeedViewController: UIViewController {
         uploadBtnCenter = uploadBtn.center
         signOutBtnCenter = signOutBtn.center
         
-        DispatchQueue.main.async {
-            self.glidingView.reloadData()
+        // Reachability
+        if Reachability.isConnectedToNetwork() {
+            DispatchQueue.main.async {
+                self.glidingView.reloadData()
+            }
+            
+            catQueue.async {
+                self.makeCategories()
+            }
+            applyTheme()
+            notificationObservers()
+            
+        } else {
+            noNetworkConnectionAlert()
         }
-        
-        catQueue.async {
-            self.makeCategories()
-        }
-        
-        applyTheme()
-        notificationObservers()
         
         // Theme - checks for theme setting
         if Defaults.object(forKey: "lightTheme") != nil {
@@ -431,7 +442,7 @@ class FeedViewController: UIViewController {
         toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "menubuttonon"), offImage: #imageLiteral(resourceName: "menubuttonoff"))
     }
     
-
+    
     // MARK: - Upload Button
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
         toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "uploadbuttonoff"), offImage: #imageLiteral(resourceName: "uploadbuttonon"))

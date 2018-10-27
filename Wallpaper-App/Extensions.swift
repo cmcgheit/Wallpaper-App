@@ -209,3 +209,12 @@ extension CALayer {
         }
     }
 }
+
+// String Extension for Handling isEmpty
+extension String {
+    var isNotEmpty: Bool {
+        get {
+            return !isEmpty
+        }
+    }
+}

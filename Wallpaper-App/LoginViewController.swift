@@ -129,7 +129,7 @@ class LoginViewController: UIViewController {
         guard let email = emailTextFld.text, emailTextFld.text != "" else { return }
         guard let pass = passTextFld.text, passTextFld.text != "" else { return }
         
-        if (emailTextFld.text?.isEmpty)! && email.count == 0 && (passTextFld.text?.isEmpty)!  && pass.count == 0 {
+        if checkTextFieldEmpty(textFields: [emailTextFld, passTextFld]) && email.count == 0 && pass.count == 0 {
             // MARK: - Empty Email/Pass Login
             noEmailPassAlert()
         } else {
@@ -224,6 +224,16 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: UITextFieldDelegate {
+    
+    // MARK: - Check TextFields Empty Function
+    func checkTextFieldEmpty(textFields: [UITextField]) -> Bool {
+        for textfield in textFields {
+            if textfield.text == "" {
+                return true
+            }
+        }
+        return false
+    }
     
     // MARK: - TextField Change Function
     @objc func textFieldDidChange(_ textField: UITextField) {
