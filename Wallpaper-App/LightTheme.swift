@@ -11,4 +11,8 @@ class LightTheme: ThemeProtocol {
     var cardView: UIColor = UIColor.white
     var tint: UIColor = goldColor
     
+    var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
+    }
+    
 }

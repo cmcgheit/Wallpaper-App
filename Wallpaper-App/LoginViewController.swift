@@ -43,21 +43,27 @@ class LoginViewController: UIViewController {
         // MARK: - Set navigation bar to transparent
         self.navigationController?.hideTransparentNavigationBar()
         
-         notificationObservers()
+        notificationObservers()
         
         // Take user to Feed if already logged-in
-        if authRef.currentUser?.uid != nil && authRef.currentUser?.isAnonymous != nil {
-            Defaults.setIsLoggedIn(value: true)
-            self.performSegue(withIdentifier:  "toFeedViewController", sender: self)
-        } else {
-            // If User not logged in
-            do {
-                try authRef.signOut()
-                return
-            } catch  {
-                print(error)
+        if Reachability.isConnectedToNetwork() {
+            if authRef.currentUser?.uid != nil && authRef.currentUser?.isAnonymous != nil {
+                Defaults.setIsLoggedIn(value: true)
+                self.performSegue(withIdentifier:  "toFeedViewController", sender: self)
+            } else {
+                // If User not logged in
+                do {
+                    try authRef.signOut()
+                    return
+                } catch  {
+                    print(error)
+                }
+                Defaults.setIsLoggedIn(value: false)
             }
+        } else {
+            noNetworkAlert()
             Defaults.setIsLoggedIn(value: false)
+            removeToken() // don't set token if not logged in
         }
     }
     
@@ -72,7 +78,6 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: .keyboardWillHide, object: nil)
         
         emailTextFld.addTarget(self, action: #selector(saveToUserDefaults(_:)), for: .editingDidEnd)
-        
     }
     
     func removeNotifications() {
@@ -124,19 +129,25 @@ class LoginViewController: UIViewController {
         self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: incorrectTitleText, desc: incorrectDescText, textColor: UIColor.darkGray)
     }
     
+    func noNetworkAlert() {
+        let noNetworkTitle = "No Network Connection"
+        let noNetworkDesc = "Please check your network connection, then close and restart the app"
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: noNetworkTitle, desc: noNetworkDesc, textColor: UIColor.darkGray)
+    }
+    
     @IBAction func signInBtnPressed(_ sender: Any) {
         
         guard let email = emailTextFld.text, emailTextFld.text != "" else { return }
         guard let pass = passTextFld.text, passTextFld.text != "" else { return }
         
-        if checkTextFieldEmpty(textFields: [emailTextFld, passTextFld]) && email.count == 0 && pass.count == 0 {
+        if email.count == 0 && pass.count == 0 {
             // MARK: - Empty Email/Pass Login
             noEmailPassAlert()
         } else {
             // MARK: - Login User Successfully
             AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, loginError) in
                 if success {
-                     self.completeSignIn(id: (authRef.currentUser?.uid)!) // collects uid/keychain when user signs in
+                    self.completeSignIn(id: (authRef.currentUser?.uid)!) // collects uid/keychain when user signs in
                     Defaults.setIsLoggedIn(value: true)
                     // successfully registered alert
                     
@@ -154,11 +165,11 @@ class LoginViewController: UIViewController {
         }
     }
     
-    @IBAction func signUpBtnPressed(_ sender: Any) {
-        // storyboard segue to signUp
+    @IBAction func signUpBtnPressed(_ sender: UIButton) {
+        
     }
     
-    @IBAction func loginAnonymousBtnClicked(_ sender: Any) {
+    @IBAction func loginAnonymousBtnClicked(_ sender: UIButton) {
         // Auth user
         authRef.signInAnonymously(completion: { (authResult, error) in
             if error == nil {
@@ -171,8 +182,8 @@ class LoginViewController: UIViewController {
         }
         )}
     
-    @IBAction func forgotInfoBtnPressed(_ sender: Any) {
-         // storyboard segue to forgot
+    @IBAction func forgotInfoBtnPressed(_ sender: UIButton) {
+        
     }
     
     // MARK: - Keyboard Functions
@@ -223,17 +234,15 @@ class LoginViewController: UIViewController {
     }
 }
 
-extension LoginViewController: UITextFieldDelegate {
-    
-    // MARK: - Check TextFields Empty Function
-    func checkTextFieldEmpty(textFields: [UITextField]) -> Bool {
-        for textfield in textFields {
-            if textfield.text == "" {
-                return true
-            }
-        }
-        return false
+// MARK: - Remove SwiftKeyChain
+func removeToken() {
+    let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
+    if removeSuccessful == true {
+        print("Token removed")
     }
+}
+
+extension LoginViewController: UITextFieldDelegate {
     
     // MARK: - TextField Change Function
     @objc func textFieldDidChange(_ textField: UITextField) {

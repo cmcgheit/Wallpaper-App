@@ -7,7 +7,7 @@ class TransitionClone: NSObject {
     var startingFrame = CGRect.zero
     var destinationFrame = CGRect.zero
     var shadow = UIView()
-    let duration = 1.5
+    let duration = 1.0
     
     enum TransitionMode: Int {
         case present

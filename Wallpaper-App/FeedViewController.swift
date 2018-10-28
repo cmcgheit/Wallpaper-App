@@ -32,7 +32,7 @@ class FeedViewController: UIViewController {
     var handle: AuthStateDidChangeListenerHandle?
     var bannerView: GADBannerView!
     
-    var isStatusBarHidden = false
+    private var isStatusBarHidden: Bool = false
     
     let transition = TransitionClone()
     var collectionIndex: IndexPath?
@@ -78,26 +78,25 @@ class FeedViewController: UIViewController {
         
     }
     func signOutSuccessAlert() {
-        let titleText = "Signed Out Successfully"
-        let descText = "You have signed out of Wall Variety successfully"
-        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+        let signOutText = "Signed Out Successfully"
+        let signOutDescText = "You have signed out of Wall Variety successfully"
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: signOutText, desc: signOutDescText, textColor: UIColor.darkGray)
     }
     
     func problemSignOutAlert() {
-        let titleText = "Problem Signing Out"
-        let descText = "There is an error signing you out, please try again"
-        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+        let signOutAlertText = "Problem Signing Out"
+        let signOutAlertDescText = "There is an error signing you out, please try again"
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: signOutAlertText, desc: signOutAlertDescText, textColor: UIColor.darkGray)
     }
     
     func noNetworkConnectionAlert() {
-        let titleText = "No Network Connection"
-        let descText = "Check your network/internet settings, then close and restart the app"
-        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+        let noNetworkTitleText = "No Network Connection"
+        let noNetworkDescText = "Check your network/internet settings, then close and restart the app"
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: noNetworkTitleText, desc: noNetworkDescText, textColor: UIColor.darkGray)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
         
         uploadBtn.center = menuBtn.center
         signOutBtn.center = menuBtn.center
@@ -105,8 +104,12 @@ class FeedViewController: UIViewController {
         uploadBtnCenter = uploadBtn.center
         signOutBtnCenter = signOutBtn.center
         
+        glidingIntView.layer.cornerRadius = 15
+        
         // Reachability
         if Reachability.isConnectedToNetwork() {
+            setup()
+            
             DispatchQueue.main.async {
                 self.glidingView.reloadData()
             }
@@ -127,8 +130,6 @@ class FeedViewController: UIViewController {
         } else {
             Defaults.set(true, forKey: "darkTheme")
         }
-        
-        glidingIntView.layer.cornerRadius = 15
         
         // Instructions
         self.instructionsController.dataSource = self
@@ -283,16 +284,11 @@ class FeedViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: .updateFeedNotificationName, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(firstTimeVC(_:)), name: .firstTimeViewController, object: nil)
-        
-        // Transition
-        NotificationCenter.default.addObserver(self, selector: #selector(tabBarShow), name: NSNotification.Name(rawValue: "tabBarShow"), object: nil)
     }
     
     func removeNotifications() {
-        
         NotificationCenter.default.removeObserver(handleUpdateFeed())
         NotificationCenter.default.removeObserver(firstTimeVC(_:))
-        NotificationCenter.default.removeObserver(tabBarShow())
     }
     
     // MARK: - Check User First Time Viewing VC (Instructions)
@@ -379,16 +375,6 @@ class FeedViewController: UIViewController {
     }
     
     // MARK: - Custom Transition
-    // Tab Bar Show Function Transition
-    @objc func tabBarShow(){
-        var tabFrame = self.tabBarController?.tabBar.frame
-        let tabHeight = tabFrame?.size.height
-        tabFrame?.origin.y = self.view.frame.size.height - tabHeight!
-        UIView.animate(withDuration: 0.5, animations: {
-            self.tabBarController?.tabBar.frame = tabFrame!
-        })
-    }
-    
     func animateCell(cellFrame: CGRect) -> CATransform3D {
         let angleFromX = Double((-cellFrame.origin.x) / 10)
         let angle = CGFloat((angleFromX * Double.pi) / 180.0)

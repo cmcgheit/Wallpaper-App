@@ -11,4 +11,8 @@ class DarkTheme: ThemeProtocol {
     var cardView: UIColor = UIColor.black
     var tint: UIColor = orangeColor
     
+    var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
 }
