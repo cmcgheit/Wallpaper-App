@@ -1,5 +1,5 @@
 PODS:
-  - Armchair (0.3.5)
+  - Armchair (0.3.6)
   - Crashlytics (3.10.5):
     - Fabric (~> 1.7.9)
   - EasyTransitions (0.5.4)
@@ -114,7 +114,7 @@ SPEC REPOS:
     - Twinkle
 
 SPEC CHECKSUMS:
-  Armchair: 0ab9237bc373e26245c7651acf193d85fb9c033a
+  Armchair: 2dd361337cf81937e73e8b9d48f9eda9a21d316c
   Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
   EasyTransitions: 843a3e93b4cac14315e5d997b762bd1d214beb9c
   Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661

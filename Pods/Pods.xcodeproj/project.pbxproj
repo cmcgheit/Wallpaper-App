@@ -6323,39 +6323,6 @@
 			};
 			name = Debug;
 		};
-		3B2C10CCF5A37C83D950A3B8D03C9C81 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B101EC38EE7C4B1894DE861DC5C24FB4 /* Armchair.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Armchair/Armchair-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Armchair/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Armchair/Armchair.modulemap";
-				OTHER_SWIFT_FLAGS = "-DDebug";
-				PRODUCT_MODULE_NAME = Armchair;
-				PRODUCT_NAME = Armchair;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		3D2E9F8826F393188272EF7C8369CF73 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27E9BB4DAF6C9D4CD483A9C31E0BA4C3 /* SwiftKeychainWrapper.xcconfig */;
@@ -6768,6 +6735,39 @@
 			};
 			name = Release;
 		};
+		78ECF522A663426B8B617EAF11F4593A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B101EC38EE7C4B1894DE861DC5C24FB4 /* Armchair.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Armchair/Armchair-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Armchair/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Armchair/Armchair.modulemap";
+				OTHER_SWIFT_FLAGS = "-DDebug";
+				PRODUCT_MODULE_NAME = Armchair;
+				PRODUCT_NAME = Armchair;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		7BE77B936ADC392C8189E5244D9F09CA /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B1D355338FC894BAF1B2B41470C7DA9F /* SwiftEntryKit.xcconfig */;
@@ -6959,40 +6959,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		9A000BDB8EF32BAFB1345FA6B43329B8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B101EC38EE7C4B1894DE861DC5C24FB4 /* Armchair.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Armchair/Armchair-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Armchair/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Armchair/Armchair.modulemap";
-				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_MODULE_NAME = Armchair;
-				PRODUCT_NAME = Armchair;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		9EDEA68F659DE29520CA9BBA7D0A91DC /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -7188,6 +7154,40 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		C30274B1C93045C2AC93432BB85DDEC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B101EC38EE7C4B1894DE861DC5C24FB4 /* Armchair.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Armchair/Armchair-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Armchair/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Armchair/Armchair.modulemap";
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_MODULE_NAME = Armchair;
+				PRODUCT_NAME = Armchair;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		C4375BF7FFFC0783329F06E6B0CC344E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -7557,8 +7557,8 @@
 		28C6EFA5879AE2869C70450B916BB814 /* Build configuration list for PBXNativeTarget "Armchair" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3B2C10CCF5A37C83D950A3B8D03C9C81 /* Debug */,
-				9A000BDB8EF32BAFB1345FA6B43329B8 /* Release */,
+				78ECF522A663426B8B617EAF11F4593A /* Debug */,
+				C30274B1C93045C2AC93432BB85DDEC3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
