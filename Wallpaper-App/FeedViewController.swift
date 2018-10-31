@@ -122,6 +122,7 @@ class FeedViewController: UIViewController {
             
         } else {
             noNetworkConnectionAlert()
+            FIRService.removeFIRObservers()
         }
         
         // Theme - checks for theme setting
@@ -447,6 +448,7 @@ class FeedViewController: UIViewController {
         // Signed In User
         if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
             AuthService.instance.logOutUser()
+            FIRService.removeFIRObservers()
             Defaults.setIsLoggedIn(value: false)
             // MARK: Floating Signout Indicator (Success)
             DispatchQueue.main.async {
@@ -562,10 +564,10 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
             popUpVC.transitioningDelegate = self
             popUpVC.modalPresentationStyle = .custom
             
-            isStatusBarHidden = true
-            UIView.animate(withDuration: 0.25) {
-                self.setNeedsStatusBarAppearanceUpdate()
-            }
+            //            isStatusBarHidden = true
+            //            UIView.animate(withDuration: 0.25) {
+            //                self.setNeedsStatusBarAppearanceUpdate()
+            //            }
             
             self.present(popUpVC, animated: true, completion: nil)
         }

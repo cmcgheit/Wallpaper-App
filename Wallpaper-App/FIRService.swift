@@ -166,5 +166,11 @@ class FIRService: NSObject {
             completion(sportsCategory)
         })
     }
+    
+    // MARK: - Function to Remove Firebase Observers/Listeners
+    public static func removeFIRObservers() {
+        wallpaperDataRef.removeAllObservers()
+        wallpaperUserRef.removeAllObservers()
+    }
 }
 

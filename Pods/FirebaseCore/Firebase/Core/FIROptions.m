@@ -42,8 +42,8 @@ NSString *const kFIRIsSignInEnabled = @"IS_SIGNIN_ENABLED";
 // Library version ID.
 NSString *const kFIRLibraryVersionID =
     @"5"     // Major version (one or more digits)
-    @"00"    // Minor version (exactly 2 digits)
-    @"01"    // Build number (exactly 2 digits)
+    @"01"    // Minor version (exactly 2 digits)
+    @"06"    // Build number (exactly 2 digits)
     @"000";  // Fixed "000"
 // Plist file name.
 NSString *const kServiceInfoFileName = @"GoogleService-Info";
@@ -85,7 +85,6 @@ NSString *const kFIRExceptionBadModification =
 @implementation FIROptions {
   /// Backing variable for self.analyticsOptionsDictionary.
   NSDictionary *_analyticsOptionsDictionary;
-  dispatch_once_t _createAnalyticsOptionsDictionaryOnce;
 }
 
 static FIROptions *sDefaultOptions = nil;
@@ -109,7 +108,7 @@ static NSDictionary *sDefaultOptionsDictionary = nil;
 
 #pragma mark - Private class methods
 
-+ (void)load {
++ (void)initialize {
   // Report FirebaseCore version for useragent string
   NSRange major = NSMakeRange(0, 1);
   NSRange minor = NSMakeRange(1, 2);
@@ -340,7 +339,7 @@ static NSDictionary *sDefaultOptionsDictionary = nil;
 #pragma mark - Internal instance methods
 
 - (NSDictionary *)analyticsOptionsDictionaryWithInfoDictionary:(NSDictionary *)infoDictionary {
-  dispatch_once(&_createAnalyticsOptionsDictionaryOnce, ^{
+  if (_analyticsOptionsDictionary == nil) {
     NSMutableDictionary *tempAnalyticsOptions = [[NSMutableDictionary alloc] init];
     NSArray *measurementKeys = @[
       kFIRIsMeasurementEnabled, kFIRIsAnalyticsCollectionEnabled,
@@ -353,8 +352,8 @@ static NSDictionary *sDefaultOptionsDictionary = nil;
       }
       tempAnalyticsOptions[key] = value;
     }
-    self->_analyticsOptionsDictionary = tempAnalyticsOptions;
-  });
+    _analyticsOptionsDictionary = tempAnalyticsOptions;
+  }
   return _analyticsOptionsDictionary;
 }
 
@@ -373,9 +372,46 @@ static NSDictionary *sDefaultOptionsDictionary = nil;
   }
   NSNumber *value = self.analyticsOptionsDictionary[kFIRIsMeasurementEnabled];
   if (value == nil) {
-    return YES;  // Enable Measurement by default when the key is not in the dictionary.
+    // TODO: This could probably be cleaned up since FIROptions shouldn't know about FIRApp or have
+    //       to check if it's the default app. The FIROptions instance can't be modified after
+    //       `+configure` is called, so it's not a good place to copy it either in case the flag is
+    //       changed at runtime.
+
+    // If no values are set for Analytics, fall back to the global collection switch in FIRApp.
+    // Analytics only supports the default FIRApp, so check that first.
+    if (![FIRApp isDefaultAppConfigured]) {
+      return NO;
+    }
+
+    // Fall back to the default app's collection switch when the key is not in the dictionary.
+    return [FIRApp defaultApp].isDataCollectionDefaultEnabled;
   }
   return [value boolValue];
+}
+
+- (BOOL)isAnalyticsCollectionExpicitlySet {
+  // If it's de-activated, it classifies as explicity set. If not, it's not a good enough indication
+  // that the developer wants FirebaseAnalytics enabled so continue checking.
+  if (self.isAnalyticsCollectionDeactivated) {
+    return YES;
+  }
+
+  // Check if the current Analytics flag is set.
+  id collectionEnabledObject = self.analyticsOptionsDictionary[kFIRIsAnalyticsCollectionEnabled];
+  if (collectionEnabledObject && [collectionEnabledObject isKindOfClass:[NSNumber class]]) {
+    // It doesn't matter what the value is, it's explicitly set.
+    return YES;
+  }
+
+  // Check if the old measurement flag is set.
+  id measurementEnabledObject = self.analyticsOptionsDictionary[kFIRIsMeasurementEnabled];
+  if (measurementEnabledObject && [measurementEnabledObject isKindOfClass:[NSNumber class]]) {
+    // It doesn't matter what the value is, it's explicitly set.
+    return YES;
+  }
+
+  // No flags are set to explicitly enable or disable FirebaseAnalytics.
+  return NO;
 }
 
 - (BOOL)isAnalyticsCollectionEnabled {
