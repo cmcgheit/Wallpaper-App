@@ -21,7 +21,7 @@ let KEY_UID = "uid" // Keychain Wrapper UID
 
 // Google Ads
 var appID = "1391180766" // from itunesconnect
-var adMobAppID = "" // Google AdMob
+var adMobAppID = "ca-app-pub-8644467898890537~8119123516" // Google AdMob
 
 // Terms PDF
 let termsPDF = "WallVarietyTerms.pdf"

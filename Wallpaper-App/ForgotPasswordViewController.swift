@@ -6,7 +6,7 @@ import Firebase
 class ForgotPasswordViewController: UIViewController {
 
     @IBOutlet weak var forgotView: CustomCardView!
-    @IBOutlet weak var emailTxtFld: AnimatedTextField!
+    @IBOutlet weak var emailTxtFld: UITextField!
     @IBOutlet weak var emailPassBtn: RoundedRectBlueButton!
     @IBOutlet weak var resetPassBtn: RoundedRectBlueButton!
     @IBOutlet weak var backBtn: RoundedRectBlueButton!

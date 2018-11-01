@@ -7,7 +7,7 @@ import QuickLook
 
 class SignUpViewController: UIViewController {
     
-    @IBOutlet weak var signUpTxtFld: AnimatedTextField!
+    @IBOutlet weak var signUpTxtFld: UITextField!
     @IBOutlet weak var signUpPassFld: RevealPasswordTextField!
     @IBOutlet weak var signUpBtn: RoundedRectBlueButton!
     @IBOutlet weak var goBackBtn: RoundedRectBlueButton!
@@ -25,8 +25,6 @@ class SignUpViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // MARK: - Set navigation bar to transparent
-        self.navigationController?.hideTransparentNavigationBar()
         
         notificationObservers()
         
@@ -41,8 +39,8 @@ class SignUpViewController: UIViewController {
     func notificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow), name: .keyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide), name: .keyboardWillHide, object: nil)
-        signUpTxtFld?.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
-        signUpPassFld?.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
+//        signUpTxtFld?.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
+//        signUpPassFld?.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
     }
     
     func removeObservers() {
@@ -129,13 +127,11 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
-        guard let email = signUpTxtFld.text, signUpTxtFld.text != "" else { return }
-        guard let pass = signUpPassFld.text, signUpPassFld.text != "" else { return }
+        guard let email = signUpTxtFld.text, email.isNotEmpty else { return }
+        guard let pass = signUpPassFld.text, pass.isNotEmpty else { return }
         
-        if email.count == 0  && pass.count == 0 {
-            // MARK: - Empty/No Email/Password entered Alert (not registered)
-            noEmailPassAlert()
-        } else { // Register New User
+        if email.isNotEmpty  && pass.isNotEmpty {
+            // Register New User
             AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in
                 if success { // After registered, login the user
                     AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, nil) in
@@ -148,6 +144,9 @@ class SignUpViewController: UIViewController {
                     print(String(describing: registrationError?.localizedDescription))
                 }
             })
+        } else {
+            // MARK: - Empty/No Email/Password entered Alert (not registered)
+            noEmailPassAlert()
         }
     }
     
@@ -158,35 +157,12 @@ class SignUpViewController: UIViewController {
 
 extension SignUpViewController: UITextFieldDelegate {
     
-    // MARK: - TextField Change Function
     @objc func textFieldDidChange(_ textField: UITextField) {
         
-        guard let emailText = signUpTxtFld.text, signUpTxtFld.text != "" else { return }
-        guard let passText = signUpPassFld.text, signUpPassFld.text != "" else { return }
-        
-        // Validate fields
-        if signUpTxtFld.validateField([isEmailValid]) && signUpPassFld.validateField([isPassValid]) {
-            AuthService.instance.registerUser(withEmail: emailText, andPassword: passText) { (success, signUpError) in
-                if success {
-                    AuthService.instance.loginUser(withEmail: emailText, andPassword: passText, loginComplete: { (success, nil) in
-                        self.performSegue(withIdentifier: "toFeedViewController", sender: self)
-                        print("Successfully registered/Signed-In user with valid info")
-                    })
-                } else { // error signing up
-                    self.signInErrorAlert()
-                    print(String(describing: signUpError?.localizedDescription))
-                }
-            }
-        } else { // error with valid fields
-            // Alert email/password not valid
-            signUpErrorAlert()
-        }
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == signUpTxtFld {
-            textField.endEditing(true)
-        }
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

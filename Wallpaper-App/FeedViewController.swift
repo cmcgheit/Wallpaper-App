@@ -221,8 +221,6 @@ class FeedViewController: UIViewController {
             self.setNeedsStatusBarAppearanceUpdate()
         }
         
-        // navigationController?.hideTransparentNavigationBar()
-        
         // MARK: - Check Auth User Signed-In Listener/Handler
         handle = authRef.addStateDidChangeListener { ( auth, user) in
             if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
@@ -564,10 +562,10 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
             popUpVC.transitioningDelegate = self
             popUpVC.modalPresentationStyle = .custom
             
-            //            isStatusBarHidden = true
-            //            UIView.animate(withDuration: 0.25) {
-            //                self.setNeedsStatusBarAppearanceUpdate()
-            //            }
+            isStatusBarHidden = false
+            UIView.animate(withDuration: 0.25) {
+                self.setNeedsStatusBarAppearanceUpdate()
+            }
             
             self.present(popUpVC, animated: true, completion: nil)
         }

@@ -11,7 +11,7 @@ import SwiftKeychainWrapper
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginCardView: CustomCardView!
-    @IBOutlet weak var emailTextFld: AnimatedTextField!
+    @IBOutlet weak var emailTextFld: UITextField!
     @IBOutlet weak var passTextFld: RevealPasswordTextField!
     @IBOutlet weak var signInBtn: RoundedRectBlueButton!
     @IBOutlet weak var signUpBtn: RoundedRectBlueButton!
@@ -39,9 +39,6 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // MARK: - Set navigation bar to transparent
-        self.navigationController?.hideTransparentNavigationBar()
         
         notificationObservers()
         
@@ -135,15 +132,18 @@ class LoginViewController: UIViewController {
         self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: noNetworkTitle, desc: noNetworkDesc, textColor: UIColor.darkGray)
     }
     
+    func anonyLoginError() {
+        let anonyErrorTitle = "Anonymous Login Error"
+        let anonyErrorDesc = "Check your network connection, restart the app and try to login anonymously again"
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: anonyErrorTitle, desc: anonyErrorDesc, textColor: UIColor.darkGray)
+    }
+    
     @IBAction func signInBtnPressed(_ sender: Any) {
         
-        guard let email = emailTextFld.text, emailTextFld.text != "" else { return }
-        guard let pass = passTextFld.text, passTextFld.text != "" else { return }
+        guard let email = emailTextFld.text, email.isNotEmpty else { return }
+        guard let pass = passTextFld.text, pass.isNotEmpty else { return }
         
-        if email.count == 0 && pass.count == 0 {
-            // MARK: - Empty Email/Pass Login
-            noEmailPassAlert()
-        } else {
+        if email.isNotEmpty && pass.isNotEmpty {
             // MARK: - Login User Successfully
             AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, loginError) in
                 if success {
@@ -162,11 +162,14 @@ class LoginViewController: UIViewController {
                     // self.performSegue(withIdentifier: "toSignUpViewController", sender: nil)
                 }
             })
+        } else {
+            // MARK: - Empty Email/Pass Login
+            noEmailPassAlert()
         }
     }
     
     @IBAction func signUpBtnPressed(_ sender: UIButton) {
-        
+        // segue to SignUpVC
     }
     
     @IBAction func loginAnonymousBtnClicked(_ sender: UIButton) {
@@ -178,12 +181,16 @@ class LoginViewController: UIViewController {
                 let uid = user?.uid
                 self.completeSignIn(id: uid!) // firebase anonymous uid?
                 self.performSegue(withIdentifier: "toFeedViewController", sender: nil)
+            } else if (error != nil) {
+                // anonymous login problems
+                self.anonyLoginError()
+                print(error?.localizedDescription ?? 0)
             }
         }
         )}
     
     @IBAction func forgotInfoBtnPressed(_ sender: UIButton) {
-        
+        // segue to ForgotPassVC
     }
     
     // MARK: - Keyboard Functions
@@ -211,7 +218,7 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Save User Text
-    @objc func saveToUserDefaults(_ sender: AnimatedTextField) {
+    @objc func saveToUserDefaults(_ sender: UITextField) {
         guard defaultsKey != "" else { return }
         Defaults.set(sender.text ?? "", forKey: defaultsKey)
         
@@ -244,15 +251,12 @@ func removeToken() {
 
 extension LoginViewController: UITextFieldDelegate {
     
-    // MARK: - TextField Change Function
     @objc func textFieldDidChange(_ textField: UITextField) {
         
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == emailTextFld {
-            textField.endEditing(true)
-        }
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
