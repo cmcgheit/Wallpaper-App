@@ -3,7 +3,6 @@
 import Foundation
 import UIKit
 import Firebase
-import Twinkle
 
 class SplashViewController: UIViewController {
     
@@ -13,20 +12,15 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loading(.start) // show loading indicator when showing twinkle
+        self.loading(.start)
         splashTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(SplashViewController.checkIfLoggedIn), userInfo: nil, repeats: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setupTwinkle()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         checkIfLoggedIn()
-    }
-    
-    func setupTwinkle() {
-        Twinkle.twinkle(phonePhoto)
     }
     
     @objc func checkIfLoggedIn() {

@@ -106,10 +106,12 @@ class FeedViewController: UIViewController {
         
         glidingIntView.layer.cornerRadius = 15
         
+        let buttonsArray = [uploadBtn, menuBtn, signOutBtn]
+        
         // Reachability
         if Reachability.isConnectedToNetwork() {
             setup()
-            
+            setupThemeSwitch()
             DispatchQueue.main.async {
                 self.glidingView.reloadData()
             }
@@ -125,11 +127,21 @@ class FeedViewController: UIViewController {
             FIRService.removeFIRObservers()
         }
         
+        // MARK: - Set Buttons For Theme
+        func makeButtonsDarkMode() {
+            buttonsArray.forEach { button in
+                let image = button?.imageView?.image?.withRenderingMode(.alwaysTemplate)
+                button?.setImage(image, for: .normal)
+                button?.tintColor = UIColor.white
+            }
+        }
+        
         // Theme - checks for theme setting
         if Defaults.object(forKey: "lightTheme") != nil {
             Defaults.set(true, forKey: "lightTheme")
         } else {
             Defaults.set(true, forKey: "darkTheme")
+            makeButtonsDarkMode()
         }
         
         // Instructions
@@ -143,7 +155,7 @@ class FeedViewController: UIViewController {
         
         //  MARK: - Admob Banner Properties
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" // test version
         bannerView.rootViewController = self
         // bannerView.load(GADRequest())
         let request = GADRequest()
@@ -193,8 +205,10 @@ class FeedViewController: UIViewController {
                                                   constant: 0))
             
         }
-        
-        // MARK: - Custom Switch
+}
+    
+    // MARK: - Custom Switch
+    func setupThemeSwitch() {
         themeSwitch.onTintColor = wallGold
         themeSwitch.offTintColor = wallBlue
         themeSwitch.cornerRadius = 0.5
@@ -204,7 +218,6 @@ class FeedViewController: UIViewController {
         themeSwitch.padding = 2
         themeSwitch.animationDuration = 0.6
         themeSwitch.thumbShaddowOppacity = 0
-        
     }
     
     //MARK:  - Status Bar
@@ -367,9 +380,7 @@ class FeedViewController: UIViewController {
             self.backThemeView.image = Theme.current.backgroundImage
             self.glidingIntView.backgroundColor = Theme.current.cardView
             self.view.tintColor = Theme.current.tint
-            self.uploadBtn.tintColor = Theme.current.tint
             self.titleLabel.textColor = Theme.current.textColor
-            self.menuBtn.setTitleColor(Theme.current.textColor, for: .normal)
         }
     }
     

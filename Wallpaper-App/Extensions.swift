@@ -100,9 +100,9 @@ extension UIFont {
     
     @objc convenience init(myCoder aDecoder: NSCoder) {
         guard let fontDescriptor = aDecoder.decodeObject(forKey: "UIFontDescriptor") as? UIFontDescriptor,
-        let fontAttribute = fontDescriptor.fontAttributes[.fontUsageUIUsage] as? String else {
-            self.init(myCoder: aDecoder)
-            return
+            let fontAttribute = fontDescriptor.fontAttributes[.fontUsageUIUsage] as? String else {
+                self.init(myCoder: aDecoder)
+                return
         }
         
         var fontName = ""
@@ -129,7 +129,7 @@ extension UIFont {
         guard self == UIFont.self else { return }
         
         if let systemFontMethod = class_getClassMethod(self, #selector(systemFont(ofSize:))),
-        let mySystemFontMethod = class_getClassMethod(self, #selector(systemFont(ofSize:))) {
+            let mySystemFontMethod = class_getClassMethod(self, #selector(systemFont(ofSize:))) {
             method_exchangeImplementations(systemFontMethod, mySystemFontMethod)
         }
         
@@ -137,7 +137,7 @@ extension UIFont {
             let myBoldSystemFontMethod = class_getClassMethod(self, #selector(systemFont(ofSize:))) {
             method_exchangeImplementations(boldSystemFontMethod, myBoldSystemFontMethod)
         }
-
+        
         if let italicSystemFontMethod = class_getClassMethod(self, #selector(systemFont(ofSize:))),
             let myItalicSystemFontMethod = class_getClassMethod(self, #selector(systemFont(ofSize:))) {
             method_exchangeImplementations(italicSystemFontMethod, myItalicSystemFontMethod)
@@ -237,5 +237,22 @@ extension UIView {
         }
         
         propertyAnimator.startAnimation()
+    }
+}
+
+// MARK: - Smart Invert Colors (Dark Mode Images)
+extension UIView {
+    @IBInspectable var ignoresInvertColors: Bool {
+        get {
+            if #available(iOS 11.0, *) {
+                return accessibilityIgnoresInvertColors
+            }
+            return false
+        }
+        set {
+            if #available(iOS 11.0, *) {
+                accessibilityIgnoresInvertColors = newValue
+            }
+        }
     }
 }

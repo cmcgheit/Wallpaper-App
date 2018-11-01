@@ -15,6 +15,7 @@ target 'Wallpaper-App' do
   pod 'Google-Mobile-Ads-SDK'
   pod 'SwiftyJSON'
   pod 'Kingfisher'
+  pod 'lottie-ios'
   pod 'GlidingCollection'
   pod 'EasyTransitions'
   pod 'SwiftEntryKit'
@@ -23,9 +24,8 @@ target 'Wallpaper-App' do
   pod 'SwiftKeychainWrapper'
   pod 'Instructions'
   pod 'NVActivityIndicatorView'
-  pod 'Twinkle'
   pod "McPicker"
-  
+
   post_install do |installer|
       installer.pods_project.targets.each do |target|
           if target.name == 'Armchair'
