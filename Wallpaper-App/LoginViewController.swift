@@ -140,21 +140,22 @@ class LoginViewController: UIViewController {
     
     @IBAction func signInBtnPressed(_ sender: Any) {
         
-        guard let email = emailTextFld.text, email.isNotEmpty else { return }
-        guard let pass = passTextFld.text, pass.isNotEmpty else { return }
+        guard let email = emailTextFld.text else { return }
+        guard let pass = passTextFld.text else { return }
         
-        if email.isNotEmpty && pass.isNotEmpty {
+        if email != "" && pass != "" {
             // MARK: - Login User Successfully
             AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, loginError) in
                 if success {
                     self.completeSignIn(id: (authRef.currentUser?.uid)!) // collects uid/keychain when user signs in
                     Defaults.setIsLoggedIn(value: true)
                     // successfully registered alert
-                    
                     self.performSegue(withIdentifier:
                         "toFeedViewController", sender: nil)
                 } else {
                     // MARK: - Incorrect Email/Password Login
+                    UIView.shake(view: self.emailTextFld)
+                    UIView.shake(view: self.passTextFld)
                     self.incorrectEmailPassAlert()
                     // alert ask to reset? send to forgot pass vc // logic for mutliple incorrect tries?
                     print(String(describing: loginError?.localizedDescription))
@@ -164,6 +165,8 @@ class LoginViewController: UIViewController {
             })
         } else {
             // MARK: - Empty Email/Pass Login
+            UIView.shake(view: emailTextFld)
+            UIView.shake(view: passTextFld)
             noEmailPassAlert()
         }
     }

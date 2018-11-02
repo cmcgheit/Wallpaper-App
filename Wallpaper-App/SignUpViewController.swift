@@ -130,22 +130,35 @@ class SignUpViewController: UIViewController {
         guard let email = signUpTxtFld.text, email.isNotEmpty else { return }
         guard let pass = signUpPassFld.text, pass.isNotEmpty else { return }
         
-        if email.isNotEmpty  && pass.isNotEmpty {
+        if email != ""  && pass != "" {
             // Register New User
             AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in
                 if success { // After registered, login the user
                     AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, nil) in
-                        self.performSegue(withIdentifier: "toFeedViewController", sender: self) // Take user to Feed once sucessfully signed in
-                        print("Successfully registered/Signed-In user")
+                        if registrationError == nil {
+                            self.performSegue(withIdentifier: "toFeedViewController", sender: self) // Take user to Feed once sucessfully signed in
+                            print("Successfully registered/Signed-In user")
+                        } else {
+                            if registrationError != nil {
+                                // Sign In Error Alert
+                                UIView.shake(view: self.signUpTxtFld)
+                                UIView.shake(view: self.signUpPassFld)
+                                self.signInErrorAlert()
+                                print(String(describing: registrationError?.localizedDescription))
+                            }
+                        }
                     })
                 } else {
-                    // Sign In Error Alert
+                    UIView.shake(view: self.signUpTxtFld)
+                    UIView.shake(view: self.signUpPassFld)
                     self.signInErrorAlert()
                     print(String(describing: registrationError?.localizedDescription))
                 }
             })
-        } else {
+        } else if email.isEmpty == true && pass.isEmpty == true {
             // MARK: - Empty/No Email/Password entered Alert (not registered)
+            UIView.shake(view: signUpTxtFld)
+            UIView.shake(view: signUpPassFld)
             noEmailPassAlert()
         }
     }

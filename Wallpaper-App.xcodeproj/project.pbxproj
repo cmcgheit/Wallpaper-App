@@ -46,6 +46,8 @@
 		D895F4C221481C0200E7F8BE /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */; };
 		D895F4C4214AEF6E00E7F8BE /* UITextField+ValidationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4C3214AEF6D00E7F8BE /* UITextField+ValidationExt.swift */; };
 		D8C6DA1D218A4357000EF94C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8C6DA1C218A4357000EF94C /* GoogleService-Info.plist */; };
+		D8C6DA28218BB973000EF94C /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = D8C6DA26218BB973000EF94C /* loader.json */; };
+		D8C6DA29218BB973000EF94C /* postcard.json in Resources */ = {isa = PBXBuildFile; fileRef = D8C6DA27218BB973000EF94C /* postcard.json */; };
 		D8E93B8220B8B02100CE0AD8 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8120B8B02000CE0AD8 /* AuthService.swift */; };
 		D8E93B8420B8B02D00CE0AD8 /* FIRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */; };
 		D8E93B8A20B8B05100CE0AD8 /* ImageResizeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */; };
@@ -142,6 +144,8 @@
 		D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		D895F4C3214AEF6D00E7F8BE /* UITextField+ValidationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ValidationExt.swift"; sourceTree = "<group>"; };
 		D8C6DA1C218A4357000EF94C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		D8C6DA26218BB973000EF94C /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loader.json; path = Resources/loader.json; sourceTree = SOURCE_ROOT; };
+		D8C6DA27218BB973000EF94C /* postcard.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = postcard.json; path = Resources/postcard.json; sourceTree = SOURCE_ROOT; };
 		D8E93B8120B8B02000CE0AD8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = "Wallpaper-App/AuthService.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIRService.swift; path = "Wallpaper-App/FIRService.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageResizeExt.swift; path = "Wallpaper-App/ImageResizeExt.swift"; sourceTree = SOURCE_ROOT; };
@@ -225,6 +229,8 @@
 		6A1367971F8D657500FC16F8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D8C6DA26218BB973000EF94C /* loader.json */,
+				D8C6DA27218BB973000EF94C /* postcard.json */,
 				D8C6DA1C218A4357000EF94C /* GoogleService-Info.plist */,
 			);
 			name = Resources;
@@ -600,7 +606,9 @@
 				D8E93BE220BDB22200CE0AD8 /* LaunchScreen.storyboard in Resources */,
 				D8FC5D8520D2BA2B00FA632F /* PopUpViewController.xib in Resources */,
 				D8E93BA220B8B0C100CE0AD8 /* Assets.xcassets in Resources */,
+				D8C6DA28218BB973000EF94C /* loader.json in Resources */,
 				D8C6DA1D218A4357000EF94C /* GoogleService-Info.plist in Resources */,
+				D8C6DA29218BB973000EF94C /* postcard.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

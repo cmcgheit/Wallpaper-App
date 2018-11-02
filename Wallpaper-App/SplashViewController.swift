@@ -3,11 +3,13 @@
 import Foundation
 import UIKit
 import Firebase
+import Lottie
 
 class SplashViewController: UIViewController {
     
     @IBOutlet weak var phonePhoto: UIImageView!
-    
+    @IBOutlet private var animationView: LOTAnimationView!
+
     var splashTimer = Timer()
     
     override func viewDidLoad() {
@@ -17,16 +19,25 @@ class SplashViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        phonePhoto.isHidden = true
+        setupAnimation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         checkIfLoggedIn()
     }
     
+    func setupAnimation() {
+        animationView = LOTAnimationView(name: "postcard")
+        animationView.play()
+        phonePhoto.isHidden = true
+    }
+    
     @objc func checkIfLoggedIn() {
         if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
             Defaults.setIsLoggedIn(value: true)
             self.loading(.stop)
+            self.animationView.stop()
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let feedVC = storyboard.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
             self.present(feedVC, animated: true, completion: nil)
@@ -34,6 +45,7 @@ class SplashViewController: UIViewController {
         } else {
             Defaults.setIsLoggedIn(value: false)
             self.loading(.stop)
+            self.animationView.stop()
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
                 as! LoginViewController
