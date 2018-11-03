@@ -69,35 +69,42 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-ye-yUT">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-ye-yUT">
                                 <rect key="frame" x="307" y="547" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Cqq-Ep-Dh5"/>
                                     <constraint firstAttribute="width" constant="44" id="sC8-Fc-nml"/>
                                 </constraints>
-                                <state key="normal" image="uploadbuttonon"/>
+                                <state key="normal" image="uploadbuttonon">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="uploadBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8XQ-aJ-6qk"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQH-b3-jIB">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQH-b3-jIB">
                                 <rect key="frame" x="255" y="599" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="S46-uc-clg"/>
                                     <constraint firstAttribute="height" constant="44" id="X5u-3D-imv"/>
                                 </constraints>
-                                <state key="normal" image="closebuttonoff"/>
+                                <state key="normal" image="closebuttonoff">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="signOutBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rbh-Ma-wp4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZo-wh-HfF">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZo-wh-HfF">
                                 <rect key="frame" x="307" y="599" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="0gE-hY-ikW"/>
                                     <constraint firstAttribute="width" constant="44" id="C9V-i8-KKu"/>
                                 </constraints>
-                                <state key="normal" image="menubuttonoff"/>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="menubuttonoff">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="menuBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JzJ-lG-d4T"/>
                                 </connections>
@@ -438,7 +445,6 @@
                         <subviews>
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Fbl-MI-nzn">
                                 <rect key="frame" x="37.5" y="203.5" width="300" height="260"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="0B6-Fc-lO3"/>
                                     <constraint firstAttribute="height" constant="260" id="O7c-zt-jNa"/>

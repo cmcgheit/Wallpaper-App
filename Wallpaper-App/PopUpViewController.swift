@@ -1,4 +1,4 @@
-//PopUpViewController.swift, coded with love by C McGhee
+// PopUpViewController.swift, coded with love by C McGhee
 
 import UIKit
 import EasyTransitions

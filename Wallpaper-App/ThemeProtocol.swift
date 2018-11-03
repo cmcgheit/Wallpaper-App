@@ -6,6 +6,7 @@ protocol ThemeProtocol {
     
     var mainFontName: String { get }
     var textColor: UIColor { get }
+    var buttonColor: UIColor { get }
     var accent: UIColor { get }
     var backgroundImage: UIImage { get }
     var cardView: UIColor { get }

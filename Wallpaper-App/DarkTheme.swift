@@ -6,6 +6,7 @@ class DarkTheme: ThemeProtocol {
     
     var mainFontName: String = FontName.regular
     var textColor: UIColor = UIColor.white
+    var buttonColor: UIColor = UIColor.white
     var accent: UIColor = orangeColor
     var backgroundImage = #imageLiteral(resourceName: "BlackGrey")
     var cardView: UIColor = UIColor.black

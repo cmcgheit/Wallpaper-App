@@ -1,4 +1,4 @@
-//SignUpViewController.swift, coded with love by C McGhee
+// SignUpViewController.swift, coded with love by C McGhee
 
 import UIKit
 import Firebase
@@ -18,7 +18,7 @@ class SignUpViewController: UIViewController {
         
         signUpBtn?.layer.cornerRadius = 15
         goBackBtn?.layer.cornerRadius = 15
-
+        
         signUpTxtFld?.delegate = self
         signUpPassFld?.delegate = self
     }
@@ -39,8 +39,8 @@ class SignUpViewController: UIViewController {
     func notificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow), name: .keyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide), name: .keyboardWillHide, object: nil)
-//        signUpTxtFld?.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
-//        signUpPassFld?.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
+        //        signUpTxtFld?.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
+        //        signUpPassFld?.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange(_:)), for: .editingChanged)
     }
     
     func removeObservers() {
@@ -85,21 +85,33 @@ class SignUpViewController: UIViewController {
     }
     
     func noEmailPassAlert() {
-        let titleText = "No Email/Password Entered"
-        let descText = "Please enter a complete email/password and try again"
-        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+        let noEmailTitleText = "No Email/Password Entered"
+        let noEmailDescText = "Please enter a complete email/password and try again"
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: noEmailTitleText, desc: noEmailDescText, textColor: UIColor.darkGray)
+    }
+    
+    func emailNotValidAlert() {
+        let emailNotValidText = "Email Not Valid"
+        let emailNotValidDesc = "Please use a valid email address and try again"
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: emailNotValidText, desc: emailNotValidDesc, textColor: UIColor.darkGray)
+    }
+    
+    func passNotValidAlert() {
+        let passNotValidText = "Password Not Valid"
+        let passNotValidDesc = "Please use a valid password of at least 6 characters"
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: passNotValidText, desc: passNotValidDesc, textColor: UIColor.darkGray)
     }
     
     func signInErrorAlert() {
-        let titleText = "Error signing in"
-        let descText = "Please check that you have entered your email and password correctly and try again"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+        let signInErrortTitleText = "Error signing in"
+        let signInErrorDesc = "Please check that you have entered your email and password correctly and try again"
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: signInErrortTitleText, desc: signInErrorDesc, textColor: UIColor.darkGray)
     }
     
     func signUpErrorAlert() {
-        let titleText = "Invalid Email/Password"
-        let descText = "Please check that you have entered a valid email and that your password is at least 6 characters long"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+        let signUpErrorText = "Invalid Email/Password"
+        let signUpDescText = "Please check that you have entered a valid email and that your password is at least 6 characters long"
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: signUpErrorText, desc: signUpDescText, textColor: UIColor.darkGray)
     }
     
     // MARK: - Keyboard Functions
@@ -126,36 +138,46 @@ class SignUpViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    @IBAction func signUpBtnPressed(_ sender: Any) {
-        guard let email = signUpTxtFld.text, email.isNotEmpty else { return }
-        guard let pass = signUpPassFld.text, pass.isNotEmpty else { return }
-        
-        if email != ""  && pass != "" {
-            // Register New User
-            AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in
-                if success { // After registered, login the user
-                    AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, nil) in
-                        if registrationError == nil {
-                            self.performSegue(withIdentifier: "toFeedViewController", sender: self) // Take user to Feed once sucessfully signed in
-                            print("Successfully registered/Signed-In user")
-                        } else {
-                            if registrationError != nil {
-                                // Sign In Error Alert
-                                UIView.shake(view: self.signUpTxtFld)
-                                UIView.shake(view: self.signUpPassFld)
-                                self.signInErrorAlert()
-                                print(String(describing: registrationError?.localizedDescription))
-                            }
+    // MARK: - Authenticate New User
+    private func authenticateNewUser(withEmail email: String, withPassword pass: String) {
+        // Register New User
+        AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in
+            if success { // After registered, login the user
+                Analytics.logEvent("user-sign-up", parameters: nil)
+                AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, nil) in
+                    if registrationError == nil {
+                        self.performSegue(withIdentifier: "toFeedViewController", sender: self) // Take user to Feed once sucessfully signed in
+                        print("Successfully registered/Signed-In user")
+                    } else {
+                        if registrationError != nil {
+                            // Sign In Error Alert
+                            UIView.shake(view: self.signUpTxtFld)
+                            UIView.shake(view: self.signUpPassFld)
+                            self.signInErrorAlert()
+                            print(String(describing: registrationError?.localizedDescription))
                         }
-                    })
-                } else {
-                    UIView.shake(view: self.signUpTxtFld)
-                    UIView.shake(view: self.signUpPassFld)
-                    self.signInErrorAlert()
-                    print(String(describing: registrationError?.localizedDescription))
-                }
-            })
-        } else if email.isEmpty == true && pass.isEmpty == true {
+                    }
+                })
+            }
+        })
+    }
+    
+    @IBAction func signUpBtnPressed(_ sender: Any) {
+        guard let email = signUpTxtFld.text, signUpTxtFld.text != "" else { return }
+        guard let pass = signUpPassFld.text, signUpPassFld.text != "" else { return }
+        
+        if email.isNotEmpty && pass.isNotEmpty {
+            // MARK: - Validate if fields not empty
+            if isEmailValid(text: email) && isPassValid(text: pass) {
+                authenticateNewUser(withEmail: email, withPassword: pass)
+            } else if isEmailValid(text: email) == false {
+                UIView.shake(view: signUpTxtFld)
+                emailNotValidAlert()
+            } else if isPassValid(text: pass) == false {
+                UIView.shake(view: signUpPassFld)
+                passNotValidAlert()
+            }
+        } else {
             // MARK: - Empty/No Email/Password entered Alert (not registered)
             UIView.shake(view: signUpTxtFld)
             UIView.shake(view: signUpPassFld)
@@ -171,10 +193,6 @@ class SignUpViewController: UIViewController {
 extension SignUpViewController: UITextFieldDelegate {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
         
     }
     

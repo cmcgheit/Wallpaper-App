@@ -318,7 +318,6 @@ class UploadViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         self.uploadInstructionsController.stop(immediately: true)
-        
     }
     
     // MARK: - Camera Access
@@ -379,6 +378,7 @@ class UploadViewController: UIViewController {
                     print(error?.localizedDescription ?? "")
                     return
                 } else { // upload successful
+                    Analytics.logEvent("user-uploaded-wallpaper", parameters: nil)
                     self.uploadSuccessfulAlert()
                     self.dismiss(animated: true, completion: nil)
                 }

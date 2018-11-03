@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Armchair.debugEnabled = true
         Armchair.shouldPromptClosure( { info -> Bool in
             if #available(iOS 10.3, *) {
-                SKStoreReviewController.requestReview()
+                StoreReviewHelper.checkAndAskForReview()
                 return false
             } else {
                 return true

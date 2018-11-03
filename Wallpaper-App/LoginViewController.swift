@@ -140,34 +140,34 @@ class LoginViewController: UIViewController {
     
     @IBAction func signInBtnPressed(_ sender: Any) {
         
-        guard let email = emailTextFld.text else { return }
-        guard let pass = passTextFld.text else { return }
+        guard let email = emailTextFld.text, emailTextFld.text != "" else { return }
+        guard let pass = passTextFld.text, passTextFld.text != "" else { return }
         
-        if email != "" && pass != "" {
-            // MARK: - Login User Successfully
-            AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, loginError) in
-                if success {
-                    self.completeSignIn(id: (authRef.currentUser?.uid)!) // collects uid/keychain when user signs in
-                    Defaults.setIsLoggedIn(value: true)
-                    // successfully registered alert
-                    self.performSegue(withIdentifier:
-                        "toFeedViewController", sender: nil)
-                } else {
-                    // MARK: - Incorrect Email/Password Login
-                    UIView.shake(view: self.emailTextFld)
-                    UIView.shake(view: self.passTextFld)
-                    self.incorrectEmailPassAlert()
-                    // alert ask to reset? send to forgot pass vc // logic for mutliple incorrect tries?
-                    print(String(describing: loginError?.localizedDescription))
-                    // Take User to SignUp if not a registered user
-                    // self.performSegue(withIdentifier: "toSignUpViewController", sender: nil)
-                }
-            })
+        if email.isNotEmpty && pass.isNotEmpty {
+            authenticateUser(withEmail: email, withPassword: pass)
         } else {
-            // MARK: - Empty Email/Pass Login
             UIView.shake(view: emailTextFld)
             UIView.shake(view: passTextFld)
             noEmailPassAlert()
+        }
+    }
+    
+    // MARK: - Authenticate User
+    private func authenticateUser(withEmail email: String, withPassword pass: String) {
+        AuthService.instance.loginUser(withEmail: email, andPassword: pass) { (success, loginError) in
+            if success {
+                self.successfulLoginAlert()
+                self.completeSignIn(id: (authRef.currentUser?.uid)!) // collects uid/keychain when user signs in
+                Defaults.setIsLoggedIn(value: true)
+                self.performSegue(withIdentifier: "toFeedViewController", sender: nil)
+                return
+            }
+            
+            if loginError != nil {
+                self.incorrectEmailPassAlert()
+                print(String(describing: loginError?.localizedDescription))
+                return
+            }
         }
     }
     
@@ -255,10 +255,6 @@ func removeToken() {
 extension LoginViewController: UITextFieldDelegate {
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
         
     }
     

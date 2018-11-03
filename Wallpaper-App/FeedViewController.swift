@@ -97,7 +97,7 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         uploadBtn.center = menuBtn.center
         signOutBtn.center = menuBtn.center
         
@@ -105,8 +105,6 @@ class FeedViewController: UIViewController {
         signOutBtnCenter = signOutBtn.center
         
         glidingIntView.layer.cornerRadius = 15
-        
-        let buttonsArray = [uploadBtn, menuBtn, signOutBtn]
         
         // Reachability
         if Reachability.isConnectedToNetwork() {
@@ -127,21 +125,11 @@ class FeedViewController: UIViewController {
             FIRService.removeFIRObservers()
         }
         
-        // MARK: - Set Buttons For Theme
-        func makeButtonsDarkMode() {
-            buttonsArray.forEach { button in
-                let image = button?.imageView?.image?.withRenderingMode(.alwaysTemplate)
-                button?.setImage(image, for: .normal)
-                button?.tintColor = UIColor.white
-            }
-        }
-        
         // Theme - checks for theme setting
         if Defaults.object(forKey: "lightTheme") != nil {
             Defaults.set(true, forKey: "lightTheme")
         } else {
             Defaults.set(true, forKey: "darkTheme")
-            makeButtonsDarkMode()
         }
         
         // Instructions
@@ -381,9 +369,12 @@ class FeedViewController: UIViewController {
             self.glidingIntView.backgroundColor = Theme.current.cardView
             self.view.tintColor = Theme.current.tint
             self.titleLabel.textColor = Theme.current.textColor
+            self.uploadBtn.tintColor = Theme.current.buttonColor
+            self.menuBtn.tintColor = Theme.current.buttonColor
+            self.signOutBtn.tintColor = Theme.current.buttonColor
         }
     }
-    
+
     // MARK: - Custom Transition
     func animateCell(cellFrame: CGRect) -> CATransform3D {
         let angleFromX = Double((-cellFrame.origin.x) / 10)
