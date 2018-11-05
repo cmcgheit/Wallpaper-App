@@ -392,6 +392,22 @@
                                             <constraint firstAttribute="width" constant="200" id="RrM-zt-CdJ"/>
                                         </constraints>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zWG-0M-ljt" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
+                                        <rect key="frame" x="75" y="263.5" width="150" height="32"/>
+                                        <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="IAg-sp-XUv"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="SY4-e0-qQz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="17"/>
+                                        <state key="normal" title="Terms &amp; Conditions">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="termsBtnPressed:" destination="GZF-Tt-wBC" eventType="touchUpInside" id="Ixa-Ju-9KD"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -399,7 +415,9 @@
                                 </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="350" id="0is-S4-Ehf"/>
+                                    <constraint firstItem="zWG-0M-ljt" firstAttribute="top" secondItem="QLZ-lg-TWB" secondAttribute="bottom" constant="20" id="8aU-a0-J9C"/>
                                     <constraint firstItem="QLZ-lg-TWB" firstAttribute="top" secondItem="2QC-FE-YbQ" secondAttribute="bottom" constant="30" id="FJt-BU-SGl"/>
+                                    <constraint firstItem="zWG-0M-ljt" firstAttribute="centerX" secondItem="iWF-Xb-Ah7" secondAttribute="centerX" id="GsE-I2-UFM"/>
                                     <constraint firstItem="2QC-FE-YbQ" firstAttribute="centerY" secondItem="iWF-Xb-Ah7" secondAttribute="centerY" constant="-58.75" id="VUJ-aL-XYT"/>
                                     <constraint firstAttribute="width" constant="300" id="ioj-ZL-68T"/>
                                     <constraint firstItem="2QC-FE-YbQ" firstAttribute="centerX" secondItem="iWF-Xb-Ah7" secondAttribute="centerX" constant="-1.75" id="uC5-WT-slf"/>
@@ -425,11 +443,12 @@
                         <outlet property="signUpBtn" destination="Gue-TG-lhA" id="037-ir-vSB"/>
                         <outlet property="signUpPassFld" destination="mrw-Ur-t6h" id="HLp-Qy-IjJ"/>
                         <outlet property="signUpTxtFld" destination="KIc-ps-9vn" id="qq5-7n-meI"/>
+                        <outlet property="termsBtn" destination="zWG-0M-ljt" id="XJ2-2c-Qjq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KeQ-bX-Oa4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-551" y="913"/>
+            <point key="canvasLocation" x="-551" y="869"/>
         </scene>
         <!--SplashViewController-->
         <scene sceneID="7Ed-Zr-fLx">
@@ -685,8 +704,7 @@
                                                     <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="signInBtnPressed:" destination="e5t-Dg-8Hj" eventType="touchUpInside" id="5uo-lX-ra8"/>
-                                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toFeedViewController" id="YgR-BL-tcI"/>
+                                                    <action selector="signInBtnPressed:" destination="e5t-Dg-8Hj" eventType="touchUpInside" id="haw-px-Epp"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flm-PU-odZ" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
@@ -702,9 +720,7 @@
                                                     <color key="titleShadowColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="signInBtnPressed:" destination="e5t-Dg-8Hj" eventType="touchUpInside" id="xJk-vC-lQh"/>
                                                     <action selector="signUpBtnPressed:" destination="e5t-Dg-8Hj" eventType="touchUpInside" id="Vze-iN-BU0"/>
-                                                    <segue destination="GZF-Tt-wBC" kind="show" identifier="toSignUpViewController" id="zgL-Jl-Cgd"/>
                                                 </connections>
                                             </button>
                                         </subviews>

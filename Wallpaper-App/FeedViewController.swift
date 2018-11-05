@@ -105,7 +105,7 @@ class FeedViewController: UIViewController {
         signOutBtnCenter = signOutBtn.center
         
         glidingIntView.layer.cornerRadius = 15
-        
+
         // Reachability
         if Reachability.isConnectedToNetwork() {
             setup()

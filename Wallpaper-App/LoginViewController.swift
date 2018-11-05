@@ -24,17 +24,16 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        signInBtn.layer.cornerRadius = 15
-        signUpBtn.layer.cornerRadius = 15
-        loginAnBtn.layer.cornerRadius = 15
-        forgotInfoBtn.layer.cornerRadius = 15
-        
+    
         customBackBtn()
         
         emailTextFld.delegate = self
         passTextFld.delegate = self
         
+        signInBtn.layer.cornerRadius = 15
+        signUpBtn.layer.cornerRadius = 15
+        loginAnBtn.layer.cornerRadius = 15
+        forgotInfoBtn.layer.cornerRadius = 15
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,11 +45,13 @@ class LoginViewController: UIViewController {
         if Reachability.isConnectedToNetwork() {
             if authRef.currentUser?.uid != nil && authRef.currentUser?.isAnonymous != nil {
                 Defaults.setIsLoggedIn(value: true)
-                self.performSegue(withIdentifier:  "toFeedViewController", sender: self)
+                let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+                self.present(feedVC, animated:true)
             } else {
                 // If User not logged in
                 do {
                     try authRef.signOut()
+                    removeToken()
                     return
                 } catch  {
                     print(error)
@@ -140,15 +141,15 @@ class LoginViewController: UIViewController {
     
     @IBAction func signInBtnPressed(_ sender: Any) {
         
-        guard let email = emailTextFld.text, emailTextFld.text != "" else { return }
-        guard let pass = passTextFld.text, passTextFld.text != "" else { return }
+        guard let email = emailTextFld.text, email == "" else { return }
+        guard let pass = passTextFld.text, pass == "" else { return }
         
-        if email.isNotEmpty && pass.isNotEmpty {
-            authenticateUser(withEmail: email, withPassword: pass)
-        } else {
+        if email == "" || pass == "" {
             UIView.shake(view: emailTextFld)
             UIView.shake(view: passTextFld)
             noEmailPassAlert()
+        } else {
+            authenticateUser(withEmail: email, withPassword: pass)
         }
     }
     
@@ -159,7 +160,8 @@ class LoginViewController: UIViewController {
                 self.successfulLoginAlert()
                 self.completeSignIn(id: (authRef.currentUser?.uid)!) // collects uid/keychain when user signs in
                 Defaults.setIsLoggedIn(value: true)
-                self.performSegue(withIdentifier: "toFeedViewController", sender: nil)
+                let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+                self.present(feedVC, animated:true)
                 return
             }
             
@@ -172,7 +174,11 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUpBtnPressed(_ sender: UIButton) {
-        // segue to SignUpVC
+        guard let email = emailTextFld.text, email == "" else { return }
+        guard let pass = passTextFld.text, pass == "" else { return }
+        
+        let signUpVC = storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
+        self.present(signUpVC, animated:true)
     }
     
     @IBAction func loginAnonymousBtnClicked(_ sender: UIButton) {
@@ -183,7 +189,8 @@ class LoginViewController: UIViewController {
                 let user = authResult?.user
                 let uid = user?.uid
                 self.completeSignIn(id: uid!) // firebase anonymous uid?
-                self.performSegue(withIdentifier: "toFeedViewController", sender: nil)
+                let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+                self.present(feedVC, animated:true)
             } else if (error != nil) {
                 // anonymous login problems
                 self.anonyLoginError()
@@ -253,11 +260,7 @@ func removeToken() {
 }
 
 extension LoginViewController: UITextFieldDelegate {
-    
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        
-    }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == emailTextFld {
             self.view.endEditing(true)

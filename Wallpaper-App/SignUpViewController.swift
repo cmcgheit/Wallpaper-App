@@ -11,23 +11,25 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpPassFld: RevealPasswordTextField!
     @IBOutlet weak var signUpBtn: RoundedRectBlueButton!
     @IBOutlet weak var goBackBtn: RoundedRectBlueButton!
+    @IBOutlet weak var termsBtn: RoundedRectBlueButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         customBackBtn()
         
-        signUpBtn?.layer.cornerRadius = 15
-        goBackBtn?.layer.cornerRadius = 15
-        
         signUpTxtFld?.delegate = self
         signUpPassFld?.delegate = self
+        
+        DispatchQueue.main.async {
+            self.signUpBtn?.layer.cornerRadius = 15
+            self.goBackBtn?.layer.cornerRadius = 15
+            self.termsBtn?.layer.cornerRadius = 15
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         notificationObservers()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -146,7 +148,8 @@ class SignUpViewController: UIViewController {
                 Analytics.logEvent("user-sign-up", parameters: nil)
                 AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, nil) in
                     if registrationError == nil {
-                        self.performSegue(withIdentifier: "toFeedViewController", sender: self) // Take user to Feed once sucessfully signed in
+                        let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+                        self.present(feedVC, animated:true) // Take user to Feed once sucessfully signed in
                         print("Successfully registered/Signed-In user")
                     } else {
                         if registrationError != nil {
@@ -163,39 +166,37 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpBtnPressed(_ sender: Any) {
-        guard let email = signUpTxtFld.text, signUpTxtFld.text != "" else { return }
-        guard let pass = signUpPassFld.text, signUpPassFld.text != "" else { return }
+        guard let email = signUpTxtFld.text, email == "" else { return }
+        guard let pass = signUpPassFld.text, pass == "" else { return }
         
-        if email.isNotEmpty && pass.isNotEmpty {
-            // MARK: - Validate if fields not empty
-            if isEmailValid(text: email) && isPassValid(text: pass) {
-                authenticateNewUser(withEmail: email, withPassword: pass)
-            } else if isEmailValid(text: email) == false {
-                UIView.shake(view: signUpTxtFld)
-                emailNotValidAlert()
-            } else if isPassValid(text: pass) == false {
-                UIView.shake(view: signUpPassFld)
-                passNotValidAlert()
-            }
-        } else {
+        if email == "" || pass == "" {
             // MARK: - Empty/No Email/Password entered Alert (not registered)
             UIView.shake(view: signUpTxtFld)
             UIView.shake(view: signUpPassFld)
             noEmailPassAlert()
+        } else if isEmailValid(text: email) == false {
+            UIView.shake(view: signUpTxtFld)
+            emailNotValidAlert()
+        } else if isPassValid(text: pass) == false {
+            UIView.shake(view: signUpPassFld)
+            passNotValidAlert()
+        } else if isEmailValid(text: email) && isPassValid(text: pass) {
+            // MARK: - Validate if fields not empty
+            authenticateNewUser(withEmail: email, withPassword: pass)
         }
     }
     
     @IBAction func goBackBtnPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func termsBtnPressed(_ sender: Any) {
+        loadTermsView()
+    }
 }
 
 extension SignUpViewController: UITextFieldDelegate {
-    
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        
-    }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == signUpTxtFld {
             self.view.endEditing(true)
