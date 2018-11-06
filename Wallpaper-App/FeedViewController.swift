@@ -229,8 +229,7 @@ class FeedViewController: UIViewController {
                 Defaults.setIsLoggedIn(value: true)
             } else {
                 Defaults.setIsLoggedIn(value: false)
-                // change for navi
-                let signUpVC = SignUpViewController()
+                let signUpVC = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
                 self.present(signUpVC, animated: true)
             }
         }
@@ -367,7 +366,6 @@ class FeedViewController: UIViewController {
         DispatchQueue.main.async {
             self.backThemeView.image = Theme.current.backgroundImage
             self.glidingIntView.backgroundColor = Theme.current.cardView
-            self.view.tintColor = Theme.current.tint
             self.titleLabel.textColor = Theme.current.textColor
             self.uploadBtn.tintColor = Theme.current.buttonColor
             self.menuBtn.tintColor = Theme.current.buttonColor
@@ -563,11 +561,6 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
             
             popUpVC.transitioningDelegate = self
             popUpVC.modalPresentationStyle = .custom
-            
-            isStatusBarHidden = false
-            UIView.animate(withDuration: 0.25) {
-                self.setNeedsStatusBarAppearanceUpdate()
-            }
             
             self.present(popUpVC, animated: true, completion: nil)
         }

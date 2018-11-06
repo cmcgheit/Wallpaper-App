@@ -8,7 +8,7 @@ class LightTheme: ThemeProtocol {
     var textColor: UIColor = tealColor
     var buttonColor = UIColor.darkGray
     var accent: UIColor = goldColor
-    var backgroundImage = #imageLiteral(resourceName: "SilverCream")
+    var backgroundImage = #imageLiteral(resourceName: "HypnoticFluidWhite")
     var cardView: UIColor = UIColor.white
     var tint: UIColor = goldColor
     

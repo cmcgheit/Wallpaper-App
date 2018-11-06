@@ -141,14 +141,14 @@ class LoginViewController: UIViewController {
     
     @IBAction func signInBtnPressed(_ sender: Any) {
         
-        guard let email = emailTextFld.text, email == "" else { return }
-        guard let pass = passTextFld.text, pass == "" else { return }
+        guard let email = emailTextFld.text, !email.isEmpty else { return } //email.isNotEmpty
+        guard let pass = passTextFld.text, !pass.isEmpty else { return } // pass.isNotEmpty
         
-        if email == "" || pass == "" {
+        if email.count < 0 || pass.count < 0 {
             UIView.shake(view: emailTextFld)
             UIView.shake(view: passTextFld)
             noEmailPassAlert()
-        } else {
+        } else if email.count > 0 && pass.count > 0 {
             authenticateUser(withEmail: email, withPassword: pass)
         }
     }
@@ -174,9 +174,6 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUpBtnPressed(_ sender: UIButton) {
-        guard let email = emailTextFld.text, email == "" else { return }
-        guard let pass = passTextFld.text, pass == "" else { return }
-        
         let signUpVC = storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
         self.present(signUpVC, animated:true)
     }

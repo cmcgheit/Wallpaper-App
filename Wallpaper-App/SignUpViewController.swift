@@ -165,32 +165,32 @@ class SignUpViewController: UIViewController {
         })
     }
     
-    @IBAction func signUpBtnPressed(_ sender: Any) {
-        guard let email = signUpTxtFld.text, email == "" else { return }
-        guard let pass = signUpPassFld.text, pass == "" else { return }
+    @IBAction func signUpBtnPressed(_ sender: UIButton) {
+        guard let email = signUpTxtFld.text, !email.isEmpty else { return } // email.isNotEmpty
+        guard let pass = signUpPassFld.text, !pass.isEmpty else { return } // pass.isNotEmpty
         
-        if email == "" || pass == "" {
+        if email.count < 0 || pass.count < 0 {
             // MARK: - Empty/No Email/Password entered Alert (not registered)
             UIView.shake(view: signUpTxtFld)
             UIView.shake(view: signUpPassFld)
             noEmailPassAlert()
-        } else if isEmailValid(text: email) == false {
+        } else if email.count > 0 && isEmailValid(text: email) == false {
             UIView.shake(view: signUpTxtFld)
             emailNotValidAlert()
-        } else if isPassValid(text: pass) == false {
+        } else if pass.count > 0 && isPassValid(text: pass) == false {
             UIView.shake(view: signUpPassFld)
             passNotValidAlert()
-        } else if isEmailValid(text: email) && isPassValid(text: pass) {
+        } else if email.count > 0 && pass.count > 0 && isEmailValid(text: email) && isPassValid(text: pass) {
             // MARK: - Validate if fields not empty
             authenticateNewUser(withEmail: email, withPassword: pass)
         }
     }
     
-    @IBAction func goBackBtnPressed(_ sender: Any) {
+    @IBAction func goBackBtnPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func termsBtnPressed(_ sender: Any) {
+    @IBAction func termsBtnPressed(_ sender: UIButton) {
         loadTermsView()
     }
 }
