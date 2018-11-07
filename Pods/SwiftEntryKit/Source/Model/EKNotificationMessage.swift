@@ -8,57 +8,32 @@
 
 import UIKit
 
-public struct EKSimpleMessage {
-    
-    /** The image view descriptor */
-    public let image: EKProperty.ImageContent
-    
-    /** The title label descriptor */
-    public let title: EKProperty.LabelContent
-    
-    /** The description label descriptor */
-    public let description: EKProperty.LabelContent
-    
-    public init(image: EKProperty.ImageContent, title: EKProperty.LabelContent, description: EKProperty.LabelContent) {
-        self.image = image
-        self.title = title
-        self.description = description
-    }
-}
-
 public struct EKNotificationMessage {
     
+    /** Insets of the content of the message */
+    public struct Insets {
+        
+        /** The insets of the content of the message, from the top, bottom, left, right */
+        public var contentInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        
+        /** The distance between the title and the description */
+        public var titleToDescription: CGFloat = 5
+        
+        public static var `default` = Insets()
+    }
+    
     /** Image, Title, Description */
     public let simpleMessage: EKSimpleMessage
     
-    /** Optional auxilary label descriptor (For instance, it be used to display time of message) */
+    /** Optional auxiliary label descriptor (For instance, it be used to display time of message) */
     public let auxiliary: EKProperty.LabelContent?
     
-    public init(simpleMessage: EKSimpleMessage, auxiliary: EKProperty.LabelContent? = nil) {
+    /** Defines the vertical and horizontal margins */
+    public let insets: Insets
+    
+    public init(simpleMessage: EKSimpleMessage, auxiliary: EKProperty.LabelContent? = nil, insets: Insets = .default) {
         self.simpleMessage = simpleMessage
         self.auxiliary = auxiliary
-    }
-}
-
-public struct EKAlertMessage {
-    
-    public enum ImagePosition {
-        case top
-        case left
-    }
-    
-    /** The position of the image inside the alert */
-    public let imagePosition: ImagePosition
-    
-    /** Image, Title, Description */
-    public let simpleMessage: EKSimpleMessage
-    
-    /** Contents of button bar */
-    public let buttonBarContent: EKProperty.ButtonBarContent
-        
-    public init(simpleMessage: EKSimpleMessage, imagePosition: ImagePosition = .top, buttonBarContent: EKProperty.ButtonBarContent) {
-        self.simpleMessage = simpleMessage
-        self.imagePosition = imagePosition
-        self.buttonBarContent = buttonBarContent
+        self.insets = insets
     }
 }
