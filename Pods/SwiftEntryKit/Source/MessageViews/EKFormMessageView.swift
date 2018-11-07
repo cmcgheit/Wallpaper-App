@@ -12,6 +12,7 @@ public class EKFormMessageView: UIView {
     private let scrollViewVerticalOffset: CGFloat = 20
     
     // MARK: Props
+    
     private let titleLabel = UILabel()
     private let scrollView = UIScrollView()
     private let textFieldsContent: [EKProperty.TextFieldContent]
@@ -19,6 +20,7 @@ public class EKFormMessageView: UIView {
     private var buttonBarView: EKButtonBarView!
     
     // MARK: Setup
+    
     public init(with title: EKProperty.LabelContent, textFieldsContent: [EKProperty.TextFieldContent], buttonContent: EKProperty.ButtonContent) {
         self.textFieldsContent = textFieldsContent
         super.init(frame: UIScreen.main.bounds)
@@ -64,12 +66,12 @@ public class EKFormMessageView: UIView {
         scrollView.layoutToSuperview(.width, .height, offset: -scrollViewVerticalOffset * 2)
     }
     
-    private func setupTitleLabel(with title: EKProperty.LabelContent) {
+    private func setupTitleLabel(with content: EKProperty.LabelContent) {
         scrollView.addSubview(titleLabel)
         titleLabel.layoutToSuperview(.top, .width)
         titleLabel.layoutToSuperview(axis: .horizontally)
         titleLabel.forceContentWrap(.vertically)
-        titleLabel.labelContent = title
+        titleLabel.content = content
     }
     
     private func setupButton(with buttonContent: EKProperty.ButtonContent) {
@@ -93,8 +95,13 @@ public class EKFormMessageView: UIView {
     
     private func extractTextFieldsContent() {
         for (content, textField) in zip(textFieldsContent, textFieldViews) {
-            content.outputWrapper.text = textField.text
+            content.contentWrapper.text = textField.text
         }
+    }
+    
+    /** Makes a specific text field the first responder */
+    public func becomeFirstResponder(with textFieldIndex: Int) {
+        textFieldViews[textFieldIndex].makeFirstResponder()
     }
     
     // Tap Gesture

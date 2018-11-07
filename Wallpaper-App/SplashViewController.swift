@@ -16,6 +16,10 @@ class SplashViewController: UIViewController {
         setupAnimation()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     // MARK: - Setup Lottie Animation
     func setupAnimation() {
         animationView = LOTAnimationView(name: "postcard")

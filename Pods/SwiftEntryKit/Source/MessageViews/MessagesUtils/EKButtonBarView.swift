@@ -20,6 +20,9 @@ public class EKButtonBarView: UIView {
     // MARK: Props
     private var buttons: [UIButton] = []
     
+    /** Threshold for spreading the buttons inside in a vertical manner */
+    private let verticalSpreadThreshold: Int
+    
     private let buttonBarContent: EKProperty.ButtonBarContent
     private let spreadAxis: QLAxis
     private let oppositeAxis: QLAxis
@@ -30,12 +33,12 @@ public class EKButtonBarView: UIView {
     }()
     
     private(set) lazy var intrinsicHeight: CGFloat = {
-        let buttonHeight: CGFloat = 50
+        let buttonHeight: CGFloat = buttonBarContent.buttonHeight
         let height: CGFloat
         switch buttonBarContent.content.count {
         case 0:
             height = 1
-        case 1, 2:
+        case 1...verticalSpreadThreshold:
             height = buttonHeight
         default:
             height = buttonHeight * CGFloat(buttons.count)
@@ -51,9 +54,10 @@ public class EKButtonBarView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public init(with buttonBarContent: EKProperty.ButtonBarContent) {
+    public init(with buttonBarContent: EKProperty.ButtonBarContent, verticalSpreadThreshold: Int = 2) {
+        self.verticalSpreadThreshold = verticalSpreadThreshold
         self.buttonBarContent = buttonBarContent
-        if buttonBarContent.content.count <= 2 {
+        if buttonBarContent.content.count <= verticalSpreadThreshold {
             spreadAxis = .horizontally
             oppositeAxis = .vertically
             relativeEdge = .width
@@ -80,6 +84,10 @@ public class EKButtonBarView: UIView {
     private func layoutButtons() {
         guard !buttons.isEmpty else {
             return
+        }
+        let suffix = Array(buttons.dropFirst())
+        if !suffix.isEmpty {
+            suffix.layout(.height, to: buttons.first!)
         }
         buttons.layoutToSuperview(axis: oppositeAxis)
         buttons.spread(spreadAxis, stretchEdgesToSuperview: true)
@@ -154,12 +162,32 @@ public class EKButtonBarView: UIView {
     }
     
     // Amination
-    func expand() {
-        compressedConstraint.priority = .defaultLow
-        expandedConstraint.priority = .must
+    public func expand() {
+        
+        let expansion = {
+            self.compressedConstraint.priority = .defaultLow
+            self.expandedConstraint.priority = .must
+            
+            /* NOTE: Calling layoutIfNeeded for the whole view hierarchy.
+             Sometimes it's easier to just use frames instead of AutoLayout for
+             hierarch complexity considerations. Here the animation influences almost the
+             entire view hierarchy. */
+            SwiftEntryKit.layoutIfNeeded()
+        }
+        
+        alpha = 1
+        if buttonBarContent.expandAnimatedly {
+            let damping: CGFloat = buttonBarContent.content.count <= 2 ? 0.4 : 0.8
+            SwiftEntryKit.layoutIfNeeded()
+            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction, .layoutSubviews, .allowAnimatedContent], animations: {
+                expansion()
+            }, completion: nil)
+        } else {
+            expansion()
+        }
     }
     
-    func compress() {
+    public func compress() {
         compressedConstraint.priority = .must
         expandedConstraint.priority = .defaultLow
     }

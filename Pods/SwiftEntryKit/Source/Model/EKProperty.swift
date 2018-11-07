@@ -60,10 +60,14 @@ public struct EKProperty {
         /** Text Alignment */
         public var alignment: NSTextAlignment
         
-        public init(font: UIFont, color: UIColor, alignment: NSTextAlignment = .left) {
+        /** Number of lines */
+        public var numberOfLines: Int
+        
+        public init(font: UIFont, color: UIColor, alignment: NSTextAlignment = .left, numberOfLines: Int = 0) {
             self.font = font
             self.color = color
             self.alignment = alignment
+            self.numberOfLines = numberOfLines
         }
     }
     
@@ -108,7 +112,7 @@ public struct EKProperty {
     public struct TextFieldContent {
         
         // NOTE: Intentionally a reference type
-        class Output {
+        class ContentWrapper {
             var text = ""
         }
         
@@ -118,9 +122,14 @@ public struct EKProperty {
         public var placeholder: LabelContent
         public var textStyle: LabelStyle
         public var bottomBorderColor: UIColor
-        let outputWrapper = Output()
-        public var output: String {
-            return outputWrapper.text
+        let contentWrapper = ContentWrapper()
+        public var textContent: String {
+            set {
+                contentWrapper.text = newValue
+            }
+            get {
+                return contentWrapper.text
+            }
         }
         
         public init(keyboardType: UIKeyboardType = .default, placeholder: LabelContent, textStyle: LabelStyle, isSecure: Bool = false, leadingImage: UIImage? = nil, bottomBorderColor: UIColor = .clear) {
@@ -136,13 +145,30 @@ public struct EKProperty {
     /** Button bar content */
     public struct ButtonBarContent {
         public var content: [ButtonContent] = []
+        public var buttonHeight: CGFloat
         public var separatorColor: UIColor
         public var expandAnimatedly: Bool
         
-        public init(with buttonContents: ButtonContent..., separatorColor: UIColor, expandAnimatedly: Bool) {
+        public init(with buttonContents: ButtonContent..., separatorColor: UIColor, buttonHeight: CGFloat = 50, expandAnimatedly: Bool) {
             self.separatorColor = separatorColor
             self.expandAnimatedly = expandAnimatedly
+            self.buttonHeight = buttonHeight
             content.append(contentsOf: buttonContents)
+        }
+    }
+    
+    /** Rating item content */
+    public struct EKRatingItemContent {
+        public var title: EKProperty.LabelContent
+        public var description: EKProperty.LabelContent
+        public var unselectedImage: EKProperty.ImageContent
+        public var selectedImage: EKProperty.ImageContent
+        
+        public init(title: EKProperty.LabelContent, description: EKProperty.LabelContent, unselectedImage: EKProperty.ImageContent, selectedImage: EKProperty.ImageContent) {
+            self.title = title
+            self.description = description
+            self.unselectedImage = unselectedImage
+            self.selectedImage = selectedImage
         }
     }
 }

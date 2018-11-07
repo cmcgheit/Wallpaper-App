@@ -18,7 +18,7 @@ target 'Wallpaper-App' do
   pod 'lottie-ios'
   pod 'GlidingCollection'
   pod 'EasyTransitions'
-  pod 'SwiftEntryKit', '0.2.0'
+  pod 'SwiftEntryKit', '0.7.2'
   pod 'Armchair'
   pod 'Siren'
   pod 'SwiftKeychainWrapper'

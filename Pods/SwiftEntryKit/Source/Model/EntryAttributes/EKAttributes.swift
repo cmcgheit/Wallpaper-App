@@ -11,8 +11,13 @@ import UIKit
 
 public struct EKAttributes {
     
-    /** Init with default attributes */
-    public init() {}
+    // MARK: Identification
+    
+    /**
+     A settable **optional** name that matches the entry-attributes.
+     - Nameless entries cannot be inquired using *SwiftEntryKit.isCurrentlyDisplaying(entryNamed: _) -> Bool*
+     */
+    public var name: String?
     
     // MARK: Display Attributes
     
@@ -22,11 +27,11 @@ public struct EKAttributes {
     /** The position of the entry inside the screen */
     public var position = Position.top
 
-    /** The display priority of the entry. *.max* is the highest. *.min* is lowest */
-    public var displayPriority = DisplayPriority.normal
+    /** The display manner of the entry. */
+    public var precedence = Precedence.override(priority: .normal, dropEnqueuedEntries: false)
     
     /** Describes how long the entry is displayed before it is dismissed */
-    public var displayDuration: DisplayDuration = 2 // Use .infinity for infinate duration
+    public var displayDuration: DisplayDuration = 2 // Use .infinity for infinite duration
     
     /** The frame attributes of the entry */
     public var positionConstraints = PositionConstraints()
@@ -48,6 +53,9 @@ public struct EKAttributes {
     /** Generate haptic feedback once the entry is displayed */
     public var hapticFeedbackType = NotificationHapticFeedback.none
     
+    /** Describes the actions that take place when the entry appears or is being dismissed */
+    public var lifecycleEvents = LifecycleEvents()
+    
     // MARK: Theme & Style Attributes
     
     /** Describes the entry's background appearance while it shows */
@@ -66,7 +74,7 @@ public struct EKAttributes {
     public var border = Border.none
     
     /** Preferred status bar style while the entry shows */
-    public var statusBarStyle: UIStatusBarStyle!
+    public var statusBar = StatusBar.inferred
     
     // MARK: Animation Attributes
     
@@ -78,4 +86,7 @@ public struct EKAttributes {
     
     /** Describes the previous entry behaviour when a new entry with higher display-priority shows */
     public var popBehavior = PopBehavior.animated(animation: .translation)
+
+    /** Init with default attributes */
+    public init() {}
 }

@@ -86,10 +86,10 @@ PODS:
   - NVActivityIndicatorView (4.2.1):
     - NVActivityIndicatorView/Presenter (= 4.2.1)
   - NVActivityIndicatorView/Presenter (4.2.1)
-  - QuickLayout (2.0.0)
+  - QuickLayout (2.0.2)
   - Siren (3.4.0)
-  - SwiftEntryKit (0.2.0):
-    - QuickLayout (= 2.0.0)
+  - SwiftEntryKit (0.7.2):
+    - QuickLayout (= 2.0.2)
   - SwiftKeychainWrapper (3.0.1)
   - SwiftyJSON (4.1.0)
 
@@ -110,7 +110,7 @@ DEPENDENCIES:
   - McPicker
   - NVActivityIndicatorView
   - Siren
-  - SwiftEntryKit (= 0.2.0)
+  - SwiftEntryKit (= 0.7.2)
   - SwiftKeychainWrapper
   - SwiftyJSON
 
@@ -171,12 +171,12 @@ SPEC CHECKSUMS:
   McPicker: 130183cd3d22fc6933ea9e63c5a0d0d1becc0122
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NVActivityIndicatorView: 8068ba3ad39cb44cbaab25d89ff2546b3f092681
-  QuickLayout: e09ffaf6d25c2b6516909088c1fce69cf77e0677
+  QuickLayout: a730730b646b231fd4ef7cffaeb1e81fe0e1ca92
   Siren: 5b8be41b5cd05aa3528303325966e919bd53e412
-  SwiftEntryKit: 75a1f2c1796ea0834b6b0f105efdeaba351f7cc8
+  SwiftEntryKit: 83d312243af7397e38a222b17b7a744b9a7d2145
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: cf91e534cd21299e161354d764306ad6a7a41acc
+PODFILE CHECKSUM: e1a648ccec77239dd864c657a0777238b7e5cc51
 
 COCOAPODS: 1.5.3

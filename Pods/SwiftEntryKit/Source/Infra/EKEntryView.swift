@@ -12,8 +12,15 @@ import QuickLayout
 class EKEntryView: EKStyleView {
     
     struct Content {
-        var view: UIView
+        var viewController: UIViewController!
+        var view: UIView!
         var attributes: EKAttributes
+        
+        init(viewController: UIViewController, attributes: EKAttributes) {
+            self.viewController = viewController
+            self.view = viewController.view
+            self.attributes = attributes
+        }
         
         init(view: UIView, attributes: EKAttributes) {
             self.view = view
@@ -23,41 +30,37 @@ class EKEntryView: EKStyleView {
     
     // MARK: Props
     
-    var content: Content! {
-        didSet {
-            contentView = content.view
-        }
-    }
+    /** Background view */
+    private var backgroundView: EKBackgroundView!
+    
+    /** The content - contains the view, view controller, attributes */
+    var content: Content
+    
+    private lazy var contentView: UIView = {
+        return UIView()
+    }()
     
     var attributes: EKAttributes {
         return content.attributes
     }
     
-    private let contentContainerView = EKStyleView()
-    private var contentView: UIView! {
-        didSet {
-            oldValue?.removeFromSuperview()
-            
-            addSubview(contentContainerView)
-            contentContainerView.layoutToSuperview(axis: .vertically)
-            contentContainerView.layoutToSuperview(axis: .horizontally)
-            contentContainerView.clipsToBounds = true
-            
-            contentContainerView.addSubview(contentView)
-            contentView.layoutToSuperview(axis: .vertically)
-            contentView.layoutToSuperview(axis: .horizontally)
-                        
-            applyDropShadow()
-
-            applyBackgroundToContentView()
-            
-            applyFrameStyle()
-        }
-    }
+    private lazy var contentContainerView: EKStyleView = {
+        let contentContainerView = EKStyleView()
+        self.addSubview(contentContainerView)
+        contentContainerView.layoutToSuperview(axis: .vertically)
+        contentContainerView.layoutToSuperview(axis: .horizontally)
+        contentContainerView.clipsToBounds = true
+        return contentContainerView
+    }()
 
     // MARK: Setup
-    init() {
+    init(newEntry content: Content) {
+        self.content = content
         super.init(frame: UIScreen.main.bounds)
+        setupContentView()
+        applyDropShadow()
+        applyBackgroundToContentView()
+        applyFrameStyle()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -69,12 +72,55 @@ class EKEntryView: EKStyleView {
         applyFrameStyle()
     }
     
+    func transform(to view: UIView) {
+        
+        let previousView = content.view
+        content.view = view
+        view.layoutIfNeeded()
+        
+        let previousHeight = set(.height, of: frame.height, priority: .must)
+        let nextHeight = set(.height, of: view.frame.height, priority: .defaultLow)
+
+        SwiftEntryKit.layoutIfNeeded()
+        
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState, .layoutSubviews], animations: {
+            
+            previousHeight.priority = .defaultLow
+            nextHeight.priority = .must
+            
+            previousView!.alpha = 0
+
+            SwiftEntryKit.layoutIfNeeded()
+            
+        }, completion: { (finished) in
+            
+            view.alpha = 0
+            
+            previousView!.removeFromSuperview()
+            self.removeConstraints([previousHeight, nextHeight])
+
+            self.setupContentView()
+            
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
+                view.alpha = 1
+            }, completion: nil)
+        })
+    }
+    
+    private func setupContentView() {
+        contentView.addSubview(content.view)
+        content.view.layoutToSuperview(axis: .horizontally)
+        content.view.layoutToSuperview(axis: .vertically)
+        
+        contentContainerView.addSubview(contentView)
+        contentView.fillSuperview()
+        contentView.layoutToSuperview(axis: .vertically)
+        contentView.layoutToSuperview(axis: .horizontally)
+    }
+    
     // Apply round corners
     private func applyFrameStyle() {
-        guard !appliedStyle else {
-            return
-        }
-        contentContainerView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
+        backgroundView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
     }
     
     // Apply drop shadow
@@ -86,7 +132,7 @@ class EKEntryView: EKStyleView {
             removeDropShadow()
         }
     }
-
+    
     // Apply background
     private func applyBackgroundToContentView() {
         
@@ -96,7 +142,7 @@ class EKEntryView: EKStyleView {
         backgroundView.background = attributes.entryBackground
         
         switch attributes.positionConstraints.safeArea {
-        case .empty(fillSafeArea: let fillSafeArea) where fillSafeArea:
+        case .empty(fillSafeArea: let fillSafeArea) where fillSafeArea: // Safe area filled with color
             insertSubview(backgroundView, at: 0)
             backgroundView.layoutToSuperview(axis: .horizontally)
             
@@ -111,14 +157,11 @@ class EKEntryView: EKStyleView {
             
             backgroundView.layoutToSuperview(.top, offset: topInset)
             backgroundView.layoutToSuperview(.bottom, offset: bottomInset)
-            
-            if attributes.position.isBottom {
-                applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
-            }
-
-        default:
+        default: // Float case or a Toast with unfilled safe area
             contentView.insertSubview(backgroundView, at: 0)
             backgroundView.fillSuperview()
         }
+        
+        self.backgroundView = backgroundView
     }
 }
