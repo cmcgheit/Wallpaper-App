@@ -141,10 +141,10 @@ class LoginViewController: UIViewController {
     
     @IBAction func signInBtnPressed(_ sender: Any) {
         
-        guard let email = emailTextFld.text, !email.isEmpty else { return } //email.isNotEmpty
-        guard let pass = passTextFld.text, !pass.isEmpty else { return } // pass.isNotEmpty
+        guard let email = emailTextFld.text, email.isNotEmpty else { return }
+        guard let pass = passTextFld.text, pass.isNotEmpty else { return }
         
-        if email.count < 0 || pass.count < 0 {
+        if email.isEmpty || pass.isEmpty {
             UIView.shake(view: emailTextFld)
             UIView.shake(view: passTextFld)
             noEmailPassAlert()

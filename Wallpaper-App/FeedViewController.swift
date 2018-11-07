@@ -538,14 +538,7 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         // MARK: - Custom DidSelect Transition Function
         let section = glidingView.expandedItemIndex
         collectionIndex = indexPath
-        
-        var tabFrame = self.tabBarController?.tabBar.frame
-        let tabHeight = tabFrame?.size.height
-        tabFrame?.origin = CGPoint(x: 0, y: self.view.frame.size.height + tabHeight!)
-        UIView.animate(withDuration: 0.5, animations: {
-            self.tabBarController?.tabBar.frame = tabFrame!
-        })
-        
+            
         if let cell = collectionView.cellForItem(at: indexPath) as? WallpaperRoundedCardCell {
             let a = collectionView.convert(cell.frame, to: collectionView.superview)
             

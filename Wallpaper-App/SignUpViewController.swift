@@ -166,10 +166,10 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpBtnPressed(_ sender: UIButton) {
-        guard let email = signUpTxtFld.text, !email.isEmpty else { return } // email.isNotEmpty
-        guard let pass = signUpPassFld.text, !pass.isEmpty else { return } // pass.isNotEmpty
+        guard let email = signUpTxtFld.text, email.isNotEmpty else { return }
+        guard let pass = signUpPassFld.text, pass.isNotEmpty else { return }
         
-        if email.count < 0 || pass.count < 0 {
+        if email.isEmpty || pass.isEmpty {
             // MARK: - Empty/No Email/Password entered Alert (not registered)
             UIView.shake(view: signUpTxtFld)
             UIView.shake(view: signUpPassFld)
