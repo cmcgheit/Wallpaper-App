@@ -77,7 +77,6 @@ PODS:
   - Kingfisher (4.10.0)
   - leveldb-library (1.20)
   - lottie-ios (2.5.2)
-  - McPicker (1.0.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -92,6 +91,7 @@ PODS:
     - QuickLayout (= 2.0.2)
   - SwiftKeychainWrapper (3.0.1)
   - SwiftyJSON (4.1.0)
+  - SwiftyPickerPopover (6.6.4)
 
 DEPENDENCIES:
   - Armchair
@@ -107,12 +107,12 @@ DEPENDENCIES:
   - Instructions
   - Kingfisher
   - lottie-ios
-  - McPicker
   - NVActivityIndicatorView
   - Siren
   - SwiftEntryKit (= 0.7.2)
   - SwiftKeychainWrapper
   - SwiftyJSON
+  - SwiftyPickerPopover
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -137,7 +137,6 @@ SPEC REPOS:
     - Kingfisher
     - leveldb-library
     - lottie-ios
-    - McPicker
     - nanopb
     - NVActivityIndicatorView
     - QuickLayout
@@ -145,6 +144,7 @@ SPEC REPOS:
     - SwiftEntryKit
     - SwiftKeychainWrapper
     - SwiftyJSON
+    - SwiftyPickerPopover
 
 SPEC CHECKSUMS:
   Armchair: 2dd361337cf81937e73e8b9d48f9eda9a21d316c
@@ -168,7 +168,6 @@ SPEC CHECKSUMS:
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
-  McPicker: 130183cd3d22fc6933ea9e63c5a0d0d1becc0122
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NVActivityIndicatorView: 8068ba3ad39cb44cbaab25d89ff2546b3f092681
   QuickLayout: a730730b646b231fd4ef7cffaeb1e81fe0e1ca92
@@ -176,7 +175,8 @@ SPEC CHECKSUMS:
   SwiftEntryKit: 83d312243af7397e38a222b17b7a744b9a7d2145
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  SwiftyPickerPopover: 6d08cbae133c80743654f4e977607cd1553947e6
 
-PODFILE CHECKSUM: e1a648ccec77239dd864c657a0777238b7e5cc51
+PODFILE CHECKSUM: c609561ea914cef89c4699d1f81c21816e29ea4b
 
 COCOAPODS: 1.5.3

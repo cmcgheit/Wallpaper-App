@@ -7,7 +7,7 @@ import Photos
 import Firebase
 import SwiftEntryKit
 import Instructions
-import McPicker
+import SwiftyPickerPopover
 
 class UploadViewController: UIViewController {
     
@@ -29,9 +29,6 @@ class UploadViewController: UIViewController {
     
     // Instructions
     let uploadInstructionsController = CoachMarksController()
-    
-    // Picker
-    let catPickerData: [[String]] = [["Sports", "Music", "Arts"]]
     
     public var userTappedCloseButtonClosure: (() -> Void)?
     
@@ -304,16 +301,30 @@ class UploadViewController: UIViewController {
     
     // MARK: - Category Picker Button Action
     @IBAction func categoryPicker(_ sender: UIButton) {
-        McPicker.showAsPopover(data: catPickerData, fromViewController: self, sourceView: sender, doneHandler: { [weak self] (selections: [Int : String]) -> Void in
-            if let catName = selections[0] {
-                self?.wallpaperCatPickBtn.setTitle(catName, for: .normal) // updates selection with catName
-            }
-            }, cancelHandler: { () -> Void in
-                print("Canceled Popover")
-        }, selectionChangedHandler: { (selections: [Int:String], componentThatChanged: Int) -> Void  in
-            let newSelection = selections[componentThatChanged] ?? "Failed to get new selection!"
-            print("Component \(componentThatChanged) changed value to \(newSelection)")
-        })
+        let catPicker = StringPickerPopover(title: "", choices: ["Sports","Music","Art"])
+            // .setImageNames(["imageIcon",nil,"thumbUpIcon"]) // set images from assets
+            .setSize(width: 200)
+            .setCornerRadius(10)
+            .setValueChange(action: { _, _, selectedString in
+                self.wallpaperCatPickBtn.setTitle(selectedString, for: .normal) // updates selection with catName
+                print("current string: \(selectedString)")
+            })
+            .setDoneButton(
+                title: "Select",
+                font: UIFont.gillsRegFont(ofSize: 17),
+                color: UIColor.red,
+                action: {
+                popover, selectedRow, selectedString in
+                print("done row \(selectedRow) \(selectedString)")
+            })
+            .setCancelButton(
+                font: UIFont.gillsRegFont(ofSize: 17),
+                color: UIColor.blue,
+                action: {_, _, _ in
+                print("cancelled") })
+            .setOutsideTapDismissing(allowed: true)
+            .setDimmedBackgroundView(enabled: true)
+        catPicker.appear(originView: sender, baseViewController: self)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

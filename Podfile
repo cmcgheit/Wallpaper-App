@@ -24,7 +24,7 @@ target 'Wallpaper-App' do
   pod 'SwiftKeychainWrapper'
   pod 'Instructions'
   pod 'NVActivityIndicatorView'
-  pod "McPicker"
+  pod 'SwiftyPickerPopover'
 
   post_install do |installer|
       installer.pods_project.targets.each do |target|
