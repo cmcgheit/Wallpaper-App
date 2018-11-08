@@ -311,21 +311,21 @@ class FeedViewController: UIViewController {
         fetchFeed()
     }
     
-    // MARK: - Fetch Wallpaper Feed For Specific User
+    // MARK: - Fetch Wallpaper Feed For Specific User, allow user have specific wallpapers feed
     func fetchFeed() {
-        guard let uid = authRef.currentUser?.uid else { return }
-        if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
-            FIRService.fetchUserForUID(uid: uid) { (user) in
-                // Load all wallpapers from db?
-                //        let indexPath = IndexPath(row: 0, section: 0)
-                //        self.collectionView.insertItems(at: [indexPath]) // insert in glidingCollection?
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                    self.glidingView.reloadData()
-                }
-            }
-        } else {
-        }
+//        guard let uid = authRef.currentUser?.uid else { return }
+//        if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
+//            FIRService.fetchUserForUID(uid: uid) { (user) in
+//                // Load all wallpapers from db?
+//                //        let indexPath = IndexPath(row: 0, section: 0)
+//                //        self.collectionView.insertItems(at: [indexPath]) // insert in glidingCollection?
+//                DispatchQueue.main.async {
+//                    self.collectionView.reloadData()
+//                    self.glidingView.reloadData()
+//                }
+//            }
+//        } else {
+//        }
     }
     
     // MARK: - PopUp Background Touch to Dismiss

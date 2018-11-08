@@ -32,8 +32,8 @@ class FIRService: NSObject {
     
     // MARK: - Fetching Posts for User uid (when have specific user wallpapers feed)
     public static func fetchUserForUID(uid: String, completion: @escaping (User) -> ()) {
-        databaseRef.child("uid").observeSingleEvent(of: .value, with: { (snapshot) in
-            
+        databaseRef.child("wallpapers").observeSingleEvent(of: .value, with: { (snapshot) in
+            // be called from wallpapers database node for specific user
             guard let userDictionary = snapshot.value as? [String: Any] else { return }
             let user = User(uid: uid, dictionary: userDictionary)
             completion(user)
