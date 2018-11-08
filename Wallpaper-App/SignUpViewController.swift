@@ -145,7 +145,7 @@ class SignUpViewController: UIViewController {
         // Register New User
         AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in
             if success { // After registered, login the user
-                Analytics.logEvent("user-sign-up", parameters: nil)
+                Analytics.logEvent("user_sign_up", parameters: nil)
                 AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, nil) in
                     if registrationError == nil {
                         let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController

@@ -378,7 +378,7 @@ class UploadViewController: UIViewController {
                     print(error?.localizedDescription ?? "")
                     return
                 } else { // upload successful
-                    Analytics.logEvent("user-uploaded-wallpaper", parameters: nil)
+                    Analytics.logEvent("user_uploaded_wallpaper", parameters: nil)
                     self.uploadSuccessfulAlert()
                     self.dismiss(animated: true, completion: nil)
                 }
@@ -421,7 +421,7 @@ extension UploadViewController: UITextViewDelegate {
 
 extension UploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         if let wallpaperImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let optimizedImageData = UIImagePNGRepresentation(wallpaperImage) {
             print(optimizedImageData)

@@ -25,6 +25,8 @@ class PopUpViewController: UIViewController {
     var wallpaperImageURL = ""
     var wallpaperDescText = ""
     
+    private var isStatusBarHidden: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,6 +41,29 @@ class PopUpViewController: UIViewController {
         let recognizer = InstantPanGestureRecognizer(target: self, action: #selector(panRecognizer))
         dismissBtn.addGestureRecognizer(recognizer)
         
+        modalPresentationCapturesStatusBarAppearance = true // allows for statusbar to hide
+    }
+    
+    // MARK: - Status Bar Show/Hide Animation
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return isStatusBarHidden
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        isStatusBarHidden = true
+        UIView.animate(withDuration: 0.25) {
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
     }
     
     // MARK: - Attributes Wrapper
