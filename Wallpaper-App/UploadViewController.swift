@@ -301,9 +301,11 @@ class UploadViewController: UIViewController {
     
     // MARK: - Category Picker Button Action
     @IBAction func categoryPicker(_ sender: UIButton) {
+        // Picker background (same as view background)
+        self.view.backgroundColor = UIColor.white
         let catPicker = StringPickerPopover(title: "", choices: ["Sports","Music","Art"])
             // .setImageNames(["imageIcon",nil,"thumbUpIcon"]) // set images from assets
-            .setSize(width: 200)
+            .setSize(width: 200, height: 150)
             .setCornerRadius(10)
             .setValueChange(action: { _, _, selectedString in
                 self.wallpaperCatPickBtn.setTitle(selectedString, for: .normal) // updates selection with catName
@@ -318,10 +320,13 @@ class UploadViewController: UIViewController {
                 print("done row \(selectedRow) \(selectedString)")
             })
             .setCancelButton(
+                title: "Cancel",
                 font: UIFont.gillsRegFont(ofSize: 17),
                 color: UIColor.blue,
                 action: {_, _, _ in
-                print("cancelled") })
+                self.wallpaperCatPickBtn.setTitle(self.wallpaperCatPlaceholderText, for: .normal) // placeholder when cleared
+                print("cancelled")
+            })
             .setOutsideTapDismissing(allowed: true)
             .setDimmedBackgroundView(enabled: true)
         catPicker.appear(originView: sender, baseViewController: self)
