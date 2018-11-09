@@ -388,7 +388,7 @@ class UploadViewController: UIViewController {
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
         if wallpaperDescTextView.text != nil && wallpaperDescTextView.text != wallpaperDescPlaceholderText && wallpaperImgView.image != UIImage(named: "clickhereupload") && wallpaperImgView.image != nil && wallpaperCatPickBtn.currentTitle != nil && wallpaperCatPickBtn.currentTitle != wallpaperCatPlaceholderText {
             // MARK: - Upload Successful Alert
-            FIRService.saveWalltoFirebase(image: takenImage, wallpaperURL: wallpaperURL, wallpaperDesc: wallpaperDescTextView.text, wallpaperCategory: wallpaperCatPickBtn.currentTitle) { (error) in
+            FIRService.saveWalltoFirebase(image: takenImage, wallpaperURL: wallpaperURL, wallpaperDesc: wallpaperDescTextView.text, wallpaperCategory: wallpaperCatPickBtn.currentTitle?.lowercased()) { (error) in
                 if error != nil { // upload error
                     self.uploadErrorAlert()
                     print(error?.localizedDescription ?? "")
@@ -442,7 +442,7 @@ extension UploadViewController: UIImagePickerControllerDelegate, UINavigationCon
         if let wallpaperImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let optimizedImageData = UIImagePNGRepresentation(wallpaperImage) {
             print(optimizedImageData)
             self.takenImage = wallpaperImage
-            self.wallpaperImgView.image = wallpaperImage // set wallpaper Image View as selected image
+            self.wallpaperImgView.image = wallpaperImage // set wallpaper image view as selected image
         }
 //        else if let editedWallpaperImage = info[UIImagePickerControllerEditedImage] as? UIImage, let editedOptimizedImageData = UIImagePNGRepresentation(editedWallpaperImage) {
 //            print(editedOptimizedImageData)

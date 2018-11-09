@@ -116,6 +116,12 @@ class SignUpViewController: UIViewController {
         self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: signUpErrorText, desc: signUpDescText, textColor: UIColor.darkGray)
     }
     
+    func signUpSuccessAlert() {
+        let signSucText = "Signed Up Successfully"
+        let signSucDesc = "Signed Up Successfully, Taking you to Feed"
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: signSucText, desc: signSucDesc, textColor: UIColor.darkGray)
+    }
+    
     // MARK: - Keyboard Functions
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -149,6 +155,7 @@ class SignUpViewController: UIViewController {
                 AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, nil) in
                     if registrationError == nil {
                         let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+                        self.signUpSuccessAlert()
                         self.present(feedVC, animated:true) // Take user to Feed once sucessfully signed in
                         print("Successfully registered/Signed-In user")
                     } else {

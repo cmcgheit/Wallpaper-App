@@ -111,7 +111,7 @@ class LoginViewController: UIViewController {
     
     func successfulLoginAlert() {
         let successTitleText =  "Successfully Signed In"
-        let successDescText = "Taking you to the feed shortly"
+        let successDescText = "Taking you to the feed"
         showNotificationEKMessage(attributes: attributesWrapper.attributes, title: successTitleText, desc: successDescText, textColor: UIColor.darkGray)
     }
     
