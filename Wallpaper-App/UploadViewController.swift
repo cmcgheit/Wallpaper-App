@@ -316,16 +316,16 @@ class UploadViewController: UIViewController {
                 font: UIFont.gillsRegFont(ofSize: 17),
                 color: UIColor.red,
                 action: {
-                popover, selectedRow, selectedString in
-                print("done row \(selectedRow) \(selectedString)")
+                    popover, selectedRow, selectedString in
+                    print("done row \(selectedRow) \(selectedString)")
             })
             .setCancelButton(
                 title: "Cancel",
                 font: UIFont.gillsRegFont(ofSize: 17),
                 color: UIColor.blue,
                 action: {_, _, _ in
-                self.wallpaperCatPickBtn.setTitle(self.wallpaperCatPlaceholderText, for: .normal) // placeholder when cleared
-                print("cancelled")
+                    self.wallpaperCatPickBtn.setTitle(self.wallpaperCatPlaceholderText, for: .normal) // placeholder when cleared
+                    print("cancelled")
             })
             .setOutsideTapDismissing(allowed: true)
             .setDimmedBackgroundView(enabled: true)
@@ -387,6 +387,7 @@ class UploadViewController: UIViewController {
     // MARK: - Upload Wallpaper Button Action
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
         if wallpaperDescTextView.text != nil && wallpaperDescTextView.text != wallpaperDescPlaceholderText && wallpaperImgView.image != UIImage(named: "clickhereupload") && wallpaperImgView.image != nil && wallpaperCatPickBtn.currentTitle != nil && wallpaperCatPickBtn.currentTitle != wallpaperCatPlaceholderText {
+            self.loading(.start)
             // MARK: - Upload Successful Alert
             FIRService.saveWalltoFirebase(image: takenImage, wallpaperURL: wallpaperURL, wallpaperDesc: wallpaperDescTextView.text, wallpaperCategory: wallpaperCatPickBtn.currentTitle?.lowercased()) { (error) in
                 if error != nil { // upload error
@@ -396,6 +397,7 @@ class UploadViewController: UIViewController {
                 } else { // upload successful
                     Analytics.logEvent("user_uploaded_wallpaper", parameters: nil)
                     self.uploadSuccessfulAlert()
+                    self.loading(.stop)
                     self.dismiss(animated: true, completion: nil)
                 }
             }
@@ -444,12 +446,12 @@ extension UploadViewController: UIImagePickerControllerDelegate, UINavigationCon
             self.takenImage = wallpaperImage
             self.wallpaperImgView.image = wallpaperImage // set wallpaper image view as selected image
         }
-//        else if let editedWallpaperImage = info[UIImagePickerControllerEditedImage] as? UIImage, let editedOptimizedImageData = UIImagePNGRepresentation(editedWallpaperImage) {
-//            print(editedOptimizedImageData)
-//            self.takenImage = editedWallpaperImage
-//            self.wallpaperImgView.image = editedWallpaperImage
-//            
-//        }
+        //        else if let editedWallpaperImage = info[UIImagePickerControllerEditedImage] as? UIImage, let editedOptimizedImageData = UIImagePNGRepresentation(editedWallpaperImage) {
+        //            print(editedOptimizedImageData)
+        //            self.takenImage = editedWallpaperImage
+        //            self.wallpaperImgView.image = editedWallpaperImage
+        //
+        //        }
         
         if let imageUrl = info[UIImagePickerControllerReferenceURL] as? URL {
             self.wallpaperURL = imageUrl

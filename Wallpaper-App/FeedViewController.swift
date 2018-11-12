@@ -97,7 +97,7 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         uploadBtn.center = menuBtn.center
         signOutBtn.center = menuBtn.center
         
@@ -105,7 +105,7 @@ class FeedViewController: UIViewController {
         signOutBtnCenter = signOutBtn.center
         
         glidingIntView.layer.cornerRadius = 15
-
+        
         // Reachability
         if Reachability.isConnectedToNetwork() {
             setup()
@@ -136,6 +136,17 @@ class FeedViewController: UIViewController {
         self.instructionsController.dataSource = self
         self.instructionsController.overlay.color = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
         self.instructionsController.overlay.allowTap = true
+        // self.instructionsController.displayOverCutoutPath = true // helper for larger devices
+        
+        // MARK: - Check User First Time Viewing VC (Instructions)
+        let launchedBefore = Defaults.bool(forKey: "alreadylaunched")
+        if launchedBefore {
+            Defaults.setInstructions(value: false)
+        } else {
+            Defaults.setInstructions(value: true)
+            self.instructionsController.start(on: self)
+            Defaults.set(true, forKey: "alreadylaunched")
+        }
         
         // MARK: - Double Tap Gesture to close PopUpView
         let closeTapGesture = UITapGestureRecognizer(target: self, action: #selector(FeedViewController.backgroundTapped))
@@ -193,7 +204,7 @@ class FeedViewController: UIViewController {
                                                   constant: 0))
             
         }
-}
+    }
     
     // MARK: - Custom Switch
     func setupThemeSwitch() {
@@ -281,24 +292,10 @@ class FeedViewController: UIViewController {
     
     func notificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: .updateFeedNotificationName, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(firstTimeVC(_:)), name: .firstTimeViewController, object: nil)
     }
     
     func removeNotifications() {
         NotificationCenter.default.removeObserver(handleUpdateFeed())
-        NotificationCenter.default.removeObserver(firstTimeVC(_:))
-    }
-    
-    // MARK: - Check User First Time Viewing VC (Instructions)
-    @objc func firstTimeVC(_ notification: NSNotification) {
-        if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
-            Defaults.setInstructions(value: false)
-        } else {
-            NotificationCenter.default.post(name: .firstTimeViewController, object: nil)
-            Defaults.setInstructions(value: true)
-            self.instructionsController.start(on: self)
-        }
     }
     
     // MARK: - Refresh Wallpaper Feed
@@ -313,19 +310,19 @@ class FeedViewController: UIViewController {
     
     // MARK: - Fetch Wallpaper Feed For Specific User, allow user have specific wallpapers feed
     func fetchFeed() {
-//        guard let uid = authRef.currentUser?.uid else { return }
-//        if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
-//            FIRService.fetchUserForUID(uid: uid) { (user) in
-//                // Load all wallpapers from db?
-//                //        let indexPath = IndexPath(row: 0, section: 0)
-//                //        self.collectionView.insertItems(at: [indexPath]) // insert in glidingCollection?
-//                DispatchQueue.main.async {
-//                    self.collectionView.reloadData()
-//                    self.glidingView.reloadData()
-//                }
-//            }
-//        } else {
-//        }
+        //        guard let uid = authRef.currentUser?.uid else { return }
+        //        if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
+        //            FIRService.fetchUserForUID(uid: uid) { (user) in
+        //                // Load all wallpapers from db?
+        //                //        let indexPath = IndexPath(row: 0, section: 0)
+        //                //        self.collectionView.insertItems(at: [indexPath]) // insert in glidingCollection?
+        //                DispatchQueue.main.async {
+        //                    self.collectionView.reloadData()
+        //                    self.glidingView.reloadData()
+        //                }
+        //            }
+        //        } else {
+        //        }
     }
     
     // MARK: - PopUp Background Touch to Dismiss
@@ -372,7 +369,7 @@ class FeedViewController: UIViewController {
             self.signOutBtn.tintColor = Theme.current.buttonColor
         }
     }
-
+    
     // MARK: - Custom Transition
     func animateCell(cellFrame: CGRect) -> CATransform3D {
         let angleFromX = Double((-cellFrame.origin.x) / 10)
@@ -538,7 +535,7 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
         // MARK: - Custom DidSelect Transition Function
         let section = glidingView.expandedItemIndex
         collectionIndex = indexPath
-            
+        
         if let cell = collectionView.cellForItem(at: indexPath) as? WallpaperRoundedCardCell {
             let a = collectionView.convert(cell.frame, to: collectionView.superview)
             
@@ -619,7 +616,7 @@ extension FeedViewController: CoachMarksControllerDelegate, CoachMarksController
             instructionsView.bodyView.hintLabel.text = "Scroll through Wallpaper Categories here"
             instructionsView.bodyView.nextLabel.text = "Got it!"
         case 1:
-            instructionsView.bodyView.hintLabel.text = "Click to Edit Wallpapers here"
+            instructionsView.bodyView.hintLabel.text = "Click Here for the Menu: Upload Wallpapers/Sign Out"
             instructionsView.bodyView.nextLabel.text = "Got it!"
         default: break
         }
@@ -632,7 +629,7 @@ extension FeedViewController: CoachMarksControllerDelegate, CoachMarksController
         case 0:
             return coachMarksController.helper.makeCoachMark(for: glidingIntView)
         case 1:
-            return coachMarksController.helper.makeCoachMark(for: uploadBtn)
+            return coachMarksController.helper.makeCoachMark(for: menuBtn)
         default:
             return coachMarksController.helper.makeCoachMark()
         }
