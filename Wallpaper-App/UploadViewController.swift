@@ -23,7 +23,6 @@ class UploadViewController: UIViewController {
     var wallpaperCatPlaceholderText = "Tap here to set category"
     
     //Upload Camera properties
-    var imagePicker: UIImagePickerController!
     var takenImage: UIImage!
     var wallpaperURL: URL!
     
@@ -51,6 +50,7 @@ class UploadViewController: UIViewController {
         wallpaperCatPickBtn.setTitle(wallpaperCatPlaceholderText, for: .normal)
         
         makeShadowView()
+        customBackBtn()
         wallpaperDescTextView.becomeFirstResponder()
         wallpaperImgView.image = UIImage(named: "clickhereupload")
         wallpaperImgView.layer.cornerRadius = 10
@@ -60,15 +60,22 @@ class UploadViewController: UIViewController {
         self.uploadInstructionsController.overlay.color = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
         self.uploadInstructionsController.overlay.allowTap = true
         
-        customBackBtn()
-        
+        // MARK: - Check User First Time Viewing VC (Instructions)
+        let launchedBefore = Defaults.bool(forKey: "alreadylaunched")
+        if launchedBefore {
+            Defaults.setInstructions(value: false)
+        } else {
+            Defaults.setInstructions(value: true)
+            self.uploadInstructionsController.start(on: self)
+            Defaults.set(true, forKey: "alreadylaunched")
+        }
+
         // Wallpaper Image Tap Gesture
         let tap = UITapGestureRecognizer(target: self, action: #selector(wallpaperImgUploadClicked))
         wallpaperImgView.addGestureRecognizer(tap)
         wallpaperImgView.isUserInteractionEnabled = true
         
     }
-    
     
     // MARK: - Present Camera
     fileprivate func presentCamera() {
@@ -77,7 +84,7 @@ class UploadViewController: UIViewController {
             cameraPicker.delegate = self
             cameraPicker.sourceType = .camera
             // cameraPicker.allowEditing = true // allow cropping of photo before upload
-            present(cameraPicker, animated: true)
+            self.present(cameraPicker, animated: true)
         }
     }
     
@@ -88,7 +95,7 @@ class UploadViewController: UIViewController {
             photoPicker.delegate = self
             photoPicker.sourceType = .photoLibrary
             // photoPicker.allowsEditing = true
-            present(photoPicker, animated: true)
+            self.present(photoPicker, animated: true)
         }
     }
     
@@ -278,27 +285,6 @@ class UploadViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    // MARK: - Notification Observers
-    func notificationObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(firstTimeUploadVC), name: Notification.Name.firstTimeViewController, object: nil)
-    }
-    
-    func removeNotifications() {
-        NotificationCenter.default.removeObserver(firstTimeUploadVC())
-    }
-    
-    // MARK: - Check User First Time User Viewing VC (Instructions)
-    @objc func firstTimeUploadVC() {
-        if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
-            // User signed-In
-            Defaults.setInstructions(value: false)
-        } else {
-            NotificationCenter.default.post(name: .firstTimeViewController, object: nil)
-            Defaults.setInstructions(value: true)
-            self.uploadInstructionsController.start(on: self)
-        }
-    }
-    
     // MARK: - Category Picker Button Action
     @IBAction func categoryPicker(_ sender: UIButton) {
         // Picker background (same as view background)
@@ -398,7 +384,7 @@ class UploadViewController: UIViewController {
                     Analytics.logEvent("user_uploaded_wallpaper", parameters: nil)
                     self.uploadSuccessfulAlert()
                     self.loading(.stop)
-                    self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true)
                 }
             }
         } else {
@@ -409,7 +395,7 @@ class UploadViewController: UIViewController {
     
     // MARK: - Close Button Pressed Action
     @IBAction  func closeBtnPressed(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
 }
 
@@ -455,14 +441,13 @@ extension UploadViewController: UIImagePickerControllerDelegate, UINavigationCon
         
         if let imageUrl = info[UIImagePickerControllerReferenceURL] as? URL {
             self.wallpaperURL = imageUrl
-            print(wallpaperURL)
+            // print(wallpaperURL)
         }
-        
-        self.dismiss(animated: true)
+        dismiss(animated: true)
     }
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.dismiss(animated: true)
+    @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
     }
 }
 
