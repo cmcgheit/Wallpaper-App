@@ -22,6 +22,7 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var signOutBtn: UIButton!
     @IBOutlet weak var glidingIntView: UIView!
+    @IBOutlet weak var customNaviTitleView: CustomCardView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var themeSwitch: CustomSwitch!
     
@@ -105,6 +106,14 @@ class FeedViewController: UIViewController {
         signOutBtnCenter = signOutBtn.center
         
         glidingIntView.layer.cornerRadius = 15
+        
+        customNaviTitleView.clipsToBounds = true
+        customNaviTitleView.layer.cornerRadius = 15
+        if #available(iOS 11.0, *) {
+            customNaviTitleView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        } else {
+            customNaviTitleView.layer.cornerRadius = 15
+        }
         
         // Reachability
         if Reachability.isConnectedToNetwork() {
@@ -362,6 +371,7 @@ class FeedViewController: UIViewController {
     fileprivate func applyTheme() {
         DispatchQueue.main.async {
             self.backThemeView.image = Theme.current.backgroundImage
+            self.customNaviTitleView.backgroundColor = Theme.current.cardView
             self.glidingIntView.backgroundColor = Theme.current.cardView
             self.titleLabel.textColor = Theme.current.textColor
             self.uploadBtn.tintColor = Theme.current.buttonColor
