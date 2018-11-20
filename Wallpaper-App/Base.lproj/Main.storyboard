@@ -27,8 +27,19 @@
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                             </imageView>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DW-in-jk3">
-                                <rect key="frame" x="0.0" y="80" width="375" height="572"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z08-4k-17Z" customClass="CustomCardView" customModule="Wallpaper_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="n55-b3-bWj"/>
+                                    <constraint firstAttribute="width" constant="375" id="yAC-VR-rd2"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DW-in-jk3" customClass="CustomCardView" customModule="Wallpaper_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="80" width="375" height="567"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="YES"/>
@@ -46,43 +57,29 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z08-4k-17Z" customClass="CustomCardView" customModule="Wallpaper_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wall Variety" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18q-Nh-Bn4">
-                                        <rect key="frame" x="112.5" y="30" width="150" height="36"/>
-                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="31"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9SO-aj-fWK" customClass="CustomSwitch" customModule="Wallpaper_App" customModuleProvider="target">
-                                        <rect key="frame" x="304" y="33" width="50" height="30"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <bool key="isElement" value="YES"/>
-                                        </accessibility>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="DzE-M9-pQe"/>
-                                            <constraint firstAttribute="height" constant="30" id="yJt-uD-RWy"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="onTintColor">
-                                                <color key="value" red="0.92941176469999998" green="0.77647058820000003" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="themeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="GCX-Vv-IwD"/>
-                                        </connections>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wall Variety" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18q-Nh-Bn4">
+                                <rect key="frame" x="112.5" y="30" width="150" height="36"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="31"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9SO-aj-fWK" customClass="CustomSwitch" customModule="Wallpaper_App" customModuleProvider="target">
+                                <rect key="frame" x="304" y="33" width="50" height="30"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
-                                    <constraint firstItem="9SO-aj-fWK" firstAttribute="centerY" secondItem="18q-Nh-Bn4" secondAttribute="centerY" id="FHD-4l-xvN"/>
-                                    <constraint firstItem="18q-Nh-Bn4" firstAttribute="top" secondItem="z08-4k-17Z" secondAttribute="top" constant="30" id="VHp-1D-XzH"/>
-                                    <constraint firstItem="18q-Nh-Bn4" firstAttribute="centerX" secondItem="z08-4k-17Z" secondAttribute="centerX" id="emt-dT-DI6"/>
-                                    <constraint firstAttribute="height" constant="75" id="lgc-MP-6jW"/>
-                                    <constraint firstItem="18q-Nh-Bn4" firstAttribute="centerX" secondItem="z08-4k-17Z" secondAttribute="centerX" id="qMR-WW-jce"/>
-                                    <constraint firstAttribute="width" constant="375" id="yAC-VR-rd2"/>
+                                    <constraint firstAttribute="width" constant="50" id="DzE-M9-pQe"/>
+                                    <constraint firstAttribute="height" constant="30" id="yJt-uD-RWy"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="onTintColor">
+                                        <color key="value" red="0.92941176469999998" green="0.77647058820000003" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="themeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="GCX-Vv-IwD"/>
+                                </connections>
                             </view>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-ye-yUT">
                                 <rect key="frame" x="307" y="547" width="44" height="44"/>
@@ -129,10 +126,12 @@
                             <bool key="isElement" value="YES"/>
                         </accessibility>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6DW-in-jk3" secondAttribute="bottom" constant="15" id="0a4-N1-5Xg"/>
+                            <constraint firstItem="9SO-aj-fWK" firstAttribute="centerX" secondItem="SZo-wh-HfF" secondAttribute="centerX" id="04l-Tg-NwF"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6DW-in-jk3" secondAttribute="bottom" constant="20" id="0a4-N1-5Xg"/>
                             <constraint firstItem="WAa-z2-Qms" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="18i-Dl-HeA"/>
                             <constraint firstAttribute="trailing" secondItem="z08-4k-17Z" secondAttribute="trailing" id="1vu-Pa-Jo6"/>
                             <constraint firstItem="OQH-b3-jIB" firstAttribute="centerY" secondItem="SZo-wh-HfF" secondAttribute="centerY" id="4bP-4J-2g9"/>
+                            <constraint firstItem="18q-Nh-Bn4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="7Kk-pZ-n8j"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wn6-b4-UEY" secondAttribute="bottom" id="84a-Nr-Hb1"/>
                             <constraint firstItem="6DW-in-jk3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="AUA-OE-box"/>
                             <constraint firstAttribute="trailing" secondItem="WAa-z2-Qms" secondAttribute="trailing" id="B2a-M6-IGL"/>
@@ -142,17 +141,18 @@
                             <constraint firstAttribute="trailing" secondItem="6DW-in-jk3" secondAttribute="trailing" id="O45-mR-Tqf"/>
                             <constraint firstItem="SZo-wh-HfF" firstAttribute="top" secondItem="KWp-ye-yUT" secondAttribute="bottom" constant="8" id="RAJ-BR-RX5"/>
                             <constraint firstItem="wn6-b4-UEY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="S1w-ry-1Jz"/>
-                            <constraint firstItem="6DW-in-jk3" firstAttribute="top" secondItem="z08-4k-17Z" secondAttribute="bottom" constant="5" id="WVg-OU-xCq"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WAa-z2-Qms" secondAttribute="bottom" id="XPh-Kb-oEm"/>
+                            <constraint firstItem="18q-Nh-Bn4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZGb-Pa-qvp"/>
                             <constraint firstAttribute="trailing" secondItem="KWp-ye-yUT" secondAttribute="trailing" constant="24" id="agT-RB-pWc"/>
                             <constraint firstAttribute="trailing" secondItem="wn6-b4-UEY" secondAttribute="trailing" id="dN6-lH-KPY"/>
                             <constraint firstItem="z08-4k-17Z" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="gNV-X5-JUR"/>
                             <constraint firstItem="6DW-in-jk3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hfP-ee-nPn"/>
                             <constraint firstItem="z08-4k-17Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ivR-hw-PlG"/>
                             <constraint firstItem="SZo-wh-HfF" firstAttribute="leading" secondItem="OQH-b3-jIB" secondAttribute="trailing" constant="8" id="oZ3-VM-W1q"/>
-                            <constraint firstItem="9SO-aj-fWK" firstAttribute="centerX" secondItem="SZo-wh-HfF" secondAttribute="centerX" id="qtD-7l-AxS"/>
                             <constraint firstItem="KWp-ye-yUT" firstAttribute="centerX" secondItem="SZo-wh-HfF" secondAttribute="centerX" id="sFb-cf-Aah"/>
                             <constraint firstItem="wn6-b4-UEY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vGn-Vz-8uQ"/>
+                            <constraint firstItem="9SO-aj-fWK" firstAttribute="centerY" secondItem="18q-Nh-Bn4" secondAttribute="centerY" id="wge-Sj-jKw"/>
+                            <constraint firstItem="6DW-in-jk3" firstAttribute="top" secondItem="z08-4k-17Z" secondAttribute="bottom" constant="10" id="xU7-e1-mFh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="YC4-aS-A34"/>

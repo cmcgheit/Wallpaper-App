@@ -21,7 +21,7 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var signOutBtn: UIButton!
-    @IBOutlet weak var glidingIntView: UIView!
+    @IBOutlet weak var glidingIntView: CustomCardView!
     @IBOutlet weak var customNaviTitleView: CustomCardView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var themeSwitch: CustomSwitch!
@@ -105,15 +105,7 @@ class FeedViewController: UIViewController {
         uploadBtnCenter = uploadBtn.center
         signOutBtnCenter = signOutBtn.center
         
-        glidingIntView.layer.cornerRadius = 15
-        
-        customNaviTitleView.clipsToBounds = true
-        customNaviTitleView.layer.cornerRadius = 15
-        if #available(iOS 11.0, *) {
-            customNaviTitleView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        } else {
-            customNaviTitleView.layer.cornerRadius = 15
-        }
+        roundBottomCorners()
         
         // Reachability
         if Reachability.isConnectedToNetwork() {
@@ -212,6 +204,27 @@ class FeedViewController: UIViewController {
                                                   multiplier: 1,
                                                   constant: 0))
             
+        }
+    }
+    
+    // MARK: - Make Views Bottom Rounded Corners
+    func roundBottomCorners() {
+        glidingIntView.clipsToBounds = true
+        glidingIntView.layer.cornerRadius = 15
+        customNaviTitleView.clipsToBounds = true
+        customNaviTitleView.layer.cornerRadius = 15
+        if #available(iOS 11.0, *) {
+            glidingIntView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+            customNaviTitleView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        } else {
+            let rectShape = CAShapeLayer()
+            rectShape.bounds = view.frame
+            rectShape.position = view.center
+            rectShape.path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: [.bottomLeft , .bottomRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
+            glidingIntView.layer.backgroundColor = UIColor.black.cgColor
+            customNaviTitleView.layer.backgroundColor = UIColor.black.cgColor
+            customNaviTitleView.layer.mask = rectShape
+            glidingIntView.layer.mask = rectShape
         }
     }
     
@@ -626,7 +639,7 @@ extension FeedViewController: CoachMarksControllerDelegate, CoachMarksController
             instructionsView.bodyView.hintLabel.text = "Scroll through Wallpaper Categories here"
             instructionsView.bodyView.nextLabel.text = "Got it!"
         case 1:
-            instructionsView.bodyView.hintLabel.text = "Click Here for the Menu: Upload Wallpapers/Sign Out"
+            instructionsView.bodyView.hintLabel.text = "Click Here to open and close the Menu: Upload Wallpapers/Sign Out"
             instructionsView.bodyView.nextLabel.text = "Got it!"
         default: break
         }

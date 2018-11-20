@@ -13,6 +13,7 @@ class SplashViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        phonePhoto.layer.cornerRadius = 15
         setupAnimation()
     }
     
