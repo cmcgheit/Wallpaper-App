@@ -17,7 +17,6 @@ class FeedViewController: UIViewController {
     @IBOutlet var glidingView: GlidingCollection!
     fileprivate var collectionView: UICollectionView!
     
-    @IBOutlet weak var backThemeView: UIImageView!
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var signOutBtn: UIButton!
@@ -269,8 +268,7 @@ class FeedViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        backThemeView.image = Theme.current.backgroundImage
-        
+
         if Theme.themeChanged {
             DispatchQueue.main.async {
                 self.collectionView.reloadData() //reload collection for theme change
@@ -383,7 +381,7 @@ class FeedViewController: UIViewController {
     
     fileprivate func applyTheme() {
         DispatchQueue.main.async {
-            self.backThemeView.image = Theme.current.backgroundImage
+            self.view.backgroundColor = Theme.current.mainBackgroundColor
             self.customNaviTitleView.backgroundColor = Theme.current.cardView
             self.glidingIntView.backgroundColor = Theme.current.cardView
             self.titleLabel.textColor = Theme.current.textColor
@@ -427,7 +425,7 @@ class FeedViewController: UIViewController {
     
     // MARK: - Menu Button
     @IBAction func menuBtnPressed(_ sender: UIButton) {
-        if menuBtn.currentImage ==  #imageLiteral(resourceName: "menubuttonoff") {
+        if menuBtn.currentImage ==  #imageLiteral(resourceName: "menu_button_fade_off") {
             UIView.animate(withDuration: 0.3, animations: {
                 self.uploadBtn.alpha = 1
                 self.signOutBtn.alpha = 1
@@ -444,13 +442,13 @@ class FeedViewController: UIViewController {
                 self.signOutBtn.center = self.menuBtn.center
             })
         }
-        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "menubuttonon"), offImage: #imageLiteral(resourceName: "menubuttonoff"))
+        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "menu_button_fade"), offImage: #imageLiteral(resourceName: "menu_button_fade_off"))
     }
     
     
     // MARK: - Upload Button
     @IBAction func uploadBtnPressed(_ sender: UIButton) {
-        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "uploadbuttonoff"), offImage: #imageLiteral(resourceName: "uploadbuttonon"))
+        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "upload_button_fade"), offImage: #imageLiteral(resourceName: "upload_button_fade_off"))
         let uploadVC = storyboard?.instantiateViewController(withIdentifier: "UploadViewController") as! UploadViewController
         uploadVC.providesPresentationContextTransitionStyle = true
         uploadVC.definesPresentationContext = true
@@ -462,7 +460,7 @@ class FeedViewController: UIViewController {
     
     // MARK: - Sign Out Button Action
     @IBAction func signOutBtnPressed(_ sender: UIButton) {
-        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "closebuttonon"), offImage: #imageLiteral(resourceName: "closebuttonoff"))
+        toggleMenuBtns(button: sender, onImage: #imageLiteral(resourceName: "signout_button_fade"), offImage: #imageLiteral(resourceName: "signout_button_fade_off"))
         // Signed In User
         if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
             AuthService.instance.logOutUser()

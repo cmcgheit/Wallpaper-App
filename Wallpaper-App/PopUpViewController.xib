@@ -75,8 +75,12 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJc-NS-i9Z">
-                            <rect key="frame" x="325" y="20" width="40" height="40"/>
-                            <state key="normal" image="light-close-button"/>
+                            <rect key="frame" x="320" y="20" width="45" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="2gm-fP-coB"/>
+                                <constraint firstAttribute="width" constant="45" id="aV5-aR-nRF"/>
+                            </constraints>
+                            <state key="normal" image="close_button_fade"/>
                             <connections>
                                 <action selector="dismissBtnTapped:" destination="-1" eventType="touchUpInside" id="U2X-4L-blY"/>
                             </connections>
@@ -114,6 +118,6 @@
         </view>
     </objects>
     <resources>
-        <image name="light-close-button" width="40" height="40"/>
+        <image name="close_button_fade" width="208" height="208"/>
     </resources>
 </document>
