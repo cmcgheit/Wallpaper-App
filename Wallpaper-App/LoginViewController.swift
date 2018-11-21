@@ -87,10 +87,10 @@ class LoginViewController: UIViewController {
     // MARK: - Attributes Wrapper
     private var attributesWrapper: EntryAttributeWrapper {
         var attributes = EKAttributes.topFloat
-        attributes.entryBackground = .color(color: UIColor.white)
+        attributes.entryBackground = .color(color: .white)
         attributes.roundCorners = .all(radius: 10)
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .darkGray, opacity: 0.5, radius: 10, offset: .zero))
         return EntryAttributeWrapper(with: attributes)
         
     }
@@ -98,8 +98,8 @@ class LoginViewController: UIViewController {
     // MARK: - SwiftEntryKit Alerts
     // Notification Message
     private func showNotificationEKMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String? = nil) {
-        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
-        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: .darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: .darkGray))
         let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
         let simpleMessage = EKSimpleMessage(image: image, title: title, description: desc)
         let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
@@ -109,34 +109,46 @@ class LoginViewController: UIViewController {
         
     }
     
+    // Top Banner Message
+    private func showBannerNotificationMessage(attributes: EKAttributes, text: String, desc: String, textColor: UIColor) {
+        let text = EKProperty.LabelContent(text: text, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: .darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 15), color: .darkGray))
+        let simpleMessage = EKSimpleMessage(title: text, description: desc)
+        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+        
+        let contentView = EKNotificationMessageView(with: notificationMessage)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
+    }
+    
+    // MARK: - Individual Alerts
     func successfulLoginAlert() {
         let successTitleText =  "Successfully Signed In"
         let successDescText = "Taking you to the feed"
-        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: successTitleText, desc: successDescText, textColor: UIColor.darkGray)
+        showBannerNotificationMessage(attributes: attributesWrapper.attributes, text: successTitleText, desc: successDescText, textColor: .darkGray)
     }
     
     func noEmailPassAlert() {
         let noEmailTitleText = "User Not Registered"
         let noEmailDescText = "No email and/or password entered, please enter an email or password and login"
-        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: noEmailTitleText, desc: noEmailDescText, textColor: UIColor.darkGray)
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: noEmailTitleText, desc: noEmailDescText, textColor: .darkGray)
     }
     
     func incorrectEmailPassAlert() {
         let incorrectTitleText = "Incorrect Email/Password"
         let incorrectDescText = "You have entered the incorrect email/password. Please enter your email/password and try again"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: incorrectTitleText, desc: incorrectDescText, textColor: UIColor.darkGray)
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: incorrectTitleText, desc: incorrectDescText, textColor: .darkGray)
     }
     
     func noNetworkAlert() {
         let noNetworkTitle = "No Network Connection"
         let noNetworkDesc = "Please check your network connection, then close and restart the app"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: noNetworkTitle, desc: noNetworkDesc, textColor: UIColor.darkGray)
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: noNetworkTitle, desc: noNetworkDesc, textColor: .darkGray)
     }
     
     func anonyLoginError() {
         let anonyErrorTitle = "Anonymous Login Error"
         let anonyErrorDesc = "Check your network connection, restart the app and try to login anonymously again"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: anonyErrorTitle, desc: anonyErrorDesc, textColor: UIColor.darkGray)
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: anonyErrorTitle, desc: anonyErrorDesc, textColor: .darkGray)
     }
     
     @IBAction func signInBtnPressed(_ sender: Any) {

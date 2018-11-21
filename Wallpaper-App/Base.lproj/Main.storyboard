@@ -58,7 +58,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9SO-aj-fWK" customClass="CustomSwitch" customModule="Wallpaper_App" customModuleProvider="target">
-                                <rect key="frame" x="304" y="33" width="50" height="30"/>
+                                <rect key="frame" x="298.5" y="33" width="50" height="30"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -75,37 +75,33 @@
                                     <action selector="themeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="GCX-Vv-IwD"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-ye-yUT">
-                                <rect key="frame" x="307" y="547" width="44" height="44"/>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-ye-yUT">
+                                <rect key="frame" x="296" y="525" width="55" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Cqq-Ep-Dh5"/>
-                                    <constraint firstAttribute="width" constant="44" id="sC8-Fc-nml"/>
+                                    <constraint firstAttribute="height" constant="55" id="Cqq-Ep-Dh5"/>
+                                    <constraint firstAttribute="width" constant="55" id="sC8-Fc-nml"/>
                                 </constraints>
-                                <state key="normal" image="upload_button_fade">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <state key="normal" image="upload_button_fade"/>
                                 <connections>
                                     <action selector="uploadBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8XQ-aJ-6qk"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQH-b3-jIB">
-                                <rect key="frame" x="255" y="599" width="44" height="44"/>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQH-b3-jIB">
+                                <rect key="frame" x="233" y="588" width="55" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="S46-uc-clg"/>
-                                    <constraint firstAttribute="height" constant="44" id="X5u-3D-imv"/>
+                                    <constraint firstAttribute="width" constant="55" id="S46-uc-clg"/>
+                                    <constraint firstAttribute="height" constant="55" id="X5u-3D-imv"/>
                                 </constraints>
-                                <state key="normal" image="signout_button_fade">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <state key="normal" image="signout_button_fade"/>
                                 <connections>
                                     <action selector="signOutBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rbh-Ma-wp4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZo-wh-HfF">
-                                <rect key="frame" x="307" y="599" width="44" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZo-wh-HfF">
+                                <rect key="frame" x="296" y="588" width="55" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="0gE-hY-ikW"/>
-                                    <constraint firstAttribute="width" constant="44" id="C9V-i8-KKu"/>
+                                    <constraint firstAttribute="height" constant="55" id="0gE-hY-ikW"/>
+                                    <constraint firstAttribute="width" constant="55" id="C9V-i8-KKu"/>
                                 </constraints>
                                 <state key="normal" image="menu_button_fade"/>
                                 <connections>
@@ -188,10 +184,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaJ-ft-Sap">
-                                        <rect key="frame" x="249" y="5" width="44" height="44"/>
+                                        <rect key="frame" x="238" y="5" width="55" height="55"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="J5p-ht-E52"/>
-                                            <constraint firstAttribute="width" constant="44" id="yFB-5P-aL1"/>
+                                            <constraint firstAttribute="height" constant="55" id="J5p-ht-E52"/>
+                                            <constraint firstAttribute="width" constant="55" id="yFB-5P-aL1"/>
                                         </constraints>
                                         <state key="normal" image="close_button_fade"/>
                                         <connections>
@@ -199,7 +195,7 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1sk-tt-7Fa">
-                                        <rect key="frame" x="27.5" y="51" width="240" height="175"/>
+                                        <rect key="frame" x="27.5" y="62" width="240" height="175"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="175" id="UK0-9z-rtP"/>
@@ -210,7 +206,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rYz-P3-0Zi">
-                                        <rect key="frame" x="20" y="228" width="255" height="30"/>
+                                        <rect key="frame" x="20" y="239" width="255" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7T-Cj-ilK">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
@@ -236,7 +232,7 @@
                                         </constraints>
                                     </stackView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ugj-gj-sWe">
-                                        <rect key="frame" x="13.5" y="263" width="268" height="314"/>
+                                        <rect key="frame" x="13.5" y="274" width="268" height="303"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="ei7-dK-S1B"/>
                                         </constraints>

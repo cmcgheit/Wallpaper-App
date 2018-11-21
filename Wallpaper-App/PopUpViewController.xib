@@ -75,10 +75,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RJc-NS-i9Z">
-                            <rect key="frame" x="320" y="20" width="45" height="45"/>
+                            <rect key="frame" x="310" y="15" width="55" height="55"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="45" id="2gm-fP-coB"/>
-                                <constraint firstAttribute="width" constant="45" id="aV5-aR-nRF"/>
+                                <constraint firstAttribute="height" constant="55" id="2gm-fP-coB"/>
+                                <constraint firstAttribute="width" constant="55" id="aV5-aR-nRF"/>
                             </constraints>
                             <state key="normal" image="close_button_fade"/>
                             <connections>
@@ -93,7 +93,7 @@
                         <constraint firstAttribute="bottom" secondItem="Ixq-Mb-NQN" secondAttribute="bottom" id="LrE-eH-XoE"/>
                         <constraint firstAttribute="trailing" secondItem="Ixq-Mb-NQN" secondAttribute="trailing" id="Xwn-ci-v06"/>
                         <constraint firstAttribute="trailing" secondItem="RJc-NS-i9Z" secondAttribute="trailing" constant="10" id="csU-sE-aiF"/>
-                        <constraint firstItem="RJc-NS-i9Z" firstAttribute="top" secondItem="ZQ2-cn-TPQ" secondAttribute="top" constant="20" id="juc-x4-y09"/>
+                        <constraint firstItem="RJc-NS-i9Z" firstAttribute="top" secondItem="ZQ2-cn-TPQ" secondAttribute="top" constant="15" id="juc-x4-y09"/>
                     </constraints>
                 </view>
             </subviews>

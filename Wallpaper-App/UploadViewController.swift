@@ -34,10 +34,10 @@ class UploadViewController: UIViewController {
     // MARK: - Attributes Wrapper
     private var attributesWrapper: EntryAttributeWrapper {
         var attributes = EKAttributes.topFloat
-        attributes.entryBackground = .color(color: UIColor.white)
+        attributes.entryBackground = .color(color: .white)
         attributes.roundCorners = .all(radius: 10)
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .darkGray, opacity: 0.5, radius: 10, offset: .zero))
         return EntryAttributeWrapper(with: attributes)
         
     }
@@ -102,8 +102,8 @@ class UploadViewController: UIViewController {
     // MARK: - SwiftEntryKit Alerts
     // Notification Message
     private func showNotificationEKMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String? = nil) {
-        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
-        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: .darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: .darkGray))
         let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
         let simpleMessage = EKSimpleMessage(image: image, title: title, description: desc)
         let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
@@ -112,10 +112,22 @@ class UploadViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: attributesWrapper.attributes)
         
     }
-    // Denied Alert
+    
+    // Top Banner Message
+    private func showBannerNotificationMessage(attributes: EKAttributes, text: String, desc: String, textColor: UIColor) {
+        let text = EKProperty.LabelContent(text: text, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: .darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 15), color: .darkGray))
+        let simpleMessage = EKSimpleMessage(title: text, description: desc)
+        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+        
+        let contentView = EKNotificationMessageView(with: notificationMessage)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
+    }
+    
+    // Custom Photo Library Options Alert
     private func showEKDeniedAlert(attributes: EKAttributes) {
         let titleText = EKProperty.LabelContent(text: "Photo Library Authorization Denied", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
-        let descText = EKProperty.LabelContent(text: "You declined authorization of access to your photos, please allow access to upload wallpapers", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        let descText = EKProperty.LabelContent(text: "You declined authorization of access to your photos, please allow access to upload wallpapers", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: .darkGray))
         let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
         
         let closeText = "Close"
@@ -146,10 +158,10 @@ class UploadViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: self.attributesWrapper.attributes)
     }
     
-    // Restrict Access Alert
+    // Custom Photo Library Access Alert
     private func showEKRestrictAlert(attributes: EKAttributes) {
-        let titleText = EKProperty.LabelContent(text: "Restricted Access for Photo Library", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
-        let descText = EKProperty.LabelContent(text: "Your restrictions in settings have denied access to the photo library", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        let titleText = EKProperty.LabelContent(text: "Restricted Access for Photo Library", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: .darkGray))
+        let descText = EKProperty.LabelContent(text: "Your restrictions in settings have denied access to the photo library", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: .darkGray))
         
         let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
         
@@ -182,9 +194,9 @@ class UploadViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: self.attributesWrapper.attributes)
     }
     
-    // No Determined Status Alert
+    // Custom Photo Library Undetermined Access Alert
     private func showEKNotDetAlert(attributes: EKAttributes) {
-        let titleText = EKProperty.LabelContent(text: "Undetermined Access", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
+        let titleText = EKProperty.LabelContent(text: "Undetermined Access", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: .darkGray))
         let descText = EKProperty.LabelContent(text: "Access to your photo library is undetermined, go to settings and allow photo library access to upload/save wallpapers", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
         
         let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
@@ -217,10 +229,10 @@ class UploadViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: self.attributesWrapper.attributes)
     }
     
-    // Upload Types Alert
+    // Custom Upload Types Alert
     private func showUploadTypesPopUp(attributes: EKAttributes) {
-        let titleText = EKProperty.LabelContent(text: "Upload a Photo from Your Library or Take a Photo in Camera", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
-        let descText = EKProperty.LabelContent(text: "Click on the way you want to upload a wallpaper", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        let titleText = EKProperty.LabelContent(text: "Upload a Photo from Your Library or Take a Photo in Camera", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: .darkGray))
+        let descText = EKProperty.LabelContent(text: "Click on the way you want to upload a wallpaper", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: .darkGray))
         let image = EKProperty.ImageContent(image: UIImage(named: "uploadbuttonon")!, size: CGSize(width: 35, height: 35))
         let camBtnText = "Camera"
         let libraryBtnText = "Photo Library"
@@ -247,28 +259,29 @@ class UploadViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: self.attributesWrapper.attributes)
     }
     
+    // MARK: - Individual Alerts
     func noAccessToCameraAlert() {
         let titleCamText = "No Access To Camera"
         let descCamText = "Please allow camera access, so the app can access your camera to upload a picture as a wallpaper"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleCamText, desc: descCamText, textColor: UIColor.darkGray)
+        self.showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleCamText, desc: descCamText, textColor: .darkGray)
     }
     
     func uploadSuccessfulAlert() {
         let titleUpText = "Upload Successful"
         let descUpText = "Your wallpaper image has been uploaded successfully"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleUpText, desc: descUpText, textColor: UIColor.darkGray)
+        self.showBannerNotificationMessage(attributes: attributesWrapper.attributes, text: titleUpText, desc: descUpText, textColor: .darkGray)
     }
     
     func uploadErrorAlert() {
         let titleText = "Error in Upload"
         let descText = "Something went wrong in the upload. Please try again"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: .darkGray)
     }
     
     func noAllItemsError() {
         let titleText = "Error With Fields"
         let descText = "Please fill out all fields, then continue"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: UIColor.darkGray)
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: titleText, desc: descText, textColor: .darkGray)
     }
     
     func makeShadowView() {

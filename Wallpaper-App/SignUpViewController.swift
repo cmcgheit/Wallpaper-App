@@ -64,10 +64,10 @@ class SignUpViewController: UIViewController {
     // MARK: - Attributes Wrapper
     private var attributesWrapper: EntryAttributeWrapper {
         var attributes = EKAttributes.topFloat
-        attributes.entryBackground = .color(color: UIColor.white)
+        attributes.entryBackground = .color(color: .white)
         attributes.roundCorners = .all(radius: 10)
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .darkGray, opacity: 0.5, radius: 10, offset: .zero))
         return EntryAttributeWrapper(with: attributes)
         
     }
@@ -75,8 +75,8 @@ class SignUpViewController: UIViewController {
     // MARK: - SwiftEntryKit Alerts
     // Notification Message
     private func showNotificationEKMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String? = nil) {
-        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
-        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: .darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: .darkGray))
         let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
         let simpleMessage = EKSimpleMessage(image: image, title: title, description: desc)
         let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
@@ -86,40 +86,52 @@ class SignUpViewController: UIViewController {
         
     }
     
+    // Top Banner Message
+    private func showBannerNotificationMessage(attributes: EKAttributes, text: String, desc: String, textColor: UIColor) {
+        let text = EKProperty.LabelContent(text: text, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: .darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 15), color: .darkGray))
+        let simpleMessage = EKSimpleMessage(title: text, description: desc)
+        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+        
+        let contentView = EKNotificationMessageView(with: notificationMessage)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
+    }
+    
+    // MARK: - Individual Alerts
     func noEmailPassAlert() {
         let noEmailTitleText = "No Email/Password Entered"
         let noEmailDescText = "Please enter a complete email/password and try again"
-        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: noEmailTitleText, desc: noEmailDescText, textColor: UIColor.darkGray)
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: noEmailTitleText, desc: noEmailDescText, textColor: .darkGray)
     }
     
     func emailNotValidAlert() {
         let emailNotValidText = "Email Not Valid"
         let emailNotValidDesc = "Please use a valid email address and try again"
-        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: emailNotValidText, desc: emailNotValidDesc, textColor: UIColor.darkGray)
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: emailNotValidText, desc: emailNotValidDesc, textColor: .darkGray)
     }
     
     func passNotValidAlert() {
         let passNotValidText = "Password Not Valid"
         let passNotValidDesc = "Please use a valid password of at least 6 characters"
-        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: passNotValidText, desc: passNotValidDesc, textColor: UIColor.darkGray)
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: passNotValidText, desc: passNotValidDesc, textColor: .darkGray)
     }
     
     func signInErrorAlert() {
         let signInErrortTitleText = "Error signing in"
         let signInErrorDesc = "Please check that you have entered your email and password correctly and try again"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: signInErrortTitleText, desc: signInErrorDesc, textColor: UIColor.darkGray)
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: signInErrortTitleText, desc: signInErrorDesc, textColor: .darkGray)
     }
     
     func signUpErrorAlert() {
         let signUpErrorText = "Invalid Email/Password"
         let signUpDescText = "Please check that you have entered a valid email and that your password is at least 6 characters long"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: signUpErrorText, desc: signUpDescText, textColor: UIColor.darkGray)
+        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: signUpErrorText, desc: signUpDescText, textColor: .darkGray)
     }
     
     func signUpSuccessAlert() {
         let signSucText = "Signed Up Successfully"
         let signSucDesc = "Signed Up Successfully, Taking you to Feed"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: signSucText, desc: signSucDesc, textColor: UIColor.darkGray)
+        self.showBannerNotificationMessage(attributes: attributesWrapper.attributes, text: signSucText, desc: signSucDesc, textColor: .darkGray)
     }
     
     // MARK: - Keyboard Functions

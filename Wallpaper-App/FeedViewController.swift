@@ -59,7 +59,7 @@ class FeedViewController: UIViewController {
         attributes.entryBackground = .color(color: UIColor.white)
         attributes.roundCorners = .all(radius: 10)
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .darkGray, opacity: 0.5, radius: 10, offset: .zero))
         return EntryAttributeWrapper(with: attributes)
         
     }
@@ -67,32 +67,45 @@ class FeedViewController: UIViewController {
     // MARK: - SwiftEntryKit Alerts
     // Notification Message
     private func showNotificationEKMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String? = nil) {
-        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
-        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        let title = EKProperty.LabelContent(text: title, style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: .darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: .darkGray))
         let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
         let simpleMessage = EKSimpleMessage(image: image, title: title, description: desc)
         let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
         
         let contentView = EKNotificationMessageView(with: notificationMessage)
         SwiftEntryKit.display(entry: contentView, using: attributesWrapper.attributes)
-        
+    
     }
+    
+    // Top Banner Message
+    private func showBannerNotificationMessage(attributes: EKAttributes, text: String, desc: String, textColor: UIColor) {
+        let text = EKProperty.LabelContent(text: text, style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: .darkGray))
+        let desc = EKProperty.LabelContent(text: desc, style: .init(font: UIFont.gillsRegFont(ofSize: 15), color: .darkGray))
+        let simpleMessage = EKSimpleMessage(title: text, description: desc)
+        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+        
+        let contentView = EKNotificationMessageView(with: notificationMessage)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
+    }
+    
+    // MARK: - Individual Alerts
     func signOutSuccessAlert() {
         let signOutText = "Signed Out Successfully"
         let signOutDescText = "You have signed out of Wall Variety successfully"
-        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: signOutText, desc: signOutDescText, textColor: UIColor.darkGray)
+        showBannerNotificationMessage(attributes: attributesWrapper.attributes, text: signOutText, desc: signOutDescText, textColor: .darkGray)
     }
     
     func problemSignOutAlert() {
         let signOutAlertText = "Problem Signing Out"
         let signOutAlertDescText = "There is an error signing you out, please try again"
-        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: signOutAlertText, desc: signOutAlertDescText, textColor: UIColor.darkGray)
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: signOutAlertText, desc: signOutAlertDescText, textColor: .darkGray)
     }
     
     func noNetworkConnectionAlert() {
         let noNetworkTitleText = "No Network Connection"
         let noNetworkDescText = "Check your network/internet settings, then close and restart the app"
-        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: noNetworkTitleText, desc: noNetworkDescText, textColor: UIColor.darkGray)
+        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: noNetworkTitleText, desc: noNetworkDescText, textColor: .darkGray)
     }
     
     override func viewDidLoad() {
@@ -385,9 +398,6 @@ class FeedViewController: UIViewController {
             self.customNaviTitleView.backgroundColor = Theme.current.cardView
             self.glidingIntView.backgroundColor = Theme.current.cardView
             self.titleLabel.textColor = Theme.current.textColor
-            self.uploadBtn.tintColor = Theme.current.buttonColor
-            self.menuBtn.tintColor = Theme.current.buttonColor
-            self.signOutBtn.tintColor = Theme.current.buttonColor
         }
     }
     
@@ -425,7 +435,7 @@ class FeedViewController: UIViewController {
     
     // MARK: - Menu Button
     @IBAction func menuBtnPressed(_ sender: UIButton) {
-        if menuBtn.currentImage ==  #imageLiteral(resourceName: "menu_button_fade_off") {
+        if menuBtn.currentImage ==  #imageLiteral(resourceName: "menu_button_fade") {
             UIView.animate(withDuration: 0.3, animations: {
                 self.uploadBtn.alpha = 1
                 self.signOutBtn.alpha = 1
