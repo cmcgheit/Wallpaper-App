@@ -35,9 +35,9 @@ class UploadViewController: UIViewController {
     private var attributesWrapper: EntryAttributeWrapper {
         var attributes = EKAttributes.topFloat
         attributes.entryBackground = .color(color: .white)
-        attributes.roundCorners = .all(radius: 10)
+        attributes.roundCorners = .all(radius: 15)
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
-        attributes.shadow = .active(with: .init(color: .darkGray, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .darkGray, opacity: 0.5, radius: 15, offset: .init(width: 0, height: 3)))
         return EntryAttributeWrapper(with: attributes)
         
     }
@@ -126,7 +126,7 @@ class UploadViewController: UIViewController {
     
     // Custom Photo Library Options Alert
     private func showEKDeniedAlert(attributes: EKAttributes) {
-        let titleText = EKProperty.LabelContent(text: "Photo Library Authorization Denied", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: UIColor.darkGray))
+        let titleText = EKProperty.LabelContent(text: "Photo Library Authorization Denied", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: .darkGray))
         let descText = EKProperty.LabelContent(text: "You declined authorization of access to your photos, please allow access to upload wallpapers", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: .darkGray))
         let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
         
@@ -134,7 +134,7 @@ class UploadViewController: UIViewController {
         let okayText = "Okay"
         let simpleMessage = EKSimpleMessage(image: image, title: titleText, description: descText)
         
-        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
+        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let okayButtonLabel = EKProperty.LabelContent(text: okayText, style: okayButtonLabelStyle)
         let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             DispatchQueue.main.async {
@@ -143,13 +143,13 @@ class UploadViewController: UIViewController {
             }
         }
         
-        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
+        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let closeButtonLabel = EKProperty.LabelContent(text: closeText, style: closeButtonLabelStyle)
         let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             SwiftEntryKit.dismiss()
         }
         
-        let buttonsBarContent = EKProperty.ButtonBarContent(with: okayButton, closeButton, separatorColor: tealColor, expandAnimatedly: true)
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: okayButton, closeButton, separatorColor: .darkGray, expandAnimatedly: true)
         
         let alertMessage = EKAlertMessage(simpleMessage: simpleMessage, buttonBarContent: buttonsBarContent)
         
@@ -169,7 +169,7 @@ class UploadViewController: UIViewController {
         let okayText = "Okay"
         let simpleMessage = EKSimpleMessage(image: image, title: titleText, description: descText)
         
-        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
+        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let okayButtonLabel = EKProperty.LabelContent(text: okayText, style: okayButtonLabelStyle)
         let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             // Take User to Settings Button Action
@@ -179,13 +179,13 @@ class UploadViewController: UIViewController {
             }
         }
         
-        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
+        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let closeButtonLabel = EKProperty.LabelContent(text: closeText, style: closeButtonLabelStyle)
         let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             SwiftEntryKit.dismiss()
         }
         
-        let buttonsBarContent = EKProperty.ButtonBarContent(with: okayButton, closeButton, separatorColor: tealColor, expandAnimatedly: true)
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: okayButton, closeButton, separatorColor: .darkGray, expandAnimatedly: true)
         
         let alertMessage = EKAlertMessage(simpleMessage: simpleMessage, buttonBarContent: buttonsBarContent)
         
@@ -197,7 +197,7 @@ class UploadViewController: UIViewController {
     // Custom Photo Library Undetermined Access Alert
     private func showEKNotDetAlert(attributes: EKAttributes) {
         let titleText = EKProperty.LabelContent(text: "Undetermined Access", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: .darkGray))
-        let descText = EKProperty.LabelContent(text: "Access to your photo library is undetermined, go to settings and allow photo library access to upload/save wallpapers", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: UIColor.darkGray))
+        let descText = EKProperty.LabelContent(text: "Access to your photo library is undetermined, go to settings and allow photo library access to upload/save wallpapers", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: .darkGray))
         
         let image = EKProperty.ImageContent(image: UIImage(named: "exclaimred")!, size: CGSize(width: 35, height: 35))
         
@@ -205,7 +205,7 @@ class UploadViewController: UIViewController {
         let okayText = "Okay"
         let simpleMessage = EKSimpleMessage(image: image, title: titleText, description: descText)
         
-        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
+        let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let okayButtonLabel = EKProperty.LabelContent(text: okayText, style: okayButtonLabelStyle)
         let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             DispatchQueue.main.async {
@@ -214,13 +214,13 @@ class UploadViewController: UIViewController {
             }
         }
         
-        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
+        let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let closeButtonLabel = EKProperty.LabelContent(text: closeText, style: closeButtonLabelStyle)
         let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             SwiftEntryKit.dismiss()
         }
         
-        let buttonsBarContent = EKProperty.ButtonBarContent(with: okayButton, closeButton, separatorColor: tealColor, expandAnimatedly: true)
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: okayButton, closeButton, separatorColor: .darkGray, expandAnimatedly: true)
         
         let alertMessage = EKAlertMessage(simpleMessage: simpleMessage, buttonBarContent: buttonsBarContent)
         
@@ -233,24 +233,24 @@ class UploadViewController: UIViewController {
     private func showUploadTypesPopUp(attributes: EKAttributes) {
         let titleText = EKProperty.LabelContent(text: "Upload a Photo from Your Library or Take a Photo in Camera", style: .init(font: UIFont.gillsBoldFont(ofSize: 17), color: .darkGray))
         let descText = EKProperty.LabelContent(text: "Click on the way you want to upload a wallpaper", style: .init(font: UIFont.gillsRegFont(ofSize: 17), color: .darkGray))
-        let image = EKProperty.ImageContent(image: UIImage(named: "uploadbuttonon")!, size: CGSize(width: 35, height: 35))
+        let image = EKProperty.ImageContent(image: UIImage(named: "download")!, size: CGSize(width: 35, height: 35))
         let camBtnText = "Camera"
         let libraryBtnText = "Photo Library"
         let simpleMessage = EKSimpleMessage(image: image, title: titleText, description: descText)
         
-        let camButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
+        let camButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let camButtonLabel = EKProperty.LabelContent(text: camBtnText, style: camButtonLabelStyle)
         let camButton = EKProperty.ButtonContent(label: camButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             self.requestCameraAccess()
         }
         
-        let libraryButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: tealColor)
+        let libraryButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let libraryButtonLabel = EKProperty.LabelContent(text: libraryBtnText, style: libraryButtonLabelStyle)
         let libraryButton = EKProperty.ButtonContent(label: libraryButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
             self.requestPhotoLibraryAccess()
         }
         
-        let buttonsBarContent = EKProperty.ButtonBarContent(with: camButton, libraryButton, separatorColor: tealColor, expandAnimatedly: true)
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: camButton, libraryButton, separatorColor: .darkGray, expandAnimatedly: true)
         
         let alertMessage = EKAlertMessage(simpleMessage: simpleMessage, buttonBarContent: buttonsBarContent)
         

@@ -57,9 +57,9 @@ class FeedViewController: UIViewController {
     private var attributesWrapper: EntryAttributeWrapper {
         var attributes = EKAttributes.topFloat
         attributes.entryBackground = .color(color: UIColor.white)
-        attributes.roundCorners = .all(radius: 10)
+        attributes.roundCorners = .all(radius: 15)
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
-        attributes.shadow = .active(with: .init(color: .darkGray, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .darkGray, opacity: 0.5, radius: 15, offset: .init(width: 0, height: 3)))
         return EntryAttributeWrapper(with: attributes)
         
     }
@@ -233,8 +233,8 @@ class FeedViewController: UIViewController {
             rectShape.bounds = view.frame
             rectShape.position = view.center
             rectShape.path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: [.bottomLeft , .bottomRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
-            glidingIntView.layer.backgroundColor = UIColor.black.cgColor
-            customNaviTitleView.layer.backgroundColor = UIColor.black.cgColor
+            glidingIntView.layer.backgroundColor = UIColor.darkGray.cgColor
+            customNaviTitleView.layer.backgroundColor = UIColor.darkGray.cgColor
             customNaviTitleView.layer.mask = rectShape
             glidingIntView.layer.mask = rectShape
         }
