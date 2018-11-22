@@ -118,6 +118,7 @@ class FeedViewController: UIViewController {
         signOutBtnCenter = signOutBtn.center
         
         roundBottomCorners()
+        makeRoundedCornersAndShadow()
         
         // Reachability
         if Reachability.isConnectedToNetwork() {
@@ -146,10 +147,10 @@ class FeedViewController: UIViewController {
         }
         
         // Instructions
-        self.instructionsController.dataSource = self
-        self.instructionsController.overlay.color = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
-        self.instructionsController.overlay.allowTap = true
-        // self.instructionsController.displayOverCutoutPath = true // helper for larger devices
+        instructionsController.dataSource = self
+        instructionsController.overlay.color = UIColor(red: 0.9765, green: 0.9765, blue: 0.9765, alpha: 1.0) // background color when instructions show #f9f9f9
+        instructionsController.overlay.allowTap = true
+        // instructionsController.displayOverCutoutPath = true // helper for larger devices
         
         // MARK: - Check User First Time Viewing VC (Instructions)
         let launchedBefore = Defaults.bool(forKey: "alreadylaunched")
@@ -221,23 +222,27 @@ class FeedViewController: UIViewController {
     
     // MARK: - Make Views Bottom Rounded Corners
     func roundBottomCorners() {
-        glidingIntView.clipsToBounds = true
-        glidingIntView.layer.cornerRadius = 15
         customNaviTitleView.clipsToBounds = true
         customNaviTitleView.layer.cornerRadius = 15
         if #available(iOS 11.0, *) {
-            glidingIntView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
             customNaviTitleView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         } else {
             let rectShape = CAShapeLayer()
             rectShape.bounds = view.frame
             rectShape.position = view.center
             rectShape.path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: [.bottomLeft , .bottomRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
-            glidingIntView.layer.backgroundColor = UIColor.darkGray.cgColor
             customNaviTitleView.layer.backgroundColor = UIColor.darkGray.cgColor
             customNaviTitleView.layer.mask = rectShape
-            glidingIntView.layer.mask = rectShape
         }
+    }
+    
+    func makeRoundedCornersAndShadow() {
+        glidingIntView.layer.cornerRadius = 15
+        glidingIntView.layer.masksToBounds = false
+        glidingIntView.layer.shadowRadius = 4
+        glidingIntView.layer.shadowOpacity = 0.5
+        glidingIntView.layer.shadowColor = UIColor.gray.cgColor
+        glidingIntView.layer.shadowOffset = CGSize(width: 0, height: 3)
     }
     
     // MARK: - Custom Switch
@@ -640,14 +645,14 @@ extension FeedViewController: CoachMarksControllerDelegate, CoachMarksController
     
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
         
-        let instructionsView = instructionsController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
+        let instructionsView = instructionsController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: .top)
         
         switch (index) {
         case 0:
             instructionsView.bodyView.hintLabel.text = "Scroll through Wallpaper Categories here"
             instructionsView.bodyView.nextLabel.text = "Got it!"
         case 1:
-            instructionsView.bodyView.hintLabel.text = "Click Here to open and close the Menu: Upload Wallpapers/Sign Out"
+            instructionsView.bodyView.hintLabel.text = "Click here to open and close the Menu: Upload Wallpapers/Sign Out"
             instructionsView.bodyView.nextLabel.text = "Got it!"
         default: break
         }

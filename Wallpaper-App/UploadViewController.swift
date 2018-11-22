@@ -57,8 +57,7 @@ class UploadViewController: UIViewController {
         
         // Instructions
         uploadInstructionsController.dataSource = self
-        self.uploadInstructionsController.overlay.color = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 0.5)
-        self.uploadInstructionsController.overlay.allowTap = true
+        uploadInstructionsController.overlay.color = UIColor(red: 0.9765, green: 0.9765, blue: 0.9765, alpha: 1.0) // background color when instructions show #f9f9f9        uploadInstructionsController.overlay.allowTap = true
         
         // MARK: - Check User First Time Viewing VC (Instructions)
         let launchedBefore = Defaults.bool(forKey: "alreadylaunched")
@@ -136,7 +135,7 @@ class UploadViewController: UIViewController {
         
         let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let okayButtonLabel = EKProperty.LabelContent(text: okayText, style: okayButtonLabelStyle)
-        let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+        let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: .lightGray) {
             DispatchQueue.main.async {
                 let url = URL(string: UIApplicationOpenSettingsURLString)
                 UIApplication.shared.open(url!, options: [:])
@@ -145,7 +144,7 @@ class UploadViewController: UIViewController {
         
         let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let closeButtonLabel = EKProperty.LabelContent(text: closeText, style: closeButtonLabelStyle)
-        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: .lightGray) {
             SwiftEntryKit.dismiss()
         }
         
@@ -171,7 +170,7 @@ class UploadViewController: UIViewController {
         
         let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let okayButtonLabel = EKProperty.LabelContent(text: okayText, style: okayButtonLabelStyle)
-        let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+        let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: .lightGray) {
             // Take User to Settings Button Action
             DispatchQueue.main.async {
                 let url = URL(string: UIApplicationOpenSettingsURLString)
@@ -181,7 +180,7 @@ class UploadViewController: UIViewController {
         
         let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let closeButtonLabel = EKProperty.LabelContent(text: closeText, style: closeButtonLabelStyle)
-        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: .lightGray) {
             SwiftEntryKit.dismiss()
         }
         
@@ -216,7 +215,7 @@ class UploadViewController: UIViewController {
         
         let closeButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let closeButtonLabel = EKProperty.LabelContent(text: closeText, style: closeButtonLabelStyle)
-        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: .lightGray) {
             SwiftEntryKit.dismiss()
         }
         
@@ -240,13 +239,13 @@ class UploadViewController: UIViewController {
         
         let camButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let camButtonLabel = EKProperty.LabelContent(text: camBtnText, style: camButtonLabelStyle)
-        let camButton = EKProperty.ButtonContent(label: camButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+        let camButton = EKProperty.ButtonContent(label: camButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: .lightGray) {
             self.requestCameraAccess()
         }
         
         let libraryButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let libraryButtonLabel = EKProperty.LabelContent(text: libraryBtnText, style: libraryButtonLabelStyle)
-        let libraryButton = EKProperty.ButtonContent(label: libraryButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+        let libraryButton = EKProperty.ButtonContent(label: libraryButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: .lightGray) {
             self.requestPhotoLibraryAccess()
         }
         
