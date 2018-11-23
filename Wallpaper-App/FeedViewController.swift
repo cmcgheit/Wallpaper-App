@@ -118,7 +118,7 @@ class FeedViewController: UIViewController {
         signOutBtnCenter = signOutBtn.center
         
         roundBottomCorners()
-        makeRoundedCornersAndShadow()
+        makeShadowView()
         
         // Reachability
         if Reachability.isConnectedToNetwork() {
@@ -231,18 +231,18 @@ class FeedViewController: UIViewController {
             rectShape.bounds = view.frame
             rectShape.position = view.center
             rectShape.path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: [.bottomLeft , .bottomRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
-            customNaviTitleView.layer.backgroundColor = UIColor.darkGray.cgColor
+            customNaviTitleView.layer.backgroundColor = UIColor.black.cgColor
             customNaviTitleView.layer.mask = rectShape
         }
     }
     
-    func makeRoundedCornersAndShadow() {
+    func makeShadowView() {
         glidingIntView.layer.cornerRadius = 15
-        glidingIntView.layer.masksToBounds = false
-        glidingIntView.layer.shadowRadius = 4
         glidingIntView.layer.shadowOpacity = 0.5
-        glidingIntView.layer.shadowColor = UIColor.gray.cgColor
-        glidingIntView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        glidingIntView.layer.shadowColor = UIColor.black.cgColor
+        glidingIntView.layer.shadowRadius = 2 // HALF of blur
+        glidingIntView.layer.shadowOffset = CGSize(width: 0, height: 2) // Spread x, y
+        glidingIntView.layer.masksToBounds =  false
     }
     
     // MARK: - Custom Switch

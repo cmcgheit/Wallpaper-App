@@ -21,6 +21,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DW-in-jk3" customClass="CustomCardView" customModule="Wallpaper_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="80" width="375" height="567"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z08-4k-17Z" customClass="CustomCardView" customModule="Wallpaper_App" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -31,16 +41,6 @@
                                     <constraint firstAttribute="height" constant="70" id="n55-b3-bWj"/>
                                     <constraint firstAttribute="width" constant="375" id="yAC-VR-rd2"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6DW-in-jk3" customClass="CustomCardView" customModule="Wallpaper_App" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="80" width="375" height="567"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="ignoresInvertColors" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-b4-UEY" customClass="GlidingCollection" customModule="GlidingCollection">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -54,7 +54,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wall Variety" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="18q-Nh-Bn4">
                                 <rect key="frame" x="112.5" y="30" width="150" height="36"/>
                                 <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="31"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9SO-aj-fWK" customClass="CustomSwitch" customModule="Wallpaper_App" customModuleProvider="target">
@@ -76,7 +76,7 @@
                                 </connections>
                             </view>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWp-ye-yUT">
-                                <rect key="frame" x="296" y="525" width="55" height="55"/>
+                                <rect key="frame" x="296" y="530.5" width="55" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="Cqq-Ep-Dh5"/>
                                     <constraint firstAttribute="width" constant="55" id="sC8-Fc-nml"/>
@@ -87,7 +87,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQH-b3-jIB">
-                                <rect key="frame" x="233" y="588" width="55" height="55"/>
+                                <rect key="frame" x="238.5" y="588" width="55" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="S46-uc-clg"/>
                                     <constraint firstAttribute="height" constant="55" id="X5u-3D-imv"/>
@@ -124,7 +124,7 @@
                             <constraint firstItem="6DW-in-jk3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="80" id="I0P-Hp-Fdi"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SZo-wh-HfF" secondAttribute="bottom" constant="24" id="IWN-pg-yH1"/>
                             <constraint firstAttribute="trailing" secondItem="6DW-in-jk3" secondAttribute="trailing" id="O45-mR-Tqf"/>
-                            <constraint firstItem="SZo-wh-HfF" firstAttribute="top" secondItem="KWp-ye-yUT" secondAttribute="bottom" constant="8" id="RAJ-BR-RX5"/>
+                            <constraint firstItem="SZo-wh-HfF" firstAttribute="top" secondItem="KWp-ye-yUT" secondAttribute="bottom" constant="2.5" id="RAJ-BR-RX5"/>
                             <constraint firstItem="wn6-b4-UEY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="S1w-ry-1Jz"/>
                             <constraint firstItem="18q-Nh-Bn4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZGb-Pa-qvp"/>
                             <constraint firstAttribute="trailing" secondItem="KWp-ye-yUT" secondAttribute="trailing" constant="24" id="agT-RB-pWc"/>
@@ -132,7 +132,7 @@
                             <constraint firstItem="z08-4k-17Z" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="gNV-X5-JUR"/>
                             <constraint firstItem="6DW-in-jk3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hfP-ee-nPn"/>
                             <constraint firstItem="z08-4k-17Z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ivR-hw-PlG"/>
-                            <constraint firstItem="SZo-wh-HfF" firstAttribute="leading" secondItem="OQH-b3-jIB" secondAttribute="trailing" constant="8" id="oZ3-VM-W1q"/>
+                            <constraint firstItem="SZo-wh-HfF" firstAttribute="leading" secondItem="OQH-b3-jIB" secondAttribute="trailing" constant="2.5" id="oZ3-VM-W1q"/>
                             <constraint firstItem="KWp-ye-yUT" firstAttribute="centerX" secondItem="SZo-wh-HfF" secondAttribute="centerX" id="sFb-cf-Aah"/>
                             <constraint firstItem="wn6-b4-UEY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vGn-Vz-8uQ"/>
                             <constraint firstItem="9SO-aj-fWK" firstAttribute="centerY" secondItem="18q-Nh-Bn4" secondAttribute="centerY" id="wge-Sj-jKw"/>
@@ -206,7 +206,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rYz-P3-0Zi">
-                                        <rect key="frame" x="20" y="239" width="255" height="30"/>
+                                        <rect key="frame" x="20" y="239.5" width="255" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7T-Cj-ilK">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
@@ -232,7 +232,7 @@
                                         </constraints>
                                     </stackView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ugj-gj-sWe">
-                                        <rect key="frame" x="13.5" y="274" width="268" height="303"/>
+                                        <rect key="frame" x="13.5" y="274.5" width="268" height="302.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="268" id="ei7-dK-S1B"/>
                                         </constraints>
@@ -258,7 +258,7 @@
                                     <constraint firstAttribute="trailing" secondItem="rYz-P3-0Zi" secondAttribute="trailing" constant="20" id="5q9-5S-VGp"/>
                                     <constraint firstItem="b5l-Xo-PF4" firstAttribute="top" secondItem="yya-2u-NqL" secondAttribute="top" constant="10" id="8Sb-tL-G9k"/>
                                     <constraint firstAttribute="trailing" secondItem="KaJ-ft-Sap" secondAttribute="trailing" constant="2" id="DVp-1J-ROg"/>
-                                    <constraint firstItem="rYz-P3-0Zi" firstAttribute="top" secondItem="1sk-tt-7Fa" secondAttribute="bottom" constant="2" id="LvB-qY-JQQ"/>
+                                    <constraint firstItem="rYz-P3-0Zi" firstAttribute="top" secondItem="1sk-tt-7Fa" secondAttribute="bottom" constant="2.5" id="LvB-qY-JQQ"/>
                                     <constraint firstItem="rYz-P3-0Zi" firstAttribute="leading" secondItem="yya-2u-NqL" secondAttribute="leading" constant="20" id="POX-jn-IWL"/>
                                     <constraint firstAttribute="bottom" secondItem="ugj-gj-sWe" secondAttribute="bottom" constant="25" id="Sa7-7z-r0H"/>
                                     <constraint firstItem="1sk-tt-7Fa" firstAttribute="top" secondItem="KaJ-ft-Sap" secondAttribute="bottom" constant="2" id="eT2-wx-waU"/>

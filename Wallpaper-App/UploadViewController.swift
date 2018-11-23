@@ -38,6 +38,7 @@ class UploadViewController: UIViewController {
         attributes.roundCorners = .all(radius: 15)
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
         attributes.shadow = .active(with: .init(color: .darkGray, opacity: 0.5, radius: 15, offset: .init(width: 0, height: 3)))
+        attributes.displayDuration = 3 // longer duration than default for photo lib alert
         return EntryAttributeWrapper(with: attributes)
         
     }
@@ -206,7 +207,7 @@ class UploadViewController: UIViewController {
         
         let okayButtonLabelStyle = EKProperty.LabelStyle(font: UIFont.gillsRegFont(ofSize: 20), color: .darkGray)
         let okayButtonLabel = EKProperty.LabelContent(text: okayText, style: okayButtonLabelStyle)
-        let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: redColor) {
+        let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: .lightGray) {
             DispatchQueue.main.async {
                 let url = URL(string: UIApplicationOpenSettingsURLString)
                 UIApplication.shared.open(url!, options: [:])

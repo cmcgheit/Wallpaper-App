@@ -3,10 +3,11 @@
 import UIKit
 
 class PaddedLabel: UILabel {
-    var topInset: CGFloat = 10.0
-    var bottomInset: CGFloat = 10.0
-    var leftInset: CGFloat = 10.0
-    var rightInset: CGFloat = 10.0
+    
+    var topInset: CGFloat = 8.0
+    var bottomInset: CGFloat = 8.0
+    var leftInset: CGFloat = 8.0
+    var rightInset: CGFloat = 8.0
     
     override func drawText(in rect: CGRect) {
         let insets: UIEdgeInsets = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
