@@ -13,7 +13,7 @@ class PopUpViewController: UIViewController {
     
     @IBOutlet weak var wallpaperPopImage: UIImageView!
     @IBOutlet weak var wallpaperDescLbl: PaddedLabel!
-    @IBOutlet weak var savePhotoBtn: RoundedRectBlueButton!
+    @IBOutlet weak var savePhotoBtn: UIButton!
     
     @IBOutlet weak var dismissBtn: UIButton!
     
@@ -30,7 +30,7 @@ class PopUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        savePhotoBtn.layer.cornerRadius = 15
+        makeSaveButton()
         
         wallpaperPopImage.image = image
         let url = URL(string: wallpaperImageURL)
@@ -96,6 +96,12 @@ class PopUpViewController: UIViewController {
         let titleText = "Saved Wallpaper to Photos"
         let descText = "saved wallpaper to Photos successfully"
         showNotificationEKMessage(attributes: attributesWrapper.attributes, title: titleText, desc: descText, textColor: .darkGray)
+    }
+    
+    func makeSaveButton() {
+        savePhotoBtn.setTitle("Save Wallpaper To Photos", for: .normal)
+        savePhotoBtn.setTitleColor(wallBlue, for: .normal)
+        savePhotoBtn.titleLabel?.font = UIFont.gillsRegFont(ofSize: 16)
     }
     
     // MARK: - Save Wallpaper to Photos App

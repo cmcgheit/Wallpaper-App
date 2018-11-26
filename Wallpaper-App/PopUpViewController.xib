@@ -42,15 +42,13 @@
                             <nil key="highlightedColor"/>
                             <size key="shadowOffset" width="0.0" height="0.0"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o83-hp-mKi" customClass="RoundedRectBlueButton" customModule="Wallpaper_App" customModuleProvider="target">
-                            <rect key="frame" x="102.5" y="188" width="170" height="30"/>
-                            <color key="backgroundColor" red="0.26274509800000001" green="0.62745098040000002" blue="0.72941176470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o83-hp-mKi">
+                            <rect key="frame" x="87.5" y="168" width="200" height="50"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="170" id="OH2-3a-XaM"/>
-                                <constraint firstAttribute="height" constant="30" id="oaA-Gs-Kb1"/>
+                                <constraint firstAttribute="width" constant="200" id="OH2-3a-XaM"/>
+                                <constraint firstAttribute="height" constant="50" id="oaA-Gs-Kb1"/>
                             </constraints>
-                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="15"/>
-                            <state key="normal" title="Save Wallpaper To Photos">
+                            <state key="normal" backgroundImage="faded_button_rounded">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
@@ -118,6 +116,7 @@
         </view>
     </objects>
     <resources>
+        <image name="faded_button_rounded" width="385" height="85"/>
         <image name="light-close-button" width="40" height="40"/>
     </resources>
 </document>

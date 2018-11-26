@@ -238,7 +238,7 @@ class FeedViewController: UIViewController {
     
     func makeShadowView() {
         glidingIntView.layer.cornerRadius = 15
-        glidingIntView.layer.shadowOpacity = 0.5
+        glidingIntView.layer.shadowOpacity = 0.2
         glidingIntView.layer.shadowColor = UIColor.black.cgColor
         glidingIntView.layer.shadowRadius = 2 // HALF of blur
         glidingIntView.layer.shadowOffset = CGSize(width: 0, height: 2) // Spread x, y
@@ -654,6 +654,9 @@ extension FeedViewController: CoachMarksControllerDelegate, CoachMarksController
         case 1:
             instructionsView.bodyView.hintLabel.text = "Click here to open and close the Menu: Upload Wallpapers/Sign Out"
             instructionsView.bodyView.nextLabel.text = "Got it!"
+        case 2:
+            instructionsView.bodyView.hintLabel.text = "Change theme to Dark Mode/Light Mode here"
+            instructionsView.bodyView.nextLabel.text = "Got it!"
         default: break
         }
         return (bodyView: instructionsView.bodyView, arrowView: instructionsView.arrowView)
@@ -666,6 +669,8 @@ extension FeedViewController: CoachMarksControllerDelegate, CoachMarksController
             return coachMarksController.helper.makeCoachMark(for: glidingIntView)
         case 1:
             return coachMarksController.helper.makeCoachMark(for: menuBtn)
+        case 2:
+            return coachMarksController.helper.makeCoachMark(for: themeSwitch)
         default:
             return coachMarksController.helper.makeCoachMark()
         }
