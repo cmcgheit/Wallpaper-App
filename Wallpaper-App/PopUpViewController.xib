@@ -43,12 +43,12 @@
                             <size key="shadowOffset" width="0.0" height="0.0"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o83-hp-mKi">
-                            <rect key="frame" x="87.5" y="168" width="200" height="50"/>
+                            <rect key="frame" x="87.5" y="163" width="200" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="200" id="OH2-3a-XaM"/>
-                                <constraint firstAttribute="height" constant="50" id="oaA-Gs-Kb1"/>
+                                <constraint firstAttribute="height" constant="60" id="oaA-Gs-Kb1"/>
                             </constraints>
-                            <state key="normal" backgroundImage="faded_button_rounded">
+                            <state key="normal" backgroundImage="shadow_rounded_white_big">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
@@ -58,7 +58,7 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="o83-hp-mKi" secondAttribute="bottom" constant="20" id="5UG-wH-tlU"/>
+                        <constraint firstAttribute="bottom" secondItem="o83-hp-mKi" secondAttribute="bottom" constant="15" id="5UG-wH-tlU"/>
                         <constraint firstItem="hcp-4Q-gUm" firstAttribute="leading" secondItem="Bdf-We-NY8" secondAttribute="leading" constant="15" id="Dn3-7e-g7Z"/>
                         <constraint firstItem="o83-hp-mKi" firstAttribute="centerX" secondItem="Bdf-We-NY8" secondAttribute="centerX" id="Dqv-Kg-Eq2"/>
                         <constraint firstItem="hcp-4Q-gUm" firstAttribute="top" secondItem="Bdf-We-NY8" secondAttribute="top" constant="45" id="P6K-ev-1O4"/>
@@ -116,7 +116,7 @@
         </view>
     </objects>
     <resources>
-        <image name="faded_button_rounded" width="385" height="85"/>
         <image name="light-close-button" width="40" height="40"/>
+        <image name="shadow_rounded_white_big" width="375" height="85"/>
     </resources>
 </document>

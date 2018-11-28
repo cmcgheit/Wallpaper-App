@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         // Initialize the Google Mobile Ads SDK.
-        GADMobileAds.configure(withApplicationID: "adMobAppID")
+        GADMobileAds.configure(withApplicationID: adMobAppID)
         
         // Armchair Review Manager
         Armchair.appID(appID) // always has to be first
@@ -93,5 +93,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
+        // sign out user when app terminated
+        if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
+            AuthService.instance.logOutUser()
+            FIRService.removeFIRObservers()
+            Defaults.setIsLoggedIn(value: false)
+        }
     }
 }

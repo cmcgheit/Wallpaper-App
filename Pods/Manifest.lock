@@ -4,6 +4,9 @@ PODS:
     - Fabric (~> 1.7.9)
   - EasyTransitions (0.5.4)
   - Fabric (1.7.13)
+  - Firebase/AdMob (5.11.0):
+    - Firebase/Core
+    - Google-Mobile-Ads-SDK (~> 7.35)
   - Firebase/Auth (5.11.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.4)
@@ -47,7 +50,7 @@ PODS:
     - FirebaseCore (~> 5.0)
     - GTMSessionFetcher/Core (~> 1.1)
   - GlidingCollection (1.1.0)
-  - Google-Mobile-Ads-SDK (7.31.0)
+  - Google-Mobile-Ads-SDK (7.35.1)
   - GoogleAppMeasurement (5.3.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
@@ -98,12 +101,12 @@ DEPENDENCIES:
   - Crashlytics
   - EasyTransitions
   - Fabric
+  - Firebase/AdMob
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
   - GlidingCollection
-  - Google-Mobile-Ads-SDK
   - Instructions
   - Kingfisher
   - lottie-ios
@@ -160,7 +163,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
   FirebaseStorage: fd82e5e5c474897e19972b34b22ac0f589dce04e
   GlidingCollection: 2194165075fa7230027049238c9ed724453557e6
-  Google-Mobile-Ads-SDK: 6e529e748b45507a2ca904e0b5a52669ba3920c4
+  Google-Mobile-Ads-SDK: 151d5e87b4a0ae6d7d07e2cd8d55d1b41ea2e61e
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
   GoogleUtilities: abb092d2c12e817fa3e0e7b274987dd72fb86ec3
   GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
@@ -177,6 +180,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   SwiftyPickerPopover: 6d08cbae133c80743654f4e977607cd1553947e6
 
-PODFILE CHECKSUM: c609561ea914cef89c4699d1f81c21816e29ea4b
+PODFILE CHECKSUM: 51265aa5175b8ed73c604b98a8a8fc86383881b0
 
 COCOAPODS: 1.5.3

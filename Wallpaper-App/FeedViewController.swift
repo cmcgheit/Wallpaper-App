@@ -17,6 +17,7 @@ class FeedViewController: UIViewController {
     @IBOutlet var glidingView: GlidingCollection!
     fileprivate var collectionView: UICollectionView!
     
+    @IBOutlet private var bannerView: GADBannerView!
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var signOutBtn: UIButton!
@@ -30,8 +31,7 @@ class FeedViewController: UIViewController {
     var signOutBtnCenter: CGPoint!
     
     var handle: AuthStateDidChangeListenerHandle?
-    var bannerView: GADBannerView!
-    
+
     private var isStatusBarHidden: Bool = false
     
     let transition = TransitionClone()
@@ -167,57 +167,13 @@ class FeedViewController: UIViewController {
         closeTapGesture.numberOfTapsRequired = 2
         
         //  MARK: - Admob Banner Properties
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" // test version
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" // wont accept constant
         bannerView.rootViewController = self
-        // bannerView.load(GADRequest())
         let request = GADRequest()
+        bannerView.load(request)
         request.testDevices = ["ca-app-pub-3940256099942544/2934735716"]
         view.addSubview(bannerView)
         
-        func addBannerViewToView(_ bannerView: GADBannerView) {
-            bannerView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(bannerView)
-            if #available(iOS 11.0, *) {
-                positionBannerViewFullWidthBottomOfSafeArea(bannerView)
-            } else {
-                positionBannerViewWidthAtBottomOfView(bannerView)
-            }
-        }
-        @available (iOS 11, *)
-        func positionBannerViewFullWidthBottomOfSafeArea(_ bannerView: UIView) {
-            let guide = view.safeAreaLayoutGuide
-            NSLayoutConstraint.activate([
-                guide.leftAnchor.constraint(equalTo: bannerView.leftAnchor),
-                guide.rightAnchor.constraint(equalTo: bannerView.rightAnchor),
-                guide.bottomAnchor.constraint(equalTo: bannerView.bottomAnchor)
-                ])
-        }
-        
-        func positionBannerViewWidthAtBottomOfView(_ bannerView: UIView) {
-            view.addConstraint(NSLayoutConstraint(item: bannerView,
-                                                  attribute: .leading,
-                                                  relatedBy: .equal,
-                                                  toItem: view,
-                                                  attribute: .leading,
-                                                  multiplier: 1,
-                                                  constant: 0))
-            view.addConstraint(NSLayoutConstraint(item: bannerView,
-                                                  attribute: .trailing,
-                                                  relatedBy: .equal,
-                                                  toItem: view,
-                                                  attribute: .trailing,
-                                                  multiplier: 1,
-                                                  constant: 0))
-            view.addConstraint(NSLayoutConstraint(item: bannerView,
-                                                  attribute: .bottom,
-                                                  relatedBy: .equal,
-                                                  toItem: bottomLayoutGuide,
-                                                  attribute: .top,
-                                                  multiplier: 1,
-                                                  constant: 0))
-            
-        }
     }
     
     // MARK: - Make Views Bottom Rounded Corners

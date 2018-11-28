@@ -1552,7 +1552,6 @@
 		26E75F7B521E34189361E7E93269B21A /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FirebaseAuth.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		275C6BF0ACD714BCCE1AB1E2DDD3B200 /* UIView+Shadow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Shadow.swift"; path = "Source/Extensions/UIView+Shadow.swift"; sourceTree = "<group>"; };
 		279E03125D40910034010004FFB658F5 /* FIRStorageComponent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRStorageComponent.m; path = Firebase/Storage/FIRStorageComponent.m; sourceTree = "<group>"; };
-		284DB14147A3106AF04A9942391119FF /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Frameworks/frameworks/GoogleMobileAds.framework; sourceTree = "<group>"; };
 		2854C0E9FAF02C6BDF48AA5AC88DE594 /* GULSwizzler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GULSwizzler.h; path = GoogleUtilities/MethodSwizzler/Private/GULSwizzler.h; sourceTree = "<group>"; };
 		2911D4B60F0085B1B4D7624323DDE5EA /* leveldb-library-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "leveldb-library-umbrella.h"; sourceTree = "<group>"; };
 		291910AED4EDE6547E4B8BDF8BDCE79D /* NSEdgeLayoutConstraints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NSEdgeLayoutConstraints.swift; path = EasyTransitions/Classes/Utilities/NSEdgeLayoutConstraints.swift; sourceTree = "<group>"; };
@@ -1617,6 +1616,7 @@
 		354673B2566B21A0BA52D2FFFBFFF11A /* FView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FView.h; path = Firebase/Database/Core/View/FView.h; sourceTree = "<group>"; };
 		35EB9BD375DA340E8AEB87612B13A7CD /* EKAttributes+Presets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "EKAttributes+Presets.swift"; path = "Source/Model/EntryAttributes/EKAttributes+Presets.swift"; sourceTree = "<group>"; };
 		364756ECC6318F8A54E02ABDC128526B /* FormatIndicatedCacheSerializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormatIndicatedCacheSerializer.swift; path = Sources/FormatIndicatedCacheSerializer.swift; sourceTree = "<group>"; };
+		36650C92BB3BC28007CA0D42E59DB556 /* libGoogleMobileAds.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGoogleMobileAds.a; path = Libraries/libGoogleMobileAds.a; sourceTree = "<group>"; };
 		36AF3BF0ACCBCA4E0110D7DD54978040 /* FPruneForest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FPruneForest.h; path = Firebase/Database/Persistence/FPruneForest.h; sourceTree = "<group>"; };
 		36C4C9677187E42DC4B469EB04A01857 /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = it.lproj; path = Localization/it.lproj; sourceTree = "<group>"; };
 		36CC639CC5A41231B410892392C02DCF /* ModalTransitionAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ModalTransitionAnimator.swift; path = EasyTransitions/Classes/Modal/ModalTransitionAnimator.swift; sourceTree = "<group>"; };
@@ -1852,6 +1852,7 @@
 		68CE6FE96CDEBF7346ED84E900CCBC72 /* GTMSessionFetcherService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GTMSessionFetcherService.h; path = Source/GTMSessionFetcherService.h; sourceTree = "<group>"; };
 		69048643B5E69406E6EFE7E5B86B5F49 /* comparator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = comparator.h; path = include/leveldb/comparator.h; sourceTree = "<group>"; };
 		6904CC3C80F35950E38566FBC07F60B3 /* LOTRepeaterRenderer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LOTRepeaterRenderer.h; path = "lottie-ios/Classes/RenderSystem/RenderNodes/LOTRepeaterRenderer.h"; sourceTree = "<group>"; };
+		69433F7C0C54D9DC80E37BFADC4C34E7 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Frameworks/frameworks/GoogleMobileAds.framework; sourceTree = "<group>"; };
 		699706B50A8D57582786FC535294243B /* LOTShapeTrimPath.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LOTShapeTrimPath.h; path = "lottie-ios/Classes/Models/LOTShapeTrimPath.h"; sourceTree = "<group>"; };
 		6A1E6839F8B426919414C9FEE15B35B2 /* FIRComponentRegistrant.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRComponentRegistrant.h; path = Firebase/Core/Private/FIRComponentRegistrant.h; sourceTree = "<group>"; };
 		6A6B94EE08DF20ED651D5F6FCF4F68BA /* CoachMarkViewControllerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoachMarkViewControllerDelegate.swift; path = "Sources/Instructions/Protocols and Enums/Internal/CoachMarkViewControllerDelegate.swift"; sourceTree = "<group>"; };
@@ -3112,7 +3113,7 @@
 				A43E4AF0D21628D542B4C0E56DD3E4AF /* FirebaseInstanceID */,
 				34137A3FA44E5F5CF9DE54C014783BA7 /* FirebaseStorage */,
 				FEA5E2736BC5EB4834CEF8096ABAF686 /* GlidingCollection */,
-				E816748DF45122F05CE2930EECE05ED0 /* Google-Mobile-Ads-SDK */,
+				72AB36EE5D3A7B2DF1B521B816FFC8BD /* Google-Mobile-Ads-SDK */,
 				B3CC9F8AEEFA8D45C738FFDA5A43A8AF /* GoogleAppMeasurement */,
 				31CB235787CB164110FA4CE53C612747 /* GoogleUtilities */,
 				DE6A27224BA52420C06AECEF8B154E38 /* GTMSessionFetcher */,
@@ -3616,6 +3617,15 @@
 			path = QuickLayout;
 			sourceTree = "<group>";
 		};
+		72AB36EE5D3A7B2DF1B521B816FFC8BD /* Google-Mobile-Ads-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				8DEC6BBA0BCCE352EB82D675B3EA1EB7 /* Frameworks */,
+			);
+			name = "Google-Mobile-Ads-SDK";
+			path = "Google-Mobile-Ads-SDK";
+			sourceTree = "<group>";
+		};
 		7601B831C5A01CE83EB57C16A247714F /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -3774,6 +3784,15 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Instructions";
+			sourceTree = "<group>";
+		};
+		8DEC6BBA0BCCE352EB82D675B3EA1EB7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				69433F7C0C54D9DC80E37BFADC4C34E7 /* GoogleMobileAds.framework */,
+				36650C92BB3BC28007CA0D42E59DB556 /* libGoogleMobileAds.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8ED562F7AC3904F04861CA3355315F19 /* Siren */ = {
@@ -4422,15 +4441,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E816748DF45122F05CE2930EECE05ED0 /* Google-Mobile-Ads-SDK */ = {
-			isa = PBXGroup;
-			children = (
-				F0296F21BC8FF7BFD45AAB3873708642 /* Frameworks */,
-			);
-			name = "Google-Mobile-Ads-SDK";
-			path = "Google-Mobile-Ads-SDK";
-			sourceTree = "<group>";
-		};
 		EA0B4868818544EA136C013C5D8421F4 /* lottie-ios */ = {
 			isa = PBXGroup;
 			children = (
@@ -4581,14 +4591,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/EasyTransitions";
-			sourceTree = "<group>";
-		};
-		F0296F21BC8FF7BFD45AAB3873708642 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				284DB14147A3106AF04A9942391119FF /* GoogleMobileAds.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F0EFFCFDBCEFD19A40476A965DC94418 /* Crashlytics */ = {
