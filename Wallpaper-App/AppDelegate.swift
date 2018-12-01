@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Siren Updates Alert
         let siren = Siren.shared
         siren.alertType = .option
-        siren.alertMessaging = SirenAlertMessaging(updateTitle: "We recently updated the app: - Something updated", updateMessage: "", updateButtonMessage: "Update Now", nextTimeButtonMessage: "Maybe Next Time", skipVersionButtonMessage: "Skip")
+        siren.alertMessaging = SirenAlertMessaging(updateTitle: "We recently updated the app:", updateMessage: "[Thing Updated]", updateButtonMessage: "Update Now", nextTimeButtonMessage: "Maybe Next Time", skipVersionButtonMessage: "Skip")
         siren.showAlertAfterCurrentVersionHasBeenReleasedForDays = 5
         siren.checkVersion(checkType: .weekly)
         
