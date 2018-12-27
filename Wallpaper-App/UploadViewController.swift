@@ -5,6 +5,7 @@ import Foundation
 import UIKit
 import Photos
 import Firebase
+import CropViewController
 import SwiftEntryKit
 import Instructions
 import SwiftyPickerPopover
@@ -25,6 +26,11 @@ class UploadViewController: UIViewController {
     //Upload Camera properties
     var takenImage: UIImage!
     var wallpaperURL: URL!
+    
+    // CropViewController
+    private var croppingStyle = CropViewCroppingStyle.default
+    private var croppedRect = CGRect.zero
+    private var croppedAngle = 0
     
     // Instructions
     let uploadInstructionsController = CoachMarksController()
@@ -69,11 +75,14 @@ class UploadViewController: UIViewController {
             self.uploadInstructionsController.start(on: self)
             Defaults.set(true, forKey: "alreadylaunched")
         }
-
+        
         // Wallpaper Image Tap Gesture
         let tap = UITapGestureRecognizer(target: self, action: #selector(wallpaperImgUploadClicked))
         wallpaperImgView.addGestureRecognizer(tap)
         wallpaperImgView.isUserInteractionEnabled = true
+        
+        // CropViewController
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(sharePhoto))
         
     }
     
@@ -412,7 +421,7 @@ class UploadViewController: UIViewController {
     }
 }
 
-// MARK: TextView Delegate Functions
+// MARK: TextView Delegate Functions Ext
 extension UploadViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -436,14 +445,32 @@ extension UploadViewController: UITextViewDelegate {
     }
 }
 
+// MARK: - Picker Ext
 extension UploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         if let wallpaperImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let optimizedImageData = UIImagePNGRepresentation(wallpaperImage) {
+            let cropController = CropViewController(croppingStyle: croppingStyle, image: wallpaperImage)
+            cropController.delegate = self
             print(optimizedImageData)
             self.takenImage = wallpaperImage
             self.wallpaperImgView.image = wallpaperImage // set wallpaper image view as selected image
+            
+            if croppingStyle == .circular {
+                if picker.sourceType == .camera {
+                    picker.dismiss(animated: true, completion: {
+                        self.present(cropController, animated: true, completion: nil)
+                    })
+                } else {
+                    picker.pushViewController(cropController, animated: true)
+                }
+            }
+            else { //otherwise dismiss, and then present from the main controller
+                picker.dismiss(animated: true, completion: {
+                    self.present(cropController, animated: true, completion: nil)
+                })
+            }
         }
         //        else if let editedWallpaperImage = info[UIImagePickerControllerEditedImage] as? UIImage, let editedOptimizedImageData = UIImagePNGRepresentation(editedWallpaperImage) {
         //            print(editedOptimizedImageData)
@@ -464,7 +491,7 @@ extension UploadViewController: UIImagePickerControllerDelegate, UINavigationCon
     }
 }
 
-// MARK: - Instructions Functions
+// MARK: - Instructions Ext
 extension UploadViewController: CoachMarksControllerDelegate, CoachMarksControllerDataSource {
     
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark) -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
@@ -497,5 +524,72 @@ extension UploadViewController: CoachMarksControllerDelegate, CoachMarksControll
     
     func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
         return 2
+    }
+}
+
+// MARK: - CropViewController Ext
+extension UploadViewController: CropViewControllerDelegate {
+    
+    public func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        self.croppedRect = cropRect
+        self.croppedAngle = angle
+        updateImageViewWithImage(image, fromCropViewController: cropViewController)
+    }
+    
+    public func cropViewController(_ cropViewController: CropViewController, didCropToCircularImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
+        self.croppedRect = cropRect
+        self.croppedAngle = angle
+        updateImageViewWithImage(image, fromCropViewController: cropViewController)
+    }
+    
+    public func updateImageViewWithImage(_ image: UIImage, fromCropViewController cropViewController: CropViewController) {
+        wallpaperImgView.image = image
+        
+        if cropViewController.croppingStyle != .circular {
+            wallpaperImgView.isHidden = true
+            
+            cropViewController.dismissAnimatedFrom(self, withCroppedImage: image,
+                                                   toView: wallpaperImgView,
+                                                   toFrame: CGRect.zero,
+                                                   setup: { self.layoutImageView() },
+                                                   completion: { self.wallpaperImgView.isHidden = false })
+        }
+        else {
+            self.wallpaperImgView.isHidden = false
+            cropViewController.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    public func layoutImageView() {
+        guard wallpaperImgView.image != nil else { return }
+        
+        let padding: CGFloat = 20.0
+        
+        var viewFrame = self.view.bounds
+        viewFrame.size.width -= (padding * 2.0)
+        viewFrame.size.height -= ((padding * 2.0))
+        
+        var imageFrame = CGRect.zero
+        imageFrame.size = wallpaperImgView.image!.size;
+        
+        if wallpaperImgView.image!.size.width > viewFrame.size.width || wallpaperImgView.image!.size.height > viewFrame.size.height {
+            let scale = min(viewFrame.size.width / imageFrame.size.width, viewFrame.size.height / imageFrame.size.height)
+            imageFrame.size.width *= scale
+            imageFrame.size.height *= scale
+            imageFrame.origin.x = (self.view.bounds.size.width - imageFrame.size.width) * 0.5
+            imageFrame.origin.y = (self.view.bounds.size.height - imageFrame.size.height) * 0.5
+            wallpaperImgView.frame = imageFrame
+        }
+        else {
+            self.wallpaperImgView.frame = imageFrame
+            self.wallpaperImgView.center = CGPoint(x: self.view.bounds.midX, y: self.view.bounds.midY)
+        }
+    }
+    
+    @objc public func sharePhoto() {
+        guard let image = wallpaperImgView.image else {
+            return
+        }
+        print(image)
     }
 }
