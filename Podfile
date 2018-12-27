@@ -17,7 +17,7 @@ target 'Wallpaper-App' do
   pod 'Kingfisher'
   pod 'lottie-ios'
   pod 'GlidingCollection'
-  pod 'EasyTransitions'
+  pod 'CropViewController'
   pod 'SwiftEntryKit', '0.7.2'
   pod 'Armchair'
   pod 'Siren'

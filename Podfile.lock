@@ -2,7 +2,7 @@ PODS:
   - Armchair (0.3.6)
   - Crashlytics (3.10.5):
     - Fabric (~> 1.7.9)
-  - EasyTransitions (0.5.4)
+  - CropViewController (2.4.0)
   - Fabric (1.7.13)
   - Firebase/AdMob (5.11.0):
     - Firebase/Core
@@ -99,7 +99,7 @@ PODS:
 DEPENDENCIES:
   - Armchair
   - Crashlytics
-  - EasyTransitions
+  - CropViewController
   - Fabric
   - Firebase/AdMob
   - Firebase/Auth
@@ -121,7 +121,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Armchair
     - Crashlytics
-    - EasyTransitions
+    - CropViewController
     - Fabric
     - Firebase
     - FirebaseAnalytics
@@ -152,7 +152,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Armchair: 2dd361337cf81937e73e8b9d48f9eda9a21d316c
   Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
-  EasyTransitions: 843a3e93b4cac14315e5d997b762bd1d214beb9c
+  CropViewController: a090820b15fc3da68e694d7c192a4708c576828b
   Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
   Firebase: b48f9e653da971ecce5b8c749684bc8bb2d26bd3
   FirebaseAnalytics: 63202d2665de4e6adcbdce189135255d8b5962ba
@@ -180,6 +180,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   SwiftyPickerPopover: 6d08cbae133c80743654f4e977607cd1553947e6
 
-PODFILE CHECKSUM: 51265aa5175b8ed73c604b98a8a8fc86383881b0
+PODFILE CHECKSUM: 31dc43b38fe35e0e8aaa48da98b395c5623874fb
 
 COCOAPODS: 1.5.3

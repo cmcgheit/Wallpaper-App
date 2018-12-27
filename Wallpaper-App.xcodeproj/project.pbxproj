@@ -26,22 +26,6 @@
 		D87DA23820FA556B00777B0D /* CustomCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23720FA556B00777B0D /* CustomCardView.swift */; };
 		D87DA23B20FBAC2500777B0D /* RevealPasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */; };
 		D87DA23D20FBAC2E00777B0D /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23C20FBAC2E00777B0D /* LoginButton.swift */; };
-		D87DA23F20FBB8AB00777B0D /* PresentationControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23E20FBB8AB00777B0D /* PresentationControllerAnimator.swift */; };
-		D87DA24120FBB8DD00777B0D /* ModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA24020FBB8DD00777B0D /* ModalTransitionAnimator.swift */; };
-		D87DA24420FBB91C00777B0D /* ModalOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA24320FBB91C00777B0D /* ModalOperation.swift */; };
-		D87DA24620FBB93F00777B0D /* ModalTransitionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA24520FBB93F00777B0D /* ModalTransitionConfigurator.swift */; };
-		D87DA24820FBB96C00777B0D /* ModalTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA24720FBB96C00777B0D /* ModalTransitionDelegate.swift */; };
-		D87DA24B20FBB9AC00777B0D /* Pan.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA24A20FBB9AC00777B0D /* Pan.swift */; };
-		D87DA24D20FBB9D400777B0D /* PanDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA24C20FBB9D400777B0D /* PanDirection.swift */; };
-		D87DA24F20FBB9F400777B0D /* PanFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA24E20FBB9F400777B0D /* PanFactory.swift */; };
-		D87DA25220FBBA4500777B0D /* TransitionEdgePanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25120FBBA4500777B0D /* TransitionEdgePanGestureRecognizer.swift */; };
-		D87DA25420FBBA6C00777B0D /* TransitionPanGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25320FBBA6C00777B0D /* TransitionPanGestureRecognizer.swift */; };
-		D87DA25720FBBAF400777B0D /* PanGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25620FBBAF400777B0D /* PanGesture.swift */; };
-		D87DA25A20FBBB8000777B0D /* NavigationTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25920FBBB8000777B0D /* NavigationTransitionDelegate.swift */; };
-		D87DA25C20FBBBA600777B0D /* NavigationTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25B20FBBBA600777B0D /* NavigationTransitionAnimator.swift */; };
-		D87DA25E20FBBBC500777B0D /* NavigationTransitionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25D20FBBBC500777B0D /* NavigationTransitionConfigurator.swift */; };
-		D87DA26020FBBC0300777B0D /* TransitionInteractiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA25F20FBBC0300777B0D /* TransitionInteractiveController.swift */; };
-		D87DA26220FBBC4D00777B0D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA26120FBBC4D00777B0D /* Configuration.swift */; };
 		D895F4BE213C54D600E7F8BE /* TransitionClone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4BD213C54D600E7F8BE /* TransitionClone.swift */; };
 		D895F4C221481C0200E7F8BE /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */; };
 		D895F4C4214AEF6E00E7F8BE /* UITextField+ValidationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4C3214AEF6D00E7F8BE /* UITextField+ValidationExt.swift */; };
@@ -63,18 +47,6 @@
 		D8E93B9F20B8B0B100CE0AD8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B9B20B8B0B100CE0AD8 /* LoginViewController.swift */; };
 		D8E93BA020B8B0B100CE0AD8 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93B9C20B8B0B100CE0AD8 /* PopUpViewController.swift */; };
 		D8E93BA220B8B0C100CE0AD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8E93BA120B8B0C100CE0AD8 /* Assets.xcassets */; };
-		D8E93BBD20B8B63200CE0AD8 /* RoundCornersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB020B8B63000CE0AD8 /* RoundCornersButton.swift */; };
-		D8E93BBE20B8B63200CE0AD8 /* FunctionalEnumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB120B8B63000CE0AD8 /* FunctionalEnumerated.swift */; };
-		D8E93BBF20B8B63200CE0AD8 /* CGAffineTransform+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB220B8B63000CE0AD8 /* CGAffineTransform+Custom.swift */; };
-		D8E93BC020B8B63200CE0AD8 /* ReusableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB320B8B63000CE0AD8 /* ReusableCells.swift */; };
-		D8E93BC120B8B63200CE0AD8 /* CardViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB420B8B63000CE0AD8 /* CardViewDelegate.swift */; };
-		D8E93BC220B8B63200CE0AD8 /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB520B8B63000CE0AD8 /* CircularImageView.swift */; };
-		D8E93BC320B8B63200CE0AD8 /* UICollectionView+OrderedCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB620B8B63100CE0AD8 /* UICollectionView+OrderedCells.swift */; };
-		D8E93BC420B8B63200CE0AD8 /* UIWindow+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB720B8B63100CE0AD8 /* UIWindow+SafeArea.swift */; };
-		D8E93BC620B8B63200CE0AD8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BB920B8B63100CE0AD8 /* CardView.swift */; };
-		D8E93BC720B8B63200CE0AD8 /* AppStoreAnimatorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BBA20B8B63100CE0AD8 /* AppStoreAnimatorInfo.swift */; };
-		D8E93BC820B8B63200CE0AD8 /* NSLayoutConstraint+Multiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BBB20B8B63100CE0AD8 /* NSLayoutConstraint+Multiplier.swift */; };
-		D8E93BC920B8B63200CE0AD8 /* NibLoadbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BBC20B8B63200CE0AD8 /* NibLoadbleView.swift */; };
 		D8E93BDF20BDB20E00CE0AD8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8E93BDC20BDB1FC00CE0AD8 /* Main.storyboard */; };
 		D8E93BE220BDB22200CE0AD8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8E93BE020BDB22200CE0AD8 /* LaunchScreen.storyboard */; };
 		D8E93BE920BF0D8C00CE0AD8 /* WallpaperCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BE820BF0D8C00CE0AD8 /* WallpaperCategories.swift */; };
@@ -84,8 +56,6 @@
 		D8E93BF120C3257800CE0AD8 /* CustomLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BF020C3257800CE0AD8 /* CustomLoadingView.swift */; };
 		D8E93BF320C32AC000CE0AD8 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E93BF220C32AC000CE0AD8 /* SplashViewController.swift */; };
 		D8FC5D8520D2BA2B00FA632F /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8FC5D8420D2BA2B00FA632F /* PopUpViewController.xib */; };
-		D8FC5D8720D2C89500FA632F /* ShadowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC5D8620D2C89500FA632F /* ShadowStyle.swift */; };
-		D8FC5D8920D2C9FA00FA632F /* UIView+ShadowStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC5D8820D2C9FA00FA632F /* UIView+ShadowStyle.swift */; };
 		D8FC5D8B20D2CBDB00FA632F /* PaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC5D8A20D2CBDB00FA632F /* PaddedLabel.swift */; };
 		D8FC5D8F20DEC4B300FA632F /* Notifications+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC5D8E20DEC4B300FA632F /* Notifications+Extensions.swift */; };
 		D8FC5D9120E00C0800FA632F /* CustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FC5D9020E00C0800FA632F /* CustomSwitch.swift */; };
@@ -124,22 +94,6 @@
 		D87DA23720FA556B00777B0D /* CustomCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardView.swift; sourceTree = "<group>"; };
 		D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealPasswordTextField.swift; sourceTree = "<group>"; };
 		D87DA23C20FBAC2E00777B0D /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
-		D87DA23E20FBB8AB00777B0D /* PresentationControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationControllerAnimator.swift; sourceTree = "<group>"; };
-		D87DA24020FBB8DD00777B0D /* ModalTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTransitionAnimator.swift; sourceTree = "<group>"; };
-		D87DA24320FBB91C00777B0D /* ModalOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalOperation.swift; sourceTree = "<group>"; };
-		D87DA24520FBB93F00777B0D /* ModalTransitionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTransitionConfigurator.swift; sourceTree = "<group>"; };
-		D87DA24720FBB96C00777B0D /* ModalTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTransitionDelegate.swift; sourceTree = "<group>"; };
-		D87DA24A20FBB9AC00777B0D /* Pan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pan.swift; sourceTree = "<group>"; };
-		D87DA24C20FBB9D400777B0D /* PanDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanDirection.swift; sourceTree = "<group>"; };
-		D87DA24E20FBB9F400777B0D /* PanFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanFactory.swift; sourceTree = "<group>"; };
-		D87DA25120FBBA4500777B0D /* TransitionEdgePanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionEdgePanGestureRecognizer.swift; sourceTree = "<group>"; };
-		D87DA25320FBBA6C00777B0D /* TransitionPanGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionPanGestureRecognizer.swift; sourceTree = "<group>"; };
-		D87DA25620FBBAF400777B0D /* PanGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanGesture.swift; sourceTree = "<group>"; };
-		D87DA25920FBBB8000777B0D /* NavigationTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionDelegate.swift; sourceTree = "<group>"; };
-		D87DA25B20FBBBA600777B0D /* NavigationTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionAnimator.swift; sourceTree = "<group>"; };
-		D87DA25D20FBBBC500777B0D /* NavigationTransitionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTransitionConfigurator.swift; sourceTree = "<group>"; };
-		D87DA25F20FBBC0300777B0D /* TransitionInteractiveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionInteractiveController.swift; sourceTree = "<group>"; };
-		D87DA26120FBBC4D00777B0D /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		D895F4BD213C54D600E7F8BE /* TransitionClone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionClone.swift; sourceTree = "<group>"; };
 		D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		D895F4C3214AEF6D00E7F8BE /* UITextField+ValidationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ValidationExt.swift"; sourceTree = "<group>"; };
@@ -161,18 +115,6 @@
 		D8E93B9B20B8B0B100CE0AD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "Wallpaper-App/LoginViewController.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93B9C20B8B0B100CE0AD8 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpViewController.swift; path = "Wallpaper-App/PopUpViewController.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93BA120B8B0C100CE0AD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Wallpaper-App/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
-		D8E93BB020B8B63000CE0AD8 /* RoundCornersButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundCornersButton.swift; path = "Wallpaper-App/RoundCornersButton.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93BB120B8B63000CE0AD8 /* FunctionalEnumerated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FunctionalEnumerated.swift; path = "Wallpaper-App/FunctionalEnumerated.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93BB220B8B63000CE0AD8 /* CGAffineTransform+Custom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGAffineTransform+Custom.swift"; path = "Wallpaper-App/CGAffineTransform+Custom.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93BB320B8B63000CE0AD8 /* ReusableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReusableCells.swift; path = "Wallpaper-App/ReusableCells.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93BB420B8B63000CE0AD8 /* CardViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardViewDelegate.swift; path = "Wallpaper-App/CardViewDelegate.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93BB520B8B63000CE0AD8 /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularImageView.swift; path = "Wallpaper-App/CircularImageView.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93BB620B8B63100CE0AD8 /* UICollectionView+OrderedCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UICollectionView+OrderedCells.swift"; path = "Wallpaper-App/UICollectionView+OrderedCells.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93BB720B8B63100CE0AD8 /* UIWindow+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIWindow+SafeArea.swift"; path = "Wallpaper-App/UIWindow+SafeArea.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93BB920B8B63100CE0AD8 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = "Wallpaper-App/CardView.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93BBA20B8B63100CE0AD8 /* AppStoreAnimatorInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppStoreAnimatorInfo.swift; path = "Wallpaper-App/AppStoreAnimatorInfo.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93BBB20B8B63100CE0AD8 /* NSLayoutConstraint+Multiplier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSLayoutConstraint+Multiplier.swift"; path = "Wallpaper-App/NSLayoutConstraint+Multiplier.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93BBC20B8B63200CE0AD8 /* NibLoadbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NibLoadbleView.swift; path = "Wallpaper-App/NibLoadbleView.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93BDD20BDB1FC00CE0AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D8E93BE120BDB22200CE0AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D8E93BE420BDB23E00CE0AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = "Wallpaper-App/Base.lproj/Info.plist"; sourceTree = "<group>"; };
@@ -183,8 +125,6 @@
 		D8E93BF020C3257800CE0AD8 /* CustomLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLoadingView.swift; sourceTree = "<group>"; };
 		D8E93BF220C32AC000CE0AD8 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		D8FC5D8420D2BA2B00FA632F /* PopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
-		D8FC5D8620D2C89500FA632F /* ShadowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowStyle.swift; sourceTree = "<group>"; };
-		D8FC5D8820D2C9FA00FA632F /* UIView+ShadowStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ShadowStyle.swift"; sourceTree = "<group>"; };
 		D8FC5D8A20D2CBDB00FA632F /* PaddedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedLabel.swift; sourceTree = "<group>"; };
 		D8FC5D8E20DEC4B300FA632F /* Notifications+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notifications+Extensions.swift"; sourceTree = "<group>"; };
 		D8FC5D9020E00C0800FA632F /* CustomSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSwitch.swift; sourceTree = "<group>"; };
@@ -367,119 +307,6 @@
 			name = RevealPassword;
 			sourceTree = "<group>";
 		};
-		D87DA24220FBB90800777B0D /* Modal */ = {
-			isa = PBXGroup;
-			children = (
-				D87DA24020FBB8DD00777B0D /* ModalTransitionAnimator.swift */,
-				D87DA24320FBB91C00777B0D /* ModalOperation.swift */,
-				D87DA24520FBB93F00777B0D /* ModalTransitionConfigurator.swift */,
-				D87DA24720FBB96C00777B0D /* ModalTransitionDelegate.swift */,
-			);
-			name = Modal;
-			sourceTree = "<group>";
-		};
-		D87DA24920FBB9A300777B0D /* Pan */ = {
-			isa = PBXGroup;
-			children = (
-				D87DA24A20FBB9AC00777B0D /* Pan.swift */,
-				D87DA24C20FBB9D400777B0D /* PanDirection.swift */,
-				D87DA24E20FBB9F400777B0D /* PanFactory.swift */,
-			);
-			name = Pan;
-			sourceTree = "<group>";
-		};
-		D87DA25020FBBA2400777B0D /* Gestures */ = {
-			isa = PBXGroup;
-			children = (
-				D87DA25120FBBA4500777B0D /* TransitionEdgePanGestureRecognizer.swift */,
-				D87DA25320FBBA6C00777B0D /* TransitionPanGestureRecognizer.swift */,
-			);
-			name = Gestures;
-			sourceTree = "<group>";
-		};
-		D87DA25520FBBAD000777B0D /* Animators */ = {
-			isa = PBXGroup;
-			children = (
-				D8E93BBA20B8B63100CE0AD8 /* AppStoreAnimatorInfo.swift */,
-				D87DA23E20FBB8AB00777B0D /* PresentationControllerAnimator.swift */,
-			);
-			name = Animators;
-			sourceTree = "<group>";
-		};
-		D87DA25820FBBB6200777B0D /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				D87DA25920FBBB8000777B0D /* NavigationTransitionDelegate.swift */,
-				D87DA25B20FBBBA600777B0D /* NavigationTransitionAnimator.swift */,
-				D87DA25D20FBBBC500777B0D /* NavigationTransitionConfigurator.swift */,
-			);
-			name = Navigation;
-			sourceTree = "<group>";
-		};
-		D87DA26320FBCD8A00777B0D /* CoreGraphics */ = {
-			isa = PBXGroup;
-			children = (
-				D8E93BB220B8B63000CE0AD8 /* CGAffineTransform+Custom.swift */,
-			);
-			name = CoreGraphics;
-			sourceTree = "<group>";
-		};
-		D87DA26420FBCDA300777B0D /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				D8E93BB120B8B63000CE0AD8 /* FunctionalEnumerated.swift */,
-			);
-			name = Foundation;
-			sourceTree = "<group>";
-		};
-		D87DA26520FBCDBB00777B0D /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-				D8E93BBB20B8B63100CE0AD8 /* NSLayoutConstraint+Multiplier.swift */,
-				D8E93BB620B8B63100CE0AD8 /* UICollectionView+OrderedCells.swift */,
-				D8E93BB720B8B63100CE0AD8 /* UIWindow+SafeArea.swift */,
-			);
-			name = UIKit;
-			sourceTree = "<group>";
-		};
-		D87DA26620FBCE1000777B0D /* Style */ = {
-			isa = PBXGroup;
-			children = (
-				D8E93BB520B8B63000CE0AD8 /* CircularImageView.swift */,
-				D8E93BB020B8B63000CE0AD8 /* RoundCornersButton.swift */,
-				D87DA26820FBCE9400777B0D /* Views */,
-				D87DA26720FBCE1C00777B0D /* Shadow */,
-			);
-			name = Style;
-			sourceTree = "<group>";
-		};
-		D87DA26720FBCE1C00777B0D /* Shadow */ = {
-			isa = PBXGroup;
-			children = (
-				D8FC5D8820D2C9FA00FA632F /* UIView+ShadowStyle.swift */,
-				D8FC5D8620D2C89500FA632F /* ShadowStyle.swift */,
-			);
-			name = Shadow;
-			sourceTree = "<group>";
-		};
-		D87DA26820FBCE9400777B0D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				D8E93BB920B8B63100CE0AD8 /* CardView.swift */,
-				D8E93BB420B8B63000CE0AD8 /* CardViewDelegate.swift */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		D87DA26920FBCEEB00777B0D /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				D8E93BBC20B8B63200CE0AD8 /* NibLoadbleView.swift */,
-				D8E93BB320B8B63000CE0AD8 /* ReusableCells.swift */,
-			);
-			name = Utilities;
-			sourceTree = "<group>";
-		};
 		D8D2A4AC20A7AC160014ADAE /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -493,19 +320,6 @@
 			isa = PBXGroup;
 			children = (
 				D808C96F2135F371004C95C9 /* Custom */,
-				D87DA26920FBCEEB00777B0D /* Utilities */,
-				D87DA26620FBCE1000777B0D /* Style */,
-				D87DA26520FBCDBB00777B0D /* UIKit */,
-				D87DA26420FBCDA300777B0D /* Foundation */,
-				D87DA26320FBCD8A00777B0D /* CoreGraphics */,
-				D87DA25820FBBB6200777B0D /* Navigation */,
-				D87DA25520FBBAD000777B0D /* Animators */,
-				D87DA25020FBBA2400777B0D /* Gestures */,
-				D87DA24920FBB9A300777B0D /* Pan */,
-				D87DA24220FBB90800777B0D /* Modal */,
-				D87DA25620FBBAF400777B0D /* PanGesture.swift */,
-				D87DA25F20FBBC0300777B0D /* TransitionInteractiveController.swift */,
-				D87DA26120FBBC4D00777B0D /* Configuration.swift */,
 				D895F4BD213C54D600E7F8BE /* TransitionClone.swift */,
 			);
 			name = Animations;
@@ -660,7 +474,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Wallpaper-App/Pods-Wallpaper-App-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Armchair/Armchair.framework",
-				"${BUILT_PRODUCTS_DIR}/EasyTransitions/EasyTransitions.framework",
+				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GlidingCollection/GlidingCollection.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -680,7 +494,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Armchair.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyTransitions.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GlidingCollection.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
@@ -709,39 +523,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8FC5D9420E00C6000FA632F /* CustomThumbView.swift in Sources */,
-				D8E93BC120B8B63200CE0AD8 /* CardViewDelegate.swift in Sources */,
 				D8E93B8B20B8B05100CE0AD8 /* UserDefaults.swift in Sources */,
 				D8E93B9720B8B08D00CE0AD8 /* UploadViewController.swift in Sources */,
-				D8E93BC720B8B63200CE0AD8 /* AppStoreAnimatorInfo.swift in Sources */,
-				D8E93BBE20B8B63200CE0AD8 /* FunctionalEnumerated.swift in Sources */,
 				D807067F217449060020B4B5 /* LocalizeProtocol.swift in Sources */,
-				D87DA26220FBBC4D00777B0D /* Configuration.swift in Sources */,
-				D87DA24F20FBB9F400777B0D /* PanFactory.swift in Sources */,
 				D8E93BF120C3257800CE0AD8 /* CustomLoadingView.swift in Sources */,
 				D8FC5D8F20DEC4B300FA632F /* Notifications+Extensions.swift in Sources */,
 				D8070673217448080020B4B5 /* LocalizeCommonProtocol.swift in Sources */,
-				D8E93BBD20B8B63200CE0AD8 /* RoundCornersButton.swift in Sources */,
-				D8E93BC220B8B63200CE0AD8 /* CircularImageView.swift in Sources */,
 				D8070679217448820020B4B5 /* LocalizeStrings.swift in Sources */,
 				D807067B217448A60020B4B5 /* LocalizeUI.swift in Sources */,
 				D8E93BEB20BF2AD500CE0AD8 /* User.swift in Sources */,
 				D808C96E2135F36A004C95C9 /* PresentSectionViewController.swift in Sources */,
-				D87DA24120FBB8DD00777B0D /* ModalTransitionAnimator.swift in Sources */,
 				D8E93B8E20B8B05100CE0AD8 /* Constants.swift in Sources */,
 				D8FC5D9620E721C800FA632F /* ThemeProtocol.swift in Sources */,
 				D895F4C4214AEF6E00E7F8BE /* UITextField+ValidationExt.swift in Sources */,
 				D87DA23D20FBAC2E00777B0D /* LoginButton.swift in Sources */,
-				D87DA25420FBBA6C00777B0D /* TransitionPanGestureRecognizer.swift in Sources */,
 				D8E93B8A20B8B05100CE0AD8 /* ImageResizeExt.swift in Sources */,
-				D87DA24420FBB91C00777B0D /* ModalOperation.swift in Sources */,
-				D87DA25E20FBBBC500777B0D /* NavigationTransitionConfigurator.swift in Sources */,
-				D87DA24820FBB96C00777B0D /* ModalTransitionDelegate.swift in Sources */,
-				D87DA25220FBBA4500777B0D /* TransitionEdgePanGestureRecognizer.swift in Sources */,
 				D895F4BE213C54D600E7F8BE /* TransitionClone.swift in Sources */,
-				D8E93BC320B8B63200CE0AD8 /* UICollectionView+OrderedCells.swift in Sources */,
-				D87DA25C20FBBBA600777B0D /* NavigationTransitionAnimator.swift in Sources */,
-				D8E93BC420B8B63200CE0AD8 /* UIWindow+SafeArea.swift in Sources */,
-				D87DA23F20FBB8AB00777B0D /* PresentationControllerAnimator.swift in Sources */,
 				D87DA23B20FBAC2500777B0D /* RevealPasswordTextField.swift in Sources */,
 				D807067D217448DA0020B4B5 /* LocalizeStatic.swift in Sources */,
 				D8E93B8420B8B02D00CE0AD8 /* FIRService.swift in Sources */,
@@ -755,37 +552,24 @@
 				D8070668216BC0D90020B4B5 /* StoreReviewHelper.swift in Sources */,
 				D87DA23620FA4CE800777B0D /* RoundedRectButton.swift in Sources */,
 				D8070685218412EA0020B4B5 /* Reachability.swift in Sources */,
-				D8E93BC820B8B63200CE0AD8 /* NSLayoutConstraint+Multiplier.swift in Sources */,
 				D8E93B8C20B8B05100CE0AD8 /* AppDelegate.swift in Sources */,
 				D8FC5D8B20D2CBDB00FA632F /* PaddedLabel.swift in Sources */,
-				D8FC5D8920D2C9FA00FA632F /* UIView+ShadowStyle.swift in Sources */,
 				D8E93B9F20B8B0B100CE0AD8 /* LoginViewController.swift in Sources */,
 				D8E93BA020B8B0B100CE0AD8 /* PopUpViewController.swift in Sources */,
-				D8FC5D8720D2C89500FA632F /* ShadowStyle.swift in Sources */,
 				D895F4C221481C0200E7F8BE /* ForgotPasswordViewController.swift in Sources */,
 				D8E93BF320C32AC000CE0AD8 /* SplashViewController.swift in Sources */,
 				D8E93B9E20B8B0B100CE0AD8 /* FeedViewController.swift in Sources */,
-				D87DA25A20FBBB8000777B0D /* NavigationTransitionDelegate.swift in Sources */,
 				D8E93B9D20B8B0B100CE0AD8 /* SignUpViewController.swift in Sources */,
 				D8070681217449290020B4B5 /* LocalizeJson.swift in Sources */,
-				D8E93BC920B8B63200CE0AD8 /* NibLoadbleView.swift in Sources */,
 				D8E93BEF20C1AC7300CE0AD8 /* WallpaperImageCache.swift in Sources */,
-				D87DA24620FBB93F00777B0D /* ModalTransitionConfigurator.swift in Sources */,
-				D87DA24B20FBB9AC00777B0D /* Pan.swift in Sources */,
 				D8E93B9420B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift in Sources */,
 				D808C96A2135B490004C95C9 /* DynamicAccessibilityLayout.swift in Sources */,
 				D8E93BED20C1A77E00CE0AD8 /* Extensions.swift in Sources */,
-				D8E93BBF20B8B63200CE0AD8 /* CGAffineTransform+Custom.swift in Sources */,
 				D87DA23820FA556B00777B0D /* CustomCardView.swift in Sources */,
 				D8070671217447DA0020B4B5 /* Localize.swift in Sources */,
-				D8E93BC020B8B63200CE0AD8 /* ReusableCells.swift in Sources */,
-				D87DA25720FBBAF400777B0D /* PanGesture.swift in Sources */,
-				D8E93BC620B8B63200CE0AD8 /* CardView.swift in Sources */,
 				D8FC5D9120E00C0800FA632F /* CustomSwitch.swift in Sources */,
 				D8E93B8220B8B02100CE0AD8 /* AuthService.swift in Sources */,
-				D87DA24D20FBB9D400777B0D /* PanDirection.swift in Sources */,
 				D8070675217448330020B4B5 /* LocalizeExtensions.swift in Sources */,
-				D87DA26020FBBC0300777B0D /* TransitionInteractiveController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

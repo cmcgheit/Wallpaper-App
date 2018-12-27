@@ -1,7 +1,6 @@
 // PopUpViewController.swift, coded with love by C McGhee
 
 import UIKit
-import EasyTransitions
 import Kingfisher
 import UIKit.UIGestureRecognizerSubclass
 import SwiftEntryKit
