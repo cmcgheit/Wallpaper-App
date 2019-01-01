@@ -1,10 +1,11 @@
-# Wallpaper App
+# Today Collection View
 
-Wallpaper app to showcase diverse artists/art. Just Revamped it and the app will be available on the app store soon!
+Recreating the app store
 
-<img src="/Resources/07142018.png" width="400" height="700" />
+<!-- [similar Wallpaper App - App Store Link Coming Soon]() -->
 
-[App Store Link]()
+Turned into a full app store version:
+<img src="/Resources/Dec2018SignIn.png" width="400" height="700" />
 
 Featured Wallpaper art from:
 
@@ -12,21 +13,21 @@ Featured Wallpaper art from:
 
 # Included:
 
-- [Firebase](https://firebase.google.com "Google Firebase for Developers)
+- [Firebase](https://firebase.google.com "Google Firebase for Developers")
+- [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON "SwiftyJSON")
 - [Gliding Collection](https://github.com/Ramotion/gliding-collection "Gliding Collection")
+- [EasyTransitions](https://github.com/marcosgriselli/EasyTransitions "EasyTransitions")
 
 
 ### Things to Update
 
-- [x] Finish Popup/description
-- [x] [GlidingCollectionDelegate]((https://github.com/Ramotion/gliding-collection "Gliding Collection")
-- [x] Sections
-- [x] [Gliding Collection](https://github.com/Ramotion/gliding-collection "Gliding Collection")
+- [⏳] Finish PopUp Transitions
+
 
 # Screenshots
 
-<img src="/Resources/06272017.png" width="400" height="700" />
+<!-- ![screen shot 2017-06-27 at 10 41 23 pm](/Resources/Screen Shot 2017-06-27 at 10.41.23 PM.png) -->
 
-<img src="https://user-images.githubusercontent.com/24944725/27619714-2146a722-5b8a-11e7-9d6d-d63ed77aef4d.png" width="400" height="700" />
+![simulator screen shot jun 27 2017 10 41 20 pm](https://user-images.githubusercontent.com/24944725/27619714-2146a722-5b8a-11e7-9d6d-d63ed77aef4d.png)
 
-<img src="/Resources/wallpaper.gif" width="400" height="700" />
+![Wallpaper Gif](/Resources/wallpaper.gif)

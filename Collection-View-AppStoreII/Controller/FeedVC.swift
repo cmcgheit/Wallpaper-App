@@ -1,109 +1,147 @@
 //Created with ♥️ by: Carey M
 
 import UIKit
-// import EasyTransitions * when add pod
 
-struct AppStoreAnimatorInfo {
-    var animator: AppStoreAnimator
-    var index: IndexPath
-}
-
-class FeedVC: UICollectionViewController {
+class FeedVC: StatusBarAnimatableViewController {
     
-    private var modalTransitionDelegate = ModalTransitionDelegate()
-    private var animatorInfo: AppStoreAnimatorInfo?
+    @IBOutlet private var collectionView: UICollectionView!
     
-    // MARK: - Init
-    init() {
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 335, height: 412)
-        layout.minimumLineSpacing = 30
-        layout.minimumInteritemSpacing = 20
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        layout.scrollDirection = .vertical
-        super.init(collectionViewLayout: layout)
-    }
+    private var transition: CardTransition?
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    private lazy var wallpaperModel: [WallpaperItem] = [
+        WallpaperItem(title: "Chicago Bulls",
+                      header: "Chicago NBA basketball team",
+                      desc: "Pro basketball team out of Chicago, IL", image: UIImage(named: "chicagobasketball.png")!.resize(toWidth: UIScreen.main.bounds.size.width * (1/Constants.cardHighlightedFactor))),
+        WallpaperItem(title: "Cleveland Cavaliers",
+                      header: "Cleveland NBA basketball team",
+                      desc: "Pro basketball team out of Cleveland, OH.",
+                      image: UIImage(named: "clevelandbasketball.png")!.resize(toWidth: UIScreen.main.bounds.size.width * (1/Constants.cardHighlightedFactor))),
+        WallpaperItem(title: "Washington Wizards",
+                      header: "Washington NBA basketball team",
+                      desc: "Pro basketball team out of Washington, DC",
+                      image: UIImage(named:"dcbasketball.png")!.resize(toWidth: UIScreen.main.bounds.size.width * (1/Constants.cardHighlightedFactor))),
+        WallpaperItem(title: "Memphis Grizzles",
+                      header: "Memphis NBA basketball team",
+                      desc: "Pro basketball team out of Memphis, TN",
+                      image: UIImage(named: "memphisbasketball.png")!.resize(toWidth: UIScreen.main.bounds.size.width * (1/Constants.cardHighlightedFactor))),
+        WallpaperItem(title: "Minnesota Timberwolves",
+                      header: "Minnesota NBA basketball team",
+                      desc: "Pro basketball team out of Minneapolis, MN",
+                      image: UIImage(named: "minnebasketball.png")!.resize(toWidth: UIScreen.main.bounds.size.width * (1/Constants.cardHighlightedFactor))),
+        WallpaperItem(title: "Philadelphia Sixers",
+                      header: "Philadelphia NBA basketball team",
+                      desc: "Pro basketball team out of Philadelphia, PA",
+                      image: UIImage(named: "philabasketball.png")!.resize(toWidth: UIScreen.main.bounds.size.width * (1/Constants.cardHighlightedFactor))),
+        WallpaperItem(title: "San Antonio Spurs",
+                      header: "San Antonio NBA basketball team",
+                      desc: "Pro basketball team out of San Antonio, TX", image: UIImage(named: "sanantoniobasketball.png")!.resize(toWidth: UIScreen.main.bounds.size.width * (1/Constants.cardHighlightedFactor))),
+        WallpaperItem(title: "Toronto Raptors",
+                      header: "Toronto NBA basketball team",
+                      desc: "Pro basketball team out of Toronto, Canada", image: UIImage(named: "torontobasketball.png")!.resize(toWidth: UIScreen.main.bounds.size.width * (1/Constants.cardHighlightedFactor))),
+        WallpaperItem(title: "Utah Jazz",
+                      header: "Utah NBA basketball team",
+                      desc: "Pro basketball team out of Salt Lake City, UT",
+                      image: UIImage(named: "utahbasketball.png")!.resize(toWidth: UIScreen.main.bounds.size.width * (1/Constants.cardHighlightedFactor)))
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.backgroundColor = UIColor.white
-        collectionView?.register(PopUpCollectionViewCell.self)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        recalculateItemSizes(givenWidth: self.view.frame.size.width)
-    }
-    
-    func recalculateItemSizes(givenWidth width: CGFloat) {
-        let vcWidth = width - 20//20 is left margin
-        var width: CGFloat = 355 //335 is ideal size + 20 of right margin for each item
-        let colums = round(vcWidth / width) //Aproximate times the ideal size fits the screen
-        width = (vcWidth / colums) - 20 //we substract the right marging
-        (collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize = CGSize(width: width, height: 412)
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        recalculateItemSizes(givenWidth: size.width)
         
-        coordinator.animate(alongsideTransition: nil) { (context) in
-            //As the position of the cells might have changed, if we have an AppStoreAnimator, we update it's
-            //"initialFrame" so the dimisss animation still matches
-            if let animatorInfo = self.animatorInfo {
-                if let cell = self.collectionView?.cellForItem(at: animatorInfo.index) {
-                    let cellFrame = self.view.convert(cell.frame, from: self.collectionView)
-                    animatorInfo.animator.initialFrame = cellFrame
-                }
-                else {
-                    //ups! the cell is not longer on the screen so… ¯\_(ツ)_/¯ lets move it out of the screen
-                    animatorInfo.animator.initialFrame = CGRect(x: (size.width-animatorInfo.animator.initialFrame.width)/2.0, y: size.height, width: animatorInfo.animator.initialFrame.width, height: animatorInfo.animator.initialFrame.height)
-                }
-            }
-        }
-    }
-    
-    // MARK: - UICollectionViewDataSource
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: PopUpCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        return cell
-    }
-    
-    // MARK: - UICollectionViewDelegate
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Make it responds to highlight state faster
+        collectionView.delaysContentTouches = false
         
-        let detailViewController = PopUpDetailVC()
-        
-        guard let cell = collectionView.cellForItem(at: indexPath) else {
-            present(detailViewController, animated: true, completion: nil)
-            return
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.minimumLineSpacing = 20
+            layout.minimumInteritemSpacing = 0
+            layout.sectionInset = .init(top: 20, left: 0, bottom: 64, right: 0)
         }
         
-        let cellFrame = view.convert(cell.frame, from: collectionView)
-        
-        let appStoreAnimator = AppStoreAnimator(initialFrame: cellFrame)
-        appStoreAnimator.onReady = { cell.isHidden = true }
-        appStoreAnimator.onDismissed = { cell.isHidden = false }
-        appStoreAnimator.auxAnimation = { detailViewController.layout(presenting: $0) }
-        
-        modalTransitionDelegate.set(animator: appStoreAnimator, for: .present)
-        modalTransitionDelegate.set(animator: appStoreAnimator, for: .dismiss)
-        modalTransitionDelegate.wire(viewController: detailViewController,
-                                     with: .regular(.fromTop))
-        
-        detailViewController.transitioningDelegate = modalTransitionDelegate
-        detailViewController.modalPresentationStyle = .custom
-        
-        present(detailViewController, animated: true, completion: nil)
-        animatorInfo = AppStoreAnimatorInfo(animator: appStoreAnimator, index: indexPath)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.clipsToBounds = false
+        collectionView.register(UINib(nibName: "\(PopUpCollectionViewCell.self)", bundle: nil), forCellWithReuseIdentifier: "cardCell")
+    }
+    
+    override var statusBarAnimatableConfig: StatusBarAnimatableConfig {
+        return StatusBarAnimatableConfig(prefersHidden: false,
+                                         animation: .slide)
     }
 }
 
+extension FeedVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return wallpaperModel.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return collectionView.dequeueReusableCell(withReuseIdentifier: "cardCell", for: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let cell = cell as! PopUpCollectionViewCell
+        cell.cardView?.viewModel = wallpaperModel[indexPath.row]
+    }
+}
+
+extension FeedVC {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cardHorizontalOffset: CGFloat = 20
+        let cardHeightByWidthRatio: CGFloat = 1.2
+        let width = collectionView.bounds.size.width - 2 * cardHorizontalOffset
+        let height: CGFloat = width * cardHeightByWidthRatio
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // Get tapped cell location
+        let cell = collectionView.cellForItem(at: indexPath) as! PopUpCollectionViewCell
+        
+        // Freeze highlighted state (or else it will bounce back)
+        cell.freezeAnimations()
+        
+        // Get current frame on screen
+        let currentCellFrame = cell.layer.presentation()!.frame
+        
+        // Convert current frame to screen's coordinates
+        let cardPresentationFrameOnScreen = cell.superview!.convert(currentCellFrame, to: nil)
+        
+        // Get card frame without transform in screen's coordinates  (for the dismissing back later to original location)
+        let cardFrameWithoutTransform = { () -> CGRect in
+            let center = cell.center
+            let size = cell.bounds.size
+            let r = CGRect(
+                x: center.x - size.width / 2,
+                y: center.y - size.height / 2,
+                width: size.width,
+                height: size.height
+            )
+            return cell.superview!.convert(r, to: nil)
+        }()
+        
+        let wallModel = wallpaperModel[indexPath.row]
+        
+        // Set up card detail view controller
+        let vc = storyboard!.instantiateViewController(withIdentifier: "popUpDetailVC") as! PopUpDetailVC
+        vc.cardViewModel = wallModel.highlightedImage()
+        vc.unhighlightedCardViewModel = wallModel // Keep the original one to restore when dismiss
+        let params = CardTransition.Params(fromCardFrame: cardPresentationFrameOnScreen,
+                                           fromCardFrameWithoutTransform: cardFrameWithoutTransform,
+                                           fromCell: cell)
+        transition = CardTransition(params: params)
+        vc.transitioningDelegate = transition
+        
+        // If `modalPresentationStyle` is not `.fullScreen`, this should be set to true to make status bar depends on presented vc.
+        vc.modalPresentationCapturesStatusBarAppearance = true
+        vc.modalPresentationStyle = .custom
+        
+        present(vc, animated: true, completion: { [unowned cell] in
+            // Unfreeze
+            cell.unfreezeAnimations()
+        })
+    }
+}

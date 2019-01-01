@@ -1,26 +1,20 @@
 //Created with ♥️ by: Carey M 
 
-import Foundation
+import UIKit
 
 public struct WallpaperItem {
-    var title: String
-    var imageName: String
+    let title: String
+    let header: String
+    let desc: String
+    let image: UIImage
     
-    private init(title: String, imageName: String) {
-        self.title = title
-        self.imageName = imageName
-    }
-    
-    public static let all: [WallpaperItem] = [
-        WallpaperItem(title: "Chicago", imageName: "chicagobasketball"),
-        WallpaperItem(title: "Philadelphia", imageName: "philabasketball"),
-        WallpaperItem(title: "DC", imageName: "dcbasketball"),
-        WallpaperItem(title: "Memphis", imageName: "memphislong"),
-        WallpaperItem(title: "Minnesota", imageName: "minnelong"),
-        WallpaperItem(title: "Golden State", imageName: "goldenstatelong"),
-        WallpaperItem(title: "Utah", imageName: "utahlong"),
-        WallpaperItem(title: "Toronto", imageName: "torontolong"),
-        WallpaperItem(title: "San Antonio", imageName: "sanantoniolong"),
-        WallpaperItem(title: "Cleveland", imageName: "clevelandbasketball")
-    ]
+    func highlightedImage() -> WallpaperItem {
+            let scaledImage = image.resize(toWidth: image.size.width * Constants.cardHighlightedFactor)
+            return WallpaperItem(title: title,
+                                        header: header,
+                                        desc: desc,
+                                        image: scaledImage)
+        }
 }
+
+
