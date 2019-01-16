@@ -2,7 +2,7 @@
 
 Wallpaper app to showcase diverse artists/art. Just Revamped it and the app will be available on the app store soon!
 
-<img src="/Resources/07142018.png" width="400" height="700" />
+<img src="/Resources/Dec2018SignIn.png" width="400" height="700" />
 
 [App Store Link]()
 

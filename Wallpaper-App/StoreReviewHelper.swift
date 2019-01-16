@@ -19,6 +19,7 @@ struct StoreReviewHelper {
             return
         }
         
+        // Track app count to show request review
         switch appOpenCount {
         case 10,50:
             StoreReviewHelper().requestReview()

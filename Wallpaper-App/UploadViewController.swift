@@ -487,6 +487,7 @@ extension UploadViewController: UIImagePickerControllerDelegate, UINavigationCon
     }
     
     @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // track number of times user has uploaded photos, then request a review after so many times StoreReviewHelper().requestReview()
         dismiss(animated: true)
     }
 }
