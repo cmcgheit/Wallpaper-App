@@ -1,10 +1,11 @@
-# Today Collection View
+# App Store Recreation
 
 Recreating the app store
 
 <!-- [similar Wallpaper App - App Store Link Coming Soon]() -->
 
 Turned into a full app store version:
+
 <img src="/Resources/Dec2018SignIn.png" width="400" height="700" />
 
 Featured Wallpaper art from:
@@ -19,7 +20,7 @@ Featured Wallpaper art from:
 - [EasyTransitions](https://github.com/marcosgriselli/EasyTransitions "EasyTransitions")
 
 
-### Things to Update
+# Things to Update
 
 - [⏳] Finish PopUp Transitions
 
