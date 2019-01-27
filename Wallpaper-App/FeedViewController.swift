@@ -194,11 +194,10 @@ class FeedViewController: UIViewController {
     
     func makeShadowView() {
         glidingIntView.layer.cornerRadius = 15
-        glidingIntView.layer.shadowOpacity = 0.2
-        glidingIntView.layer.shadowColor = UIColor.black.cgColor
-        glidingIntView.layer.shadowRadius = 2 // HALF of blur
-        glidingIntView.layer.shadowOffset = CGSize(width: 0, height: 2) // Spread x, y
-        glidingIntView.layer.masksToBounds =  false
+        glidingIntView.layer.shadowPath = UIBezierPath(rect: glidingIntView.bounds).cgPath
+        glidingIntView.layer.shadowRadius = 5
+        glidingIntView.layer.shadowOffset = .zero
+        glidingIntView.layer.shadowOpacity = 1
     }
     
     // MARK: - Custom Switch
