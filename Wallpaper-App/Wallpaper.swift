@@ -13,7 +13,7 @@ struct Wallpaper {
     var wallpaperURL: String?
     var wallpaperDesc: String?
     var wallpaperCategory: String! // WallpaperCategory()
-    private var wallpaperImage: UIImage!
+    var wallpaperImage: UIImage!
         
     init(dictionary: [String: Any]) { // user: User
         // self.user = user

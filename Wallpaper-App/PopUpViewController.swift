@@ -8,13 +8,20 @@ import SwiftEntryKit
 class PopUpViewController: UIViewController {
     
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var cardContentView: CardContentView!
     @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    @IBOutlet weak var wallScrollView: UIScrollView!
     
     @IBOutlet weak var wallpaperPopImage: UIImageView!
     @IBOutlet weak var wallpaperDescLbl: PaddedLabel!
     @IBOutlet weak var savePhotoBtn: UIButton!
     
     @IBOutlet weak var dismissBtn: UIButton!
+    
+    // Transition
+    @IBOutlet weak var cardBottomToRootBottomConstraint: NSLayoutConstraint!
     
     var wallpaper = [WallpaperCategory]()
     var wallpapers: Wallpaper!
@@ -26,6 +33,13 @@ class PopUpViewController: UIViewController {
     
     private var isStatusBarHidden: Bool = false
     
+    // Transition
+    var isFontStateHighlighted: Bool = true {
+        didSet {
+            cardContentView.setFontState(isHighlighted: isFontStateHighlighted)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,11 +50,22 @@ class PopUpViewController: UIViewController {
         wallpaperPopImage.kf.setImage(with: url, placeholder: placeholder)
         wallpaperDescLbl.text = wallpaperDescText
         
+        // setupScrollView()
+        
         // Create a gesture recognizer and add to a UIView
         let recognizer = InstantPanGestureRecognizer(target: self, action: #selector(panRecognizer))
         dismissBtn.addGestureRecognizer(recognizer)
         
         modalPresentationCapturesStatusBarAppearance = true // allows for statusbar to hide
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        isStatusBarHidden = true
+        UIView.animate(withDuration: 0.25) {
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
     }
     
     // MARK: - Status Bar Show/Hide Animation
@@ -54,15 +79,6 @@ class PopUpViewController: UIViewController {
     
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .slide
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        isStatusBarHidden = true
-        UIView.animate(withDuration: 0.25) {
-            self.setNeedsStatusBarAppearanceUpdate()
-        }
     }
     
     // MARK: - Attributes Wrapper
@@ -102,6 +118,23 @@ class PopUpViewController: UIViewController {
         savePhotoBtn.setTitleColor(wallBlue, for: .normal)
         savePhotoBtn.titleLabel?.font = UIFont.gillsRegFont(ofSize: 16)
     }
+    
+//    // MARK: - Photo ScrollView
+//    func setupScrollView() {
+//        wallScrollView.contentSize.width = self.wallScrollView.frame.width * CGFloat(wallpaperImageURL.count + 1)
+//
+//        for (i, image) in wallpaper.enumerated() {
+//            let frame = CGRect(x: self.wallScrollView.frame.width * CGFloat(i + 1), y:0, width: self.wallScrollView.frame.width, height: self.wallScrollView.frame.height)
+//
+//             guard let wallpaperView = Bundle.main.loadNibNamed("WallpaperRoundedCardCell", owner: self, options: nil)?.first as? WallpaperRoundedCardCell else { return }
+//
+//            wallpaperView.frame = frame
+//            wallpaperView.imageView.image = UIImage(named: image.wallpaperURL)
+//
+//            wallScrollView.addSubview(wallpaperView)
+//
+//        }
+//    }
     
     // MARK: - Save Wallpaper to Photos App
     func getWallpaperURLData(url: URL, completion: @escaping (Data? , URLResponse?, Error?) -> ()) {

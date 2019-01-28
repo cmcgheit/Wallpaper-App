@@ -7,11 +7,11 @@ import QuickLook
 
 class SignUpViewController: UIViewController {
     
-    @IBOutlet weak var signUpTxtFld: UITextField!
-    @IBOutlet weak var signUpPassFld: RevealPasswordTextField!
-    @IBOutlet weak var signUpBtn: RoundedRectBlueButton!
-    @IBOutlet weak var goBackBtn: RoundedRectBlueButton!
-    @IBOutlet weak var termsBtn: RoundedRectBlueButton!
+    @IBOutlet private var signUpTxtFld: UITextField!
+    @IBOutlet private var signUpPassFld: RevealPasswordTextField!
+    @IBOutlet private var signUpBtn: RoundedRectBlueButton!
+    @IBOutlet private var goBackBtn: RoundedRectBlueButton!
+    @IBOutlet private var termsBtn: RoundedRectBlueButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,18 +116,6 @@ class SignUpViewController: UIViewController {
         showNotificationEKMessage(attributes: attributesWrapper.attributes, title: passNotValidText, desc: passNotValidDesc, textColor: .darkGray)
     }
     
-    func signInErrorAlert() {
-        let signInErrortTitleText = "Error signing in"
-        let signInErrorDesc = "Please check that you have entered your email and password correctly and try again"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: signInErrortTitleText, desc: signInErrorDesc, textColor: .darkGray)
-    }
-    
-    func signUpErrorAlert() {
-        let signUpErrorText = "Invalid Email/Password"
-        let signUpDescText = "Please check that you have entered a valid email and that your password is at least 6 characters long"
-        self.showNotificationEKMessage(attributes: self.attributesWrapper.attributes, title: signUpErrorText, desc: signUpDescText, textColor: .darkGray)
-    }
-    
     func signUpSuccessAlert() {
         let signSucText = "Signed Up Successfully"
         let signSucDesc = "Signed Up Successfully, Taking you to Feed"
@@ -161,27 +149,37 @@ class SignUpViewController: UIViewController {
     // MARK: - Authenticate New User
     private func authenticateNewUser(withEmail email: String, withPassword pass: String) {
         // Register New User
-        AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in
-            if success { // After registered, login the user
-                Analytics.logEvent("user_sign_up", parameters: nil)
-                AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, nil) in
-                    if registrationError == nil {
-                        let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
-                        self.signUpSuccessAlert()
-                        self.present(feedVC, animated:true) // Take user to Feed once sucessfully signed in
-                        print("Successfully registered/Signed-In user")
-                    } else {
-                        if registrationError != nil {
-                            // Sign In Error Alert
-                            UIView.shake(view: self.signUpTxtFld)
-                            UIView.shake(view: self.signUpPassFld)
-                            self.signInErrorAlert()
-                            print(String(describing: registrationError?.localizedDescription))
+        guard let authUser = Auth.auth().currentUser else { return }
+        let credential = EmailAuthProvider.credential(withEmail: email, password: pass) // check for previous login credential
+        authUser.linkAndRetrieveData(with: credential) { (linkResult, linkError) in
+            
+            AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in
+                if success { // After registered, login the user
+                    Analytics.logEvent("user_sign_up", parameters: nil)
+                    AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, nil) in
+                        if registrationError == nil {
+                            let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+                            self.signUpSuccessAlert()
+                            self.present(feedVC, animated:true) // Take user to Feed once sucessfully signed in
+                            print("Successfully registered/Signed-In user")
+                        } else {
+                            if let registrationError = registrationError {
+                                // Sign In Error Alert
+                                UIView.shake(view: self.signUpTxtFld)
+                                UIView.shake(view: self.signUpPassFld)
+                                self.handleFireAuthError(error: registrationError)
+                                print(String(describing: registrationError.localizedDescription))
+                            }
                         }
-                    }
-                })
+                    })
+                }
+            })
+            
+            
+            if let linkError = linkError {
+                self.handleFireAuthError(error: linkError)
             }
-        })
+        }
     }
     
     @IBAction func signUpBtnPressed(_ sender: UIButton) {

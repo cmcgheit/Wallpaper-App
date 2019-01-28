@@ -6,11 +6,11 @@ import SwiftEntryKit
 
 class ForgotPasswordViewController: UIViewController {
     
-    @IBOutlet weak var forgotView: CustomCardView!
-    @IBOutlet weak var emailTxtFld: UITextField!
-    @IBOutlet weak var emailPassBtn: RoundedRectBlueButton!
-    @IBOutlet weak var resetPassBtn: RoundedRectBlueButton!
-    @IBOutlet weak var backBtn: RoundedRectBlueButton!
+    @IBOutlet private var forgotView: CustomCardView!
+    @IBOutlet private var emailTxtFld: UITextField!
+    @IBOutlet private var emailPassBtn: RoundedRectBlueButton!
+    @IBOutlet private var resetPassBtn: RoundedRectBlueButton!
+    @IBOutlet private var backBtn: RoundedRectBlueButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

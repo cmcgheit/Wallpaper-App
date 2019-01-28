@@ -27,6 +27,13 @@
 		D819C45421D91F7A007A8754 /* DismissCardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D819C45321D91F7A007A8754 /* DismissCardAnimator.swift */; };
 		D819C45621D91F9B007A8754 /* PresentCardAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D819C45521D91F9B007A8754 /* PresentCardAnimator.swift */; };
 		D819C45821D92077007A8754 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D819C45721D92077007A8754 /* GlobalConstants.swift */; };
+		D86A641021FE7B8100362769 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A640F21FE7B8100362769 /* NibLoadable.swift */; };
+		D86A641221FE7BA600362769 /* ShowTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A641121FE7BA600362769 /* ShowTime.swift */; };
+		D86A641421FE7BC300362769 /* StatusBarAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A641321FE7BC300362769 /* StatusBarAnimatable.swift */; };
+		D86A641621FE7C0300362769 /* StatusBarAnimatableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A641521FE7C0300362769 /* StatusBarAnimatableViewController.swift */; };
+		D86A641821FE7C2700362769 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A641721FE7C2700362769 /* UIView+AutoLayout.swift */; };
+		D86A641A21FE873200362769 /* CardContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A641921FE873200362769 /* CardContentView.swift */; };
+		D86A641C21FE920300362769 /* CardContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D86A641B21FE920300362769 /* CardContentView.xib */; };
 		D87DA23620FA4CE800777B0D /* RoundedRectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */; };
 		D87DA23820FA556B00777B0D /* CustomCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23720FA556B00777B0D /* CustomCardView.swift */; };
 		D87DA23B20FBAC2500777B0D /* RevealPasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */; };
@@ -100,6 +107,13 @@
 		D819C45321D91F7A007A8754 /* DismissCardAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissCardAnimator.swift; sourceTree = "<group>"; };
 		D819C45521D91F9B007A8754 /* PresentCardAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentCardAnimator.swift; sourceTree = "<group>"; };
 		D819C45721D92077007A8754 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		D86A640F21FE7B8100362769 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		D86A641121FE7BA600362769 /* ShowTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTime.swift; sourceTree = "<group>"; };
+		D86A641321FE7BC300362769 /* StatusBarAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarAnimatable.swift; sourceTree = "<group>"; };
+		D86A641521FE7C0300362769 /* StatusBarAnimatableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarAnimatableViewController.swift; sourceTree = "<group>"; };
+		D86A641721FE7C2700362769 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		D86A641921FE873200362769 /* CardContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContentView.swift; sourceTree = "<group>"; };
+		D86A641B21FE920300362769 /* CardContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardContentView.xib; sourceTree = "<group>"; };
 		D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectButton.swift; sourceTree = "<group>"; };
 		D87DA23720FA556B00777B0D /* CustomCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardView.swift; sourceTree = "<group>"; };
 		D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealPasswordTextField.swift; sourceTree = "<group>"; };
@@ -247,6 +261,8 @@
 				D8FC5D8A20D2CBDB00FA632F /* PaddedLabel.swift */,
 				D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */,
 				D87DA23720FA556B00777B0D /* CustomCardView.swift */,
+				D86A641921FE873200362769 /* CardContentView.swift */,
+				D86A641B21FE920300362769 /* CardContentView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -311,13 +327,26 @@
 		D819C44E21D91F09007A8754 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
+				D819C45521D91F9B007A8754 /* PresentCardAnimator.swift */,
+				D819C45321D91F7A007A8754 /* DismissCardAnimator.swift */,
 				D819C44F21D91F25007A8754 /* CardPresentationController.swift */,
 				D819C45121D91F4F007A8754 /* CardTransition.swift */,
-				D819C45321D91F7A007A8754 /* DismissCardAnimator.swift */,
-				D819C45521D91F9B007A8754 /* PresentCardAnimator.swift */,
-				D819C45721D92077007A8754 /* GlobalConstants.swift */,
+				D86A640E21FE7B7300362769 /* Misc */,
 			);
 			name = Transitions;
+			sourceTree = "<group>";
+		};
+		D86A640E21FE7B7300362769 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				D819C45721D92077007A8754 /* GlobalConstants.swift */,
+				D86A640F21FE7B8100362769 /* NibLoadable.swift */,
+				D86A641121FE7BA600362769 /* ShowTime.swift */,
+				D86A641321FE7BC300362769 /* StatusBarAnimatable.swift */,
+				D86A641521FE7C0300362769 /* StatusBarAnimatableViewController.swift */,
+				D86A641721FE7C2700362769 /* UIView+AutoLayout.swift */,
+			);
+			name = Misc;
 			sourceTree = "<group>";
 		};
 		D87DA23920FBAC0A00777B0D /* RevealPassword */ = {
@@ -442,6 +471,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D86A641C21FE920300362769 /* CardContentView.xib in Resources */,
 				D8E93BDF20BDB20E00CE0AD8 /* Main.storyboard in Resources */,
 				D8E93B9520B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib in Resources */,
 				D8E93BE220BDB22200CE0AD8 /* LaunchScreen.storyboard in Resources */,
@@ -551,9 +581,12 @@
 				D8FC5D9420E00C6000FA632F /* CustomThumbView.swift in Sources */,
 				D8E93B8B20B8B05100CE0AD8 /* UserDefaults.swift in Sources */,
 				D8E93B9720B8B08D00CE0AD8 /* UploadViewController.swift in Sources */,
+				D86A641021FE7B8100362769 /* NibLoadable.swift in Sources */,
 				D807067F217449060020B4B5 /* LocalizeProtocol.swift in Sources */,
+				D86A641A21FE873200362769 /* CardContentView.swift in Sources */,
 				D8E93BF120C3257800CE0AD8 /* CustomLoadingView.swift in Sources */,
 				D8FC5D8F20DEC4B300FA632F /* Notifications+Extensions.swift in Sources */,
+				D86A641221FE7BA600362769 /* ShowTime.swift in Sources */,
 				D8070673217448080020B4B5 /* LocalizeCommonProtocol.swift in Sources */,
 				D8070679217448820020B4B5 /* LocalizeStrings.swift in Sources */,
 				D807067B217448A60020B4B5 /* LocalizeUI.swift in Sources */,
@@ -571,6 +604,7 @@
 				D807067D217448DA0020B4B5 /* LocalizeStatic.swift in Sources */,
 				D8E93B8420B8B02D00CE0AD8 /* FIRService.swift in Sources */,
 				D808C9642131EEBE004C95C9 /* EntryAttributeWrapper.swift in Sources */,
+				D86A641821FE7C2700362769 /* UIView+AutoLayout.swift in Sources */,
 				D8FC5D9820E723DD00FA632F /* Theme.swift in Sources */,
 				D8E93B8D20B8B05100CE0AD8 /* Wallpaper.swift in Sources */,
 				D80706772174485C0020B4B5 /* LocalizeString.swift in Sources */,
@@ -578,6 +612,7 @@
 				D8FC5D9A20E7242100FA632F /* LightTheme.swift in Sources */,
 				D819C45021D91F25007A8754 /* CardPresentationController.swift in Sources */,
 				D819C45821D92077007A8754 /* GlobalConstants.swift in Sources */,
+				D86A641621FE7C0300362769 /* StatusBarAnimatableViewController.swift in Sources */,
 				D819C45421D91F7A007A8754 /* DismissCardAnimator.swift in Sources */,
 				D8E93BE920BF0D8C00CE0AD8 /* WallpaperCategories.swift in Sources */,
 				D8070668216BC0D90020B4B5 /* StoreReviewHelper.swift in Sources */,
@@ -589,6 +624,7 @@
 				D8E93BA020B8B0B100CE0AD8 /* PopUpViewController.swift in Sources */,
 				D895F4C221481C0200E7F8BE /* ForgotPasswordViewController.swift in Sources */,
 				D8E93BF320C32AC000CE0AD8 /* SplashViewController.swift in Sources */,
+				D86A641421FE7BC300362769 /* StatusBarAnimatable.swift in Sources */,
 				D8E93B9E20B8B0B100CE0AD8 /* FeedViewController.swift in Sources */,
 				D8E93B9D20B8B0B100CE0AD8 /* SignUpViewController.swift in Sources */,
 				D8070681217449290020B4B5 /* LocalizeJson.swift in Sources */,

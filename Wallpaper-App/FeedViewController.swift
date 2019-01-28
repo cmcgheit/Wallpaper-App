@@ -14,17 +14,17 @@ import Instructions
 
 class FeedViewController: UIViewController {
     
-    @IBOutlet var glidingView: GlidingCollection!
+    @IBOutlet private var glidingView: GlidingCollection!
     fileprivate var collectionView: UICollectionView!
     
     @IBOutlet private var bannerView: GADBannerView!
-    @IBOutlet weak var menuBtn: UIButton!
-    @IBOutlet weak var uploadBtn: UIButton!
-    @IBOutlet weak var signOutBtn: UIButton!
-    @IBOutlet weak var glidingIntView: CustomCardView!
-    @IBOutlet weak var customNaviTitleView: CustomCardView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var themeSwitch: CustomSwitch!
+    @IBOutlet private var menuBtn: UIButton!
+    @IBOutlet private var uploadBtn: UIButton!
+    @IBOutlet private var signOutBtn: UIButton!
+    @IBOutlet private var glidingIntView: CustomCardView!
+    @IBOutlet private var customNaviTitleView: CustomCardView!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var themeSwitch: CustomSwitch!
     
     // Menu
     var uploadBtnCenter: CGPoint!
@@ -35,6 +35,7 @@ class FeedViewController: UIViewController {
     private var isStatusBarHidden: Bool = false
     
     let transition = TransitionClone()
+    // private var transition: CardTransition?
     var collectionIndex: IndexPath?
     var imageFrame = CGRect.zero
     
@@ -176,6 +177,45 @@ class FeedViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // MARK: - Show/Hide Status Bar
+        isStatusBarHidden = false
+        UIView.animate(withDuration: 0.25) {
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+        
+        // MARK: - Check Auth User Signed-In Listener/Handler
+        handle = authRef.addStateDidChangeListener { ( auth, user) in
+            if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
+                // User signed-In
+                Defaults.setIsLoggedIn(value: true)
+            } else {
+                Defaults.setIsLoggedIn(value: false)
+                let signUpVC = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
+                self.present(signUpVC, animated: true)
+            }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if Theme.themeChanged {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData() //reload collection for theme change
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        authRef.removeStateDidChangeListener(handle!)
+        
+        self.instructionsController.stop(immediately: true)
+        
+        removeNotifications()
+    }
+    
     // MARK: - Make Views Bottom Rounded Corners
     func roundBottomCorners() {
         customNaviTitleView.clipsToBounds = true
@@ -218,45 +258,6 @@ class FeedViewController: UIViewController {
         return isStatusBarHidden
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // MARK: - Show/Hide Status Bar
-        isStatusBarHidden = false
-        UIView.animate(withDuration: 0.25) {
-            self.setNeedsStatusBarAppearanceUpdate()
-        }
-        
-        // MARK: - Check Auth User Signed-In Listener/Handler
-        handle = authRef.addStateDidChangeListener { ( auth, user) in
-            if authRef.currentUser != nil && authRef.currentUser?.isAnonymous != nil {
-                // User signed-In
-                Defaults.setIsLoggedIn(value: true)
-            } else {
-                Defaults.setIsLoggedIn(value: false)
-                let signUpVC = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
-                self.present(signUpVC, animated: true)
-            }
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-
-        if Theme.themeChanged {
-            DispatchQueue.main.async {
-                self.collectionView.reloadData() //reload collection for theme change
-            }
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        authRef.removeStateDidChangeListener(handle!)
-        
-        self.instructionsController.stop(immediately: true)
-        
-        removeNotifications()
-    }
-    
     // MARK: - Categories Function
     let catQueue = DispatchQueue(label: "categories-data-queue")
     func makeCategories() {
@@ -283,6 +284,7 @@ class FeedViewController: UIViewController {
         })
     }
     
+    // MARK: - Observer Functions
     func notificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: .updateFeedNotificationName, object: nil)
     }
@@ -360,30 +362,7 @@ class FeedViewController: UIViewController {
             self.titleLabel.textColor = Theme.current.textColor
         }
     }
-    
-    // MARK: - Custom Transition
-    func animateCell(cellFrame: CGRect) -> CATransform3D {
-        let angleFromX = Double((-cellFrame.origin.x) / 10)
-        let angle = CGFloat((angleFromX * Double.pi) / 180.0)
-        var transform = CATransform3DIdentity
-        transform.m34 = -1.0/1000
-        let rotation = CATransform3DRotate(transform, angle, 0, 1, 0)
-        
-        var scaleFromX = (1000 - (cellFrame.origin.x - 200)) / 1000
-        let scaleMax: CGFloat = 1.0
-        let scaleMin: CGFloat = 0.6
-        if scaleFromX > scaleMax  {
-            scaleFromX = scaleMax
-        }
-        if scaleFromX < scaleMin {
-            scaleFromX = scaleMin
-        }
-        
-        let scale = CATransform3DScale(CATransform3DIdentity, scaleFromX, scaleFromX, 1)
-        
-        return CATransform3DConcat(rotation, scale)
-    }
-    
+
     // MARK: - Menu Buttons/Toggle Function
     func toggleMenuBtns(button: UIButton, onImage: UIImage, offImage: UIImage) {
         if button.currentImage == offImage {
@@ -544,6 +523,50 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
             popUpVC.modalPresentationStyle = .custom
             
             self.present(popUpVC, animated: true, completion: nil)
+            
+//            // Freeze highlighted state (or else it will bounce back)
+//            cell.freezeAnimations()
+//
+//            // Get current frame on screen
+//            let currentCellFrame = cell.layer.presentation()!.frame
+//
+//            // Convert current frame to screen's coordinates
+//            let cardPresentationFrameOnScreen = cell.superview!.convert(currentCellFrame, to: nil)
+//
+//            // Get card frame without transform in screen's coordinates  (for the dismissing back later to original location)
+//            let cardFrameWithoutTransform = { () -> CGRect in
+//                let center = cell.center
+//                let size = cell.bounds.size
+//                let r = CGRect(
+//                    x: center.x - size.width / 2,
+//                    y: center.y - size.height / 2,
+//                    width: size.width,
+//                    height: size.height
+//                )
+//                return cell.superview!.convert(r, to: nil)
+//            }()
+//
+//            let cardModel = cardModels[indexPath.row]
+//
+//            // Set up card detail view controller
+//            let vc = storyboard!.instantiateViewController(withIdentifier: "cardDetailVc") as! CardDetailViewController
+//            vc.cardViewModel = cardModel.highlightedImage()
+//            vc.unhighlightedCardViewModel = cardModel // Keep the original one to restore when dismiss
+//            let params = CardTransition.Params(fromCardFrame: cardPresentationFrameOnScreen,
+//                                               fromCardFrameWithoutTransform: cardFrameWithoutTransform,
+//                                               fromCell: cell)
+//            transition = CardTransition(params: params)
+//            vc.transitioningDelegate = transition
+//
+//            // If `modalPresentationStyle` is not `.fullScreen`, this should be set to true to make status bar depends on presented vc.
+//            vc.modalPresentationCapturesStatusBarAppearance = true
+//            vc.modalPresentationStyle = .custom
+//
+//            present(vc, animated: true, completion: { [unowned cell] in
+//                // Unfreeze
+//                cell.unfreezeAnimations()
+//            })
+//        }
         }
     }
     

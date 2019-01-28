@@ -10,13 +10,13 @@ import SwiftKeychainWrapper
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var loginCardView: CustomCardView!
-    @IBOutlet weak var emailTextFld: UITextField!
-    @IBOutlet weak var passTextFld: RevealPasswordTextField!
-    @IBOutlet weak var signInBtn: RoundedRectBlueButton!
-    @IBOutlet weak var signUpBtn: RoundedRectBlueButton!
-    @IBOutlet weak var loginAnBtn: RoundedRectBlueButton!
-    @IBOutlet weak var forgotInfoBtn: RoundedRectBlueButton!
+    @IBOutlet private var loginCardView: CustomCardView!
+    @IBOutlet private var emailTextFld: UITextField!
+    @IBOutlet private var passTextFld: RevealPasswordTextField!
+    @IBOutlet private var signInBtn: RoundedRectBlueButton!
+    @IBOutlet private var signUpBtn: RoundedRectBlueButton!
+    @IBOutlet private var loginAnBtn: RoundedRectBlueButton!
+    @IBOutlet private var forgotInfoBtn: RoundedRectBlueButton!
     
     // Restore text
     var defaultsKey: String = ""
@@ -54,6 +54,7 @@ class LoginViewController: UIViewController {
                     removeToken()
                     return
                 } catch  {
+                    self.handleFireAuthError(error: error)
                     print(error)
                 }
                 Defaults.setIsLoggedIn(value: false)
@@ -132,13 +133,7 @@ class LoginViewController: UIViewController {
         let noEmailDescText = "No email and/or password entered, please enter an email or password and login"
         showNotificationEKMessage(attributes: attributesWrapper.attributes, title: noEmailTitleText, desc: noEmailDescText, textColor: .darkGray)
     }
-    
-    func incorrectEmailPassAlert() {
-        let incorrectTitleText = "Incorrect Email/Password"
-        let incorrectDescText = "You have entered the incorrect email/password. Please enter your email/password and try again"
-        showNotificationEKMessage(attributes: attributesWrapper.attributes, title: incorrectTitleText, desc: incorrectDescText, textColor: .darkGray)
-    }
-    
+
     func noNetworkAlert() {
         let noNetworkTitle = "No Network Connection"
         let noNetworkDesc = "Please check your network connection, then close and restart the app"
@@ -177,9 +172,9 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            if loginError != nil {
-                self.incorrectEmailPassAlert()
-                print(String(describing: loginError?.localizedDescription))
+            if let loginError = loginError {
+                self.handleFireAuthError(error: loginError)
+                print(String(describing: loginError.localizedDescription))
                 return
             }
         }
@@ -187,26 +182,28 @@ class LoginViewController: UIViewController {
     
     @IBAction func signUpBtnPressed(_ sender: UIButton) {
         let signUpVC = storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
-        self.present(signUpVC, animated:true)
+        self.presentingViewController?.present(signUpVC, animated:true)
     }
     
     @IBAction func loginAnonymousBtnClicked(_ sender: UIButton) {
-        // Auth user
-        authRef.signInAnonymously(completion: { (authResult, error) in
-            if error == nil {
-                // successful Anonymous login, segue to FeedViewController
-                let user = authResult?.user
-                let uid = user?.uid
-                self.completeSignIn(id: uid!) // firebase anonymous uid?
-                let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
-                self.present(feedVC, animated:true)
-            } else if (error != nil) {
-                // anonymous login problems
-                self.anonyLoginError()
-                print(error?.localizedDescription ?? 0)
+        // Check for auth user first, then sign in anony
+        if Auth.auth().currentUser == nil {
+            authRef.signInAnonymously{ (authResult, error) in
+                if error == nil {
+                    // successful Anonymous login, segue to FeedViewController
+                    let user = authResult?.user
+                    let uid = user?.uid
+                    self.completeSignIn(id: uid!) // firebase anonymous uid?
+                    let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+                    self.present(feedVC, animated:true)
+                } else if let error = error {
+                    // anonymous login problems
+                    self.handleFireAuthError(error: error)
+                    print(error.localizedDescription)
+                }
             }
         }
-        )}
+    }
     
     @IBAction func forgotInfoBtnPressed(_ sender: UIButton) {
         // segue to ForgotPassVC
