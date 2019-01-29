@@ -31,7 +31,7 @@ class FeedViewController: UIViewController {
     var signOutBtnCenter: CGPoint!
     
     var handle: AuthStateDidChangeListenerHandle?
-
+    
     private var isStatusBarHidden: Bool = false
     
     let transition = TransitionClone()
@@ -76,7 +76,7 @@ class FeedViewController: UIViewController {
         
         let contentView = EKNotificationMessageView(with: notificationMessage)
         SwiftEntryKit.display(entry: contentView, using: attributesWrapper.attributes)
-    
+        
     }
     
     // Top Banner Message
@@ -362,7 +362,7 @@ class FeedViewController: UIViewController {
             self.titleLabel.textColor = Theme.current.textColor
         }
     }
-
+    
     // MARK: - Menu Buttons/Toggle Function
     func toggleMenuBtns(button: UIButton, onImage: UIImage, offImage: UIImage) {
         if button.currentImage == offImage {
@@ -524,49 +524,49 @@ extension FeedViewController: UICollectionViewDataSource, UICollectionViewDelega
             
             self.present(popUpVC, animated: true, completion: nil)
             
-//            // Freeze highlighted state (or else it will bounce back)
-//            cell.freezeAnimations()
-//
-//            // Get current frame on screen
-//            let currentCellFrame = cell.layer.presentation()!.frame
-//
-//            // Convert current frame to screen's coordinates
-//            let cardPresentationFrameOnScreen = cell.superview!.convert(currentCellFrame, to: nil)
-//
-//            // Get card frame without transform in screen's coordinates  (for the dismissing back later to original location)
-//            let cardFrameWithoutTransform = { () -> CGRect in
-//                let center = cell.center
-//                let size = cell.bounds.size
-//                let r = CGRect(
-//                    x: center.x - size.width / 2,
-//                    y: center.y - size.height / 2,
-//                    width: size.width,
-//                    height: size.height
-//                )
-//                return cell.superview!.convert(r, to: nil)
-//            }()
-//
-//            let cardModel = cardModels[indexPath.row]
-//
-//            // Set up card detail view controller
-//            let vc = storyboard!.instantiateViewController(withIdentifier: "cardDetailVc") as! CardDetailViewController
-//            vc.cardViewModel = cardModel.highlightedImage()
-//            vc.unhighlightedCardViewModel = cardModel // Keep the original one to restore when dismiss
-//            let params = CardTransition.Params(fromCardFrame: cardPresentationFrameOnScreen,
-//                                               fromCardFrameWithoutTransform: cardFrameWithoutTransform,
-//                                               fromCell: cell)
-//            transition = CardTransition(params: params)
-//            vc.transitioningDelegate = transition
-//
-//            // If `modalPresentationStyle` is not `.fullScreen`, this should be set to true to make status bar depends on presented vc.
-//            vc.modalPresentationCapturesStatusBarAppearance = true
-//            vc.modalPresentationStyle = .custom
-//
-//            present(vc, animated: true, completion: { [unowned cell] in
-//                // Unfreeze
-//                cell.unfreezeAnimations()
-//            })
-//        }
+            //            // Freeze highlighted state (or else it will bounce back)
+            //            cell.freezeAnimations()
+            //
+            //            // Get current frame on screen
+            //            let currentCellFrame = cell.layer.presentation()!.frame
+            //
+            //            // Convert current frame to screen's coordinates
+            //            let cardPresentationFrameOnScreen = cell.superview!.convert(currentCellFrame, to: nil)
+            //
+            //            // Get card frame without transform in screen's coordinates  (for the dismissing back later to original location)
+            //            let cardFrameWithoutTransform = { () -> CGRect in
+            //                let center = cell.center
+            //                let size = cell.bounds.size
+            //                let r = CGRect(
+            //                    x: center.x - size.width / 2,
+            //                    y: center.y - size.height / 2,
+            //                    width: size.width,
+            //                    height: size.height
+            //                )
+            //                return cell.superview!.convert(r, to: nil)
+            //            }()
+            //
+            //            let cardModel = cardModels[indexPath.row]
+            //
+            //            // Set up card detail view controller
+            //            let vc = storyboard!.instantiateViewController(withIdentifier: "cardDetailVc") as! CardDetailViewController
+            //            vc.cardViewModel = cardModel.highlightedImage()
+            //            vc.unhighlightedCardViewModel = cardModel // Keep the original one to restore when dismiss
+            //            let params = CardTransition.Params(fromCardFrame: cardPresentationFrameOnScreen,
+            //                                               fromCardFrameWithoutTransform: cardFrameWithoutTransform,
+            //                                               fromCell: cell)
+            //            transition = CardTransition(params: params)
+            //            vc.transitioningDelegate = transition
+            //
+            //            // If `modalPresentationStyle` is not `.fullScreen`, this should be set to true to make status bar depends on presented vc.
+            //            vc.modalPresentationCapturesStatusBarAppearance = true
+            //            vc.modalPresentationStyle = .custom
+            //
+            //            present(vc, animated: true, completion: { [unowned cell] in
+            //                // Unfreeze
+            //                cell.unfreezeAnimations()
+            //            })
+            //        }
         }
     }
     

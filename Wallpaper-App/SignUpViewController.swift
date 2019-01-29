@@ -149,10 +149,6 @@ class SignUpViewController: UIViewController {
     // MARK: - Authenticate New User
     private func authenticateNewUser(withEmail email: String, withPassword pass: String) {
         // Register New User
-        guard let authUser = Auth.auth().currentUser else { return }
-        let credential = EmailAuthProvider.credential(withEmail: email, password: pass) // check for previous login credential
-        authUser.linkAndRetrieveData(with: credential) { (linkResult, linkError) in
-            
             AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in
                 if success { // After registered, login the user
                     Analytics.logEvent("user_sign_up", parameters: nil)
@@ -174,13 +170,7 @@ class SignUpViewController: UIViewController {
                     })
                 }
             })
-            
-            
-            if let linkError = linkError {
-                self.handleFireAuthError(error: linkError)
-            }
         }
-    }
     
     @IBAction func signUpBtnPressed(_ sender: UIButton) {
         guard let email = signUpTxtFld.text, email.isNotEmpty else { return }
@@ -201,6 +191,22 @@ class SignUpViewController: UIViewController {
             // MARK: - Validate if fields not empty
             authenticateNewUser(withEmail: email, withPassword: pass)
         }
+    }
+    
+    // MARK: - Button to Link Anony User to Email User
+    @IBAction func turnAnonyUserIntoEmail(_ sender: UIButton) {
+        //        guard let authUser = authRef.currentUser else { return }
+        //        guard let email = signUpEmail.text else { return }
+        //        guard let pass = signUpPass.text else { return }
+        //
+        //        let credential = EmailAuthProvider.credential(withEmail: email, password: pass)
+        //
+        //        authUser.linkAndRetrieveData(with: credential) { (linkResult, error) in
+        //            if let error = error {
+        //                debugPrint(error)
+        //                return
+        //            }
+        //        }
     }
     
     @IBAction func goBackBtnPressed(_ sender: UIButton) {

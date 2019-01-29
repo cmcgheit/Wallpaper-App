@@ -51,7 +51,6 @@ class LoginViewController: UIViewController {
                 // If User not logged in
                 do {
                     try authRef.signOut()
-                    removeToken()
                     return
                 } catch  {
                     self.handleFireAuthError(error: error)
