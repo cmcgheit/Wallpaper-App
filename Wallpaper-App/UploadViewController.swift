@@ -451,12 +451,11 @@ extension UploadViewController: UIImagePickerControllerDelegate, UINavigationCon
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         if let wallpaperImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let optimizedImageData = UIImagePNGRepresentation(wallpaperImage) {
+        
             let cropController = CropViewController(croppingStyle: croppingStyle, image: wallpaperImage)
             cropController.delegate = self
             print(optimizedImageData)
-            self.takenImage = wallpaperImage
-            self.wallpaperImgView.image = wallpaperImage // set wallpaper image view as selected image
-            
+           
             if croppingStyle == .circular {
                 if picker.sourceType == .camera {
                     picker.dismiss(animated: true, completion: {
@@ -471,6 +470,9 @@ extension UploadViewController: UIImagePickerControllerDelegate, UINavigationCon
                     self.present(cropController, animated: true, completion: nil)
                 })
             }
+            
+            self.takenImage = wallpaperImage
+            self.wallpaperImgView.image = wallpaperImage // set wallpaper image view as selected image
         }
         //        else if let editedWallpaperImage = info[UIImagePickerControllerEditedImage] as? UIImage, let editedOptimizedImageData = UIImagePNGRepresentation(editedWallpaperImage) {
         //            print(editedOptimizedImageData)
