@@ -34,6 +34,7 @@
 		D86A641821FE7C2700362769 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A641721FE7C2700362769 /* UIView+AutoLayout.swift */; };
 		D86A641A21FE873200362769 /* CardContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A641921FE873200362769 /* CardContentView.swift */; };
 		D86A641C21FE920300362769 /* CardContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D86A641B21FE920300362769 /* CardContentView.xib */; };
+		D86A64442218EAC800362769 /* SwiftEntryKit+UIVCExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86A64432218EAC800362769 /* SwiftEntryKit+UIVCExt.swift */; };
 		D87DA23620FA4CE800777B0D /* RoundedRectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */; };
 		D87DA23820FA556B00777B0D /* CustomCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23720FA556B00777B0D /* CustomCardView.swift */; };
 		D87DA23B20FBAC2500777B0D /* RevealPasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */; };
@@ -114,6 +115,7 @@
 		D86A641721FE7C2700362769 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		D86A641921FE873200362769 /* CardContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardContentView.swift; sourceTree = "<group>"; };
 		D86A641B21FE920300362769 /* CardContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardContentView.xib; sourceTree = "<group>"; };
+		D86A64432218EAC800362769 /* SwiftEntryKit+UIVCExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftEntryKit+UIVCExt.swift"; sourceTree = "<group>"; };
 		D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectButton.swift; sourceTree = "<group>"; };
 		D87DA23720FA556B00777B0D /* CustomCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardView.swift; sourceTree = "<group>"; };
 		D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealPasswordTextField.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				D8FC5D8E20DEC4B300FA632F /* Notifications+Extensions.swift */,
 				D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */,
 				D808C9692135B490004C95C9 /* DynamicAccessibilityLayout.swift */,
+				D86A64432218EAC800362769 /* SwiftEntryKit+UIVCExt.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				D808C9642131EEBE004C95C9 /* EntryAttributeWrapper.swift in Sources */,
 				D86A641821FE7C2700362769 /* UIView+AutoLayout.swift in Sources */,
 				D8FC5D9820E723DD00FA632F /* Theme.swift in Sources */,
+				D86A64442218EAC800362769 /* SwiftEntryKit+UIVCExt.swift in Sources */,
 				D8E93B8D20B8B05100CE0AD8 /* Wallpaper.swift in Sources */,
 				D80706772174485C0020B4B5 /* LocalizeString.swift in Sources */,
 				D8FC5D9C20E724B000FA632F /* DarkTheme.swift in Sources */,
