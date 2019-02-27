@@ -126,20 +126,20 @@
 		D8C6DA1C218A4357000EF94C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D8C6DA26218BB973000EF94C /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loader.json; path = Resources/loader.json; sourceTree = SOURCE_ROOT; };
 		D8C6DA27218BB973000EF94C /* postcard.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = postcard.json; path = Resources/postcard.json; sourceTree = SOURCE_ROOT; };
-		D8E93B8120B8B02000CE0AD8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = "Wallpaper-App/AuthService.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIRService.swift; path = "Wallpaper-App/FIRService.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageResizeExt.swift; path = "Wallpaper-App/ImageResizeExt.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93B8620B8B05100CE0AD8 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaults.swift; path = "Wallpaper-App/UserDefaults.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93B8720B8B05100CE0AD8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Wallpaper-App/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93B8820B8B05100CE0AD8 /* Wallpaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wallpaper.swift; path = "Wallpaper-App/Wallpaper.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93B8920B8B05100CE0AD8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "Wallpaper-App/Constants.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93B8F20B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WallpaperRoundedCardCell.swift; path = "Wallpaper-App/WallpaperRoundedCardCell.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93B9020B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WallpaperRoundedCardCell.xib; path = "Wallpaper-App/WallpaperRoundedCardCell.xib"; sourceTree = SOURCE_ROOT; };
-		D8E93B9220B8B08D00CE0AD8 /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadViewController.swift; path = "Wallpaper-App/UploadViewController.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93B9920B8B0B000CE0AD8 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = "Wallpaper-App/SignUpViewController.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93B9A20B8B0B000CE0AD8 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewController.swift; path = "Wallpaper-App/FeedViewController.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93B9B20B8B0B100CE0AD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "Wallpaper-App/LoginViewController.swift"; sourceTree = SOURCE_ROOT; };
-		D8E93B9C20B8B0B100CE0AD8 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpViewController.swift; path = "Wallpaper-App/PopUpViewController.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8120B8B02000CE0AD8 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = "Wallpaper-App/Services/AuthService.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FIRService.swift; path = "Wallpaper-App/Services/FIRService.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8520B8B05100CE0AD8 /* ImageResizeExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageResizeExt.swift; path = "Wallpaper-App/Model/Extensions/ImageResizeExt.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8620B8B05100CE0AD8 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserDefaults.swift; path = "Wallpaper-App/Model/UserDefaults.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8720B8B05100CE0AD8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Wallpaper-App/Supporting Files/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8820B8B05100CE0AD8 /* Wallpaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Wallpaper.swift; path = "Wallpaper-App/Model/Wallpaper.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8920B8B05100CE0AD8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "Wallpaper-App/Model/Constants.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B8F20B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WallpaperRoundedCardCell.swift; path = "Wallpaper-App/View/WallpaperRoundedCardCell.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B9020B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WallpaperRoundedCardCell.xib; path = "Wallpaper-App/View/WallpaperRoundedCardCell.xib"; sourceTree = SOURCE_ROOT; };
+		D8E93B9220B8B08D00CE0AD8 /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadViewController.swift; path = "Wallpaper-App/Controller/UploadViewController.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B9920B8B0B000CE0AD8 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = "Wallpaper-App/Controller/SignUpViewController.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B9A20B8B0B000CE0AD8 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedViewController.swift; path = "Wallpaper-App/Controller/FeedViewController.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B9B20B8B0B100CE0AD8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "Wallpaper-App/Controller/LoginViewController.swift"; sourceTree = SOURCE_ROOT; };
+		D8E93B9C20B8B0B100CE0AD8 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopUpViewController.swift; path = "Wallpaper-App/Controller/PopUpViewController.swift"; sourceTree = SOURCE_ROOT; };
 		D8E93BA120B8B0C100CE0AD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Wallpaper-App/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		D8E93BDD20BDB1FC00CE0AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D8E93BE120BDB22200CE0AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -227,67 +227,11 @@
 				D807066F217446BE0020B4B5 /* Localization */,
 				D808C95E21177006004C95C9 /* Wallpaper-App.entitlements */,
 				D8E93B6820B8AC3F00CE0AD8 /* Animations */,
-				D8D2A4AC20A7AC160014ADAE /* Services */,
-				6A17C4171EFD5B1A0047CBA5 /* Model */,
-				6A17C4161EFD5B120047CBA5 /* View */,
-				6A17C4151EFD5AFD0047CBA5 /* Controller */,
+				D8C2E31222273F9800B396FF /* Supporting Files */,
 				6A1367971F8D657500FC16F8 /* Resources */,
 				D8E93BA120B8B0C100CE0AD8 /* Assets.xcassets */,
 			);
 			path = "Wallpaper-App";
-			sourceTree = "<group>";
-		};
-		6A17C4151EFD5AFD0047CBA5 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D8E93BF220C32AC000CE0AD8 /* SplashViewController.swift */,
-				D8E93B9B20B8B0B100CE0AD8 /* LoginViewController.swift */,
-				D8E93B9920B8B0B000CE0AD8 /* SignUpViewController.swift */,
-				D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */,
-				D8E93B9A20B8B0B000CE0AD8 /* FeedViewController.swift */,
-				D8E93B9220B8B08D00CE0AD8 /* UploadViewController.swift */,
-				D8E93B9C20B8B0B100CE0AD8 /* PopUpViewController.swift */,
-				D8FC5D8420D2BA2B00FA632F /* PopUpViewController.xib */,
-			);
-			name = Controller;
-			sourceTree = "<group>";
-		};
-		6A17C4161EFD5B120047CBA5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				D87DA23920FBAC0A00777B0D /* RevealPassword */,
-				D8FC5D9220E00C3600FA632F /* Switch */,
-				D8E93B8F20B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift */,
-				D8E93B9020B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib */,
-				D8E93BF020C3257800CE0AD8 /* CustomLoadingView.swift */,
-				D8FC5D8A20D2CBDB00FA632F /* PaddedLabel.swift */,
-				D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */,
-				D87DA23720FA556B00777B0D /* CustomCardView.swift */,
-				D86A641921FE873200362769 /* CardContentView.swift */,
-				D86A641B21FE920300362769 /* CardContentView.xib */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		6A17C4171EFD5B1A0047CBA5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				D808C9682135B46D004C95C9 /* Extensions */,
-				D8FC5D9D20E72A0100FA632F /* Theme */,
-				D8E93BE020BDB22200CE0AD8 /* LaunchScreen.storyboard */,
-				D8E93BDC20BDB1FC00CE0AD8 /* Main.storyboard */,
-				D8E93B8720B8B05100CE0AD8 /* AppDelegate.swift */,
-				D8E93B8920B8B05100CE0AD8 /* Constants.swift */,
-				D8E93B8620B8B05100CE0AD8 /* UserDefaults.swift */,
-				D8E93B8820B8B05100CE0AD8 /* Wallpaper.swift */,
-				D8E93BE820BF0D8C00CE0AD8 /* WallpaperCategories.swift */,
-				D8E93BEA20BF2AD500CE0AD8 /* User.swift */,
-				D8E93BEE20C1AC7300CE0AD8 /* WallpaperImageCache.swift */,
-				D808C9632131EEBE004C95C9 /* EntryAttributeWrapper.swift */,
-				D8070684218412EA0020B4B5 /* Reachability.swift */,
-				D8070667216BC0D90020B4B5 /* StoreReviewHelper.swift */,
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 		D807066F217446BE0020B4B5 /* Localization */ = {
@@ -306,7 +250,119 @@
 			name = Localization;
 			sourceTree = "<group>";
 		};
-		D808C9682135B46D004C95C9 /* Extensions */ = {
+		D8C2E30722273D7A00B396FF /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				D8C2E30922273DCE00B396FF /* Custom */,
+				D8C2E30822273DA600B396FF /* Misc */,
+				D895F4BD213C54D600E7F8BE /* TransitionClone.swift */,
+				D819C45121D91F4F007A8754 /* CardTransition.swift */,
+				D819C44F21D91F25007A8754 /* CardPresentationController.swift */,
+				D819C45321D91F7A007A8754 /* DismissCardAnimator.swift */,
+				D819C45521D91F9B007A8754 /* PresentCardAnimator.swift */,
+			);
+			path = Transitions;
+			sourceTree = "<group>";
+		};
+		D8C2E30822273DA600B396FF /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				D86A641721FE7C2700362769 /* UIView+AutoLayout.swift */,
+				D86A641521FE7C0300362769 /* StatusBarAnimatableViewController.swift */,
+				D86A641321FE7BC300362769 /* StatusBarAnimatable.swift */,
+				D86A641121FE7BA600362769 /* ShowTime.swift */,
+				D86A640F21FE7B8100362769 /* NibLoadable.swift */,
+				D819C45721D92077007A8754 /* GlobalConstants.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		D8C2E30922273DCE00B396FF /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				D808C96D2135F36A004C95C9 /* PresentSectionViewController.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		D8C2E30A22273E0300B396FF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D8E93B8120B8B02000CE0AD8 /* AuthService.swift */,
+				D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D8C2E30B22273E2400B396FF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D8E93BF220C32AC000CE0AD8 /* SplashViewController.swift */,
+				D8E93B9B20B8B0B100CE0AD8 /* LoginViewController.swift */,
+				D8E93B9920B8B0B000CE0AD8 /* SignUpViewController.swift */,
+				D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */,
+				D8E93B9A20B8B0B000CE0AD8 /* FeedViewController.swift */,
+				D8E93B9220B8B08D00CE0AD8 /* UploadViewController.swift */,
+				D8E93B9C20B8B0B100CE0AD8 /* PopUpViewController.swift */,
+				D8FC5D8420D2BA2B00FA632F /* PopUpViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D8C2E30C22273E5C00B396FF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D8E93B8F20B8B08D00CE0AD8 /* WallpaperRoundedCardCell.swift */,
+				D8E93B9020B8B08D00CE0AD8 /* WallpaperRoundedCardCell.xib */,
+				D8E93BF020C3257800CE0AD8 /* CustomLoadingView.swift */,
+				D8FC5D8A20D2CBDB00FA632F /* PaddedLabel.swift */,
+				D87DA23520FA4CE800777B0D /* RoundedRectButton.swift */,
+				D87DA23720FA556B00777B0D /* CustomCardView.swift */,
+				D86A641921FE873200362769 /* CardContentView.swift */,
+				D86A641B21FE920300362769 /* CardContentView.xib */,
+				D8C2E30E22273E7F00B396FF /* RevealPassword */,
+				D8C2E30D22273E7F00B396FF /* Switch */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D8C2E30D22273E7F00B396FF /* Switch */ = {
+			isa = PBXGroup;
+			children = (
+				D8FC5D9020E00C0800FA632F /* CustomSwitch.swift */,
+				D8FC5D9320E00C6000FA632F /* CustomThumbView.swift */,
+			);
+			path = Switch;
+			sourceTree = "<group>";
+		};
+		D8C2E30E22273E7F00B396FF /* RevealPassword */ = {
+			isa = PBXGroup;
+			children = (
+				D87DA23C20FBAC2E00777B0D /* LoginButton.swift */,
+				D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */,
+			);
+			path = RevealPassword;
+			sourceTree = "<group>";
+		};
+		D8C2E30F22273EDB00B396FF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D8E93B8920B8B05100CE0AD8 /* Constants.swift */,
+				D8E93B8620B8B05100CE0AD8 /* UserDefaults.swift */,
+				D8E93B8820B8B05100CE0AD8 /* Wallpaper.swift */,
+				D8E93BE820BF0D8C00CE0AD8 /* WallpaperCategories.swift */,
+				D8E93BEA20BF2AD500CE0AD8 /* User.swift */,
+				D8E93BEE20C1AC7300CE0AD8 /* WallpaperImageCache.swift */,
+				D808C9632131EEBE004C95C9 /* EntryAttributeWrapper.swift */,
+				D8070684218412EA0020B4B5 /* Reachability.swift */,
+				D8070667216BC0D90020B4B5 /* StoreReviewHelper.swift */,
+				D8C2E31022273EFE00B396FF /* Extensions */,
+				D8C2E31122273EFE00B396FF /* Theme */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D8C2E31022273EFE00B396FF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				D8E93BEC20C1A77D00CE0AD8 /* Extensions.swift */,
@@ -316,80 +372,10 @@
 				D808C9692135B490004C95C9 /* DynamicAccessibilityLayout.swift */,
 				D86A64432218EAC800362769 /* SwiftEntryKit+UIVCExt.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
-		D808C96F2135F371004C95C9 /* Custom */ = {
-			isa = PBXGroup;
-			children = (
-				D808C96D2135F36A004C95C9 /* PresentSectionViewController.swift */,
-			);
-			name = Custom;
-			sourceTree = "<group>";
-		};
-		D819C44E21D91F09007A8754 /* Transitions */ = {
-			isa = PBXGroup;
-			children = (
-				D819C45521D91F9B007A8754 /* PresentCardAnimator.swift */,
-				D819C45321D91F7A007A8754 /* DismissCardAnimator.swift */,
-				D819C44F21D91F25007A8754 /* CardPresentationController.swift */,
-				D819C45121D91F4F007A8754 /* CardTransition.swift */,
-				D86A640E21FE7B7300362769 /* Misc */,
-			);
-			name = Transitions;
-			sourceTree = "<group>";
-		};
-		D86A640E21FE7B7300362769 /* Misc */ = {
-			isa = PBXGroup;
-			children = (
-				D819C45721D92077007A8754 /* GlobalConstants.swift */,
-				D86A640F21FE7B8100362769 /* NibLoadable.swift */,
-				D86A641121FE7BA600362769 /* ShowTime.swift */,
-				D86A641321FE7BC300362769 /* StatusBarAnimatable.swift */,
-				D86A641521FE7C0300362769 /* StatusBarAnimatableViewController.swift */,
-				D86A641721FE7C2700362769 /* UIView+AutoLayout.swift */,
-			);
-			name = Misc;
-			sourceTree = "<group>";
-		};
-		D87DA23920FBAC0A00777B0D /* RevealPassword */ = {
-			isa = PBXGroup;
-			children = (
-				D87DA23C20FBAC2E00777B0D /* LoginButton.swift */,
-				D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */,
-			);
-			name = RevealPassword;
-			sourceTree = "<group>";
-		};
-		D8D2A4AC20A7AC160014ADAE /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				D8E93B8320B8B02D00CE0AD8 /* FIRService.swift */,
-				D8E93B8120B8B02000CE0AD8 /* AuthService.swift */,
-			);
-			name = Services;
-			sourceTree = "<group>";
-		};
-		D8E93B6820B8AC3F00CE0AD8 /* Animations */ = {
-			isa = PBXGroup;
-			children = (
-				D819C44E21D91F09007A8754 /* Transitions */,
-				D808C96F2135F371004C95C9 /* Custom */,
-				D895F4BD213C54D600E7F8BE /* TransitionClone.swift */,
-			);
-			name = Animations;
-			sourceTree = "<group>";
-		};
-		D8FC5D9220E00C3600FA632F /* Switch */ = {
-			isa = PBXGroup;
-			children = (
-				D8FC5D9020E00C0800FA632F /* CustomSwitch.swift */,
-				D8FC5D9320E00C6000FA632F /* CustomThumbView.swift */,
-			);
-			name = Switch;
-			sourceTree = "<group>";
-		};
-		D8FC5D9D20E72A0100FA632F /* Theme */ = {
+		D8C2E31122273EFE00B396FF /* Theme */ = {
 			isa = PBXGroup;
 			children = (
 				D8FC5D9720E723DD00FA632F /* Theme.swift */,
@@ -397,7 +383,29 @@
 				D8FC5D9B20E724B000FA632F /* DarkTheme.swift */,
 				D8FC5D9520E721C800FA632F /* ThemeProtocol.swift */,
 			);
-			name = Theme;
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		D8C2E31222273F9800B396FF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D8E93B8720B8B05100CE0AD8 /* AppDelegate.swift */,
+				D8E93BE020BDB22200CE0AD8 /* LaunchScreen.storyboard */,
+				D8E93BDC20BDB1FC00CE0AD8 /* Main.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D8E93B6820B8AC3F00CE0AD8 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				D8C2E30F22273EDB00B396FF /* Model */,
+				D8C2E30C22273E5C00B396FF /* View */,
+				D8C2E30B22273E2400B396FF /* Controller */,
+				D8C2E30A22273E0300B396FF /* Services */,
+				D8C2E30722273D7A00B396FF /* Transitions */,
+			);
+			name = Animations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
