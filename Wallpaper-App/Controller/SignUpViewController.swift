@@ -127,7 +127,7 @@ class SignUpViewController: UIViewController {
                                 // Sign In Error Alert
                                 UIView.shake(view: self.signUpTxtFld)
                                 UIView.shake(view: self.signUpPassFld)
-                                self.handleFireAuthError(error: registrationError)
+                                Auth.auth().handleFireAuthError(error: registrationError, vc: self)
                                 print(String(describing: registrationError.localizedDescription))
                             }
                         }

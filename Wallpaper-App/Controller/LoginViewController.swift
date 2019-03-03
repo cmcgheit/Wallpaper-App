@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
                     try authRef.signOut()
                     return
                 } catch  {
-                    self.handleFireAuthError(error: error)
+                    Auth.auth().handleFireAuthError(error: error, vc: self)
                     print(error)
                 }
                 Defaults.setIsLoggedIn(value: false)
@@ -136,7 +136,7 @@ class LoginViewController: UIViewController {
             }
             
             if let loginError = loginError {
-                self.handleFireAuthError(error: loginError)
+                Auth.auth().handleFireAuthError(error: loginError, vc: self)
                 print(String(describing: loginError.localizedDescription))
                 return
             }
@@ -161,7 +161,7 @@ class LoginViewController: UIViewController {
                     self.present(feedVC, animated:true)
                 } else if let error = error {
                     // anonymous login problems
-                    self.handleFireAuthError(error: error)
+                    Auth.auth().handleFireAuthError(error: error, vc: self)
                     print(error.localizedDescription)
                 }
             }

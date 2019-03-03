@@ -42,6 +42,7 @@
 		D895F4BE213C54D600E7F8BE /* TransitionClone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4BD213C54D600E7F8BE /* TransitionClone.swift */; };
 		D895F4C221481C0200E7F8BE /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */; };
 		D895F4C4214AEF6E00E7F8BE /* UITextField+ValidationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4C3214AEF6D00E7F8BE /* UITextField+ValidationExt.swift */; };
+		D8C2E34F222B5EB600B396FF /* FirebaseAuthExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C2E34E222B5EB600B396FF /* FirebaseAuthExt.swift */; };
 		D8C6DA1D218A4357000EF94C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8C6DA1C218A4357000EF94C /* GoogleService-Info.plist */; };
 		D8C6DA28218BB973000EF94C /* loader.json in Resources */ = {isa = PBXBuildFile; fileRef = D8C6DA26218BB973000EF94C /* loader.json */; };
 		D8C6DA29218BB973000EF94C /* postcard.json in Resources */ = {isa = PBXBuildFile; fileRef = D8C6DA27218BB973000EF94C /* postcard.json */; };
@@ -123,6 +124,7 @@
 		D895F4BD213C54D600E7F8BE /* TransitionClone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionClone.swift; sourceTree = "<group>"; };
 		D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		D895F4C3214AEF6D00E7F8BE /* UITextField+ValidationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ValidationExt.swift"; sourceTree = "<group>"; };
+		D8C2E34E222B5EB600B396FF /* FirebaseAuthExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthExt.swift; sourceTree = "<group>"; };
 		D8C6DA1C218A4357000EF94C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D8C6DA26218BB973000EF94C /* loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loader.json; path = Resources/loader.json; sourceTree = SOURCE_ROOT; };
 		D8C6DA27218BB973000EF94C /* postcard.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = postcard.json; path = Resources/postcard.json; sourceTree = SOURCE_ROOT; };
@@ -358,6 +360,7 @@
 				D8070667216BC0D90020B4B5 /* StoreReviewHelper.swift */,
 				D8C2E31022273EFE00B396FF /* Extensions */,
 				D8C2E31122273EFE00B396FF /* Theme */,
+				D8C2E34E222B5EB600B396FF /* FirebaseAuthExt.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				D8070673217448080020B4B5 /* LocalizeCommonProtocol.swift in Sources */,
 				D8070679217448820020B4B5 /* LocalizeStrings.swift in Sources */,
 				D807067B217448A60020B4B5 /* LocalizeUI.swift in Sources */,
+				D8C2E34F222B5EB600B396FF /* FirebaseAuthExt.swift in Sources */,
 				D8E93BEB20BF2AD500CE0AD8 /* User.swift in Sources */,
 				D808C96E2135F36A004C95C9 /* PresentSectionViewController.swift in Sources */,
 				D8E93B8E20B8B05100CE0AD8 /* Constants.swift in Sources */,
