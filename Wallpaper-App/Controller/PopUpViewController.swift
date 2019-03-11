@@ -7,7 +7,7 @@ import SwiftEntryKit
 
 class PopUpViewController: UIViewController {
     
-    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentView: UIView! // weak to use in animations
     @IBOutlet weak var cardContentView: CardContentView!
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!

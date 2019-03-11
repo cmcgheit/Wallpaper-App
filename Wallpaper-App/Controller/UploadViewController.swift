@@ -12,13 +12,13 @@ import SwiftyPickerPopover
 
 class UploadViewController: UIViewController {
     
-    @IBOutlet private var popUpView: CustomCardView!
-    @IBOutlet private var wallpaperImgView: UIImageView!
-    @IBOutlet private var closeBtn: UIButton!
-    @IBOutlet private var uploadBtn: UIButton!
-    @IBOutlet private var wallpaperDescTextView: UITextView!
-    @IBOutlet private var wallpaperCatLbl: UILabel!
-    @IBOutlet private var wallpaperCatPickBtn: UIButton!
+    @IBOutlet fileprivate var popUpView: CustomCardView!
+    @IBOutlet fileprivate var wallpaperImgView: UIImageView!
+    @IBOutlet fileprivate var closeBtn: UIButton!
+    @IBOutlet fileprivate var uploadBtn: UIButton!
+    @IBOutlet fileprivate var wallpaperDescTextView: UITextView!
+    @IBOutlet fileprivate var wallpaperCatLbl: UILabel!
+    @IBOutlet fileprivate var wallpaperCatPickBtn: UIButton!
     
     var wallpaperDescPlaceholderText = "Click here to describe the uploaded wallpaper"
     var wallpaperCatPlaceholderText = "Tap here to set category"

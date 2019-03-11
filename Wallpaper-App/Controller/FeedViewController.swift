@@ -17,14 +17,14 @@ class FeedViewController: UIViewController {
     @IBOutlet private var glidingView: GlidingCollection!
     fileprivate var collectionView: UICollectionView!
     
-    @IBOutlet private var bannerView: GADBannerView!
-    @IBOutlet private var menuBtn: UIButton!
-    @IBOutlet private var uploadBtn: UIButton!
-    @IBOutlet private var signOutBtn: UIButton!
-    @IBOutlet private var glidingIntView: CustomCardView!
-    @IBOutlet private var customNaviTitleView: CustomCardView!
-    @IBOutlet private var titleLabel: UILabel!
-    @IBOutlet private var themeSwitch: CustomSwitch!
+    @IBOutlet fileprivate var bannerView: GADBannerView!
+    @IBOutlet fileprivate var menuBtn: UIButton!
+    @IBOutlet fileprivate var uploadBtn: UIButton!
+    @IBOutlet fileprivate var signOutBtn: UIButton!
+    @IBOutlet fileprivate var glidingIntView: CustomCardView!
+    @IBOutlet fileprivate var customNaviTitleView: CustomCardView!
+    @IBOutlet fileprivate var titleLabel: UILabel!
+    @IBOutlet fileprivate var themeSwitch: CustomSwitch!
     
     // Menu
     var uploadBtnCenter: CGPoint!

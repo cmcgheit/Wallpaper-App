@@ -8,8 +8,8 @@ import Lottie
 
 class SplashViewController: UIViewController {
     
-    @IBOutlet private var phonePhoto: UIImageView!
-    @IBOutlet private var animationView: LOTAnimationView!
+    @IBOutlet fileprivate var phonePhoto: UIImageView!
+    @IBOutlet fileprivate var animationView: LOTAnimationView!
     
     override func viewDidLoad() {
         super.viewDidLoad()

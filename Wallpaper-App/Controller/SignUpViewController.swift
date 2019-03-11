@@ -7,11 +7,11 @@ import QuickLook
 
 class SignUpViewController: UIViewController {
     
-    @IBOutlet private var signUpTxtFld: UITextField!
-    @IBOutlet private var signUpPassFld: RevealPasswordTextField!
-    @IBOutlet private var signUpBtn: RoundedRectBlueButton!
-    @IBOutlet private var goBackBtn: RoundedRectBlueButton!
-    @IBOutlet private var termsBtn: RoundedRectBlueButton!
+    @IBOutlet fileprivate var signUpTxtFld: UITextField!
+    @IBOutlet fileprivate var signUpPassFld: RevealPasswordTextField!
+    @IBOutlet fileprivate var signUpBtn: RoundedRectBlueButton!
+    @IBOutlet fileprivate var goBackBtn: RoundedRectBlueButton!
+    @IBOutlet fileprivate var termsBtn: RoundedRectBlueButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

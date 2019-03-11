@@ -10,13 +10,13 @@ import SwiftKeychainWrapper
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet private var loginCardView: CustomCardView!
-    @IBOutlet private var emailTextFld: UITextField!
-    @IBOutlet private var passTextFld: RevealPasswordTextField!
-    @IBOutlet private var signInBtn: RoundedRectBlueButton!
-    @IBOutlet private var signUpBtn: RoundedRectBlueButton!
-    @IBOutlet private var loginAnBtn: RoundedRectBlueButton!
-    @IBOutlet private var forgotInfoBtn: RoundedRectBlueButton!
+    @IBOutlet fileprivate var loginCardView: CustomCardView!
+    @IBOutlet fileprivate var emailTextFld: UITextField!
+    @IBOutlet fileprivate var passTextFld: RevealPasswordTextField!
+    @IBOutlet fileprivate var signInBtn: RoundedRectBlueButton!
+    @IBOutlet fileprivate var signUpBtn: RoundedRectBlueButton!
+    @IBOutlet fileprivate var loginAnBtn: RoundedRectBlueButton!
+    @IBOutlet fileprivate var forgotInfoBtn: RoundedRectBlueButton!
     
     // Restore text
     var defaultsKey: String = ""
