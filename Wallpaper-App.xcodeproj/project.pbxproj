@@ -228,7 +228,11 @@
 			children = (
 				D807066F217446BE0020B4B5 /* Localization */,
 				D808C95E21177006004C95C9 /* Wallpaper-App.entitlements */,
-				D8E93B6820B8AC3F00CE0AD8 /* Animations */,
+				D8C2E30F22273EDB00B396FF /* Model */,
+				D8C2E30C22273E5C00B396FF /* View */,
+				D8C2E30B22273E2400B396FF /* Controller */,
+				D8C2E30A22273E0300B396FF /* Services */,
+				D8C2E30722273D7A00B396FF /* Transitions */,
 				D8C2E31222273F9800B396FF /* Supporting Files */,
 				6A1367971F8D657500FC16F8 /* Resources */,
 				D8E93BA120B8B0C100CE0AD8 /* Assets.xcassets */,
@@ -397,18 +401,6 @@
 				D8E93BDC20BDB1FC00CE0AD8 /* Main.storyboard */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D8E93B6820B8AC3F00CE0AD8 /* Animations */ = {
-			isa = PBXGroup;
-			children = (
-				D8C2E30F22273EDB00B396FF /* Model */,
-				D8C2E30C22273E5C00B396FF /* View */,
-				D8C2E30B22273E2400B396FF /* Controller */,
-				D8C2E30A22273E0300B396FF /* Services */,
-				D8C2E30722273D7A00B396FF /* Transitions */,
-			);
-			name = Animations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
