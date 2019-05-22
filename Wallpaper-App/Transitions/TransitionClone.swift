@@ -60,7 +60,7 @@ extension TransitionClone: UIViewControllerAnimatedTransitioning {
                 
                 containerView.addSubview(presentingView)
                 
-                containerView.bringSubview(toFront: presentingView)
+                containerView.bringSubviewToFront(presentingView)
                 
                 UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
                     
@@ -101,9 +101,9 @@ extension TransitionClone: UIViewControllerAnimatedTransitioning {
                 returningView.clipsToBounds = true
                 
                 containerView.addSubview(returningView)
-                containerView.bringSubview(toFront: returningView)
+                containerView.bringSubviewToFront(returningView)
                 
-                containerView.sendSubview(toBack: containerView)
+                containerView.sendSubviewToBack(containerView)
                 
                 UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseIn, animations: {
                     
@@ -137,8 +137,8 @@ extension TransitionClone: UIViewControllerAnimatedTransitioning {
 class InstantPanGestureRecognizer: UIPanGestureRecognizer {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
-        if (self.state == UIGestureRecognizerState.began) { return }
+        if (self.state == UIGestureRecognizer.State.began) { return }
         super.touchesBegan(touches, with: event)
-        self.state = UIGestureRecognizerState.began
+        self.state = UIGestureRecognizer.State.began
     }
 }

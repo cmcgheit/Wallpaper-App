@@ -25,7 +25,7 @@ class RevealPasswordTextField: UITextField {
     }
     
     func addRevealButton() {
-        rightViewMode = UITextFieldViewMode.always
+        rightViewMode = UITextField.ViewMode.always
         
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 35, height: 22))
         button.setImage(#imageLiteral(resourceName: "eye"), for: .normal)

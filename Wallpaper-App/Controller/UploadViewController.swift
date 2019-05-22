@@ -110,7 +110,7 @@ class UploadViewController: UIViewController {
         let okayButtonLabel = EKProperty.LabelContent(text: okayText, style: okayButtonLabelStyle)
         let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: .lightGray) {
             DispatchQueue.main.async {
-                let url = URL(string: UIApplicationOpenSettingsURLString)
+                let url = URL(string: UIApplication.openSettingsURLString)
                 UIApplication.shared.open(url!, options: [:])
             }
         }
@@ -146,7 +146,7 @@ class UploadViewController: UIViewController {
         let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: .lightGray) {
             // Take User to Settings Button Action
             DispatchQueue.main.async {
-                let url = URL(string: UIApplicationOpenSettingsURLString)
+                let url = URL(string: UIApplication.openSettingsURLString)
                 UIApplication.shared.open(url!, options: [:])
             }
         }
@@ -181,7 +181,7 @@ class UploadViewController: UIViewController {
         let okayButtonLabel = EKProperty.LabelContent(text: okayText, style: okayButtonLabelStyle)
         let okayButton = EKProperty.ButtonContent(label: okayButtonLabel, backgroundColor: .clear, highlightedBackgroundColor: .lightGray) {
             DispatchQueue.main.async {
-                let url = URL(string: UIApplicationOpenSettingsURLString)
+                let url = URL(string: UIApplication.openSettingsURLString)
                 UIApplication.shared.open(url!, options: [:])
             }
         }
@@ -411,9 +411,12 @@ extension UploadViewController: UITextViewDelegate {
 // MARK: - Picker Ext
 extension UploadViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         
-        if let wallpaperImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let optimizedImageData = UIImagePNGRepresentation(wallpaperImage) {
+        if let wallpaperImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage, let optimizedImageData = wallpaperImage.pngData() {
         
             let cropController = CropViewController(croppingStyle: croppingStyle, image: wallpaperImage)
             cropController.delegate = self
@@ -444,7 +447,7 @@ extension UploadViewController: UIImagePickerControllerDelegate, UINavigationCon
         //
         //        }
         
-        if let imageUrl = info[UIImagePickerControllerReferenceURL] as? URL {
+        if let imageUrl = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)] as? URL {
             self.wallpaperURL = imageUrl
             // print(wallpaperURL)
         }
@@ -558,4 +561,14 @@ extension UploadViewController: CropViewControllerDelegate {
         }
         print(image)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

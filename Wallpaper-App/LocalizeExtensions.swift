@@ -85,7 +85,7 @@ extension UIButton {
         #if swift(>=4.2)
         let states: [UIControl.State] = [.normal, .highlighted, .selected, .disabled]
         #else
-        let states: [UIControlState] = [.normal, .highlighted, .selected, .disabled]
+        let states: [UIControl.State] = [.normal, .highlighted, .selected, .disabled]
         #endif
         for state in states {
             var title = self.title(for: state)

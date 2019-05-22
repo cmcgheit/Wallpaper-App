@@ -59,7 +59,7 @@ class WallpaperRoundedCardCell: UICollectionViewCell {
         if disabledHighlightedAnimation {
             return
         }
-        let animationOptions: UIViewAnimationOptions = GlobalConstants.isEnabledAllowsUserInteractionWhileHighlightingCard
+        let animationOptions: UIView.AnimationOptions = GlobalConstants.isEnabledAllowsUserInteractionWhileHighlightingCard
             ? [.allowUserInteraction] : []
         if isHighlighted {
             UIView.animate(withDuration: 0.5,

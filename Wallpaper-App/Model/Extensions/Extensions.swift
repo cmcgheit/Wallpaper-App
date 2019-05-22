@@ -17,7 +17,7 @@ extension Data {
 
 extension UIImage {
     func prepareImageForSaving() -> Data? {
-        if let img = UIImagePNGRepresentation(self) {
+        if let img = self.pngData() {
             return img
         } else {
             return nil

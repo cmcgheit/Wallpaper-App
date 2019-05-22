@@ -11,7 +11,7 @@ class PaddedLabel: UILabel {
     
     override func drawText(in rect: CGRect) {
         let insets: UIEdgeInsets = UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
-        super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
+        super.drawText(in: rect.inset(by: insets))
     }
     
     override public var intrinsicContentSize: CGSize {
@@ -27,6 +27,6 @@ class PaddedLabel: UILabel {
         self.leftInset = left
         self.rightInset = right
         let insets: UIEdgeInsets = UIEdgeInsets(top: top, left: left, bottom: bottom, right: right)
-        super.drawText(in: UIEdgeInsetsInsetRect(self.frame, insets))
+        super.drawText(in: self.frame.inset(by: insets))
     }
 }
