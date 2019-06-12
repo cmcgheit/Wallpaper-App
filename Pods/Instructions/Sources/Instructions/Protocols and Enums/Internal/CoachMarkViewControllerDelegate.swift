@@ -36,5 +36,5 @@ protocol CoachMarksViewControllerDelegate: class {
     func willTransition()
 
     /// The delegate should perform action, after for the size transition was completed
-    func didTransition()
+    func didTransition(afterChanging change: ConfigurationChange)
 }

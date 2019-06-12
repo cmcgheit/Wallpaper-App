@@ -9,7 +9,7 @@ import Lottie
 class SplashViewController: UIViewController {
     
     @IBOutlet fileprivate var phonePhoto: UIImageView!
-    @IBOutlet fileprivate var animationView: LOTAnimationView!
+    @IBOutlet fileprivate var animationView: AnimationView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class SplashViewController: UIViewController {
     
     // MARK: - Setup Lottie Animation
     func setupAnimation() {
-        animationView = LOTAnimationView(name: "postcard")
+        animationView = AnimationView(name: "postcard")
         animationView.contentMode = .scaleAspectFill
         animationView.frame = CGRect(x: 37.5, y: 203.5, width: 300, height: 260)
         view.addSubview(animationView)

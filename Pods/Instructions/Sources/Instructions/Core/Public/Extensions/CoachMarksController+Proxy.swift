@@ -67,6 +67,17 @@ extension CoachMarksController: CoachMarksControllerProxyDelegate {
                                        afterSizeTransition: afterSizeTransition, at: index)
     }
 
+    func willShow(coachMark: inout CoachMark, beforeChanging change: ConfigurationChange,
+                  at index: Int) {
+        delegate?.coachMarksController(self, willShow: &coachMark,
+                                       beforeChanging: change, at: index)
+    }
+
+    func didShow(coachMark: CoachMark, afterChanging change: ConfigurationChange, at index: Int) {
+        delegate?.coachMarksController(self, didShow: coachMark,
+                                       afterChanging: change, at: index)
+    }
+
     func willHide(coachMark: CoachMark, at index: Int) {
         delegate?.coachMarksController(self, willHide: coachMark, at: index)
     }
@@ -81,5 +92,33 @@ extension CoachMarksController: CoachMarksControllerProxyDelegate {
 
     func shouldHandleOverlayTap(at index: Int) -> Bool {
         return delegate?.shouldHandleOverlayTap(in: self, at: index) ?? true
+    }
+}
+
+extension CoachMarksController: CoachMarksControllerAnimationProxyDelegate {
+    func fetchAppearanceTransition(OfCoachMark coachMarkView: UIView,
+                                   at index: Int,
+                                   using manager: CoachMarkTransitionManager) {
+        animationDelegate?.coachMarksController(
+            self, fetchAppearanceTransitionOfCoachMark: coachMarkView,
+            at: index, using: manager
+        )
+    }
+
+    func fetchDisappearanceTransition(OfCoachMark coachMarkView: UIView,
+                                      at index: Int,
+                                      using manager: CoachMarkTransitionManager) {
+        animationDelegate?.coachMarksController(
+            self, fetchDisappearanceTransitionOfCoachMark: coachMarkView,
+            at: index, using: manager
+        )
+    }
+
+    func fetchIdleAnimationOfCoachMark(OfCoachMark coachMarkView: UIView,
+                                       at index: Int,
+                                       using manager: CoachMarkAnimationManager) {
+        animationDelegate?.coachMarksController(self,
+                                                fetchIdleAnimationOfCoachMark: coachMarkView,
+                                                at: index, using: manager)
     }
 }

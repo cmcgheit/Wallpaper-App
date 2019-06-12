@@ -52,10 +52,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Siren Updates Alert
         let siren = Siren.shared
-        siren.alertType = .option
-        siren.alertMessaging = SirenAlertMessaging(updateTitle: "We recently updated the app:", updateMessage: "[Thing Updated]", updateButtonMessage: "Update Now", nextTimeButtonMessage: "Maybe Next Time", skipVersionButtonMessage: "Skip")
-        siren.showAlertAfterCurrentVersionHasBeenReleasedForDays = 5
-        siren.checkVersion(checkType: .weekly)
+        siren.presentationManager = PresentationManager(alertTitle: "We recently updated the app: **Thing Updated", nextTimeButtonTitle: "Maybe Next Time")
+        let rules = Rules(promptFrequency: .weekly, forAlertType: .none)
+        siren.rulesManager = RulesManager(globalRules: rules)
+        
+        siren.wail(performCheck: .onDemand) { (results, error) in
+           
+        }
         
         // Gliding
         setupGlidingCollection()
@@ -83,13 +86,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        // Siren Update Alert Checks
-        Siren.shared.checkVersion(checkType: .weekly)
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Siren Update Alert Checks
-        Siren.shared.checkVersion(checkType: .weekly)
     }
     
     func applicationWillTerminate(_ application: UIApplication) {

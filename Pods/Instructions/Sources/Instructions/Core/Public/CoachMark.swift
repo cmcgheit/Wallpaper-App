@@ -28,6 +28,7 @@ import UIKit
 public struct CoachMark {
     // MARK: - Public properties
     /// Change this value to change the duration of the fade.
+    @available(iOS, deprecated: 1.2.1, message: "use the custom coach mark animation API instead.")
     public var animationDuration = Constants.coachMarkFadeAnimationDuration
 
     /// The path to cut in the overlay, so the point of interest will be visible.
@@ -54,6 +55,9 @@ public struct CoachMark {
 
     /// Trailing and leading margin of the coach mark.
     public var horizontalMargin: CGFloat = 20
+
+    /// Set this property to `true` to display the coach mark over the cutoutPath.
+    public var displayOverCutoutPath: Bool = false
 
     /// Set this property to `true` to disable a tap on the overlay.
     /// (only if the tap capture was enabled)
@@ -120,13 +124,16 @@ public struct CoachMark {
 
         self.pointOfInterest = CGPoint(x: xVal, y: yVal)
     }
+
+    internal func ceiledMaxWidth(in frame: CGRect) -> CGFloat {
+        return min(maxWidth, frame.width - 2 * horizontalMargin)
+    }
 }
 
 extension CoachMark: Equatable {}
 
 public func == (lhs: CoachMark, rhs: CoachMark) -> Bool {
-    return lhs.animationDuration == rhs.animationDuration &&
-           lhs.cutoutPath == rhs.cutoutPath &&
+    return lhs.cutoutPath == rhs.cutoutPath &&
            lhs.gapBetweenBodyAndArrow == rhs.gapBetweenBodyAndArrow &&
            lhs.arrowOrientation == rhs.arrowOrientation &&
            lhs.pointOfInterest == rhs.pointOfInterest &&

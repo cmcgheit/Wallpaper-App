@@ -44,9 +44,10 @@
   * [Displaying a View Controller](#displaying-a-view-controller)
   * [Alternative Rollback Window](#alternative-rollback-window)
   * [Dismissing an Entry](#dismissing-an-entry)
-  * [Swiping And Rubber Banding](#swiping-and-rubber-banding)
+  * [Swiping and Rubber Banding](#swiping-and-rubber-banding)
   * [Dealing With Safe Area](#dealing-with-safe-area)
   * [Dealing With Orientation Change](#dealing-with-orientation-change)
+  * [Swift and Objective-C Interoperability](#swift-and-objective-c-interoperability)
 * [Known Issues](#known-issues)
 * [Author](#author)
 * [License](#license)
@@ -57,22 +58,23 @@ SwiftEntryKit is a simple and versatile pop-up presenter written in Swift.
 
 ### Features
 
-Banners or Pop-Ups are called *Entries*.
+Banners or pop-ups are called *Entries*.
 
-- The entries are displayed in a separated UIWindow (of type EKWindow), so the user is able to navigate the app freely while entries are being displayed in a non intrusive manner.
-- The kit offers some beautiful [presets](#presets) that can be themed with your app colors and fonts.
+- Entries are displayed inside a separate UIWindow (of type EKWindow), so users are able to navigate the app freely while entries are being displayed in a non intrusive manner.
+- The kit offers beautiful [presets](#presets) that can be themed with your app colors and fonts.
 - **Customization**: Entries are highly customizable
-  - [x] Can be displayed either at the top, center, or the bottom of the screen.
-  - [x] Can be displayed within or outside the screen's safe area.
-  - [x] Can be stylized: have a border, drop-shadow and round corners.
-  - [x] Their content's and the screen's background can be blurred, dimmed, colored or have a gradient style.
-  - [x] Transition animations are customizable - Entrance, Exit and Pop (by another entry).
-  - [x] The user interactions with the entry or the screen can be intercepted.
-  - [x] Entries have an optional rubber banding effect in panning.
-  - [x] Entries can be optionally dismissed using a simple swipe gesture.
-  - [x] Entries have display priority attribute. That means that an entry can be dismissed only be other entry with equal or higher priority. 
-  - [x] Entries can be optionally injected with lifecycle events: *will* and *did* appear/disappear.
-  - [x] The status bar style is settable for the display duration of the entry.
+  - [x] Can be [positioned](#display-position) either at the top, center, or the bottom of the screen.
+  - [x] Can be displayed within or outside the screen safe area.
+  - [x] Can be stylized: have a [border](#border), [drop-shadow](#shadow) and [round corners](#round-corners).
+  - [x] Their content and the surrounding background can be blurred, dimmed, colored or have a gradient [style](#background-style).
+  - [x] Transition [animations](#animations) are customizable - entrance, exit and pop (by another entry).
+  - [x] The [user interaction](#user-interaction) with the entry or the screen can be intercepted.
+  - [x] Entries can be enqueued or override previous entries using the [precedence](#precedence) attribute.
+  - [x] Entries have [display priority](#display-priority) attribute. That means that an entry can be dismissed only be other entry with an equal or higher priority. 
+  - [x] Entries have an optional rubber banding effect while panning.
+  - [x] Entries can be optionally dismissed using a simple [swipe gesture](#swiping-and-rubber-banding).
+  - [x] Entries can be optionally injected with [lifecycle events](#lifecycle-events): *will* and *did* appear/disappear.
+  - [x] The [status bar style](#status-bar) is settable for the display duration of the entry.
   - [x] SwiftEntryKit supports [custom views](#custom-view-usage-example) as well.
 
 ## Example Project
@@ -121,6 +123,9 @@ The Playground Screen | Top Toast Sample
 
 ## Installation
 
+SwiftEntryKit is compatible with Swift 4.2 as of release *0.8.1*. 
+Developers who use lower Swift version can install release *0.7.2*.
+
 ### CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
@@ -136,7 +141,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.7.2'
+pod 'SwiftEntryKit', '0.8.9'
 ```
 
 Then, run the following command:
@@ -159,7 +164,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.7.2
+github "huri000/SwiftEntryKit" == 0.8.9
 ```
 
 ## Usage
@@ -190,7 +195,7 @@ The kit will replace the application main window with the EKWindow instance and 
 
 ### Entry Attributes
 
-*EKAttributes* is the entry's descriptor. Each time an entry is displayed, an EKAttributes struct is necessary to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations (in / out) and more.
+*EKAttributes* is the entry's descriptor. Each time an entry is displayed, an EKAttributes struct is necessary to describe the entry's presentation, position inside the screen, the display duration, its frame constraints (if needed), its styling (corners, border and shadow), the user interaction events, the animations (in / out) and more.
 
 Create a mutable EKAttributes structure likewise:
 ```Swift
@@ -306,7 +311,7 @@ SwiftEntryKit.display(entry: view2, using: normalPriorityAttributes)
 *view2* won't be displayed!
 
 #### Display Duration
-The display duration of the entry (Counted from the moment the entry has finished it's entrance animation and until the exit animation begins).
+The display duration of the entry (Counted from the moment the entry has finished its entrance animation and until the exit animation begins).
 
 Display for 4 seconds:
 ```Swift
@@ -357,7 +362,7 @@ attributes.positionConstraints.verticalOffset = 10
 
 Autorotation - whether the entry autorotates along with the orientation of the device. Defaults to `true`.
 ```Swift
-attributes.positionConstraints.isRotationEnabled = false
+attributes.positionConstraints.rotation.isEnabled = false
 ```
 
 Keyboard Releation - used to bind an entry to the keyboard once the keyboard is displayed.
@@ -374,7 +379,7 @@ The extreme situation might occur as the device orientation is landscape and the
 #### User Interaction
 The entry and the screen can be interacted by the user. User interaction be can intercepted in various ways:
 
-An interaction (Any touch whatsoever) with the entry delays it's exit by 3s:
+An interaction (Any touch whatsoever) with the entry delays its exit by 3s:
 ```Swift
 attributes.entryInteraction = .delayExit(by: 3)
 ```
@@ -594,8 +599,8 @@ The status bar appearance is inferred from the previous context (won't be change
 attributes.statusBar = .inferred
 ```
 
-In case there is an already presenting entry with lower/equal display priority, the status bar will change it's style
-When the entry is removed the status bar gets it's initial style back.
+In case there is an already presenting entry with lower/equal display priority, the status bar will change its style. 
+When the entry is removed, the status bar gets its initial style back.
 
 The default value of `statusBar` is `.inferred`. 
 
@@ -673,7 +678,7 @@ SwiftEntryKit.display(entry: contentView, using: attributes)
 // Create a basic toast that appears at the top
 var attributes = EKAttributes.topToast
 
-// Set it's background to white
+// Set its background to white
 attributes.entryBackground = .color(color: .white)
 
 // Animate in and out using default translation
@@ -834,6 +839,14 @@ SwiftEntryKit.display(entry: customView, using: attributes)
 Orientation Change Demonstration |
 --- |
 ![orientation_change](https://github.com/huri000/assets/blob/master/swift-entrykit/orientation.gif)
+
+### Swift and Objective-C Interoperability
+SwiftEntryKit's APIs use the Swift language exclusive syntax (enums, associated values, and more). 
+Therefore, `SwiftEntryKit` cannot be referenced directly from an Objective-C file (*.m*, *.h* or *.mm*).
+
+Yet, it is pretty easy to integrate SwiftEntryKit into an Objective-C project using a simple *.swift* class that is a sort of adapter between `SwiftEntryKit` and your Objective-C code.
+
+[This project](https://github.com/huri000/ObjcEntryKitExample) demonstrates that using Carthage and CocoaPods.  
 
 ## Known Issues
 

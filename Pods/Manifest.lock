@@ -77,25 +77,25 @@ PODS:
   - GoogleUtilities/UserDefaults (5.3.7):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.2.1)
-  - Instructions (1.2.0)
-  - Kingfisher (4.10.0)
+  - Instructions (1.2.2)
+  - Kingfisher (5.1.1)
   - leveldb-library (1.20)
-  - lottie-ios (2.5.2)
+  - lottie-ios (3.0.7)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - NVActivityIndicatorView (4.2.1):
-    - NVActivityIndicatorView/Presenter (= 4.2.1)
-  - NVActivityIndicatorView/Presenter (4.2.1)
-  - QuickLayout (2.0.2)
-  - Siren (3.4.0)
-  - SwiftEntryKit (0.7.2):
-    - QuickLayout (= 2.0.2)
-  - SwiftKeychainWrapper (3.0.1)
-  - SwiftyJSON (4.1.0)
-  - SwiftyPickerPopover (6.6.4)
+  - NVActivityIndicatorView (4.6.1):
+    - NVActivityIndicatorView/Presenter (= 4.6.1)
+  - NVActivityIndicatorView/Presenter (4.6.1)
+  - QuickLayout (2.1.1)
+  - Siren (4.2.2)
+  - SwiftEntryKit (0.8.9):
+    - QuickLayout (= 2.1.1)
+  - SwiftKeychainWrapper (3.2.0)
+  - SwiftyJSON (4.2.0)
+  - SwiftyPickerPopover (6.6.5)
 
 DEPENDENCIES:
   - Armchair
@@ -108,15 +108,15 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - GlidingCollection
-  - Instructions
-  - Kingfisher
-  - lottie-ios
-  - NVActivityIndicatorView
-  - Siren
-  - SwiftEntryKit (= 0.7.2)
-  - SwiftKeychainWrapper
-  - SwiftyJSON
-  - SwiftyPickerPopover
+  - Instructions (= 1.2.2)
+  - Kingfisher (= 5.1.1)
+  - lottie-ios (= 3.0.7)
+  - NVActivityIndicatorView (= 4.6.1)
+  - Siren (from `https://github.com/ArtSabintsev/Siren.git`, branch `swift4.2`)
+  - SwiftEntryKit (= 0.8.9)
+  - SwiftKeychainWrapper (= 3.2.0)
+  - SwiftyJSON (= 4.2.0)
+  - SwiftyPickerPopover (= 6.6.5)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -144,11 +144,20 @@ SPEC REPOS:
     - nanopb
     - NVActivityIndicatorView
     - QuickLayout
-    - Siren
     - SwiftEntryKit
     - SwiftKeychainWrapper
     - SwiftyJSON
     - SwiftyPickerPopover
+
+EXTERNAL SOURCES:
+  Siren:
+    :branch: swift4.2
+    :git: https://github.com/ArtSabintsev/Siren.git
+
+CHECKOUT OPTIONS:
+  Siren:
+    :commit: a3c7cfa26d686524bdb7cf0592310a836e53a97c
+    :git: https://github.com/ArtSabintsev/Siren.git
 
 SPEC CHECKSUMS:
   Armchair: 2dd361337cf81937e73e8b9d48f9eda9a21d316c
@@ -168,19 +177,19 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 621f3bc6211d5ba548debe01fafad30cf5ab6859
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
-  Instructions: 763c2452bd78e05d8f969a21c1cbc3c07deef33a
-  Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
+  Instructions: baff1b8ac41e195556c2b3453be1fcdd92e18612
+  Kingfisher: 2558186963e5be42d98c5b110ccb3130148b77e4
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
-  lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
+  lottie-ios: c38c3178ae8c4a8f200661aa5f80b9f1ca7f56b3
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  NVActivityIndicatorView: 8068ba3ad39cb44cbaab25d89ff2546b3f092681
-  QuickLayout: a730730b646b231fd4ef7cffaeb1e81fe0e1ca92
-  Siren: 5b8be41b5cd05aa3528303325966e919bd53e412
-  SwiftEntryKit: 83d312243af7397e38a222b17b7a744b9a7d2145
-  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
-  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
-  SwiftyPickerPopover: 6d08cbae133c80743654f4e977607cd1553947e6
+  NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
+  QuickLayout: 9af2b7fd89a6552828f51a5aba28d1bcdb8b340c
+  Siren: 4ce39daf1dd13533ef375c2064d6b8726231c521
+  SwiftEntryKit: 53409114a9216f93991b88e3817260bed0148811
+  SwiftKeychainWrapper: 82c4c02cdc36f9a24f7edfcaab3e336401caa1a1
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  SwiftyPickerPopover: f2975fd0233d04c0a8f8d52d09b6f24b882de6fb
 
-PODFILE CHECKSUM: 31dc43b38fe35e0e8aaa48da98b395c5623874fb
+PODFILE CHECKSUM: 6053dd77ccdfbd186c351fd469354186b368b2d6
 
 COCOAPODS: 1.5.3

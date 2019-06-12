@@ -23,23 +23,16 @@ class EKRootViewController: UIViewController {
     
     private let backgroundView = EKBackgroundView()
 
-    // Previous status bar style
-    private let previousStatusBar: EKAttributes.StatusBar
-    
     private lazy var wrapperView: EKWrapperView = {
         return EKWrapperView()
     }()
     
-    private var statusBar: EKAttributes.StatusBar? = nil {
-        didSet {
-            if let statusBar = statusBar {
-                UIApplication.shared.set(statusBarStyle: statusBar)
-            }
-        }
-    }
-    
+    /*
+     Count the total amount of currently displaying entries,
+     meaning, total subviews less one - the backgorund of the entry
+     */
     fileprivate var displayingEntryCount: Int {
-        return view.subviews.count
+        return view.subviews.count - 1
     }
     
     fileprivate var isDisplaying: Bool {
@@ -61,14 +54,43 @@ class EKRootViewController: UIViewController {
         if lastAttributes == nil {
             return true
         }
-        return lastAttributes.positionConstraints.isRotationEnabled
+        return lastAttributes.positionConstraints.rotation.isEnabled
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        guard let lastAttributes = lastAttributes else {
+            return super.supportedInterfaceOrientations
+        }
+        switch lastAttributes.positionConstraints.rotation.supportedInterfaceOrientations {
+        case .standard:
+            return super.supportedInterfaceOrientations
+        case .all:
+            return .all
+        }
+    }
+    
+    // Previous status bar style
+    private let previousStatusBar: EKAttributes.StatusBar
+    
+    private var statusBar: EKAttributes.StatusBar? = nil {
+        didSet {
+            if let statusBar = statusBar, ![statusBar, oldValue].contains(.ignored) {
+                UIApplication.shared.set(statusBarStyle: statusBar)
+            }
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
+        if [previousStatusBar, statusBar].contains(.ignored) {
+            return super.preferredStatusBarStyle
+        }
         return statusBar?.appearance.style ?? previousStatusBar.appearance.style
     }
 
     override var prefersStatusBarHidden: Bool {
+        if [previousStatusBar, statusBar].contains(.ignored) {
+            return super.prefersStatusBarHidden
+        }
         return !(statusBar?.appearance.visible ?? previousStatusBar.appearance.visible)
     }
     
@@ -107,7 +129,7 @@ class EKRootViewController: UIViewController {
 
         // In case the entry is a view controller, add the entry as child of root
         if let viewController = entryView.content.viewController {
-            addChildViewController(viewController)
+            addChild(viewController)
         }
         
         // Extract the attributes struct
@@ -128,6 +150,10 @@ class EKRootViewController: UIViewController {
         isResponsive = attributes.screenInteraction.isResponsive
         if previousAttributes?.statusBar != attributes.statusBar {
             setNeedsStatusBarAppearanceUpdate()
+        }
+        
+        if shouldAutorotate {
+            UIViewController.attemptRotationToDeviceOrientation()
         }
     }
         
@@ -194,10 +220,6 @@ extension EKRootViewController: EntryContentViewDelegate {
         delegate.displayPendingEntryIfNeeded()
     }
     
-    func changeToActive(withAttributes attributes: EKAttributes) {
-        changeBackground(to: attributes.screenBackground, duration: attributes.entranceAnimation.totalDuration)
-    }
-    
     func changeToInactive(withAttributes attributes: EKAttributes, pushOut: Bool) {
         guard displayingEntryCount <= 1 else {
             return
@@ -220,6 +242,10 @@ extension EKRootViewController: EntryContentViewDelegate {
         if lastBackroundStyle != attributes.screenBackground {
             clear()
         }
+    }
+    
+    func changeToActive(withAttributes attributes: EKAttributes) {
+        changeBackground(to: attributes.screenBackground, duration: attributes.entranceAnimation.totalDuration)
     }
     
     private func changeBackground(to style: EKAttributes.BackgroundStyle, duration: TimeInterval) {

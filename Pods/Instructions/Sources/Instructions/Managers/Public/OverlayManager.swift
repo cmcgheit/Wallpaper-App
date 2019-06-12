@@ -1,6 +1,6 @@
 // OverlayManager.swift
 //
-// Copyright (c) 2017 Frédéric Maquin <fred@ephread.com>
+// Copyright (c) 2017-2018 Frédéric Maquin <fred@ephread.com>
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +40,7 @@ public class OverlayManager {
     /// Setting this property to anything but `nil` will
     /// enable the effect. `overlayColor` will be ignored if this
     /// property is set.
-    public var blurEffectStyle: UIBlurEffectStyle? {
+    public var blurEffectStyle: UIBlurEffect.Style? {
         didSet {
             overlayStyleManager = updateOverlayStyleManager()
         }
@@ -85,7 +85,9 @@ public class OverlayManager {
     }
 
     /// Define the window level for the overlay.
-    public var windowLevel = UIWindowLevelNormal + 1
+    @available(iOS, deprecated: 1.2.1,
+               message: "specify the window level using CoachMarkController.start(in: ) instead")
+    public var windowLevel = UIWindow.Level.normal + 1
 
     // MARK: - Internal Properties
     /// Delegate to which tell that the overlay view received a tap event.
@@ -113,11 +115,7 @@ public class OverlayManager {
     }
 
     internal var isWindowHidden: Bool {
-#if INSTRUCTIONS_APP_EXTENSIONS
         return overlayView.superview?.isHidden ?? true
-#else
-        return overlayView.window?.isHidden ?? true
-#endif
     }
 
     internal var isOverlayInvisible: Bool {
@@ -161,49 +159,26 @@ public class OverlayManager {
     }
 
     func showWindow(_ show: Bool, completion: ((Bool) -> Void)?) {
-#if INSTRUCTIONS_APP_EXTENSIONS
-        guard let topView = overlayView.superview else {
+        guard let rootView = overlayView.superview else {
             completion?(false)
             return
         }
 
         if show {
             overlayView.alpha = 1.0
-            topView.isHidden = false
+            rootView.isHidden = false
             UIView.animate(withDuration: fadeAnimationDuration, animations: {
-                topView.alpha = 1.0
-            }, completion: completion)
-        } else {
-            topView.isHidden = false
-            UIView.animate(withDuration: fadeAnimationDuration, animations: {
-                topView.alpha = 0.0
-            }, completion: { (success) in
-                topView.isHidden = true
-                completion?(success)
-            })
-        }
-#else
-        guard let window = overlayView.window else {
-            completion?(false)
-            return
-        }
-
-        if show {
-            overlayView.alpha = 1.0
-            window.isHidden = false
-            UIView.animate(withDuration: fadeAnimationDuration, animations: {
-                window.alpha = 1.0
+                rootView.alpha = 1.0
             }, completion: completion)
         } else {
             overlayView.window?.isHidden = false
             UIView.animate(withDuration: fadeAnimationDuration, animations: {
-                window.alpha = 0.0
+                rootView.alpha = 0.0
             }, completion: { (success) in
-                window.isHidden = true
+                rootView.isHidden = true
                 completion?(success)
             })
         }
-#endif
     }
 
     func viewWillTransition() {
@@ -226,7 +201,7 @@ public class OverlayManager {
     }
 
     private func updateOverlayStyleManager() -> OverlayStyleManager {
-        if let style = blurEffectStyle, !UIAccessibilityIsReduceTransparencyEnabled() {
+        if let style = blurEffectStyle, !UIAccessibility.isReduceTransparencyEnabled {
             let blurringOverlayStyleManager = BlurringOverlayStyleManager(style: style)
             self.updateDependencies(of: blurringOverlayStyleManager)
             return blurringOverlayStyleManager

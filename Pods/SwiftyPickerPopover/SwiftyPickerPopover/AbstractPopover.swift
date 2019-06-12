@@ -163,7 +163,7 @@ open class AbstractPopover: NSObject {
             dimmedView.accessibilityIdentifier = kDimmedViewIdentifer
             if let parentView = baseViewController.navigationController?.view ?? baseViewController.view {
                 parentView.addSubview(dimmedView)
-                parentView.bringSubview(toFront: dimmedView)
+                parentView.bringSubviewToFront(dimmedView)
             }
         }
     }
