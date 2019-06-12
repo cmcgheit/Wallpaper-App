@@ -60,7 +60,7 @@ class UploadViewController: UIViewController {
             Defaults.setInstructions(value: false)
         } else {
             Defaults.setInstructions(value: true)
-            self.uploadInstructionsController.start(on: self)
+            self.uploadInstructionsController.start(in: .window(over: self))
             Defaults.set(true, forKey: "alreadylaunched")
         }
         

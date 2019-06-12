@@ -123,7 +123,7 @@ class FeedViewController: UIViewController {
             Defaults.setInstructions(value: false)
         } else {
             Defaults.setInstructions(value: true)
-            self.instructionsController.start(on: self)
+            self.instructionsController.start(in: .window(over: self))
             Defaults.set(true, forKey: "alreadylaunched")
         }
         
