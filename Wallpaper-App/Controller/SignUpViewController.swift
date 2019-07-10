@@ -2,6 +2,7 @@
 
 import UIKit
 import Firebase
+// import AuthenticationServices // sign in with Apple (iOS 13)
 import SwiftEntryKit
 import QuickLook
 
@@ -16,6 +17,7 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         customBackBtn()
+        setupSOAppleSignIn()
         
         signUpTxtFld?.delegate = self
         signUpPassFld?.delegate = self
@@ -110,31 +112,64 @@ class SignUpViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    // MARK: - Sign in With Apple Function
+    func setupSOAppleSignIn() {
+        //
+        //        let btnAuthorization = ASAuthorizationAppleIDButton()
+        //
+        //        btnAuthorization.frame = CGRect(x: 0, y: 0, width: 200, height: 40) // set up for app
+        //
+        //        btnAuthorization.center = self.view.center
+        //
+        //        btnAuthorization.addTarget(self, action: #selector(actionHandleAppleSignin), for: .touchUpInside)
+        //
+        //        self.view.addSubview(btnAuthorization)
+        
+    }
+    
+    @objc func actionHandleAppleSignin() {
+        
+//        let appleIDProvider = ASAuthorizationAppleIDProvider()
+//
+//        let request = appleIDProvider.createRequest()
+//
+//        request.requestedScopes = [.fullName, .email]
+//
+//        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+//
+//        authorizationController.delegate = self
+//
+//        authorizationController.presentationContextProvider = self
+//
+//        authorizationController.performRequests()
+        
+    }
+    
     // MARK: - Authenticate New User
     private func authenticateNewUser(withEmail email: String, withPassword pass: String) {
         // Register New User
-            AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in
-                if success { // After registered, login the user
-                    Analytics.logEvent("user_sign_up", parameters: nil)
-                    AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, nil) in
-                        if registrationError == nil {
-                            let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
-                            self.signUpSuccessAlert()
-                            self.present(feedVC, animated:true) // Take user to Feed once sucessfully signed in
-                            print("Successfully registered/Signed-In user")
-                        } else {
-                            if let registrationError = registrationError {
-                                // Sign In Error Alert
-                                UIView.shake(view: self.signUpTxtFld)
-                                UIView.shake(view: self.signUpPassFld)
-                                Auth.auth().handleFireAuthError(error: registrationError, vc: self)
-                                print(String(describing: registrationError.localizedDescription))
-                            }
+        AuthService.instance.registerUser(withEmail: email, andPassword: pass, userCreationComplete: { (success, registrationError) in
+            if success { // After registered, login the user
+                Analytics.logEvent("user_sign_up", parameters: nil)
+                AuthService.instance.loginUser(withEmail: email, andPassword: pass, loginComplete: { (success, nil) in
+                    if registrationError == nil {
+                        let feedVC = self.storyboard?.instantiateViewController(withIdentifier: "FeedViewController") as! FeedViewController
+                        self.signUpSuccessAlert()
+                        self.present(feedVC, animated:true) // Take user to Feed once sucessfully signed in
+                        print("Successfully registered/Signed-In user")
+                    } else {
+                        if let registrationError = registrationError {
+                            // Sign In Error Alert
+                            UIView.shake(view: self.signUpTxtFld)
+                            UIView.shake(view: self.signUpPassFld)
+                            Auth.auth().handleFireAuthError(error: registrationError, vc: self)
+                            print(String(describing: registrationError.localizedDescription))
                         }
-                    })
-                }
-            })
-        }
+                    }
+                })
+            }
+        })
+    }
     
     @IBAction func signUpBtnPressed(_ sender: UIButton) {
         guard let email = signUpTxtFld.text, email.isNotEmpty else { return }
@@ -183,7 +218,7 @@ class SignUpViewController: UIViewController {
 }
 
 extension SignUpViewController: UITextFieldDelegate {
-
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == signUpTxtFld {
             self.view.endEditing(true)
@@ -212,3 +247,52 @@ extension SignUpViewController: QLPreviewControllerDataSource {
         return Bundle.main.url(forResource: "WallVarietyTerms", withExtension: "pdf")! as QLPreviewItem
     }
 }
+
+// MARK: - Sign in With Apple Extension (make sure to add to app develop account when implement)
+//extension SignUpViewController: ASAuthorizationControllerDelegate {
+//
+//    // ASAuthorizationControllerDelegate function for authorization failed
+//
+//    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+//
+//        print(error.localizedDescription)
+//
+//    }
+//
+//    // ASAuthorizationControllerDelegate function for successful authorization
+//
+//    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+//
+//        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+//
+//            // Create an account as per your requirement
+//
+//            let appleId = appleIDCredential.user
+//
+//            let appleUserFirstName = appleIDCredential.fullName?.givenName
+//
+//            let appleUserLastName = appleIDCredential.fullName?.familyName
+//
+//            let appleUserEmail = appleIDCredential.email
+//
+//            //Write your code
+//
+//        } else if let passwordCredential = authorization.credential as? ASPasswordCredential {
+//
+//            let appleUsername = passwordCredential.user
+//
+//            let applePassword = passwordCredential.password
+//
+//            //Write your code
+//
+//        }
+//    }
+//}
+//
+//extension SignUpViewController: ASAuthorizationControllerPresentationContextProviding {
+//
+//    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+//
+//        return self.view.window!
+//    }
+//}
