@@ -39,6 +39,12 @@
 		D87DA23820FA556B00777B0D /* CustomCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23720FA556B00777B0D /* CustomCardView.swift */; };
 		D87DA23B20FBAC2500777B0D /* RevealPasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */; };
 		D87DA23D20FBAC2E00777B0D /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87DA23C20FBAC2E00777B0D /* LoginButton.swift */; };
+		D881995822F4D2FE00EAEA80 /* ExpansionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881995722F4D2FE00EAEA80 /* ExpansionState.swift */; };
+		D881995A22F4D32A00EAEA80 /* DrawerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881995922F4D32A00EAEA80 /* DrawerViewControllerDelegate.swift */; };
+		D881995C22F4D36C00EAEA80 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881995B22F4D36C00EAEA80 /* DrawerViewController.swift */; };
+		D881995E22F4D3E300EAEA80 /* DrawerViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881995D22F4D3E300EAEA80 /* DrawerViewController+TableView.swift */; };
+		D881996122F4D42B00EAEA80 /* DrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D881996022F4D42B00EAEA80 /* DrawerTableViewCell.swift */; };
+		D881996322F4D50800EAEA80 /* DrawerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D881996222F4D50800EAEA80 /* DrawerTableViewCell.xib */; };
 		D895F4BE213C54D600E7F8BE /* TransitionClone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4BD213C54D600E7F8BE /* TransitionClone.swift */; };
 		D895F4C221481C0200E7F8BE /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */; };
 		D895F4C4214AEF6E00E7F8BE /* UITextField+ValidationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = D895F4C3214AEF6D00E7F8BE /* UITextField+ValidationExt.swift */; };
@@ -122,6 +128,12 @@
 		D87DA23720FA556B00777B0D /* CustomCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCardView.swift; sourceTree = "<group>"; };
 		D87DA23A20FBAC2500777B0D /* RevealPasswordTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealPasswordTextField.swift; sourceTree = "<group>"; };
 		D87DA23C20FBAC2E00777B0D /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		D881995722F4D2FE00EAEA80 /* ExpansionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpansionState.swift; sourceTree = "<group>"; };
+		D881995922F4D32A00EAEA80 /* DrawerViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewControllerDelegate.swift; sourceTree = "<group>"; };
+		D881995B22F4D36C00EAEA80 /* DrawerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
+		D881995D22F4D3E300EAEA80 /* DrawerViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrawerViewController+TableView.swift"; sourceTree = "<group>"; };
+		D881996022F4D42B00EAEA80 /* DrawerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTableViewCell.swift; sourceTree = "<group>"; };
+		D881996222F4D50800EAEA80 /* DrawerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawerTableViewCell.xib; sourceTree = "<group>"; };
 		D895F4BD213C54D600E7F8BE /* TransitionClone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionClone.swift; sourceTree = "<group>"; };
 		D895F4C121481C0200E7F8BE /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		D895F4C3214AEF6D00E7F8BE /* UITextField+ValidationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ValidationExt.swift"; sourceTree = "<group>"; };
@@ -259,6 +271,27 @@
 			name = Localization;
 			sourceTree = "<group>";
 		};
+		D881995622F4D2BE00EAEA80 /* DrawerView */ = {
+			isa = PBXGroup;
+			children = (
+				D881995F22F4D41A00EAEA80 /* DrawerTableViewCell */,
+				D881995722F4D2FE00EAEA80 /* ExpansionState.swift */,
+				D881995922F4D32A00EAEA80 /* DrawerViewControllerDelegate.swift */,
+				D881995B22F4D36C00EAEA80 /* DrawerViewController.swift */,
+				D881995D22F4D3E300EAEA80 /* DrawerViewController+TableView.swift */,
+			);
+			path = DrawerView;
+			sourceTree = "<group>";
+		};
+		D881995F22F4D41A00EAEA80 /* DrawerTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D881996222F4D50800EAEA80 /* DrawerTableViewCell.xib */,
+				D881996022F4D42B00EAEA80 /* DrawerTableViewCell.swift */,
+			);
+			path = DrawerTableViewCell;
+			sourceTree = "<group>";
+		};
 		D8C2E30722273D7A00B396FF /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +364,7 @@
 				D86A641B21FE920300362769 /* CardContentView.xib */,
 				D8C2E30E22273E7F00B396FF /* RevealPassword */,
 				D8C2E30D22273E7F00B396FF /* Switch */,
+				D881995622F4D2BE00EAEA80 /* DrawerView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -487,6 +521,7 @@
 				D8FC5D8520D2BA2B00FA632F /* PopUpViewController.xib in Resources */,
 				D8E93BA220B8B0C100CE0AD8 /* Assets.xcassets in Resources */,
 				D8C6DA28218BB973000EF94C /* loader.json in Resources */,
+				D881996322F4D50800EAEA80 /* DrawerTableViewCell.xib in Resources */,
 				D8C12ECE22B069B800A86FA5 /* Color.xcassets in Resources */,
 				D8C6DA1D218A4357000EF94C /* GoogleService-Info.plist in Resources */,
 				D8C6DA29218BB973000EF94C /* postcard.json in Resources */,
@@ -590,6 +625,7 @@
 			files = (
 				D8FC5D9420E00C6000FA632F /* CustomThumbView.swift in Sources */,
 				D8E93B8B20B8B05100CE0AD8 /* UserDefaults.swift in Sources */,
+				D881995E22F4D3E300EAEA80 /* DrawerViewController+TableView.swift in Sources */,
 				D8E93B9720B8B08D00CE0AD8 /* UploadViewController.swift in Sources */,
 				D86A641021FE7B8100362769 /* NibLoadable.swift in Sources */,
 				D807067F217449060020B4B5 /* LocalizeProtocol.swift in Sources */,
@@ -599,7 +635,9 @@
 				D86A641221FE7BA600362769 /* ShowTime.swift in Sources */,
 				D8070673217448080020B4B5 /* LocalizeCommonProtocol.swift in Sources */,
 				D8070679217448820020B4B5 /* LocalizeStrings.swift in Sources */,
+				D881995822F4D2FE00EAEA80 /* ExpansionState.swift in Sources */,
 				D807067B217448A60020B4B5 /* LocalizeUI.swift in Sources */,
+				D881995A22F4D32A00EAEA80 /* DrawerViewControllerDelegate.swift in Sources */,
 				D8C2E34F222B5EB600B396FF /* FirebaseAuthExt.swift in Sources */,
 				D8E93BEB20BF2AD500CE0AD8 /* User.swift in Sources */,
 				D808C96E2135F36A004C95C9 /* PresentSectionViewController.swift in Sources */,
@@ -611,6 +649,7 @@
 				D8E93B8A20B8B05100CE0AD8 /* ImageResizeExt.swift in Sources */,
 				D895F4BE213C54D600E7F8BE /* TransitionClone.swift in Sources */,
 				D819C45621D91F9B007A8754 /* PresentCardAnimator.swift in Sources */,
+				D881995C22F4D36C00EAEA80 /* DrawerViewController.swift in Sources */,
 				D87DA23B20FBAC2500777B0D /* RevealPasswordTextField.swift in Sources */,
 				D807067D217448DA0020B4B5 /* LocalizeStatic.swift in Sources */,
 				D8E93B8420B8B02D00CE0AD8 /* FIRService.swift in Sources */,
@@ -622,6 +661,7 @@
 				D80706772174485C0020B4B5 /* LocalizeString.swift in Sources */,
 				D8FC5D9C20E724B000FA632F /* DarkTheme.swift in Sources */,
 				D8FC5D9A20E7242100FA632F /* LightTheme.swift in Sources */,
+				D881996122F4D42B00EAEA80 /* DrawerTableViewCell.swift in Sources */,
 				D819C45021D91F25007A8754 /* CardPresentationController.swift in Sources */,
 				D819C45821D92077007A8754 /* GlobalConstants.swift in Sources */,
 				D86A641621FE7C0300362769 /* StatusBarAnimatableViewController.swift in Sources */,
